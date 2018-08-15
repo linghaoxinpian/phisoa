@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shmilyou.repository.BaseRepository">
+    <!--useGeneratedKeys="true" keyProperty="id" parameterType resultType statementType="STATEMENT"-->
+    <!--select ${columns} from ${tableName}-->
+
+    <!-- insert -->
+    <!--<insert id="insert" parameterType="com.shmilyou.entity.IEntity" useGeneratedKeys="true" keyColumn="id"-->
+    <!--statementType="STATEMENT">-->
+    <!--INSERT INTO ${tableName}(${columns}) VALUES(${values})-->
+    <!--</insert>-->
+
+    <!-- delete -->
+    <delete id="delete" statementType="STATEMENT">
+        UPDATE ${tableName} SET del=1
+        WHERE id=#{id}
+    </delete>
+
+    <!-- update -->
+    <!--<update id="update" statementType="STATEMENT">-->
+    <!--UPDATE ${tableName} SET ${columnsAndValues}-->
+    <!--WHERE id=#{id}-->
+    <!--</update>-->
+
+    <!-- queryById -->
+    <select id="queryById" resultType="com.shmilyou.entity.User" statementType="STATEMENT">
+        SELECT * FROM user
+        WHERE id='2c2dae92-a05c-11e8-be4c-c60adc336b7d'
+    </select>
+
+    <!-- queryByColumn -->
+    <select id="queryByColumn" resultType="com.shmilyou.entity.IEntity" statementType="STATEMENT">
+        SELECT * FROM ${tableName}
+        WHERE ${column}=#{value} del=0
+    </select>
+
+    <!-- queryByColumns -->
+    <select id="queryByColumns" resultType="com.shmilyou.entity.IEntity" statementType="STATEMENT">
+        SELECT * FROM ${tableName}
+        WHERE ${columnsToValues} del=0
+    </select>
+
+    <!-- queryByColumns2 -->
+    <select id="queryByColumns2" resultType="com.shmilyou.entity.IEntity" statementType="STATEMENT">
+        SELECT * FROM ${tableName}
+        WHERE ${columnsToValues} del=0
+    </select>
+</mapper>
