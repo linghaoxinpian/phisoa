@@ -1,12 +1,14 @@
 package com.shmilyou.service.impl;
 
-import com.shmilyou.entity.IEntity;
+import com.shmilyou.entity.BaseEntity;
 import com.shmilyou.repository.BaseRepository;
-import com.shmilyou.service.IBaseService;
+import com.shmilyou.service.BaseService;
+import com.shmilyou.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,8 +17,7 @@ import java.util.Map;
  * Date: 2018/8/14
  */
 
-
-public class BaseService<T extends IEntity> implements IBaseService<T> {
+public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
 
     /**
      * T的简单字节码
@@ -32,12 +33,17 @@ public class BaseService<T extends IEntity> implements IBaseService<T> {
         T_name = clazz.getSimpleName();
     }
 
+    BaseServiceImpl(BaseRepository baseRepository) {
+        this.baseRepository = baseRepository;
+    }
+
     @Autowired
     private BaseRepository<T> baseRepository;
 
     @Override
-    public String insert(T entity) {
+    public int insert(T entity) {
         return baseRepository.insert(entity);
+
     }
 
     @Override
@@ -57,24 +63,26 @@ public class BaseService<T extends IEntity> implements IBaseService<T> {
 
     @Override
     public List<T> queryByColumn(String column, String value) {
+        column = Utils.camel2Underline(column);
         return baseRepository.queryByColumn(T_name, column, value);
     }
 
     @Override
     public List<T> queryByColumns(Map<String, String> columnsToValues) {
+        Map<String, String> map2 = new HashMap<>();
+        for (String column : columnsToValues.keySet()) {
+            map2.put(Utils.camel2Underline(column), columnsToValues.get(column));
+        }
         final String[] where = {" "};
-        columnsToValues.forEach((column, value) -> {
-            where[0] += column + "=" + value + " AND ";
+        map2.forEach((column, value) -> {
+            if(org.apache.commons.lang3.StringUtils.isNumeric(value)){
+                where[0] += column + " = " + value + " AND ";
+            }else {
+                where[0] += column + " = '" + value + "' AND ";
+            }
         });
+
         return baseRepository.queryByColumns(T_name, where[0]);
     }
 
-    @Override
-    public T queryByColumns2(Map<String, String> columnsToValues) {
-        final String[] where = {" "};
-        columnsToValues.forEach((column, value) -> {
-            where[0] += column + "=" + value + " AND ";
-        });
-        return baseRepository.queryByColumns2(T_name, where[0]);
-    }
 }

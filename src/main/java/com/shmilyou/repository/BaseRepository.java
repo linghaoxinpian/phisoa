@@ -1,15 +1,14 @@
 package com.shmilyou.repository;
 
-import com.shmilyou.entity.IEntity;
+import com.shmilyou.entity.BaseEntity;
 import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
 
 /**
  * Created with 岂止是一丝涟漪
  * Date: 2018/8/14
  */
-public interface BaseRepository<T extends IEntity> {
+public interface BaseRepository<T extends BaseEntity> {
 
 //    /**
 //     * @return 主键
@@ -18,26 +17,18 @@ public interface BaseRepository<T extends IEntity> {
 //    String insert(String tableName, String columns, String values);
 
     /**
-     * 由子类实现
-     *
      * @param entity
-     * @return
+     * @return  影响的行数，主键会自动复制到对象id属性中
      */
-    String insert(T entity);
+    int insert(T entity);
 
     /**
      * 软删除
      *
      * @param id 主键
-     * @return 影响的行数，success为1，error为-1
+     * @return 影响的行数
      */
     int delete(@Param("tableName") String tableName, @Param("id") String id);
-
-//    /**
-//     * @return 影响的行数，success为1，error为-1
-//     */
-//    @Deprecated
-//    int update(String tableName, String columnsAndValues);
 
     /**
      * 由子类实现
@@ -70,14 +61,5 @@ public interface BaseRepository<T extends IEntity> {
      * @return
      */
     List<T> queryByColumns(@Param("tableName") String tableName, @Param("columnsToValues") String columnsToValues);
-
-
-    /**
-     * 根据指定多列查询结果
-     *
-     * @param columnsToValues map<列名,值>
-     * @return
-     */
-    T queryByColumns2(@Param("tableName") String tableName, @Param("columnsToValues") String columnsToValues);
 
 }

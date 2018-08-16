@@ -1,6 +1,6 @@
 package com.shmilyou.service;
 
-import com.shmilyou.entity.IEntity;
+import com.shmilyou.entity.BaseEntity;
 
 import java.util.List;
 import java.util.Map;
@@ -9,22 +9,22 @@ import java.util.Map;
  * Created with 岂止是一丝涟漪
  * Date: 2018/8/14
  */
-public interface IBaseService<T extends IEntity> {
+public interface BaseService<T extends BaseEntity> {
     /**
      * @return 主键
      */
-    String insert(T entity);
+    int insert(T entity);
 
     /**
      * 软删除
      *
      * @param id 主键
-     * @return 影响的行数，success为1，error为-1
+     * @return 影响的行数
      */
     int delete(String id);
 
     /**
-     * @return 影响的行数，success为1，error为-1
+     * @return 影响的行数
      */
     int update(T entity);
 
@@ -51,14 +51,5 @@ public interface IBaseService<T extends IEntity> {
      * @return
      */
     List<T> queryByColumns(Map<String, String> columnsToValues);
-
-
-    /**
-     * 根据指定多列查询结果
-     *
-     * @param columnsToValues map<列名,值>
-     * @return
-     */
-    T queryByColumns2(Map<String, String> columnsToValues);
 
 }

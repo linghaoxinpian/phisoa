@@ -7,7 +7,7 @@
     <!--select ${columns} from ${tableName}-->
 
     <!-- insert -->
-    <!--<insert id="insert" parameterType="com.shmilyou.entity.IEntity" useGeneratedKeys="true" keyColumn="id"-->
+    <!--<insert id="insert" parameterType="com.shmilyou.entity.BaseEntityity" useGeneratedKeys="true" keyColumn="id"-->
     <!--statementType="STATEMENT">-->
     <!--INSERT INTO ${tableName}(${columns}) VALUES(${values})-->
     <!--</insert>-->
@@ -21,30 +21,25 @@
     <!-- update -->
     <!--<update id="update" statementType="STATEMENT">-->
     <!--UPDATE ${tableName} SET ${columnsAndValues}-->
-    <!--WHERE id=#{id}-->
+    <!--WHERE id=#{id} AND del=0-->
     <!--</update>-->
 
     <!-- queryById -->
-    <select id="queryById" resultType="com.shmilyou.entity.User">
-        SELECT * FROM ${tableName}
-        WHERE id=#{id} AND del=0
-    </select>
+    <!--<select id="queryById" resultType="com.shmilyou.entity.BaseEntityity">-->
+    <!--SELECT * FROM ${tableName}-->
+    <!--WHERE id=#{id} AND del=0-->
+    <!--</select>-->
 
     <!-- queryByColumn -->
-    <select id="queryByColumn" resultType="java.util.Map">
-        SELECT * FROM ${tableName}
-        WHERE ${column}=#{value} AND del=0
-    </select>
+    <!--<select id="queryByColumn" resultType="java.util.Map">-->
+    <!--SELECT * FROM ${tableName}-->
+    <!--WHERE ${column}=#{value} AND del=0-->
+    <!--</select>-->
 
     <!-- queryByColumns -->
-    <select id="queryByColumns" resultType="com.shmilyou.entity.User">
-        SELECT * FROM ${tableName}
-        WHERE ${columnsToValues} del=0
-    </select>
+    <!--<select id="queryByColumns" resultType="com.shmilyou.entity.BaseEntityity">-->
+    <!--SELECT * FROM ${tableName}-->
+    <!--WHERE ${columnsToValues} del=0-->
+    <!--</select>-->
 
-    <!-- queryByColumns2 -->
-    <select id="queryByColumns2" resultType="com.shmilyou.entity.IEntity" statementType="STATEMENT">
-        SELECT * FROM ${tableName}
-        WHERE ${columnsToValues} del=0
-    </select>
 </mapper>
