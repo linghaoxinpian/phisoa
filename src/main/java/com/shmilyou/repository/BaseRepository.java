@@ -2,6 +2,7 @@ package com.shmilyou.repository;
 
 import com.shmilyou.entity.BaseEntity;
 import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 /**
@@ -18,7 +19,7 @@ public interface BaseRepository<T extends BaseEntity> {
 
     /**
      * @param entity
-     * @return  影响的行数，主键会自动复制到对象id属性中
+     * @return 影响的行数，主键会自动复制到对象id属性中
      */
     int insert(T entity);
 

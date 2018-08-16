@@ -11,8 +11,7 @@ public class Utils {
     /**
      * 驼峰法转下划线
      *
-     * @param line
-     *            源字符串
+     * @param line 源字符串
      * @return 转换后的字符串
      */
     public static String camel2Underline(String line) {

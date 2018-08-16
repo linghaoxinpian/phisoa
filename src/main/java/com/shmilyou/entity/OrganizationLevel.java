@@ -4,17 +4,21 @@ import lombok.Data;
 
 /**
  * Created with 岂止是一丝涟漪
- * Date: 2018/8/14
+ * Date: 2018/8/16
+ */
+
+/**
+ * 机构等级
  */
 @Data
-public class Category extends BaseEntity {
+public class OrganizationLevel extends BaseEntity {
 
     private String id;
 
     private String name;
 
     /**
-     * ?级分类,默认为1级
+     * 评级，默认为0，即国家合法教育机构。0以上为我方认证评级
      */
     private Integer level;
 }

@@ -24,22 +24,22 @@ public class UserServiceTest extends BaseTest {
         user.setName("Exadmin");
         user.setNickName("Exadmin");
         int offsetRow = userService.insert(user);
-        System.out.println("==========="+offsetRow+"-=========="+user.getId());
+        System.out.println("===========" + offsetRow + "-==========" + user.getId());
     }
 
     @Test
-    public void update(){
+    public void update() {
         User user = new User();
         user.setId("22");
         user.setName("Exadmin");
         user.setNickName("Ex");
         int offsetRow = userService.insert(user);
         int offsetRow1 = userService.update(user);
-        System.out.println("====="+offsetRow1);
+        System.out.println("=====" + offsetRow1);
     }
 
     @Test
-    public void queryById(){
+    public void queryById() {
         User user = new User();
         user.setName("Exadmin");
         user.setNickName("Exadmin");
@@ -48,13 +48,13 @@ public class UserServiceTest extends BaseTest {
     }
 
     @Test
-    public void queryByColumn(){
+    public void queryByColumn() {
         List<User> users = userService.queryByColumn("nickName", "admin");
     }
 
     @Test
-    public void queryByColumns(){
-        Map<String,String> map=new HashMap<>();
+    public void queryByColumns() {
+        Map<String, String> map = new HashMap<>();
         map.put("name", "admin");
         map.put("nickName", "admin");
         List<User> users = userService.queryByColumns(map);

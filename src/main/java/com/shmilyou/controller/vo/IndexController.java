@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 @RequestMapping("/phisoa")
-public class IndexController {
+public class IndexController extends BaseController {
 
-    @RequestMapping(value = {"/index","/",""})
-    public String index(){
+    @RequestMapping(value = {"/index", "/", ""})
+    public String index() {
         return "index";
     }
 }

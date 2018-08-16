@@ -23,6 +23,8 @@ public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
      * T的简单字节码
      */
     private String T_name;
+    @Autowired
+    private BaseRepository<T> baseRepository;
 
     {
         //获取T
@@ -36,9 +38,6 @@ public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
     BaseServiceImpl(BaseRepository baseRepository) {
         this.baseRepository = baseRepository;
     }
-
-    @Autowired
-    private BaseRepository<T> baseRepository;
 
     @Override
     public int insert(T entity) {
@@ -75,9 +74,9 @@ public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
         }
         final String[] where = {" "};
         map2.forEach((column, value) -> {
-            if(org.apache.commons.lang3.StringUtils.isNumeric(value)){
+            if (org.apache.commons.lang3.StringUtils.isNumeric(value)) {
                 where[0] += column + " = " + value + " AND ";
-            }else {
+            } else {
                 where[0] += column + " = '" + value + "' AND ";
             }
         });

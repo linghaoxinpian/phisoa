@@ -8,7 +8,7 @@
 
     <!-- insert -->
     <insert id="insert" parameterType="com.shmilyou.entity.User">
-        <selectKey keyProperty="id" resultType="java.lang.String"  order="BEFORE">
+        <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
             select uuid()
         </selectKey>
         INSERT INTO user(id,name,nick_name)
