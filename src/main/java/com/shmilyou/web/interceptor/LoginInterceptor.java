@@ -23,8 +23,8 @@ public class LoginInterceptor implements HandlerInterceptor {
         user.setName("admin");
 
         // 是否登录判断
-        httpServletRequest.getSession().setAttribute(Constant.LOGIN_USER,user);
-        if (httpServletRequest.getSession().getAttribute(Constant.LOGIN_USER) == null) {
+        httpServletRequest.getSession().setAttribute(Constant.LOGIN_INFO,user);
+        if (httpServletRequest.getSession().getAttribute(Constant.LOGIN_INFO) == null) {
             httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login");
             return false;
         } else {

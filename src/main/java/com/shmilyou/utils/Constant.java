@@ -6,7 +6,7 @@ package com.shmilyou.utils;
 public final class Constant {
 
     /**
-     * 当前登录用户
+     * 当前登录信息
      */
-    public static final String LOGIN_USER="currentSession";
+    public static final String LOGIN_INFO ="currentSession";
 }

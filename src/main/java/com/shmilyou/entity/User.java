@@ -11,7 +11,7 @@ import java.util.List;
  */
 
 /**
- * 用户
+ * 求学者
  */
 @Data
 public class User extends BaseEntity {

@@ -11,4 +11,5 @@ import org.slf4j.LoggerFactory;
 
 public class BaseController {
     Logger logger = LoggerFactory.getLogger(this.getClass());
+    //todo:基类HttpServletRequest
 }
