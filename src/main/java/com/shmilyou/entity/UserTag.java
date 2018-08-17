@@ -21,7 +21,15 @@ public class UserTag extends BaseEntity {
     private String categoryId;
 
     /**
-     * 0：特长，1：爱好
+     * STRONG_TAG：特长，INTEREST_TAG：爱好
      */
     private Integer classify;
+
+    //非DB字段
+
+    //特长标识符
+    public static final Integer STRONG_TAG=0;
+
+    //爱好标识符
+    public static final Integer INTEREST_TAG=1;
 }
