@@ -3,6 +3,7 @@ package com.shmilyou.entity;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created with 岂止是一丝涟漪
@@ -41,13 +42,15 @@ public class User extends BaseEntity {
 
     private Integer gender;
 
+    //非DB字段
+
     /**
      * 擅长的文化
      */
-    private String strong;
+    private List<UserTag> strongList;
 
     /**
-     * 爱好的文化
+     * 爱好的文化,用于论坛
      */
-    private String interest;
+    private List<UserTag> interestList;
 }

@@ -29,7 +29,7 @@
     <mvc:annotation-driven></mvc:annotation-driven>
 
     <!--2 扫描-->
-    <context:component-scan base-package="com.shmilyou.controller"/>
+    <context:component-scan base-package="com.shmilyou.web.controller"/>
 
     <!--3 模版引擎-->
     <bean id="templateResolver"
@@ -58,5 +58,22 @@
         <!-- 支持的其中一个属性，支持的最大文件大小，以字节为单位	-->
         <property name="maxUploadSize" value="5242880"/>
     </bean>
+
+    <!-- 拦截器的配置, 默认是拦截器所有(与Struts相同),但是也可以配置基于方法的拦截器 -->
+    <mvc:interceptors>
+        <!-- 默认拦截所有的.action请求 -->
+        <!--<bean class="com.shmilyou.web.interceptor.LoginInterceptor" />-->
+
+        <!-- 配置拦截部分方法的请求,支持正则运算 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/phisoa/**"/>
+            <mvc:exclude-mapping path="/phisoa/" />
+            <mvc:exclude-mapping path="/phisoa/index" />
+            <mvc:exclude-mapping path="/phisoa/login_in" />
+            <mvc:exclude-mapping path="/phisoa/login_out" />
+            <mvc:exclude-mapping path="/phisoa/register" />
+            <bean class="com.shmilyou.web.interceptor.LoginInterceptor" />
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 </beans>

@@ -22,7 +22,7 @@ public class UserServiceTest extends BaseTest {
     public void insert() {
         User user = new User();
         user.setName("Exadmin");
-        user.setNickName("Exadmin");
+        user.setNickname("Exadmin");
         int offsetRow = userService.insert(user);
         System.out.println("===========" + offsetRow + "-==========" + user.getId());
     }
@@ -32,7 +32,7 @@ public class UserServiceTest extends BaseTest {
         User user = new User();
         user.setId("22");
         user.setName("Exadmin");
-        user.setNickName("Ex");
+        user.setNickname("Ex");
         int offsetRow = userService.insert(user);
         int offsetRow1 = userService.update(user);
         System.out.println("=====" + offsetRow1);
@@ -42,7 +42,7 @@ public class UserServiceTest extends BaseTest {
     public void queryById() {
         User user = new User();
         user.setName("Exadmin");
-        user.setNickName("Exadmin");
+        user.setNickname("Exadmin");
         int offsetRow = userService.insert(user);
         User user1 = userService.queryById(user.getId());
     }

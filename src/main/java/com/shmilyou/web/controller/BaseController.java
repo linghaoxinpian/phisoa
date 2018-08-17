@@ -1,4 +1,4 @@
-package com.shmilyou.controller;
+package com.shmilyou.web.controller;
 
 
 import org.slf4j.Logger;

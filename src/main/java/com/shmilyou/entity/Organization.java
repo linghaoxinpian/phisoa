@@ -18,6 +18,13 @@ public class Organization extends BaseEntity {
     private String id;
 
     /**
+     * 登录账户名，可用手机号或邮箱登录
+     */
+    private String loginName;
+
+    private String password;
+
+    /**
      * 机构名
      */
     private String name;
