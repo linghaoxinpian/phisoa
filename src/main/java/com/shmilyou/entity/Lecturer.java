@@ -11,7 +11,7 @@ import lombok.Data;
  * 每个机构的[著名讲师]
  */
 @Data
-public class Lecturer {
+public class Lecturer extends BaseEntity {
 
     private String id;
 
