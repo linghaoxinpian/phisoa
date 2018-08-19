@@ -3,7 +3,9 @@ package com.shmilyou.web.controller;
 import com.shmilyou.entity.Amateur;
 import com.shmilyou.entity.Organization;
 import com.shmilyou.entity.User;
+import com.shmilyou.service.OrganizationService;
 import com.shmilyou.utils.Constant;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,9 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @RequestMapping("/phisoa")
 public class IndexController extends BaseController {
+    @Autowired
+    OrganizationService OrganizationService;
+
 
     @RequestMapping(value = {"/index", "/", ""})
     public String index() {
@@ -32,6 +37,9 @@ public class IndexController extends BaseController {
     @RequestMapping(value = "/login_in_user", method = RequestMethod.POST)
     public String loginInUser(@ModelAttribute User user, HttpServletRequest request) {
         //todo:求学者登录校验
+        if (user == null) {
+            //return "false";
+        }
         request.getSession().setAttribute(Constant.LOGIN_INFO, user);
         return "index";
     }
