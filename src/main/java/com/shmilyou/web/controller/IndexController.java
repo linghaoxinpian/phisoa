@@ -37,8 +37,8 @@ public class IndexController extends BaseController {
     @RequestMapping(value = "/login_in_user", method = RequestMethod.POST)
     public String loginInUser(@ModelAttribute User user, HttpServletRequest request) {
         //todo:求学者登录校验
-        if( user == null && request == null){
-            return "false";
+        if (user == null) {
+            //return "false";
         }
         request.getSession().setAttribute(Constant.LOGIN_INFO, user);
         return "index";
