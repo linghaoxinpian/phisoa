@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shmilyou.repository.LecturerRepository">
+    <!--useGeneratedKeys="true" keyProperty="id" parameterType resultType statementType="STATEMENT"-->
+    <!--select ${columns} from ${tableName}-->
+
+    <!-- insert -->
+    <insert id="insert" parameterType="com.shmilyou.entity.Lecturer">
+        <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
+            select uuid()
+        </selectKey>
+        INSERT INTO Lecturer(id,name,nick_name)
+        VALUES(#{id},#{name},#{nickName})
+    </insert>
+
+    <!--update -->
+    <update id="update">
+    UPDATE Lecturer SET name=#{name},nick_name=#{nickName}
+    WHERE id=#{id} AND del=0
+    </update>
+
+    <!-- queryById -->
+    <select id="queryById" resultType="com.shmilyou.entity.Lecturer">
+    SELECT * FROM ${tableName}
+    WHERE id=#{id} AND del=0
+    </select>
+
+    <!-- queryByColumn -->
+    <select id="queryByColumn" resultType="com.shmilyou.entity.Lecturer">
+    SELECT * FROM ${tableName}
+    WHERE ${column}=#{value} AND del=0
+    </select>
+
+    <!-- queryByColumns -->
+    <select id="queryByColumns" resultType="com.shmilyou.entity.Lecturer">
+    SELECT * FROM ${tableName}
+    WHERE ${columnsToValues} del=0
+    </select>
+
+</mapper>
