@@ -11,6 +11,7 @@ public interface OrganizationService extends BaseService<Organization> {
 
     /**
      * 根据机构名模糊查询机构
+     *
      * @param organizationName 机构名
      * @return
      */
@@ -18,6 +19,7 @@ public interface OrganizationService extends BaseService<Organization> {
 
     /**
      * 根据地区查询机构
+     *
      * @param place
      * @return
      */
@@ -25,9 +27,10 @@ public interface OrganizationService extends BaseService<Organization> {
 
     /**
      * 根据【单个标签】查询机构
+     *
      * @param tagName
      * @param pageIndex 当前页页码
      * @return
      */
-    List<Organization> searchByTag(String tagName,String pageIndex,String pageSize);
+    List<Organization> searchByTag(String tagName, String pageIndex, String pageSize);
 }

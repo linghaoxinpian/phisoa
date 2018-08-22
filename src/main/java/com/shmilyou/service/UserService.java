@@ -15,18 +15,21 @@ public interface UserService extends BaseService<User> {
     int register(User user);
 
     //登录
-    /**
-     *  根据手机号、邮箱登录
-     * @param account   手机号、邮箱登录
-     * @param password  密码，需加盐处理
-     * @return
-     */
-    User loginIn(String account,String password);
 
     /**
-     *  加载用户[特长标签or爱好标签]
-     * @param tagClassify   标签分类
+     * 根据手机号、邮箱登录
+     *
+     * @param account  手机号、邮箱登录
+     * @param password 密码，需加盐处理
      * @return
      */
-    List<UserTag> getUserTagByUserId(String userId,String tagClassify);
+    User loginIn(String account, String password);
+
+    /**
+     * 加载用户[特长标签or爱好标签]
+     *
+     * @param tagClassify 标签分类
+     * @return
+     */
+    List<UserTag> getUserTagByUserId(String userId, String tagClassify);
 }

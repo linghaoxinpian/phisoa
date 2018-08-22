@@ -18,12 +18,12 @@ public class LoginInterceptor implements HandlerInterceptor {
         //System.out.println("-------1.在请求的方法之前执行,如果返回true,则继续向后执行--------");
 
         //测试环境
-        User user=new User();
+        User user = new User();
         user.setId("2c2dae92-a05c-11e8-be4c-c60adc336b7d");
         user.setName("admin");
 
         // 是否登录判断
-        httpServletRequest.getSession().setAttribute(Constant.LOGIN_INFO,user);
+        httpServletRequest.getSession().setAttribute(Constant.LOGIN_INFO, user);
         if (httpServletRequest.getSession().getAttribute(Constant.LOGIN_INFO) == null) {
             httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login");
             return false;
@@ -33,12 +33,12 @@ public class LoginInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) throws Exception {
+    public void postHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, ModelAndView modelAndView) {
         //System.out.println("----2.在请求的方法执行之后执行(没有抛异常的话)----------");
     }
 
     @Override
-    public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) throws Exception {
+    public void afterCompletion(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
         //System.out.println("----3.在请求的方法执行之后,无论是否抛出异常,通常用来进行异常处理----------");
     }
 }

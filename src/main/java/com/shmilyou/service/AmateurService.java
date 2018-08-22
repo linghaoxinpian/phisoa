@@ -11,6 +11,7 @@ public interface AmateurService extends BaseService<Amateur> {
 
     /**
      * 根据爱好者名模糊查询
+     *
      * @param amateurName
      * @return
      */
@@ -18,6 +19,7 @@ public interface AmateurService extends BaseService<Amateur> {
 
     /**
      * 根据地区查询爱好者
+     *
      * @param place
      * @return
      */
@@ -25,9 +27,10 @@ public interface AmateurService extends BaseService<Amateur> {
 
     /**
      * 根据【单个标签】查询爱好者
+     *
      * @param tagName
      * @param pageIndex 当前页页码
      * @return
      */
-    List<Amateur> searchByTag(String tagName,String pageIndex,String pageSize);
+    List<Amateur> searchByTag(String tagName, String pageIndex, String pageSize);
 }

@@ -28,8 +28,8 @@ public class UserTag extends BaseEntity {
     //非DB字段
 
     //特长标识符
-    public static final Integer STRONG_TAG=0;
+    public static final Integer STRONG_TAG = 0;
 
     //爱好标识符
-    public static final Integer INTEREST_TAG=1;
+    public static final Integer INTEREST_TAG = 1;
 }
