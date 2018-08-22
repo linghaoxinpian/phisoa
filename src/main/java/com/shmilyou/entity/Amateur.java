@@ -37,7 +37,12 @@ public class Amateur extends BaseEntity {
     private String phone;
 
     /**
-     * 现在所在地
+     * 现在所在地自描述
      */
     private String place;
+
+    /**
+     * 所在地Id
+     */
+    private Integer areaId;
 }

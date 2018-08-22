@@ -55,9 +55,14 @@ public class Organization extends BaseEntity {
     private String phone;
 
     /**
-     * 位置(必须包括省，查询时用like直接匹配)
+     * 位置(自描述，查询时用like直接匹配)
      */
     private String place;
+
+    /**
+     * 位置Id
+     */
+    private Integer areaId;
 
     /**
      * 机构官方主页
