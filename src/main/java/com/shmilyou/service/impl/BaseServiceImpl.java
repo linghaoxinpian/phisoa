@@ -84,4 +84,28 @@ public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
         return baseRepository.queryByColumns(T_name, where[0]);
     }
 
+    @Override
+    public List<T> queryByColumn(String column, String value, int pageIndex, int pageSize) {
+        column = Utils.camel2Underline(column);
+        return baseRepository.queryByColumnLimit(T_name, column, value, pageIndex, pageSize);
+    }
+
+    @Override
+    public List<T> queryByColumns(Map<String, String> columnsToValues, int pageIndex, int pageSize) {
+        Map<String, String> map2 = new HashMap<>();
+        for (String column : columnsToValues.keySet()) {
+            map2.put(Utils.camel2Underline(column), columnsToValues.get(column));
+        }
+        final String[] where = {" "};
+        map2.forEach((column, value) -> {
+            if (org.apache.commons.lang3.StringUtils.isNumeric(value)) {
+                where[0] += column + " = " + value + " AND ";
+            } else {
+                where[0] += column + " = '" + value + "' AND ";
+            }
+        });
+
+        return baseRepository.queryByColumnsLimit(T_name, where[0], pageIndex, pageSize);
+    }
+
 }

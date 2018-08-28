@@ -18,7 +18,7 @@ public interface AmateurService extends BaseService<Amateur> {
     List<Amateur> searchByName(String amateurName);
 
     /**
-     * 根据地区查询爱好者
+     * 根据地区查询爱好者(like查询)
      *
      * @param place
      * @return
@@ -32,5 +32,14 @@ public interface AmateurService extends BaseService<Amateur> {
      * @param pageIndex 当前页页码
      * @return
      */
-    List<Amateur> searchByTag(String tagName, String pageIndex, String pageSize);
+    List<Amateur> searchByTag(String tagName, int pageIndex, int pageSize);
+
+    /**
+     * 根据手机号、邮箱登录
+     *
+     * @param account  手机号、邮箱登录
+     * @param password 密码，需加盐处理
+     * @return
+     */
+    Amateur loginIn(String account, String password);
 }

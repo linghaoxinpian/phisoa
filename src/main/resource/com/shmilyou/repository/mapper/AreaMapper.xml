@@ -37,4 +37,16 @@
     WHERE ${columnsToValues} del=0
     </select>
 
+    <!-- queryByColumnLimit -->
+    <select id="queryByColumnLimit" resultType="com.shmilyou.entity.Area">
+    SELECT * FROM ${tableName}
+    WHERE ${column}=#{value} AND del=0 LIMIT #{pageIndex} , #{pageSize}
+    </select>
+
+    <!-- queryByColumnsLimit -->
+    <select id="queryByColumnsLimit" resultType="com.shmilyou.entity.Area">
+    SELECT * FROM ${tableName}
+    WHERE ${columnsToValues} del=0 LIMIT #{pageIndex} , #{pageSize}
+    </select>
+
 </mapper>

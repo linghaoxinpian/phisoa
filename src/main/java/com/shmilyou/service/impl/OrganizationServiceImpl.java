@@ -33,4 +33,9 @@ public class OrganizationServiceImpl extends BaseServiceImpl<Organization> imple
     public List<Organization> searchByTag(String tagName, String pageIndex, String pageSize) {
         return null;
     }
+
+    @Override
+    public Organization loginIn(String account, String password) {
+        return null;
+    }
 }

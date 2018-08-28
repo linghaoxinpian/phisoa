@@ -10,6 +10,8 @@ public final class Constant {
      */
     public static final String LOGIN_INFO = "currentSession";
 
-    //加盐
+    /**
+     * 加盐
+     */
     public static final String SALT = "phisoa_1";
 }

@@ -63,4 +63,27 @@ public interface BaseRepository<T extends BaseEntity> {
      */
     List<T> queryByColumns(@Param("tableName") String tableName, @Param("columnsToValues") String columnsToValues);
 
+    /**
+     * 根据指定列查询结果集
+     *
+     * @param column 列名
+     * @param value  值
+     */
+    List<T> queryByColumnLimit(@Param("tableName") String tableName,
+                               @Param("column") String column,
+                               @Param("value") String value,
+                               @Param("pageIndex") int pageIndex,
+                               @Param("pageSize") int pageSize);
+
+    /**
+     * 根据指定多列查询结果集
+     *
+     * @param columnsToValues map<列名,值>
+     * @return
+     */
+    List<T> queryByColumnsLimit(@Param("tableName") String tableName,
+                                @Param("columnsToValues") String columnsToValues,
+                                @Param("pageIndex") int pageIndex,
+                                @Param("pageSize") int pageSize);
+
 }

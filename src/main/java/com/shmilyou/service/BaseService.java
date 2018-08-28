@@ -52,4 +52,20 @@ public interface BaseService<T extends BaseEntity> {
      */
     List<T> queryByColumns(Map<String, String> columnsToValues);
 
+    /**
+     * 根据指定列查询结果集
+     *
+     * @param column 列名
+     * @param value  值
+     */
+    List<T> queryByColumn(String column, String value, int pageIndex, int pageSize);
+
+    /**
+     * 根据指定多列查询结果集
+     *
+     * @param columnsToValues map<列名,值>
+     * @return
+     */
+    List<T> queryByColumns(Map<String, String> columnsToValues, int pageIndex, int pageSize);
+
 }

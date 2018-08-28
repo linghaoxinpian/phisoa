@@ -30,4 +30,9 @@ public class Utils {
         }
         return sb.toString();
     }
+
+    public static boolean isEmail(String account) {
+        //todo:判断邮箱
+        return false;
+    }
 }

@@ -11,8 +11,8 @@
         <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
             select uuid()
         </selectKey>
-        INSERT INTO user(id,name,nick_name)
-        VALUES(#{id},#{name},#{nickName})
+        INSERT INTO user(id,name,nickname)
+        VALUES(#{id},#{name},#{nickname})
     </insert>
 
     <!--update -->
@@ -37,6 +37,18 @@
     <select id="queryByColumns" resultType="com.shmilyou.entity.User">
     SELECT * FROM ${tableName}
     WHERE ${columnsToValues} del=0
+    </select>
+
+    <!-- queryByColumnLimit -->
+    <select id="queryByColumnLimit" resultType="com.shmilyou.entity.User">
+    SELECT * FROM ${tableName}
+    WHERE ${column}=#{value} AND del=0 LIMIT #{pageIndex} , #{pageSize}
+    </select>
+
+    <!-- queryByColumnsLimit -->
+    <select id="queryByColumnsLimit" resultType="com.shmilyou.entity.User">
+    SELECT * FROM ${tableName}
+    WHERE ${columnsToValues} del=0 LIMIT #{pageIndex} , #{pageSize}
     </select>
 
 </mapper>

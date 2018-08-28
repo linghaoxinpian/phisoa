@@ -6,6 +6,14 @@
     <!--useGeneratedKeys="true" keyProperty="id" parameterType resultType statementType="STATEMENT"-->
     <!--select ${columns} from ${tableName}-->
 
+    <select id="queryByPlace" resultType="com.shmilyou.entity.Amateur">
+        SELECT * from amateur
+        WHERE place LIKE CONCAT('%',#{place},'%')
+        AND del=0
+    </select>
+
+
+    <!--        基础方法区           -->
     <!-- insert -->
     <insert id="insert" parameterType="com.shmilyou.entity.Amateur">
         <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
@@ -37,6 +45,18 @@
     <select id="queryByColumns" resultType="com.shmilyou.entity.Amateur">
     SELECT * FROM ${tableName}
     WHERE ${columnsToValues} del=0
+    </select>
+
+    <!-- queryByColumnLimit -->
+    <select id="queryByColumnLimit" resultType="com.shmilyou.entity.Amateur">
+    SELECT * FROM ${tableName}
+    WHERE ${column}=#{value} AND del=0 LIMIT #{pageIndex} , #{pageSize}
+    </select>
+
+    <!-- queryByColumnsLimit -->
+    <select id="queryByColumnsLimit" resultType="com.shmilyou.entity.Amateur">
+    SELECT * FROM ${tableName}
+    WHERE ${columnsToValues} del=0 LIMIT #{pageIndex} , #{pageSize}
     </select>
 
 </mapper>

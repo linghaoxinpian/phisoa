@@ -33,4 +33,13 @@ public interface OrganizationService extends BaseService<Organization> {
      * @return
      */
     List<Organization> searchByTag(String tagName, String pageIndex, String pageSize);
+
+    /**
+     * 根据手机号、邮箱登录
+     *
+     * @param account  手机号、邮箱登录
+     * @param password 密码，需加盐处理
+     * @return
+     */
+    Organization loginIn(String account, String password);
 }
