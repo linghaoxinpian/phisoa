@@ -1,6 +1,7 @@
 package com.shmilyou.service.impl;
 
 import com.shmilyou.entity.BaseEntity;
+import com.shmilyou.repository.AmateurRepository;
 import com.shmilyou.repository.BaseRepository;
 import com.shmilyou.service.BaseService;
 import com.shmilyou.utils.Utils;
@@ -39,6 +40,10 @@ public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
         this.baseRepository = baseRepository;
     }
 
+    @Autowired
+    protected AmateurRepository amateurRepository;
+
+    //-------------------方法区-------------------
     @Override
     public int insert(T entity) {
         return baseRepository.insert(entity);

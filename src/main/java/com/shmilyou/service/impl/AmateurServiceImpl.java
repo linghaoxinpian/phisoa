@@ -2,8 +2,6 @@ package com.shmilyou.service.impl;
 
 import com.shmilyou.entity.Amateur;
 import com.shmilyou.repository.AmateurRepository;
-import com.shmilyou.repository.AreaRepository;
-import com.shmilyou.repository.CategoryRepository;
 import com.shmilyou.service.AmateurService;
 import com.shmilyou.utils.Constant;
 import com.shmilyou.utils.Encrypt;
@@ -21,17 +19,11 @@ import java.util.List;
 public class AmateurServiceImpl extends BaseServiceImpl<Amateur> implements AmateurService {
 
     @Autowired
-    private AreaRepository areaRepository;
-    @Autowired
-    private AmateurRepository amateurRepository;
-    @Autowired
-    private CategoryRepository categoryRepository;
-
-    @Autowired
     AmateurServiceImpl(AmateurRepository baseRepository) {
         super(baseRepository);
     }
 
+    //-------------------方法区-------------------
     @Override
     public List<Amateur> searchByName(String amateurName) {
         return queryByColumn("amateurName", amateurName);
