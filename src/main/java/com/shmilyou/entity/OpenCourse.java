@@ -22,5 +22,10 @@ public class OpenCourse extends BaseEntity {
     /**
      * 上传视频的机构Id
      */
-    private String organAmateurId;
+    private String ownerId;
+
+    /**
+     * 所属分类Id
+     */
+    private String categoryId;
 }

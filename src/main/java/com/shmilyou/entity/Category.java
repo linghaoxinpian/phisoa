@@ -18,7 +18,7 @@ public class Category extends BaseEntity {
     private String name;
 
     /**
-     * ?级分类,默认为1级
+     * 父级id,默认为0，即1级分类
      */
-    private Integer level;
+    private Integer parentId;
 }

@@ -42,4 +42,12 @@ public interface AmateurService extends BaseService<Amateur> {
      * @return
      */
     Amateur loginIn(String account, String password);
+
+    /**
+     * 注册
+     *
+     * @param amateur
+     * @return 影响行数
+     */
+    int register(Amateur amateur);
 }

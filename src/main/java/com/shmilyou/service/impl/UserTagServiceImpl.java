@@ -16,4 +16,6 @@ public class UserTagServiceImpl extends BaseServiceImpl<UserTag> implements User
     UserTagServiceImpl(UserTagRepository baseRepository) {
         super(baseRepository);
     }
+
+    //-------------------方法区-------------------
 }

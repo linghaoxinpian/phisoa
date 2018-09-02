@@ -54,4 +54,9 @@ public class AmateurServiceImpl extends BaseServiceImpl<Amateur> implements Amat
         }
         return null;
     }
+
+    @Override
+    public int register(Amateur amateur) {
+        return insert(amateur);
+    }
 }

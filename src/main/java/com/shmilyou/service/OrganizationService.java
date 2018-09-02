@@ -42,4 +42,9 @@ public interface OrganizationService extends BaseService<Organization> {
      * @return
      */
     Organization loginIn(String account, String password);
+
+    /**
+     * 注册
+     */
+    int register(Organization organization);
 }

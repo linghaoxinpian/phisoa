@@ -22,10 +22,10 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         super(baseRepository);
     }
 
+    //-------------------方法区-------------------
     @Override
     public int register(User user) {
-        //todo:
-        return 0;
+        return insert(user);
     }
 
     @Override

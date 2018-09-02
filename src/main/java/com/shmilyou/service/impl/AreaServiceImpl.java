@@ -16,4 +16,7 @@ public class AreaServiceImpl extends BaseServiceImpl<Area> implements AreaServic
     AreaServiceImpl(AreaRepository baseRepository) {
         super(baseRepository);
     }
+
+    //-------------------方法区-------------------
+
 }

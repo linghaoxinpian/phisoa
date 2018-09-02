@@ -19,6 +19,7 @@ public class OrganizationServiceImpl extends BaseServiceImpl<Organization> imple
         super(baseRepository);
     }
 
+    //-------------------方法区-------------------
     @Override
     public List<Organization> searchByName(String organizationName) {
         return null;
@@ -37,5 +38,10 @@ public class OrganizationServiceImpl extends BaseServiceImpl<Organization> imple
     @Override
     public Organization loginIn(String account, String password) {
         return null;
+    }
+
+    @Override
+    public int register(Organization organization) {
+        return insert(organization);
     }
 }

@@ -22,4 +22,9 @@ public class Course extends BaseEntity {
      */
     private String ownerId;
 
+    /**
+     * 课程所属分类Id
+     */
+    private String categoryId;
+
 }
