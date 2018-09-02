@@ -3,6 +3,7 @@ package com.shmilyou.service.impl;
 import com.shmilyou.entity.Amateur;
 import com.shmilyou.repository.AmateurRepository;
 import com.shmilyou.repository.AreaRepository;
+import com.shmilyou.repository.CategoryRepository;
 import com.shmilyou.service.AmateurService;
 import com.shmilyou.utils.Constant;
 import com.shmilyou.utils.Encrypt;
@@ -23,6 +24,8 @@ public class AmateurServiceImpl extends BaseServiceImpl<Amateur> implements Amat
     private AreaRepository areaRepository;
     @Autowired
     private AmateurRepository amateurRepository;
+    @Autowired
+    private CategoryRepository categoryRepository;
 
     @Autowired
     AmateurServiceImpl(AmateurRepository baseRepository) {
@@ -41,8 +44,7 @@ public class AmateurServiceImpl extends BaseServiceImpl<Amateur> implements Amat
 
     @Override
     public List<Amateur> searchByTag(String tagName, int pageIndex, int pageSize) {
-
-        return queryByColumn("tagName", tagName, pageIndex, pageSize);
+        return amateurRepository.queryByTagName(tagName, pageIndex, pageSize);
     }
 
     @Override

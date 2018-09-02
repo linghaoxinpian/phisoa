@@ -16,4 +16,14 @@ public interface AmateurRepository extends BaseRepository<Amateur> {
      * @return
      */
     List<Amateur> queryByPlace(String place);
+
+    /**
+     * 根据标签查询爱好者（连表)
+     *
+     * @param tagName   标签名
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
+    List<Amateur> queryByTagName(String tagName, int pageIndex, int pageSize);
 }

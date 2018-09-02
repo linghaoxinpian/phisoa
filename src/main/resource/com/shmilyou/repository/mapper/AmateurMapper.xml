@@ -12,6 +12,16 @@
         AND del=0
     </select>
 
+    <select id="queryByTagName" resultType="com.shmilyou.entity.Amateur">
+        SELECT * FROM amateur a
+        LEFT JOIN amateur_tag t
+        ON a.id=t.amateur_id
+        AND t.name = #{tagName}
+        AND a.del=0
+        AND t.del=0
+        LIMIT #{pageIndex} , #{pageSize}
+    </select>
+
 
     <!--        基础方法区           -->
     <!-- insert -->
