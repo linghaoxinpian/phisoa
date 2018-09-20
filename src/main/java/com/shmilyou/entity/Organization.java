@@ -74,6 +74,11 @@ public class Organization extends BaseEntity {
      */
     private String levelId;
 
+    /**
+     * 培训人数
+     */
+    private Integer trainers;
+
     //非DB字段
     private OrganizationLevel level;
 

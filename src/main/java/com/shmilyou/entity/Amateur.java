@@ -45,4 +45,14 @@ public class Amateur extends BaseEntity {
      * 所在地Id
      */
     private Integer areaId;
+
+    /**
+     * 教龄，资历
+     */
+    private Integer seniority;
+
+    /**
+     * 爱好者等级
+     */
+    private Integer levelId;
 }

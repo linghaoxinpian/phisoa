@@ -17,8 +17,20 @@ public class Course extends BaseEntity {
 
     private String name;
 
+    private String description;
+
     /**
-     * 所属机构Id
+     * 缩略图
+     */
+    private String thumbnail;
+
+    /**
+     * 优化查询，0为机构，1,为个人
+     */
+    private Integer ownerCategory;
+
+    /**
+     * 所属机构(或个人)Id
      */
     private String ownerId;
 
