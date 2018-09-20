@@ -27,7 +27,7 @@ public class Area extends BaseEntity {
     /**
      * 地区级别（1:省份province,2:市city,3:区县district,4:街道street）
      */
-    private String level;
+    private Integer level;
 
     /**
      * 城市编码
@@ -42,7 +42,7 @@ public class Area extends BaseEntity {
     /**
      * 地区父节点
      */
-    private String parentId;
+    private Integer parentId;
 
     //非DB字段
     //省份
