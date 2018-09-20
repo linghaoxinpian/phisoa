@@ -17,6 +17,13 @@ public class Amateur extends BaseEntity {
 
     private String name;
 
+    /**
+     * 登录账户名，可用手机号或邮箱登录
+     */
+    private String loginName;
+
+    private String password;
+
     private String headImg;
 
     /**

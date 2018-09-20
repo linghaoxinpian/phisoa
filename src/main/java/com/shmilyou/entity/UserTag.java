@@ -16,7 +16,12 @@ public class UserTag extends BaseEntity {
     private String id;
 
     /**
-     * 分类
+     * 求学者id
+     */
+    private String userId;
+
+    /**
+     * 分类Id
      */
     private String categoryId;
 
