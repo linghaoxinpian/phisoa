@@ -4,24 +4,28 @@
 -- --------------------------------------------------------
 -- 服务器版本:                        5.7.9-log - MySQL Community Server (GPL)
 -- --------------------------------------------------------
- 
+/*  
 CREATE TABLE IF NOT EXISTS `area` (
-  `areaId` int(20) NOT NULL AUTO_INCREMENT COMMENT '地区Id',
-  `areaCode` varchar(50) NOT NULL COMMENT '地区编码',
-  `areaName` varchar(20) NOT NULL COMMENT '地区名',
+  `area_id` int(20) NOT NULL AUTO_INCREMENT COMMENT '地区Id',
+  `area_code` varchar(50) NOT NULL COMMENT '地区编码',
+  `area_name` varchar(20) NOT NULL COMMENT '地区名',
   `level` tinyint(4) DEFAULT '-1' COMMENT '地区级别（1:省份province,2:市city,3:区县district,4:街道street）',
-  `cityCode` varchar(50) DEFAULT NULL COMMENT '城市编码',
+  `city_code` varchar(50) DEFAULT NULL COMMENT '城市编码',
   `center` varchar(50) DEFAULT NULL COMMENT '城市中心点（即：经纬度坐标）',
-  `parentId` int(20) DEFAULT '-1' COMMENT '地区父节点',
-  PRIMARY KEY (`areaId`),
-  KEY `areaCode` (`areaCode`),
-  KEY `parentId` (`parentId`),
+  `parent_id` int(20) DEFAULT '-1' COMMENT '地区父节点',
+  PRIMARY KEY (`area_id`),
+  KEY `area_code` (`area_code`),
+  KEY `parent_id` (`parent_id`),
   KEY `level` (`level`),
-  KEY `areaName` (`areaName`)
-) ENGINE=InnoDB AUTO_INCREMENT=3260 DEFAULT CHARSET=utf8 COMMENT='地区码表';
+  KEY `area_name` (`area_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=3260 DEFAULT CHARSET=utf8 COMMENT='地区码表'; */
+
+/* SET GLOBAL FOREIGN_KEY_CHECKS=0;
+
+SELECT  @@FOREIGN_KEY_CHECKS; */
  
 -- 正在导出表数据：~3,256 rows (大约)
-INSERT INTO `area` (`areaId`, `areaCode`, `areaName`, `level`, `cityCode`, `center`, `parentId`) VALUES
+INSERT INTO `area` (`area_id`, `area_code`, `area_name`, `level`, `city_code`, `center`, `parent_id`) VALUES
 	(1, '110000', '北京市', 1, '010', '116.407394,39.904211', -1),
 	(2, '110100', '北京城区', 2, '010', '116.407394,39.904211', 1),
 	(3, '110101', '东城区', 3, '010', '116.41649,39.928341', 2),
