@@ -26,4 +26,16 @@ public class Category extends BaseEntity {
      * 当前是几级分类,默认为0，即1级分类
      */
     private Integer level;
+
+    //非DB字段
+
+    /**
+     * 1级分类
+     */
+    public static final int Level1 = 0;
+
+    /**
+     * 2级分类
+     */
+    public static final int level2 = 1;
 }

@@ -1,6 +1,7 @@
 package com.shmilyou.service;
 
 import com.shmilyou.entity.Amateur;
+import com.shmilyou.entity.Course;
 
 import java.util.List;
 
@@ -50,4 +51,19 @@ public interface AmateurService extends BaseService<Amateur> {
      * @return 影响行数
      */
     int register(Amateur amateur);
+
+    /**
+     * 根据【标签id】加载
+     * @param tagId
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
+    List<Amateur> queryByTagId(String tagId, int pageIndex, int pageSize);
+
+    /**
+     * 首页排行
+     * @return
+     */
+    List<Amateur> indexRecommendTop();
 }

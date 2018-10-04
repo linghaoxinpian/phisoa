@@ -47,4 +47,19 @@ public interface OrganizationService extends BaseService<Organization> {
      * 注册
      */
     int register(Organization organization);
+
+    /**
+     * 根据标签加载机构
+     * @param tagId
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
+    List<Organization> queryByTagId(String tagId, int pageIndex, int pageSize);
+
+    /**
+     * 首页排行
+     * @return
+     */
+    List<Organization> indexRecommendTop();
 }

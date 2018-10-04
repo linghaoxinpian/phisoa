@@ -11,13 +11,13 @@
         <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
             select uuid()
         </selectKey>
-        INSERT INTO OpenCourse(id,name,nick_name)
+        INSERT INTO open_course(id,name,nick_name)
         VALUES(#{id},#{name},#{nickName})
     </insert>
 
     <!--update -->
     <update id="update">
-    UPDATE OpenCourse SET name=#{name},nick_name=#{nickName}
+    UPDATE open_course SET name=#{name},nick_name=#{nickName}
     WHERE id=#{id} AND del=0
     </update>
 

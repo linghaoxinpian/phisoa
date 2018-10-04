@@ -6,6 +6,27 @@
     <!--useGeneratedKeys="true" keyProperty="id" parameterType resultType statementType="STATEMENT"-->
     <!--select ${columns} from ${tableName}-->
 
+    <resultMap id="organizationRM" type="com.shmilyou.entity.Organization" autoMapping="true">
+        <id property="id" column="id" />
+        <association property="level" column="level_id" javaType="com.shmilyou.entity.OrganizationLevel" select="getLevel" />
+    </resultMap>
+    <select id="getLevel">
+        SELECT * FROM organization_level WHERE id=#{id}
+    </select>
+
+    <select id="queryByTagId" resultMap="organizationRM">
+        SELECT *
+        FROM organization o
+        LEFT JOIN organization_tag t
+        ON o.id=t.organization_id
+        AND t.category_id = #{tagId}
+        AND o.del=0
+        AND t.del=0
+        LIMIT #{pageIndex} , #{pageSize}
+    </select>
+
+
+    <!--        基础方法区           -->
     <!-- insert -->
     <insert id="insert" parameterType="com.shmilyou.entity.Organization">
         <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">

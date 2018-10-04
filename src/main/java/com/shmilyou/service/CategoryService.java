@@ -16,4 +16,11 @@ public interface CategoryService extends BaseService<Category> {
      * @return
      */
     List<Category> queryByParentId(String parentId);
+
+    /**
+     * 加载？级分类
+     * @param level
+     * @return
+     */
+    List<Category> queryByLevel(int level);
 }

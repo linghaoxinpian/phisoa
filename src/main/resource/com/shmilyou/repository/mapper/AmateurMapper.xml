@@ -6,6 +6,14 @@
     <!--useGeneratedKeys="true" keyProperty="id" parameterType resultType statementType="STATEMENT"-->
     <!--select ${columns} from ${tableName}-->
 
+    <resultMap id="amateurRM" type="com.shmilyou.entity.Amateur" autoMapping="true">
+        <id property="id" column="id"/>
+        <association property="level" column="level_id" javaType="com.shmilyou.entity.AmateurLevel" select="getLevel" />
+    </resultMap>
+    <select id="getLevel" resultType="com.shmilyou.entity.AmateurLevel">
+        SELECT * FROM amateur_level WHERE id=#{id}
+    </select>
+
     <select id="queryByPlace" resultType="com.shmilyou.entity.Amateur">
         SELECT * from amateur
         WHERE place LIKE CONCAT('%',#{place},'%')
@@ -17,6 +25,17 @@
         LEFT JOIN amateur_tag t
         ON a.id=t.amateur_id
         AND t.name = #{tagName}
+        AND a.del=0
+        AND t.del=0
+        LIMIT #{pageIndex} , #{pageSize}
+    </select>
+
+    <select id="queryByTagId" resultMap="amateurRM">
+        SELECT *
+        FROM amateur a
+        LEFT JOIN amateur_tag t
+        ON a.id=t.amateur_id
+        AND t.category_id = #{tagId}
         AND a.del=0
         AND t.del=0
         LIMIT #{pageIndex} , #{pageSize}

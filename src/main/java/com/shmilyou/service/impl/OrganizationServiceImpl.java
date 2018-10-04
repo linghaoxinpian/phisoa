@@ -18,6 +18,8 @@ public class OrganizationServiceImpl extends BaseServiceImpl<Organization> imple
     OrganizationServiceImpl(OrganizationRepository baseRepository) {
         super(baseRepository);
     }
+    @Autowired
+    private OrganizationRepository organizationRepository;
 
     //-------------------方法区-------------------
     @Override
@@ -43,5 +45,10 @@ public class OrganizationServiceImpl extends BaseServiceImpl<Organization> imple
     @Override
     public int register(Organization organization) {
         return insert(organization);
+    }
+
+    @Override
+    public List<Organization> queryByTagId(String tagId, int pageIndex, int pageSize) {
+        return organizationRepository.queryByTagId(tagId,pageIndex,pageSize);
     }
 }

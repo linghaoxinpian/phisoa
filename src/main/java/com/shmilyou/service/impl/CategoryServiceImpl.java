@@ -24,4 +24,9 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category> implements Ca
     public List<Category> queryByParentId(String parentId) {
         return queryByColumn("parent_id", parentId);
     }
+
+    @Override
+    public List<Category> queryByLevel(int level) {
+        return queryByColumn("level", String.valueOf(level));
+    }
 }

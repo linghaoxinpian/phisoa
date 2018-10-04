@@ -72,7 +72,7 @@ public class Organization extends BaseEntity {
     /**
      * 机构在我方的评级
      */
-    private String levelId;
+    //private String levelId;
 
     /**
      * 培训人数

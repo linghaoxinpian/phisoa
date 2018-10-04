@@ -33,7 +33,9 @@ public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
         ParameterizedType parameterizedType = (ParameterizedType) type;
         Type[] types = parameterizedType.getActualTypeArguments();
         Class<?> clazz = (Class<?>) types[0];
-        T_name = clazz.getSimpleName();
+        //首字母小写，并赋值给T_name
+        T_name = String.valueOf(clazz.getSimpleName().charAt(0)).toLowerCase();
+        T_name = Utils.camel2Underline(T_name + clazz.getSimpleName().substring(1));
     }
 
     BaseServiceImpl(BaseRepository baseRepository) {

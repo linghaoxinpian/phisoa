@@ -1,9 +1,16 @@
 package com.shmilyou.web.controller;
 
 import com.shmilyou.entity.Amateur;
+import com.shmilyou.entity.AmateurLevel;
+import com.shmilyou.entity.Category;
+import com.shmilyou.entity.Course;
+import com.shmilyou.entity.OpenCourse;
 import com.shmilyou.entity.Organization;
 import com.shmilyou.entity.User;
 import com.shmilyou.service.AmateurService;
+import com.shmilyou.service.CategoryService;
+import com.shmilyou.service.CourseService;
+import com.shmilyou.service.OpenCourseService;
 import com.shmilyou.service.OrganizationService;
 import com.shmilyou.service.UserService;
 import com.shmilyou.utils.Constant;
@@ -29,13 +36,29 @@ public class IndexController extends BaseController {
     @Autowired
     private AmateurService amateurService;
     @Autowired
-    OrganizationService OrganizationService;
-    @Autowired
     private OrganizationService organizationService;
-
+    @Autowired
+    private CategoryService categoryService;
+    @Autowired
+    private CourseService courseService;
+    @Autowired
+    private OpenCourseService openCourseService;
 
     @RequestMapping(value = {"/index", "/", ""})
     public String index() {
+        //1.加载1级分类
+        List<Category> level1Tag = categoryService.queryByLevel(Category.Level1);
+        //2.加载【热门培训】
+        List<Course> courses_hot = courseService.queryByTagId("7078ac33-befe-11e8-94b3-a353b48ca080", 1, 6);
+        //3.加载【优秀公开课】
+        List<OpenCourse> openCourses_hot = openCourseService.queryByTagId("7078ac33-befe-11e8-94b3-a353b48ca080", 1, 6);
+        //4.加载【优秀爱好者】
+        List<Amateur> amateurs_hot = amateurService.queryByTagId("7078ac33-befe-11e8-94b3-a353b48ca080", 0, 3);
+        //5.加载【优秀机构】
+        List<Organization> organizations_hot = organizationService.queryByTagId("7078ac33-befe-11e8-94b3-a353b48ca080", 0, 3);
+        //6.排行【机构】【爱好者】
+        List<Amateur> top1=amateurService.indexRecommendTop();
+        List<Organization> top2=organizationService.indexRecommendTop();
         return "index";
     }
 
