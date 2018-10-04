@@ -11,4 +11,13 @@ import java.util.List;
 public interface OrganizationRepository extends BaseRepository<Organization> {
     List<Organization> queryByTagId(@Param("tagId") String tagId,@Param("pageIndex") int pageIndex,
                                     @Param("pageSize") int pageSize);
+
+    /**
+     * 注册
+     *
+     * @param organization
+     * @return
+     */
+    int register(Organization organization);
+
 }

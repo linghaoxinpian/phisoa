@@ -17,6 +17,13 @@ public class AreaServiceImpl extends BaseServiceImpl<Area> implements AreaServic
         super(baseRepository);
     }
 
+    @Autowired
+    private AreaRepository areaRepository;
+
     //-------------------方法区-------------------
 
+    @Override
+    public Area queryByFullName(String fullAreaName) {
+        return areaRepository.queryByFullName(fullAreaName);
+    }
 }

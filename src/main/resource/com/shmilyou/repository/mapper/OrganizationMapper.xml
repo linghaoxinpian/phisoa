@@ -10,7 +10,7 @@
         <id property="id" column="id" />
         <association property="level" column="level_id" javaType="com.shmilyou.entity.OrganizationLevel" select="getLevel" />
     </resultMap>
-    <select id="getLevel">
+    <select id="getLevel" resultType="com.shmilyou.entity.OrganizationLevel">
         SELECT * FROM organization_level WHERE id=#{id}
     </select>
 
@@ -25,6 +25,13 @@
         LIMIT #{pageIndex} , #{pageSize}
     </select>
 
+    <insert id="register" parameterType="com.shmilyou.entity.Organization">
+        <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
+            select uuid()
+        </selectKey>
+        INSERT INTO Organization(id,name,place,phone,area_id)
+        VALUES(#{id},#{name},#{place},#{phone},#{areaId})
+    </insert>
 
     <!--        基础方法区           -->
     <!-- insert -->
@@ -43,7 +50,7 @@
     </update>
 
     <!-- queryById -->
-    <select id="queryById" resultType="com.shmilyou.entity.Organization">
+    <select id="queryById" resultMap="organizationRM">
     SELECT * FROM ${tableName}
     WHERE id=#{id} AND del=0
     </select>

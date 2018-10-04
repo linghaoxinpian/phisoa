@@ -6,6 +6,11 @@
     <!--useGeneratedKeys="true" keyProperty="id" parameterType resultType statementType="STATEMENT"-->
     <!--select ${columns} from ${tableName}-->
 
+    <select id="queryByFullName" resultType="com.shmilyou.entity.Area">
+        SELECT * FROM area WHERE full_name=#{fullAreaName}
+    </select>
+
+    <!--        基础方法区           -->
     <!-- insert -->
     <insert id="insert" parameterType="com.shmilyou.entity.Area" useGeneratedKeys="true" keyProperty="areaId"
             keyColumn="areaId">

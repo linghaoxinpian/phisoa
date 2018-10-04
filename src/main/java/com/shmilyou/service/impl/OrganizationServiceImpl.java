@@ -44,7 +44,7 @@ public class OrganizationServiceImpl extends BaseServiceImpl<Organization> imple
 
     @Override
     public int register(Organization organization) {
-        return insert(organization);
+        return organizationRepository.register(organization);
     }
 
     @Override
@@ -56,4 +56,5 @@ public class OrganizationServiceImpl extends BaseServiceImpl<Organization> imple
     public List<Organization> indexRecommendTop() {
         return null;
     }
+
 }
