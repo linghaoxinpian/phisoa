@@ -65,4 +65,9 @@ public class AmateurServiceImpl extends BaseServiceImpl<Amateur> implements Amat
     public List<Amateur> queryByTagId(String tagId, int pageIndex, int pageSize) {
         return amateurRepository.queryByTagId(tagId,pageIndex,pageSize);
     }
+
+    @Override
+    public List<Amateur> indexRecommendTop() {
+        return null;
+    }
 }

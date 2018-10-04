@@ -51,4 +51,9 @@ public class OrganizationServiceImpl extends BaseServiceImpl<Organization> imple
     public List<Organization> queryByTagId(String tagId, int pageIndex, int pageSize) {
         return organizationRepository.queryByTagId(tagId,pageIndex,pageSize);
     }
+
+    @Override
+    public List<Organization> indexRecommendTop() {
+        return null;
+    }
 }
