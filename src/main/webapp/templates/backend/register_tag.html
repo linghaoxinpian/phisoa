@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>新增标签</title>
+</head>
+<body>
+<form action="/phisoa/backend/register/tag" method="post">
+    <label>标签名：</label><input name="name" type="text"><br>
+    <label>所属父级：</label>
+    <select name="parentId" th:each="level:${level1}">
+        <option th:value="${level.id}" th:text="${level.name}">null</option>
+    </select>
+    <input type="submit" value="新增">
+</form>
+</body>
+</html>

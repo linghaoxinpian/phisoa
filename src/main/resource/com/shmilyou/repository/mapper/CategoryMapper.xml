@@ -11,8 +11,8 @@
         <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
             select uuid()
         </selectKey>
-        INSERT INTO category(id,name,nick_name)
-        VALUES(#{id},#{name},#{nickName})
+        INSERT INTO category(id,name,parent_id,level)
+        VALUES(#{id},#{name},#{parentId},#{level})
     </insert>
 
     <!--update -->
