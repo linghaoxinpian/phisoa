@@ -32,4 +32,12 @@ public interface UserService extends BaseService<User> {
      * @return
      */
     List<UserTag> getUserTagByUserId(String userId, String tagClassify);
+
+    /**
+     * 给用户添加标签/特长（特长估计用不上）
+     * <p>userTags.id请设为null</p>
+     *
+     * @return 批量执行成功条数
+     */
+    int addUserTag(List<UserTag> tags);
 }

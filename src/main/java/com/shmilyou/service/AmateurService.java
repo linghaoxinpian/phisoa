@@ -1,7 +1,7 @@
 package com.shmilyou.service;
 
 import com.shmilyou.entity.Amateur;
-import com.shmilyou.entity.Course;
+import com.shmilyou.entity.AmateurTag;
 
 import java.util.List;
 
@@ -54,6 +54,7 @@ public interface AmateurService extends BaseService<Amateur> {
 
     /**
      * 根据【标签id】加载
+     *
      * @param tagId
      * @param pageIndex
      * @param pageSize
@@ -63,7 +64,16 @@ public interface AmateurService extends BaseService<Amateur> {
 
     /**
      * 首页排行
+     *
      * @return
      */
     List<Amateur> indexRecommendTop();
+
+    /**
+     * 给机构添加标签
+     * <p>AmateurTags.id请设为null</p>
+     *
+     * @return 批量执行成功条数
+     */
+    int addAmateurTag(List<AmateurTag> amateurTags);
 }

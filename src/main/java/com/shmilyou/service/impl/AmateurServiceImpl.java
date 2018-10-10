@@ -1,7 +1,7 @@
 package com.shmilyou.service.impl;
 
 import com.shmilyou.entity.Amateur;
-import com.shmilyou.entity.Course;
+import com.shmilyou.entity.AmateurTag;
 import com.shmilyou.repository.AmateurRepository;
 import com.shmilyou.service.AmateurService;
 import com.shmilyou.utils.Constant;
@@ -63,11 +63,16 @@ public class AmateurServiceImpl extends BaseServiceImpl<Amateur> implements Amat
 
     @Override
     public List<Amateur> queryByTagId(String tagId, int pageIndex, int pageSize) {
-        return amateurRepository.queryByTagId(tagId,pageIndex,pageSize);
+        return amateurRepository.queryByTagId(tagId, pageIndex, pageSize);
     }
 
     @Override
     public List<Amateur> indexRecommendTop() {
         return null;
+    }
+
+    @Override
+    public int addAmateurTag(List<AmateurTag> amateurTags) {
+        return amateurRepository.insertAmateurTag(amateurTags);
     }
 }

@@ -8,7 +8,7 @@
 
     <resultMap id="amateurRM" type="com.shmilyou.entity.Amateur" autoMapping="true">
         <id property="id" column="id"/>
-        <association property="level" column="level_id" javaType="com.shmilyou.entity.AmateurLevel" select="getLevel" />
+        <association property="level" column="level_id" javaType="com.shmilyou.entity.AmateurLevel" select="getLevel"/>
     </resultMap>
     <select id="getLevel" resultType="com.shmilyou.entity.AmateurLevel">
         SELECT * FROM amateur_level WHERE id=#{id}
@@ -41,6 +41,19 @@
         LIMIT #{pageIndex} , #{pageSize}
     </select>
 
+    <insert id="insertAmateurTag" parameterType="java.util.List">
+        <!--<selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE">-->
+        <!--SELECT uuid()-->
+        <!--</selectKey>-->
+        insert into amateur_tag
+        (id, amateur_id, category_id)
+        values
+        <foreach collection="list" item="at" index="index" separator=",">
+            (
+            uuid(), #{at.amateurId},#{at.categoryId}
+            )
+        </foreach>
+    </insert>
 
     <!--        基础方法区           -->
     <!-- insert -->

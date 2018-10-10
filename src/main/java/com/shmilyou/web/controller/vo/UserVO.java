@@ -1,4 +1,4 @@
-package com.shmilyou.entity;
+package com.shmilyou.web.controller.vo;
 
 import lombok.Data;
 
@@ -6,16 +6,10 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * Created with 岂止是一丝涟漪
- * Date: 2018/8/14
- */
-
-/**
- * 求学者
+ * Created with 岂止是一丝涟漪     530060499@qq.com    2018/10/10
  */
 @Data
-public class User extends BaseEntity {
-
+public class UserVO {
     private String id;
 
     private String name;
@@ -36,26 +30,21 @@ public class User extends BaseEntity {
     private String place;
 
     /**
-     * 所在地Id
-     */
-    private Integer areaId;
-
-    /**
      * 出生日期
      */
     private Date birthDay;
 
     private Integer gender;
 
-    //非DB字段
+    //----------------- 非DB字段 -----------------
 
     /**
-     * 擅长的文化
+     * 地区全称
      */
-    private List<UserTag> strongList;
+    private String fullAreaName;
 
     /**
-     * 爱好的文化,用于论坛
+     * 所选标签的字符串集合
      */
-    private List<UserTag> interestList;
+    private List<String> tagIds;
 }

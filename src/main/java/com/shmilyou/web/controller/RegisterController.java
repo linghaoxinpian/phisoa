@@ -1,14 +1,19 @@
 package com.shmilyou.web.controller;
 
 import com.shmilyou.entity.Amateur;
+import com.shmilyou.entity.AmateurTag;
 import com.shmilyou.entity.Area;
 import com.shmilyou.entity.Organization;
 import com.shmilyou.entity.OrganizationTag;
 import com.shmilyou.entity.User;
+import com.shmilyou.entity.UserTag;
 import com.shmilyou.service.AmateurService;
 import com.shmilyou.service.AreaService;
 import com.shmilyou.service.OrganizationService;
+import com.shmilyou.service.UserService;
+import com.shmilyou.web.controller.vo.AmateurVO;
 import com.shmilyou.web.controller.vo.OrganizationVO;
+import com.shmilyou.web.controller.vo.UserVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +37,8 @@ public class RegisterController extends BaseController {
     @Autowired
     private OrganizationService organizationService;
     @Autowired
+    private UserService userService;
+    @Autowired
     private AreaService areaService;
 
     @RequestMapping(value = "/organization", method = RequestMethod.POST)
@@ -49,7 +56,6 @@ public class RegisterController extends BaseController {
 
         //注册机构
         int raw = organizationService.register(organization);
-        Organization organization1 = organizationService.queryById(organization.getId());
 
         //【标签】处理
         List<OrganizationTag> tags = new ArrayList<>();
@@ -61,13 +67,47 @@ public class RegisterController extends BaseController {
 
     @RequestMapping(value = "/amateur", method = RequestMethod.POST)
     @ResponseBody
-    public String registerAmateur(Amateur amateur) {
+    public String registerAmateur(AmateurVO amateurVO) {
+        //校验
+        if (StringUtils.isEmpty(amateurVO.getName())) {
+            return "no";
+        }
+        Amateur amateur = new Amateur();
+        BeanUtils.copyProperties(amateurVO, amateur);
+        // 【地区】处理
+        Area area = areaService.queryByFullName(amateurVO.getFullAreaName());
+        amateur.setAreaId(area == null ? 0 : area.getAreaId());
+
+        //注册爱好者
+        int raw = amateurService.register(amateur);
+
+        //【标签】处理
+        List<AmateurTag> tags = new ArrayList<>();
+        amateurVO.getTagIds().forEach(i -> tags.add(new AmateurTag(null, amateur.getId(), i)));
+        amateurService.addAmateurTag(tags);
         return "{id:1,name:2}";
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     @ResponseBody
-    public String registerUser(User user) {
+    public String registerUser(UserVO userVO) {
+        //校验
+        if (StringUtils.isEmpty(userVO.getName())) {
+            return "no";
+        }
+        User user = new User();
+        BeanUtils.copyProperties(userVO, user);
+        // 【地区】处理
+        Area area = areaService.queryByFullName(userVO.getFullAreaName());
+        user.setAreaId(area == null ? 0 : area.getAreaId());
+
+        //注册机构
+        userService.register(user);
+
+        //【标签】处理
+        List<UserTag> tags = new ArrayList<>();
+        userVO.getTagIds().forEach(i -> tags.add(new UserTag(null, user.getId(), i, UserTag.STRONG_TAG)));
+        userService.addUserTag(tags);
         return "{id:1,name:2}";
     }
 

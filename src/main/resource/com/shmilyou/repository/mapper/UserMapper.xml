@@ -6,6 +6,22 @@
     <!--useGeneratedKeys="true" keyProperty="id" parameterType resultType statementType="STATEMENT"-->
     <!--select ${columns} from ${tableName}-->
 
+
+    <insert id="insertUserTag" parameterType="java.util.List">
+        <!--<selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE">-->
+        <!--SELECT uuid()-->
+        <!--</selectKey>-->
+        insert into user_tag
+        (id, user_id, category_id)
+        values
+        <foreach collection="list" item="ut" index="index" separator=",">
+            (
+            uuid(), #{ut.userId},#{ut.categoryId}
+            )
+        </foreach>
+    </insert>
+
+    <!--        基础方法区           -->
     <!-- insert -->
     <insert id="insert" parameterType="com.shmilyou.entity.User">
         <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">

@@ -19,6 +19,7 @@ public class OrganizationServiceImpl extends BaseServiceImpl<Organization> imple
     OrganizationServiceImpl(OrganizationRepository baseRepository) {
         super(baseRepository);
     }
+
     @Autowired
     private OrganizationRepository organizationRepository;
 
@@ -50,7 +51,7 @@ public class OrganizationServiceImpl extends BaseServiceImpl<Organization> imple
 
     @Override
     public List<Organization> queryByTagId(String tagId, int pageIndex, int pageSize) {
-        return organizationRepository.queryByTagId(tagId,pageIndex,pageSize);
+        return organizationRepository.queryByTagId(tagId, pageIndex, pageSize);
     }
 
     @Override
@@ -60,8 +61,8 @@ public class OrganizationServiceImpl extends BaseServiceImpl<Organization> imple
 
     @Override
     public int addOrganizationTag(List<OrganizationTag> organizationTags) {
-        organizationRepository.insertOrganizationTag(organizationTags);
-        return 0;
+        return organizationRepository.insertOrganizationTag(organizationTags);
+
     }
 
 }

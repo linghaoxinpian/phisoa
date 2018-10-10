@@ -5,12 +5,14 @@ package com.shmilyou.entity;
  * Date: 2018/8/16
  */
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
  * 用户感兴趣的标签
  */
 @Data
+@AllArgsConstructor
 public class UserTag extends BaseEntity {
 
     private String id;

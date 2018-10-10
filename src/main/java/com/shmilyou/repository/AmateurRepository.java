@@ -1,6 +1,7 @@
 package com.shmilyou.repository;
 
 import com.shmilyou.entity.Amateur;
+import com.shmilyou.entity.AmateurTag;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -30,6 +31,7 @@ public interface AmateurRepository extends BaseRepository<Amateur> {
 
     /**
      * 根据【标签id】查询爱好者（连表）
+     *
      * @param tagId
      * @param pageIndex
      * @param pageSize
@@ -37,4 +39,12 @@ public interface AmateurRepository extends BaseRepository<Amateur> {
      */
     List<Amateur> queryByTagId(@Param("tagId") String tagId, @Param("pageIndex") int pageIndex,
                                @Param("pageSize") int pageSize);
+
+    /**
+     * 给机构添加标签
+     * <p>AmateurTags.id请设为null</p>
+     *
+     * @return 批量执行成功条数
+     */
+    int insertAmateurTag(List<AmateurTag> amateurTags);
 }

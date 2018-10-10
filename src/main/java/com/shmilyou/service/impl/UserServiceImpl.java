@@ -22,6 +22,9 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
         super(baseRepository);
     }
 
+    @Autowired
+    private UserRepository userRepository;
+
     //-------------------方法区-------------------
     @Override
     public int register(User user) {
@@ -38,5 +41,10 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     public List<UserTag> getUserTagByUserId(String userId, String tagClassify) {
         //todo:
         return null;
+    }
+
+    @Override
+    public int addUserTag(List<UserTag> userTags) {
+        return userRepository.insertUserTag(userTags);
     }
 }
