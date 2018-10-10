@@ -7,8 +7,9 @@
     <!--select ${columns} from ${tableName}-->
 
     <resultMap id="organizationRM" type="com.shmilyou.entity.Organization" autoMapping="true">
-        <id property="id" column="id" />
-        <association property="level" column="level_id" javaType="com.shmilyou.entity.OrganizationLevel" select="getLevel" />
+        <id property="id" column="id"/>
+        <association property="level" column="level_id" javaType="com.shmilyou.entity.OrganizationLevel"
+                     select="getLevel"/>
     </resultMap>
     <select id="getLevel" resultType="com.shmilyou.entity.OrganizationLevel">
         SELECT * FROM organization_level WHERE id=#{id}
@@ -31,6 +32,20 @@
         </selectKey>
         INSERT INTO Organization(id,name,place,phone,area_id)
         VALUES(#{id},#{name},#{place},#{phone},#{areaId})
+    </insert>
+
+    <insert id="insertOrganizationTag" parameterType="java.util.List">
+        <!--<selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE">-->
+        <!--SELECT uuid()-->
+        <!--</selectKey>-->
+        insert into organization_tag
+        (id, organization_id, category_id)
+        values
+        <foreach collection="list" item="ot" index="index" separator=",">
+            (
+            uuid(), #{ot.organizationId},#{ot.categoryId}
+            )
+        </foreach>
     </insert>
 
     <!--        基础方法区           -->

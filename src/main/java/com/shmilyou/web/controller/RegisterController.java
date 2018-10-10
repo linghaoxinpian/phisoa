@@ -3,6 +3,7 @@ package com.shmilyou.web.controller;
 import com.shmilyou.entity.Amateur;
 import com.shmilyou.entity.Area;
 import com.shmilyou.entity.Organization;
+import com.shmilyou.entity.OrganizationTag;
 import com.shmilyou.entity.User;
 import com.shmilyou.service.AmateurService;
 import com.shmilyou.service.AreaService;
@@ -15,6 +16,9 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created with 岂止是一丝涟漪     530060499@qq.com    2018/10/4
@@ -39,13 +43,18 @@ public class RegisterController extends BaseController {
         }
         Organization organization = new Organization();
         BeanUtils.copyProperties(organizationVO, organization);
-        // 【标签】【地区】处理
+        // 【地区】处理
         Area area = areaService.queryByFullName(organizationVO.getFullAreaName());
         organization.setAreaId(area == null ? 0 : area.getAreaId());
 
-        //注册
+        //注册机构
         int raw = organizationService.register(organization);
         Organization organization1 = organizationService.queryById(organization.getId());
+
+        //【标签】处理
+        List<OrganizationTag> tags = new ArrayList<>();
+        organizationVO.getTagIds().forEach(i -> tags.add(new OrganizationTag(null, organization.getId(), i)));
+        organizationService.addOrganizationTag(tags);
 
         return "{id:1,name:2}";
     }

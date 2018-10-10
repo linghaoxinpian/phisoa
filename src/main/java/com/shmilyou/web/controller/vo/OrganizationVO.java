@@ -2,6 +2,8 @@ package com.shmilyou.web.controller.vo;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * Created with 岂止是一丝涟漪     530060499@qq.com    2018/10/5
  */
@@ -76,4 +78,9 @@ public class OrganizationVO {
      * 地区全称
      */
     private String fullAreaName;
+
+    /**
+     * 所选标签的字符串集合
+     */
+    private List<String> tagIds;
 }

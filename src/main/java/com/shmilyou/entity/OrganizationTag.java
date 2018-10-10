@@ -1,5 +1,6 @@
 package com.shmilyou.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -10,6 +11,7 @@ import lombok.Data;
  * 机构所属标签（该机构是哪些方面的教育培训）
  */
 @Data
+@AllArgsConstructor
 public class OrganizationTag extends BaseEntity {
 
     private String id;

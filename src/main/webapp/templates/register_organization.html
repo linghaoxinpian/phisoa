@@ -2,15 +2,65 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7/dist/css/bootstrap.css">
     <title>机构注册</title>
 </head>
 <body>
-<form action="/phisoa/register/organization" method="post">
-    <input name="name" type="text">
-    <input name="place" type="text">
-    <input name="phone" type="text">
-    <input name="fullAreaName" type="text">
-    <input type="submit" name="submit">
-</form>
+<div class="container">
+    <div class="raw">
+        <div class="col-sm-6 col-sm-offset-3">
+            <form action="/phisoa/register/organization" method="post" enctype="application/x-www-form-urlencoded" class="form-horizontal">
+                <div class="form-group">
+                    <label for="place">详细地点</label>
+                    <input name="place" class="form-control" placeholder="上海市虹口区XXX街道88号" type="text"
+                           value="上海市虹口区XXX街道88号">
+                </div>
+                <div class="form-group">
+                    <label for="phone">手机号</label>
+                    <input name="phone" type="text" class="form-control" value="15000126730">
+                </div>
+                <div class="form-group">
+                    <label for="fullAreaName">地址</label>
+                    <!--fullAreaName=fullAreaName1+fullAreaName2+fullAreaName3-->
+                    <select name="fullAreaName1" id="fullAreaName">
+                        <option>上海</option>
+                        <option>浙江省</option>
+                    </select>
+                    <select name="fullAreaName2">
+                        <option>上海市</option>
+                        <option>杭州市</option>
+                    </select>
+                    <select name="fullAreaName3">
+                        <option>虹口区</option>
+                        <option>江干区</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>选择标签</label>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="tagIds" value="国学文化">
+                            国学文化
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="tagIds" value="音乐">
+                            音乐
+                        </label>
+                    </div> <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="tagIds" value="美术">
+                            美术
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success">保存</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>

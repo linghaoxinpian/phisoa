@@ -1,6 +1,7 @@
 package com.shmilyou.service.impl;
 
 import com.shmilyou.entity.Organization;
+import com.shmilyou.entity.OrganizationTag;
 import com.shmilyou.repository.OrganizationRepository;
 import com.shmilyou.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,12 @@ public class OrganizationServiceImpl extends BaseServiceImpl<Organization> imple
     @Override
     public List<Organization> indexRecommendTop() {
         return null;
+    }
+
+    @Override
+    public int addOrganizationTag(List<OrganizationTag> organizationTags) {
+        organizationRepository.insertOrganizationTag(organizationTags);
+        return 0;
     }
 
 }

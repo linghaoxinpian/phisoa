@@ -79,7 +79,7 @@ public class Organization extends BaseEntity {
      */
     private Integer trainers;
 
-    //非DB字段
+    //----------------- 非DB字段 -----------------
     private OrganizationLevel level;
 
     private List<Lecturer> lecturerList;

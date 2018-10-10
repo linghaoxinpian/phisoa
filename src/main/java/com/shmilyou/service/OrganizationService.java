@@ -1,6 +1,7 @@
 package com.shmilyou.service;
 
 import com.shmilyou.entity.Organization;
+import com.shmilyou.entity.OrganizationTag;
 
 import java.util.List;
 
@@ -50,6 +51,7 @@ public interface OrganizationService extends BaseService<Organization> {
 
     /**
      * 根据标签加载机构
+     *
      * @param tagId
      * @param pageIndex
      * @param pageSize
@@ -59,7 +61,17 @@ public interface OrganizationService extends BaseService<Organization> {
 
     /**
      * 首页排行
+     *
      * @return
      */
     List<Organization> indexRecommendTop();
+
+    /**
+     * 给机构添加标签
+     * <p>OrganizationTag.id请设为null</p>
+     *
+     * @param organizationTags
+     * @return 批量执行成功条数
+     */
+    int addOrganizationTag(List<OrganizationTag> organizationTags);
 }
