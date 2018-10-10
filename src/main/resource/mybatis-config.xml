@@ -7,8 +7,8 @@
         <!-- 打印sql及其参数 -->
         <setting name="logImpl" value="STDOUT_LOGGING"/>
         <!-- 懒加载 -->
-        <setting name="lazyLoadingEnabled" value="true" />
-        <setting name="aggressiveLazyLoading" value="false" />
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
         <setting name="lazyLoadTriggerMethods" value=""/>
     </settings>
 </configuration>

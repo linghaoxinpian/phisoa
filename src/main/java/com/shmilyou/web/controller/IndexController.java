@@ -1,7 +1,6 @@
 package com.shmilyou.web.controller;
 
 import com.shmilyou.entity.Amateur;
-import com.shmilyou.entity.AmateurLevel;
 import com.shmilyou.entity.Category;
 import com.shmilyou.entity.Course;
 import com.shmilyou.entity.OpenCourse;
@@ -57,8 +56,8 @@ public class IndexController extends BaseController {
         //5.加载【优秀机构】
         List<Organization> organizations_hot = organizationService.queryByTagId("7078ac33-befe-11e8-94b3-a353b48ca080", 0, 3);
         //6.排行【机构】【爱好者】
-        List<Amateur> top1=amateurService.indexRecommendTop();
-        List<Organization> top2=organizationService.indexRecommendTop();
+        List<Amateur> top1 = amateurService.indexRecommendTop();
+        List<Organization> top2 = organizationService.indexRecommendTop();
         return "index";
     }
 

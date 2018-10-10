@@ -19,6 +19,7 @@ public interface CategoryService extends BaseService<Category> {
 
     /**
      * 加载？级分类
+     *
      * @param level
      * @return
      */
