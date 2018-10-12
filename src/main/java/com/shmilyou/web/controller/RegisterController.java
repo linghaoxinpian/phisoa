@@ -111,6 +111,8 @@ public class RegisterController extends BaseController {
         return "{id:1,name:2}";
     }
 
+
+    //--------------------- GET ---------------------
     @RequestMapping(value = "/organization", method = RequestMethod.GET)
     public String registerOrganization() {
         return "register_organization";

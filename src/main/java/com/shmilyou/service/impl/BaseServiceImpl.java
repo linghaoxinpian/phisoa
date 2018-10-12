@@ -46,6 +46,12 @@ public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
     protected AmateurRepository amateurRepository;
 
     //-------------------方法区-------------------
+
+    @Override
+    public int count() {
+        return baseRepository.count(T_name);
+    }
+
     @Override
     public int insert(T entity) {
         return baseRepository.insert(entity);

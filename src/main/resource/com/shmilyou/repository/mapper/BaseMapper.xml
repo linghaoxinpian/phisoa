@@ -18,6 +18,11 @@
         WHERE id=#{id}
     </delete>
 
+    <!-- count -->
+    <select id="count" resultType="java.lang.Integer">
+        SELECT COUNT(id) FROM ${tableName} WHERE del = 0
+    </select>
+
     <!-- update -->
     <!--<update id="update" statementType="STATEMENT">-->
     <!--UPDATE ${tableName} SET ${columnsAndValues}-->

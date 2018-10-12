@@ -18,6 +18,14 @@ public interface BaseRepository<T extends BaseEntity> {
 //    String insert(String tableName, String columns, String values);
 
     /**
+     * 获取非软删除数量
+     *
+     * @param tableName
+     * @return
+     */
+    int count(@Param("tableName") String tableName);
+
+    /**
      * @param entity
      * @return 影响的行数，主键会自动复制到对象id属性中
      */

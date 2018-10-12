@@ -61,7 +61,7 @@
 
     <!-- 拦截器的配置, 默认是拦截器所有(与Struts相同),但是也可以配置基于方法的拦截器 -->
     <mvc:interceptors>
-        <!-- 默认拦截所有的.action请求 -->
+        <!-- 默认拦截所有的请求 -->
         <!--<bean class="com.shmilyou.web.interceptor.LoginInterceptor" />-->
 
         <!-- 配置拦截部分方法的请求,支持正则运算 -->

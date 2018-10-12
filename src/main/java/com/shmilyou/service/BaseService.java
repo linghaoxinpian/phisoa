@@ -10,6 +10,14 @@ import java.util.Map;
  * Date: 2018/8/14
  */
 public interface BaseService<T extends BaseEntity> {
+
+    /**
+     * 获取非软删除数量
+     *
+     * @return
+     */
+    int count();
+
     /**
      * @return 主键
      */

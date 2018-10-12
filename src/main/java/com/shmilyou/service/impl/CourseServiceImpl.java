@@ -19,8 +19,16 @@ public class CourseServiceImpl extends BaseServiceImpl<Course> implements Course
         super(baseRepository);
     }
 
+    @Autowired
+    private CourseRepository courseRepository;
+
     @Override
     public List<Course> queryByTagId(String tagId, int pageIndex, int pageSize) {
         return queryByColumn("categoryId", tagId, pageIndex, pageSize);
+    }
+
+    @Override
+    public List<Course> queryByName(String courseName, int pageIndex, int pageSize) {
+        return queryByColumn("name", courseName, pageIndex, pageSize);
     }
 }
