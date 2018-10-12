@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created with 岂止是一丝涟漪     530060499@qq.com    2018/8/18
@@ -42,16 +43,22 @@ public class AmateurServiceImpl extends BaseServiceImpl<Amateur> implements Amat
 
     @Override
     public Amateur loginIn(String account, String password) {
+        String type;
         if (Utils.isEmail(account)) {
-            List<Amateur> amateurs = queryByColumns(new HashMap<String, String>() {
-                {
-                    put("email", account);
-                    put("password", Encrypt.string2SHA256(password + Constant.SALT));
-                }
-            });
-            if (amateurs.size() > 0) {
-                return amateurs.get(0);
-            }
+            //邮箱登录
+            type = "email";
+        } else {
+            //手机号登录
+            type = "phone";
+        }
+
+        //帐号查询
+        Map<String, String> map = new HashMap<>();
+        map.put(type, account);
+        map.put("password", Encrypt.string2SHA256(password + Constant.SALT));
+        List<Amateur> amateurs = queryByColumns(map);
+        if (amateurs.size() > 0) {
+            return amateurs.get(0);
         }
         return null;
     }

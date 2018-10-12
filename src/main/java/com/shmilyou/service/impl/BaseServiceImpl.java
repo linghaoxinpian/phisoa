@@ -5,6 +5,8 @@ import com.shmilyou.repository.AmateurRepository;
 import com.shmilyou.repository.BaseRepository;
 import com.shmilyou.service.BaseService;
 import com.shmilyou.utils.Utils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.lang.reflect.ParameterizedType;
@@ -19,6 +21,8 @@ import java.util.Map;
  */
 
 public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
+
+    protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
     /**
      * T的简单字节码

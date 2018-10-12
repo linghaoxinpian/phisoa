@@ -1,5 +1,7 @@
 package com.shmilyou.utils;
 
+import org.springframework.util.StringUtils;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -31,9 +33,14 @@ public class Utils {
         return sb.toString();
     }
 
-    public static boolean isEmail(String account) {
-        //todo:判断邮箱
-        return false;
+    public static boolean isEmail(String emailStr) {
+        if (StringUtils.isEmpty(emailStr)) return false;
+
+        String regEx1 = "^([a-zA-Z0-9]+[_|\\_|\\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\\_|\\.]?)*[a-zA-Z0-9]+\\.[a-zA-Z]{2,3}$";
+        Pattern p = Pattern.compile(regEx1);
+        Matcher m = p.matcher(emailStr);
+        return m.matches();
+
     }
 
     /**
