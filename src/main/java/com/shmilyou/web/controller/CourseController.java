@@ -43,7 +43,7 @@ public class CourseController extends BaseController {
     }
 
     //搜索课程by name
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    @RequestMapping(value = "/search/name", method = RequestMethod.GET)
     public String searchCourse(@RequestParam(value = "name") String name, @RequestParam("pageIndex") Integer pageIndex, @RequestParam("pageSize") Integer pageSize) {
         if (StringUtils.isEmpty(name)) {
             //搜索条件为空，随意加载课程
@@ -54,5 +54,15 @@ public class CourseController extends BaseController {
 
         List<Course> courses = courseService.queryByName(name, pageIndex - 1, pageSize);
         return "search_course_result";
+    }
+
+    //搜索课程by tag
+    @RequestMapping(value = "/search/tag", method = RequestMethod.GET)
+    public String loadCourseByTag(@RequestParam("tagId") String tagId) {
+        if (StringUtils.isEmpty(tagId)) {
+            return "查询条件为空";
+        }
+        List<Course> courses = courseService.loadCourseByTagAndChildTag(tagId, 0, 20);
+        return "result";
     }
 }

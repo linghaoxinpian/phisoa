@@ -6,6 +6,19 @@
     <!--useGeneratedKeys="true" keyProperty="id" parameterType resultType statementType="STATEMENT"-->
     <!--select ${columns} from ${tableName}-->
 
+    <!-- queryByTagIds -->
+    <select id="queryByTagIds" resultType="com.shmilyou.entity.Course">
+        SELECT * FROM course
+        WHERE category_id IN
+        <foreach collection="tagIds" item="c" index="index" separator=",">
+            (
+            #{c}
+            )
+        </foreach>
+        AND del=0 LIMIT #{pageIndex} , #{pageSize}
+    </select>
+
+    <!--        基础方法区           -->
     <!-- insert -->
     <insert id="insert" parameterType="com.shmilyou.entity.Course">
         <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">

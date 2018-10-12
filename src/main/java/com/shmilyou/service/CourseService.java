@@ -10,7 +10,7 @@ import java.util.List;
 public interface CourseService extends BaseService<Course> {
 
     /**
-     * 根据分类加载课程
+     * 根据单个标签加载课程
      *
      * @param tagId
      * @return
@@ -25,4 +25,24 @@ public interface CourseService extends BaseService<Course> {
      * @return
      */
     List<Course> queryByName(String courseName, int pageIndex, int pageSize);
+
+    /**
+     * 根据多个标签Id加载课程
+     *
+     * @param tagIds
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
+    List<Course> queryByTagIds(List<String> tagIds, int pageIndex, int pageSize);
+
+    /**
+     * 加载课程，根据【标签】及【其子标签】
+     *
+     * @param tagId
+     * @param pageIndex
+     * @param pageSize
+     * @return
+     */
+    List<Course> loadCourseByTagAndChildTag(String tagId, int pageIndex, int pageSize);
 }
