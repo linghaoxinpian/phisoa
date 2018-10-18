@@ -34,7 +34,7 @@ public class Amateur extends BaseEntity {
     /**
      * 优势，特长
      */
-    private String strong;
+    private String specialty;
 
     /**
      * 作品

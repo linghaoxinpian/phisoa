@@ -8,7 +8,7 @@ import lombok.Data;
  */
 
 /**
- * 课程
+ * 机构的课程
  */
 @Data
 public class Course extends BaseEntity {
@@ -19,20 +19,7 @@ public class Course extends BaseEntity {
 
     private String description;
 
-    /**
-     * 缩略图
-     */
-    private String thumbnail;
-
-    /**
-     * 优化查询，0为机构，1,为个人
-     */
-    private Integer ownerCategory;
-
-    /**
-     * 所属机构(或个人)Id
-     */
-    private String ownerId;
+    private String picUrl;
 
     /**
      * 课程所属分类Id
