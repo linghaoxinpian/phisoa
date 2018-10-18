@@ -17,13 +17,16 @@ public class LoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
         //System.out.println("-------1.在请求的方法之前执行,如果返回true,则继续向后执行--------");
 
-        //测试环境
-        LoginUser loginUser = new LoginUser();
-        loginUser.setId("2c2dae92-a05c-11e8-be4c-c60adc336b7d");
-        loginUser.setName("admin");
+        if (Constant.ISDEBUG) {
+            //测试环境
+            LoginUser loginUser = new LoginUser();
+            loginUser.setId("2c2dae92-a05c-11e8-be4c-c60adc336b7d");
+            loginUser.setName("admin");
+            httpServletRequest.getSession().setAttribute(Constant.LOGIN_INFO, loginUser);
+            return true;
+        }
 
         // 是否登录判断
-        httpServletRequest.getSession().setAttribute(Constant.LOGIN_INFO, loginUser);
         if (httpServletRequest.getSession().getAttribute(Constant.LOGIN_INFO) == null) {
             httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login");
             return false;

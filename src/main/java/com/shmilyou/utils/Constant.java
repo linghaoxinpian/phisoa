@@ -19,4 +19,9 @@ public final class Constant {
      * 课程图片存储路径前缀
      */
     public static final String PIC_COURSE_PREFIX = "";
+
+    /**
+     * 当前环境是否是开发环境
+     */
+    public static final boolean ISDEBUG = true;
 }
