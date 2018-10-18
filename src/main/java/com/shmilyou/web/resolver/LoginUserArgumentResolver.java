@@ -33,7 +33,7 @@ public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver 
          */
 
         Object loginUser = webRequest.getNativeRequest(HttpServletRequest.class).
-                getSession().getAttribute(Constant.LOGIN_INFO);
+                getSession().getAttribute(Constant.LOGIN_USER);
 
         /**
          * if(user==null){

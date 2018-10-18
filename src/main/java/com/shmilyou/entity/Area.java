@@ -44,7 +44,8 @@ public class Area extends BaseEntity {
      */
     private Integer parentId;
 
-    //非DB字段
+    //----------------- 非DB字段 -----------------
+
     //省份
     private static final int PROVINCE = 1;
     //市

@@ -72,7 +72,7 @@ public class OrganizationVO {
      */
     private Integer trainers;
 
-    //非DB字段
+    //----------------- 非DB字段 -----------------
 
     /**
      * 地区全称

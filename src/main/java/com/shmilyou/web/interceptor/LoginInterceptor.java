@@ -1,6 +1,8 @@
 package com.shmilyou.web.interceptor;
 
+import com.shmilyou.utils.ConfigUtils;
 import com.shmilyou.utils.Constant;
+import com.shmilyou.web.resolver.LoginOrganization;
 import com.shmilyou.web.resolver.LoginUser;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,21 +16,22 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginInterceptor implements HandlerInterceptor {
 
     @Override
-    public boolean preHandle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o) throws Exception {
+    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object obj) throws Exception {
         //System.out.println("-------1.在请求的方法之前执行,如果返回true,则继续向后执行--------");
 
-        if (Constant.ISDEBUG) {
+        if (ConfigUtils.IS_DEBUG) {
             //测试环境
-            LoginUser loginUser = new LoginUser();
-            loginUser.setId("2c2dae92-a05c-11e8-be4c-c60adc336b7d");
-            loginUser.setName("admin");
-            httpServletRequest.getSession().setAttribute(Constant.LOGIN_INFO, loginUser);
+            LoginUser loginUser = LoginUser.getDefault();
+            LoginOrganization loginOrganization = LoginOrganization.getDefault();
+            request.getSession().setAttribute(Constant.LOGIN_USER, loginUser);
+            request.getSession().setAttribute(Constant.LOGIN_ORGANIZATION, loginOrganization);
             return true;
         }
 
         // 是否登录判断
-        if (httpServletRequest.getSession().getAttribute(Constant.LOGIN_INFO) == null) {
-            httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login");
+        if (request.getSession().getAttribute(Constant.LOGIN_USER) == null &&
+                request.getSession().getAttribute(Constant.LOGIN_ORGANIZATION) == null) {
+            response.sendRedirect(request.getContextPath() + "/login");
             return false;
         } else {
             return true;

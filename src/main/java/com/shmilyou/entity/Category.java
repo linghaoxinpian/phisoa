@@ -27,7 +27,7 @@ public class Category extends BaseEntity {
      */
     private Integer level;
 
-    //非DB字段
+    //----------------- 非DB字段 -----------------
 
     /**
      * 1级分类

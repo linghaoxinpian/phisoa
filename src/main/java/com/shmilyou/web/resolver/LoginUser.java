@@ -56,4 +56,11 @@ public class LoginUser {
 //     * 爱好的文化,用于论坛
 //     */
 //    private List<UserTag> interestList;
+
+    public static LoginUser getDefault() {
+        LoginUser loginUser = new LoginUser();
+        loginUser.setId("2c2dae92-a05c-11e8-be4c-c60adc336b7d");
+        loginUser.setName("admin");
+        return loginUser;
+    }
 }

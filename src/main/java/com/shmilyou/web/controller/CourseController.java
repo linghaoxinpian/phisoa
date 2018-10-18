@@ -29,6 +29,7 @@ import java.util.List;
 @RequestMapping("/phisoa/course")
 @Controller
 public class CourseController extends BaseController {
+
     @Autowired
     private CategoryService categoryService;
     @Autowired
@@ -39,6 +40,9 @@ public class CourseController extends BaseController {
                             @RequestParam("pic") MultipartFile pic,
                             HttpSession session, LoginOrganization loginOrganization) throws IOException {
 
+        if (loginOrganization == null) {
+            return "非机构禁止访问";
+        }
         if (StringUtils.isEmpty(courseVO.getName()) || StringUtils.isEmpty(courseVO.getCategoryId())) {
             return "字段为空";
         }
@@ -63,7 +67,10 @@ public class CourseController extends BaseController {
     //--------------------- GET ---------------------
     //机构新增课程
     @RequestMapping(value = "/add_course_organization", method = RequestMethod.GET)
-    public String addCourse1(ModelMap modelMap) {
+    public String addCourse1(ModelMap modelMap, LoginOrganization loginOrganization) {
+        if (loginOrganization == null) {
+            return "非机构禁止访问";
+        }
         List<Category> level1 = categoryService.queryByLevel(Category.Level1);
         modelMap.addAttribute("level1", level1);
         return "add_course";

@@ -72,7 +72,7 @@ public class IndexController extends BaseController {
         if (StringUtils.isEmpty(account) && StringUtils.isEmpty(password)) {
             User user = userService.loginIn(account, password);
             if (user != null) {
-                request.getSession().setAttribute(Constant.LOGIN_INFO, user);
+                request.getSession().setAttribute(Constant.LOGIN_USER, user);
                 return "index";
             }
         }
@@ -85,7 +85,7 @@ public class IndexController extends BaseController {
         if (StringUtils.isEmpty(account) && StringUtils.isEmpty(password)) {
             Organization organization = organizationService.loginIn(account, password);
             if (organization != null) {
-                request.getSession().setAttribute(Constant.LOGIN_INFO, organization);
+                request.getSession().setAttribute(Constant.LOGIN_ORGANIZATION, organization);
                 return "index";
             }
         }
@@ -98,7 +98,7 @@ public class IndexController extends BaseController {
         if (StringUtils.isEmpty(account) && StringUtils.isEmpty(password)) {
             Amateur amateur = amateurService.loginIn(account, password);
             if (amateur != null) {
-                request.getSession().setAttribute(Constant.LOGIN_INFO, amateur);
+                request.getSession().setAttribute(Constant.LOGIN_AMATEUR, amateur);
                 return "index";
             }
         }
@@ -107,7 +107,7 @@ public class IndexController extends BaseController {
 
     @RequestMapping(value = "/login_out", method = RequestMethod.GET)
     public String loginOut(HttpServletRequest request) {
-        request.getSession().removeAttribute(Constant.LOGIN_INFO);
+        request.getSession().invalidate();
         return "index";
     }
 

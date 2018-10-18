@@ -32,7 +32,7 @@ public class UserTag extends BaseEntity {
      */
     private Integer classify;
 
-    //非DB字段
+    //----------------- 非DB字段 -----------------
 
     //特长标识符
     public static final Integer STRONG_TAG = 0;

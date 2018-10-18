@@ -6,9 +6,19 @@ package com.shmilyou.utils;
 public final class Constant {
 
     /**
-     * 当前登录信息
+     * 当前登录求学者
      */
-    public static final String LOGIN_INFO = "currentSession";
+    public static final String LOGIN_USER = "login_user";
+
+    /**
+     * 当前登录机构
+     */
+    public static final String LOGIN_ORGANIZATION = "login_organization";
+
+    /**
+     * 当前登录爱好者
+     */
+    public static final String LOGIN_AMATEUR = "login_amateur";
 
     /**
      * 加盐
@@ -20,8 +30,4 @@ public final class Constant {
      */
     public static final String PIC_COURSE_PREFIX = "";
 
-    /**
-     * 当前环境是否是开发环境
-     */
-    public static final boolean ISDEBUG = true;
 }

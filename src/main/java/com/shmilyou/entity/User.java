@@ -47,7 +47,7 @@ public class User extends BaseEntity {
 
     private Integer gender;
 
-    //非DB字段
+    //----------------- 非DB字段 -----------------
 
     /**
      * 擅长的文化

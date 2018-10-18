@@ -86,4 +86,11 @@ public class LoginOrganization {
 //     * 该教育机构课程列表
 //     */
 //    private List<Course> courseList;
+
+    public static LoginOrganization getDefault() {
+        LoginOrganization loginOrganization = new LoginOrganization();
+        loginOrganization.setId("2c2dae92-a05c-11e8-be4c-c60adc336b7d");
+        loginOrganization.setName("admin-organization");
+        return loginOrganization;
+    }
 }

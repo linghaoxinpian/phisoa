@@ -63,7 +63,7 @@ public class Amateur extends BaseEntity {
      */
     //private Integer levelId;
 
-    //非DB字段
+    //----------------- 非DB字段 -----------------
 
     private AmateurLevel level;
 }

@@ -29,7 +29,7 @@ public class LoginOrganizationArgumentResolver implements HandlerMethodArgumentR
     public Object resolveArgument(MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer,
                                   NativeWebRequest webRequest, WebDataBinderFactory webDataBinderFactory) {
         Object loginOrganization = webRequest.getNativeRequest(HttpServletRequest.class).
-                getSession().getAttribute(Constant.LOGIN_INFO);
+                getSession().getAttribute(Constant.LOGIN_ORGANIZATION);
         return loginOrganization;
     }
 }
