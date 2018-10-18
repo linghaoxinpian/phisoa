@@ -1,7 +1,7 @@
 package com.shmilyou.web.interceptor;
 
-import com.shmilyou.entity.User;
 import com.shmilyou.utils.Constant;
+import com.shmilyou.web.resolver.LoginUser;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,12 +18,12 @@ public class LoginInterceptor implements HandlerInterceptor {
         //System.out.println("-------1.在请求的方法之前执行,如果返回true,则继续向后执行--------");
 
         //测试环境
-        User user = new User();
-        user.setId("2c2dae92-a05c-11e8-be4c-c60adc336b7d");
-        user.setName("admin");
+        LoginUser loginUser = new LoginUser();
+        loginUser.setId("2c2dae92-a05c-11e8-be4c-c60adc336b7d");
+        loginUser.setName("admin");
 
         // 是否登录判断
-        httpServletRequest.getSession().setAttribute(Constant.LOGIN_INFO, user);
+        httpServletRequest.getSession().setAttribute(Constant.LOGIN_INFO, loginUser);
         if (httpServletRequest.getSession().getAttribute(Constant.LOGIN_INFO) == null) {
             httpServletResponse.sendRedirect(httpServletRequest.getContextPath() + "/login");
             return false;

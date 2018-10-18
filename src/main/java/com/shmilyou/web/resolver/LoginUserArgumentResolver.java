@@ -1,6 +1,5 @@
 package com.shmilyou.web.resolver;
 
-import com.shmilyou.entity.User;
 import com.shmilyou.utils.Constant;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
@@ -21,10 +20,9 @@ import javax.servlet.http.HttpServletRequest;
 public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver {
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
-        System.out.println("参数解析---user");
         //判断是否支持
         //return parameter.hasParameterAnnotation(UserLogin.class)//通过注解方式
-        return parameter.getParameterType() == User.class;//直接判断 类型方式
+        return parameter.getParameterType() == LoginUser.class;//直接判断 类型方式
     }
 
     @Override
@@ -33,9 +31,8 @@ public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver 
         /**
          * 到了这里说明 ：方法参数中有匹配的情况那么我们可以 获得用户了
          */
-        System.out.println("参数解析---user2");
 
-        Object user = webRequest.getNativeRequest(HttpServletRequest.class).
+        Object loginUser = webRequest.getNativeRequest(HttpServletRequest.class).
                 getSession().getAttribute(Constant.LOGIN_INFO);
 
         /**
@@ -51,6 +48,6 @@ public class LoginUserArgumentResolver implements HandlerMethodArgumentResolver 
          *      (Map<String, String>) webRequest.getAttribute(
          *      HandlerMapping.URI_TEMPLATE_VARIABLES_ATTRIBUTE, RequestAttributes.SCOPE_REQUEST);
          */
-        return user;
+        return loginUser;
     }
 }

@@ -1,6 +1,5 @@
 package com.shmilyou.web.resolver;
 
-import com.shmilyou.entity.Organization;
 import com.shmilyou.utils.Constant;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
@@ -23,14 +22,14 @@ public class LoginOrganizationArgumentResolver implements HandlerMethodArgumentR
     public boolean supportsParameter(MethodParameter parameter) {
         //判断是否支持
         //return parameter.hasParameterAnnotation(OrganizationLogin.class)  //1.通过注解方式
-        return parameter.getParameterType() == Organization.class;  //2.直接判断 类型方式
+        return parameter.getParameterType() == LoginOrganization.class;  //2.直接判断 类型方式
     }
 
     @Override
     public Object resolveArgument(MethodParameter methodParameter, ModelAndViewContainer modelAndViewContainer,
                                   NativeWebRequest webRequest, WebDataBinderFactory webDataBinderFactory) {
-        Object organization = webRequest.getNativeRequest(HttpServletRequest.class).
+        Object loginOrganization = webRequest.getNativeRequest(HttpServletRequest.class).
                 getSession().getAttribute(Constant.LOGIN_INFO);
-        return organization;
+        return loginOrganization;
     }
 }

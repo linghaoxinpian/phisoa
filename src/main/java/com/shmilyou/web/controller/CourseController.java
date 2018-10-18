@@ -6,6 +6,7 @@ import com.shmilyou.service.CategoryService;
 import com.shmilyou.service.CourseService;
 import com.shmilyou.utils.Constant;
 import com.shmilyou.web.controller.vo.CourseVO;
+import com.shmilyou.web.resolver.LoginOrganization;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -34,8 +35,9 @@ public class CourseController extends BaseController {
     private CourseService courseService;
 
     @RequestMapping(value = "/add_course_organization", method = RequestMethod.POST)
-    public String addCourse(@ModelAttribute("courseVO") CourseVO courseVO, @RequestParam("pic") MultipartFile pic,
-                            HttpSession session) throws IOException {
+    public String addCourse(@ModelAttribute("courseVO") CourseVO courseVO,
+                            @RequestParam("pic") MultipartFile pic,
+                            HttpSession session, LoginOrganization loginOrganization) throws IOException {
 
         if (StringUtils.isEmpty(courseVO.getName()) || StringUtils.isEmpty(courseVO.getCategoryId())) {
             return "字段为空";
@@ -53,7 +55,7 @@ public class CourseController extends BaseController {
         }
         //插入课程
         BeanUtils.copyProperties(courseVO, course);
-        course.setOwnerId("");
+        course.setOwnerId(loginOrganization.getId());
         courseService.insert(course);
         return "ok";
     }
