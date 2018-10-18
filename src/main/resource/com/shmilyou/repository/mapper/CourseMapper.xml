@@ -24,8 +24,8 @@
         <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
             select uuid()
         </selectKey>
-        INSERT INTO course(id,name,description,pic_url,owner_id,category_id)
-        VALUES(#{id},#{name},#{description},#{picUrl},#{ownerId},#{categoryId})
+        INSERT INTO course(id,name,description,pic_url,price,owner_id,category_id)
+        VALUES(#{id},#{name},#{description},#{picUrl},#{price},#{ownerId},#{categoryId})
     </insert>
 
     <!--update -->

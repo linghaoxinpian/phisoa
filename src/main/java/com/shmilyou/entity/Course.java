@@ -21,6 +21,8 @@ public class Course extends BaseEntity {
 
     private String picUrl;
 
+    private String price;
+
     private String ownerId;
 
     /**
