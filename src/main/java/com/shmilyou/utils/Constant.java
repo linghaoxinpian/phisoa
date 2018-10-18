@@ -14,4 +14,9 @@ public final class Constant {
      * 加盐
      */
     public static final String SALT = "phisoa_1";
+
+    /**
+     * 课程图片存储路径前缀
+     */
+    public static final String PIC_COURSE_PREFIX = "";
 }

@@ -21,6 +21,8 @@ public class Course extends BaseEntity {
 
     private String picUrl;
 
+    private String ownerId;
+
     /**
      * 课程所属分类Id
      */
