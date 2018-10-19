@@ -40,9 +40,9 @@ public class Organization extends BaseEntity {
     private String description;
 
     /**
-     * 场地照片,一个json串，如["1.jpg","2.jpg","3.jpg"]
+     * 相册,一个json串，如["1.jpg","2.jpg","3.jpg"]
      */
-    private String sitePhoto;
+    private String photoAlbum;
 
     /**
      * 招生简章（扩展：存的可能为富文本）
@@ -60,9 +60,9 @@ public class Organization extends BaseEntity {
     private String place;
 
     /**
-     * 位置Id
+     * 培训人数
      */
-    private Integer areaId;
+    private Integer student;
 
     /**
      * 机构官方主页
@@ -70,14 +70,14 @@ public class Organization extends BaseEntity {
     private String homeUrl;
 
     /**
+     * 位置Id
+     */
+    private Integer areaId;
+
+    /**
      * 机构在我方的评级
      */
     //private String levelId;
-
-    /**
-     * 培训人数
-     */
-    private Integer trainers;
 
     //----------------- 非DB字段 -----------------
     private OrganizationLevel level;
@@ -88,4 +88,6 @@ public class Organization extends BaseEntity {
      * 该教育机构课程列表
      */
     private List<Course> courseList;
+
+    private List<OrganizationTeacher> teacherList;
 }
