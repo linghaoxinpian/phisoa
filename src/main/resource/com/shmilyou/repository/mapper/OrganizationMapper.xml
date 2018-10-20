@@ -10,9 +10,15 @@
         <id property="id" column="id"/>
         <association property="level" column="level_id" javaType="com.shmilyou.entity.OrganizationLevel"
                      select="getLevel"/>
+        <collection property="courseList" javaType="ArrayList" column="id"
+                    ofType="com.shmilyou.entity.Course"
+                    select="getCourses"/>
     </resultMap>
     <select id="getLevel" resultType="com.shmilyou.entity.OrganizationLevel">
-        SELECT * FROM organization_level WHERE id=#{id}
+        SELECT * FROM organization_level WHERE id=#{id} AND del=0
+    </select>
+    <select id="getCourses" resultType="com.shmilyou.entity.Course">
+        SELECT * FROM course WHERE owner_id=#{id} AND del=0
     </select>
 
     <select id="queryByTagId" resultMap="organizationRM">
