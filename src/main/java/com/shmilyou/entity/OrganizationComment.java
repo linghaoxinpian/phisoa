@@ -10,16 +10,32 @@ import lombok.Data;
  * 用户对机构的评论表
  */
 @Data
-public class OrganizationComment {
+public class OrganizationComment extends BaseEntity {
 
     private String id;
 
     private String comment;
 
     /**
-     * 用户对机构的打星
+     * 用户对机构的总体打星
      */
-    private int star;
+    private Integer star;
+
+    /**
+     * 六边形打分--begin
+     */
+    //信誉度
+    private Integer creditScore;
+    //环境
+    private Integer environmentScore;
+    //师资
+    private Integer facultyScore;
+    //效果
+    private Integer effectScore;
+    //认证等级->见level字段
+    //满意度
+    private Integer satisfaction;
+    //六边形打分--end
 
     private String organization_id;
 }

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shmilyou.repository.OrganizationCommentRepository">
+    <!--useGeneratedKeys="true" keyProperty="id" parameterType resultType statementType="STATEMENT"-->
+    <!--select ${columns} from ${tableName}-->
+
+
+    <!--        基础方法区           -->
+    <!-- insert -->
+    <insert id="insert" parameterType="com.shmilyou.entity.OrganizationComment">
+        <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
+            select uuid()
+        </selectKey>
+        INSERT INTO organization_comment(id,name,nick_name)
+        VALUES(#{id},#{name},#{nickName})
+    </insert>
+
+    <!--update -->
+    <update id="update">
+    UPDATE organization_comment SET name=#{name},nick_name=#{nickName}
+    WHERE id=#{id} AND del=0
+    </update>
+
+    <!-- queryById -->
+    <select id="queryById" resultType="com.shmilyou.entity.OrganizationComment">
+    SELECT * FROM ${tableName}
+    WHERE id=#{id} AND del=0
+    </select>
+
+    <!-- queryByColumn -->
+    <select id="queryByColumn" resultType="com.shmilyou.entity.OrganizationComment">
+    SELECT * FROM ${tableName}
+    WHERE ${column}=#{value} AND del=0
+    </select>
+
+    <!-- queryByColumns -->
+    <select id="queryByColumns" resultType="com.shmilyou.entity.OrganizationComment">
+    SELECT * FROM ${tableName}
+    WHERE ${columnsToValues} del=0
+    </select>
+
+    <!-- queryByColumnLimit -->
+    <select id="queryByColumnLimit" resultType="com.shmilyou.entity.OrganizationComment">
+    SELECT * FROM ${tableName}
+    WHERE ${column}=#{value} AND del=0 LIMIT #{pageIndex} , #{pageSize}
+    </select>
+
+    <!-- queryByColumnsLimit -->
+    <select id="queryByColumnsLimit" resultType="com.shmilyou.entity.OrganizationComment">
+    SELECT * FROM ${tableName}
+    WHERE ${columnsToValues} del=0 LIMIT #{pageIndex} , #{pageSize}
+    </select>
+
+</mapper>
