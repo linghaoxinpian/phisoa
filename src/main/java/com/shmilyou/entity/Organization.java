@@ -80,6 +80,9 @@ public class Organization extends BaseEntity {
     //private String levelId;
 
     //----------------- 非DB字段 -----------------
+
+    private List<Category> categoryList;
+
     private OrganizationLevel level;
 
     private List<Lecturer> lecturerList;
@@ -89,5 +92,4 @@ public class Organization extends BaseEntity {
      */
     private List<Course> courseList;
 
-    private List<OrganizationTeacher> teacherList;
 }

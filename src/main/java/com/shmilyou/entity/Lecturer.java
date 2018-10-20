@@ -15,13 +15,22 @@ public class Lecturer extends BaseEntity {
 
     private String id;
 
-    /**
-     * 描述(姓名、图片、学历、个人介绍、水平认证程度) 存富文本
-     */
-    private String description;
+    private String name;
 
     /**
-     * 扩展：个人资料地址(如百度百科地址https://baike.baidu.com/item/姓名)
+     * 简历
      */
-    private String baiduUrl;
+    private String resume;
+
+    /**
+     * 教龄，资历
+     */
+    private Integer seniority;
+
+    /**
+     * 技能，如：舞蹈|钢琴
+     */
+    private String skill;
+
+    private String organizationId;
 }

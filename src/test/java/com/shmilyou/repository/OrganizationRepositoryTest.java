@@ -28,7 +28,7 @@ public class OrganizationRepositoryTest extends BaseTest {
     }
 
     @Test
-    public void queryById() {
+    public void queryByIdTest() {
         Organization organization = organizationRepository.queryById("organization", "07f88dc1-c7e7-11e8-bf81-6236ebf50a50");
         List<Course> courseList = organization.getCourseList();
         System.out.println(courseList.size());
