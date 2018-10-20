@@ -6,6 +6,18 @@
     <!--useGeneratedKeys="true" keyProperty="id" parameterType resultType statementType="STATEMENT"-->
     <!--select ${columns} from ${tableName}-->
 
+    <resultMap id="lecturerRM" type="com.shmilyou.entity.Lecturer" autoMapping="true">
+        <id property="id" column="id"/>
+        <association property="commenter" column="user_id" javaType="com.shmilyou.entity.User"
+                     select="getUser"/>
+    </resultMap>
+    <select id="getUser" resultType="com.shmilyou.entity.User">
+        <!-- 这里不加del=0，避免逻辑处理错误导致空指针异常 -->
+        SELECT id,name,head_img FROM user WHERE id=#{id}
+    </select>
+
+
+    <!--        基础方法区           -->
     <!-- insert -->
     <insert id="insert" parameterType="com.shmilyou.entity.Lecturer">
         <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">

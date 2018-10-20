@@ -34,8 +34,14 @@ public class OrganizationComment extends BaseEntity {
     private Integer effectScore;
     //认证等级->见level字段
     //满意度
-    private Integer satisfaction;
+    private Integer satisfactionScore;
     //六边形打分--end
 
     private String organization_id;
+
+    //private String userId;
+
+    //----------------- 非DB字段 -----------------
+
+    private User commenter;
 }

@@ -18,6 +18,11 @@ public class Lecturer extends BaseEntity {
     private String name;
 
     /**
+     * 自拍照
+     */
+    private String selfie;
+
+    /**
      * 简历
      */
     private String resume;

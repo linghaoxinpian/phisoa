@@ -6,6 +6,8 @@ import com.shmilyou.service.LecturerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created with 岂止是一丝涟漪     530060499@qq.com    2018/8/18
  */
@@ -15,5 +17,10 @@ public class LecturerServiceImpl extends BaseServiceImpl<Lecturer> implements Le
     @Autowired
     LecturerServiceImpl(LecturerRepository baseRepository) {
         super(baseRepository);
+    }
+
+    @Override
+    public List<Lecturer> queryByOrganizationId(String organizationId, int pageIndex, int pageSize) {
+        return queryByColumn("organizationId", organizationId, pageIndex, pageSize);
     }
 }
