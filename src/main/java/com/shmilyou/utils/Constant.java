@@ -26,8 +26,8 @@ public final class Constant {
     public static final String SALT = "phisoa_1";
 
     /**
-     * 课程图片存储路径前缀
+     * 【课程图片】存储路径前缀
      */
-    public static final String PIC_COURSE_PREFIX = "";
+    public static final String PIC_COURSE_PREFIX = "static/upload/organization/course/";
 
 }

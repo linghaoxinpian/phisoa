@@ -11,7 +11,7 @@ public class CourseVO {
 
     private String picUrl;
 
-    private String price;
+    private int price;
 
     private String categoryId;
 
