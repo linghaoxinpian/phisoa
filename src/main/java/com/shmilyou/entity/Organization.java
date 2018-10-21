@@ -81,9 +81,11 @@ public class Organization extends BaseEntity {
 
     //----------------- 非DB字段 -----------------
 
-    private List<Category> categoryList;
+    private OrganizationOverview overview;
 
     private OrganizationLevel level;
+
+    private List<Category> categoryList;
 
     private List<Lecturer> lecturerList;
 

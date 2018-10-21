@@ -3,7 +3,6 @@ package com.shmilyou.service.impl;
 import com.shmilyou.entity.OrganizationComment;
 import com.shmilyou.repository.OrganizationCommentRepository;
 import com.shmilyou.service.OrganizationCommentService;
-import com.shmilyou.service.bo.OrganizationCommentBO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,17 +22,10 @@ public class OrganizationCommentServiceImpl extends BaseServiceImpl<Organization
     //-------------------方法区-------------------
 
     @Override
-    public OrganizationCommentBO loadCommentsAndOverallGraph(String organizationId, int pageIndex, int pageSize) {
+    public List<OrganizationComment> loadComments(String organizationId, int pageIndex, int pageSize) {
         List<OrganizationComment> comments = queryByColumn("organizationId", organizationId, pageIndex, pageSize);
-        //计算 六边形得分
-        OrganizationCommentBO commentBO = loadOverallGraph(organizationId);
-        commentBO.setComments(comments);
-        return commentBO;
+
+        return comments;
     }
 
-    public OrganizationCommentBO loadOverallGraph(String organizationId) {
-        OrganizationCommentBO commentBO = new OrganizationCommentBO();
-        //todo:新建overall表
-        return commentBO;
-    }
 }

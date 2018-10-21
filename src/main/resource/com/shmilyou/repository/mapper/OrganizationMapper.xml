@@ -10,6 +10,8 @@
         <id property="id" column="id"/>
         <association property="level" column="level_id" javaType="com.shmilyou.entity.OrganizationLevel"
                      select="getLevel"/>
+        <association property="overview" column="id" javaType="com.shmilyou.entity.OrganizationOverview"
+                     select="getOverview"/>
         <collection property="categoryList" javaType="ArrayList" column="id" ofType="com.shmilyou.entity.Category"
                     select="getTags"/>
     </resultMap>
@@ -22,6 +24,9 @@
         on ot.category_id = c.id
         AND ot.organization_id=#{id}
         AND c.del=0 AND ot.del=0
+    </select>
+    <select id="getOverview" resultType="com.shmilyou.entity.OrganizationOverview">
+        SELECT * FROM organization_overview WHERE organization_id=#{id}
     </select>
 
     <select id="queryByTagId" resultMap="organizationRM">
