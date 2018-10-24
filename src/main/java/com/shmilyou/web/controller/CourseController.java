@@ -22,6 +22,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created with 岂止是一丝涟漪     530060499@qq.com    2018/10/12
@@ -35,7 +36,7 @@ public class CourseController extends BaseController {
     @Autowired
     private CourseService courseService;
 
-    @RequestMapping(value = "/add_course_organization", method = RequestMethod.POST)
+    @RequestMapping(value = "/organization/add", method = RequestMethod.POST)
     public String addCourse(@ModelAttribute("courseVO") CourseVO courseVO,
                             @RequestParam("pic") MultipartFile pic,
                             HttpSession session, LoginOrganization loginOrganization) throws IOException {
@@ -47,26 +48,29 @@ public class CourseController extends BaseController {
             return "字段为空";
         }
         Course course = new Course();
+        BeanUtils.copyProperties(courseVO, course);
+        course.setOwnerId(loginOrganization.getId());
+        course.setId(UUID.randomUUID().toString());
+        //处理图片
         if (pic != null) {
             String picName = pic.getOriginalFilename();
             String picType = picName.substring(picName.lastIndexOf("."));
             if (".png".equals(picType) || ".jpg".equals(picType) || ".jpeg".equals(picType)) {
-                String saveFileName = "图片名" + picType;
+                String saveFileName = course.getName() + course.getId() + picType;
                 String realPath = session.getServletContext().getRealPath("/");
-                pic.transferTo(new File(realPath + Constant.PIC_COURSE_PREFIX + saveFileName));
+                pic.transferTo(new File(realPath + Constant.PIC_COURSE_PATH + saveFileName));
                 course.setPicUrl(saveFileName);
             }
         }
         //插入课程
-        BeanUtils.copyProperties(courseVO, course);
-        course.setOwnerId(loginOrganization.getId());
         courseService.insert(course);
         return "ok";
     }
 
     //--------------------- GET ---------------------
+
     //机构新增课程
-    @RequestMapping(value = "/add_course_organization", method = RequestMethod.GET)
+    @RequestMapping(value = "/organization/add", method = RequestMethod.GET)
     public String addCourse1(ModelMap modelMap, LoginOrganization loginOrganization) {
         if (loginOrganization == null) {
             return "非机构禁止访问";

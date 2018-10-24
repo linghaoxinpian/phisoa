@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7/dist/css/bootstrap.css">
+    <title>添加课程</title>
+</head>
+<body>
+<div class="container">
+    <div class="raw">
+        <div class="col-sm-4 col-offset-sm-4">
+            <form class="form-horizontal" action="/phisoa/lecturer/organization/add" method="post"
+                  enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>讲师名</label>
+                    <input type="text" class="form-control" name="name" value="A讲师"/>
+                </div>
+                <div class="form-group">
+                    <label>自拍照</label>
+                    <input type="file" name="selfie">
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-info">提交</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

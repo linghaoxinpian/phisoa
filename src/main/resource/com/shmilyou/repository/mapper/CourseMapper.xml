@@ -21,9 +21,9 @@
     <!--        基础方法区           -->
     <!-- insert -->
     <insert id="insert" parameterType="com.shmilyou.entity.Course">
-        <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
-            select uuid()
-        </selectKey>
+        <!--<selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">-->
+        <!--select uuid()-->
+        <!--</selectKey>-->
         INSERT INTO course(id,name,description,pic_url,price,owner_id,category_id)
         VALUES(#{id},#{name},#{description},#{picUrl},#{price},#{ownerId},#{categoryId})
     </insert>

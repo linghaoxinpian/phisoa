@@ -89,8 +89,8 @@ public class LoginOrganization {
 
     public static LoginOrganization getDefault() {
         LoginOrganization loginOrganization = new LoginOrganization();
-        loginOrganization.setId("2c2dae92-a05c-11e8-be4c-c60adc336b7d");
-        loginOrganization.setName("admin-organization");
+        loginOrganization.setId("07f88dc1-c7e7-11e8-bf81-6236ebf50a50");
+        loginOrganization.setName("晓雯音乐学校(茅台路)");
         return loginOrganization;
     }
 }

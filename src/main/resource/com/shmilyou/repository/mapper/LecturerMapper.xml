@@ -19,11 +19,11 @@
     <!--        基础方法区           -->
     <!-- insert -->
     <insert id="insert" parameterType="com.shmilyou.entity.Lecturer">
-        <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
-            select uuid()
-        </selectKey>
-        INSERT INTO Lecturer(id,name,nick_name)
-        VALUES(#{id},#{name},#{nickName})
+        <!--<selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">-->
+        <!--select uuid()-->
+        <!--</selectKey>-->
+        INSERT INTO Lecturer(id, name, resume, seniority, skill, selfie, organization_id)
+        VALUES(#{id}, #{name}, #{resume}, #{seniority}, #{skill}, #{selfie}, #{organizationId})
     </insert>
 
     <!--update -->

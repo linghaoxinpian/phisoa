@@ -26,8 +26,12 @@ public final class Constant {
     public static final String SALT = "phisoa_1";
 
     /**
-     * 【课程图片】存储路径前缀
+     * 【课程图片】存储路径
      */
-    public static final String PIC_COURSE_PREFIX = "static/upload/organization/course/";
+    public static final String PIC_COURSE_PATH = "static/upload/organization/course/";
 
+    /**
+     * 【讲师】存储路径
+     */
+    public static final String PIC_LECTURER_PATH = "static/upload/organization/photo/";
 }
