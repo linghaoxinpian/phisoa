@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -58,6 +59,13 @@ public class CourseServiceImpl extends BaseServiceImpl<Course> implements Course
                 courses = queryByTagIds(level2.stream().map(Category::getId).collect(Collectors.toList()), pageIndex, pageSize);
             }
         }
+        return courses;
+    }
+
+    @Override
+    public List<Course> loadHomeCourse(String organizationId, int pageIndex, int pageSize) {
+        List<Course> source = queryByColumn("ownerId", organizationId, pageIndex, pageSize);
+        List<Course> courses = source.stream().sorted(Comparator.comparing(Course::getAddTime).reversed()).collect(Collectors.toList());
         return courses;
     }
 }

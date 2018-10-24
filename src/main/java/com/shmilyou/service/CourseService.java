@@ -45,4 +45,9 @@ public interface CourseService extends BaseService<Course> {
      * @return
      */
     List<Course> loadCourseByTagAndChildTag(String tagId, int pageIndex, int pageSize);
+
+    /**
+     * 机构主页显示的课程，默认添加时间排序
+     */
+    List<Course> loadHomeCourse(String organizationId, int pageIndex, int pageSize);
 }

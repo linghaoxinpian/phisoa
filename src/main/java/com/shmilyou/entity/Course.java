@@ -2,6 +2,8 @@ package com.shmilyou.entity;
 
 import lombok.Data;
 
+import java.util.Date;
+
 /**
  * Created with 530060499@qq.com
  * Date: 2018/8/16
@@ -29,5 +31,7 @@ public class Course extends BaseEntity {
      * 课程所属分类Id
      */
     private String categoryId;
+
+    private Date addTime;
 
 }

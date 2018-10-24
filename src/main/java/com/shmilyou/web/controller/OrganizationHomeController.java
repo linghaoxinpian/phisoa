@@ -1,9 +1,11 @@
 package com.shmilyou.web.controller;
 
+import com.shmilyou.entity.Course;
 import com.shmilyou.entity.Lecturer;
 import com.shmilyou.entity.Organization;
 import com.shmilyou.entity.OrganizationComment;
 import com.shmilyou.entity.OrganizationOverview;
+import com.shmilyou.service.CourseService;
 import com.shmilyou.service.LecturerService;
 import com.shmilyou.service.OrganizationCommentService;
 import com.shmilyou.service.OrganizationService;
@@ -32,6 +34,8 @@ public class OrganizationHomeController extends BaseController {
     private OrganizationCommentService organizationCommentService;
     @Autowired
     private OrganizationService organizationService;
+    @Autowired
+    private CourseService courseService;
 
     //机构个人主页
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -44,11 +48,13 @@ public class OrganizationHomeController extends BaseController {
         //3.获取机构【总体情况】
         Organization organization = organizationService.queryById(loginOrganization.getId());
         OrganizationOverview overview = organization.getOverview();
-
+        //4.课程
+        List<Course> courses = courseService.loadHomeCourse(loginOrganization.getId(), 0, 6);
         Map<String, Object> map = new HashMap<>();
         map.put("lecturer", lecturers);
         map.put("comments", comments);
         map.put("overview", overview);
+        map.put("courses", courses);
         return map;
     }
 
