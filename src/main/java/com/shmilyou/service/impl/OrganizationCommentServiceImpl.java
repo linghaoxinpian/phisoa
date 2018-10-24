@@ -28,4 +28,9 @@ public class OrganizationCommentServiceImpl extends BaseServiceImpl<Organization
         return comments;
     }
 
+    @Override
+    public int add(OrganizationComment comment) {
+        return insert(comment);
+    }
+
 }

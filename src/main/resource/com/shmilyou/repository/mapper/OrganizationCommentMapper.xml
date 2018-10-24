@@ -5,7 +5,14 @@
 <mapper namespace="com.shmilyou.repository.OrganizationCommentRepository">
     <!--useGeneratedKeys="true" keyProperty="id" parameterType resultType statementType="STATEMENT"-->
     <!--select ${columns} from ${tableName}-->
-
+    <resultMap id="organizationCommentRM" type="com.shmilyou.entity.OrganizationComment" autoMapping="true">
+        <id property="id" column="id"/>
+        <association property="commenter" column="user_id" javaType="com.shmilyou.entity.User"
+                     select="getCommenter"/>
+    </resultMap>
+    <select id="getCommenter" resultType="com.shmilyou.entity.User">
+        SELECT * FROM user WHERE id=#{id} AND del=0
+    </select>
 
     <!--        基础方法区           -->
     <!-- insert -->
@@ -13,8 +20,10 @@
         <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
             select uuid()
         </selectKey>
-        INSERT INTO organization_comment(id,name,nick_name)
-        VALUES(#{id},#{name},#{nickName})
+        INSERT INTO organization_comment(id, comment, star, credit_score, environment_score, faculty_score,
+        effect_score, satisfaction_score, organization_id, user_id)
+        VALUES(#{id}, #{comment}, #{star}, #{creditScore}, #{environmentScore}, #{facultyScore}, #{effectScore},
+        #{satisfactionScore}, #{organizationId}, #{userId})
     </insert>
 
     <!--update -->
@@ -24,7 +33,7 @@
     </update>
 
     <!-- queryById -->
-    <select id="queryById" resultType="com.shmilyou.entity.OrganizationComment">
+    <select id="queryById" resultMap="organizationCommentRM">
     SELECT * FROM ${tableName}
     WHERE id=#{id} AND del=0
     </select>

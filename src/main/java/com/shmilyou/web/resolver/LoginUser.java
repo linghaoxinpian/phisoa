@@ -59,7 +59,7 @@ public class LoginUser {
 
     public static LoginUser getDefault() {
         LoginUser loginUser = new LoginUser();
-        loginUser.setId("2c2dae92-a05c-11e8-be4c-c60adc336b7d");
+        loginUser.setId("efd6cc26-d726-11e8-a081-36261d1e43f2");
         loginUser.setName("admin");
         return loginUser;
     }

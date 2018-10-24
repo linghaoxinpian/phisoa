@@ -37,9 +37,9 @@ public class OrganizationComment extends BaseEntity {
     private Integer satisfactionScore;
     //六边形打分--end
 
-    private String organization_id;
+    private String organizationId;
 
-    //private String userId;
+    private String userId;  //commenter
 
     //----------------- 非DB字段 -----------------
 

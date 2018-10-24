@@ -101,12 +101,14 @@ public class RegisterController extends BaseController {
         Area area = areaService.queryByFullName(userVO.getFullAreaName());
         user.setAreaId(area == null ? 0 : area.getAreaId());
 
-        //注册机构
+        //注册
         userService.register(user);
 
         //【标签】处理
         List<UserTag> tags = new ArrayList<>();
-        userVO.getTagIds().forEach(i -> tags.add(new UserTag(null, user.getId(), i, UserTag.STRONG_TAG)));
+        if (userVO.getTagIds() != null) {
+            userVO.getTagIds().forEach(i -> tags.add(new UserTag(null, user.getId(), i, UserTag.STRONG_TAG)));
+        }
         userService.addUserTag(tags);
         return "{id:1,name:2}";
     }

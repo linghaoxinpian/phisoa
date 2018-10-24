@@ -16,4 +16,11 @@ public interface OrganizationCommentService extends BaseService<OrganizationComm
      */
     List<OrganizationComment> loadComments(String organizationId, int pageIndex, int pageSize);
 
+    /**
+     * 新增留言
+     *
+     * @param comment
+     * @return 影响行数
+     */
+    int add(OrganizationComment comment);
 }
