@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shmilyou.repository.CourseOrderRepository">
+    <!--useGeneratedKeys="true" keyProperty="id" parameterType resultType statementType="STATEMENT"-->
+    <!--select ${columns} from ${tableName}-->
+
+    <resultMap id="courseOrder" type="com.shmilyou.entity.CourseOrder" autoMapping="true">
+        <id property="id" column="id"/>
+        <association property="course" column="course_id" javaType="com.shmilyou.entity.Course" select="getCourse"/>
+        <association property="user" column="user_id" javaType="com.shmilyou.entity.User" select="getUser"/>
+    </resultMap>
+    <select id="getCourse" resultType="com.shmilyou.entity.Course">
+        SELECT * FROM course WHERE id=#{id}
+    </select>
+    <select id="getUser" resultType="com.shmilyou.entity.User">
+        SELECT * FROM user WHERE id=#{id}
+    </select>
+
+
+    <!--        基础方法区           -->
+    <!-- insert -->
+    <insert id="insert" parameterType="com.shmilyou.entity.CourseOrder">
+        <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
+            select uuid()
+        </selectKey>
+        INSERT INTO course_order(id,name,nick_name)
+        VALUES(#{id},#{name},#{nickName})
+    </insert>
+
+    <!--update -->
+    <update id="update">
+    UPDATE course_order SET name=#{name},nick_name=#{nickName}
+    WHERE id=#{id} AND del=0
+    </update>
+
+    <!-- queryById -->
+    <select id="queryById" resultType="com.shmilyou.entity.CourseOrder">
+    SELECT * FROM ${tableName}
+    WHERE id=#{id} AND del=0
+    </select>
+
+    <!-- queryByColumn -->
+    <select id="queryByColumn" resultType="com.shmilyou.entity.CourseOrder">
+    SELECT * FROM ${tableName}
+    WHERE ${column}=#{value} AND del=0
+    </select>
+
+    <!-- queryByColumns -->
+    <select id="queryByColumns" resultType="com.shmilyou.entity.CourseOrder">
+    SELECT * FROM ${tableName}
+    WHERE ${columnsToValues} del=0
+    </select>
+
+    <!-- queryByColumnLimit -->
+    <select id="queryByColumnLimit" resultType="com.shmilyou.entity.CourseOrder">
+    SELECT * FROM ${tableName}
+    WHERE ${column}=#{value} AND del=0 LIMIT #{pageIndex} , #{pageSize}
+    </select>
+
+    <!-- queryByColumnsLimit -->
+    <select id="queryByColumnsLimit" resultType="com.shmilyou.entity.CourseOrder">
+    SELECT * FROM ${tableName}
+    WHERE ${columnsToValues} del=0 LIMIT #{pageIndex} , #{pageSize}
+    </select>
+
+</mapper>

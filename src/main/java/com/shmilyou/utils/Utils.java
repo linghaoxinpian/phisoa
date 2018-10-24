@@ -2,6 +2,9 @@ package com.shmilyou.utils;
 
 import org.springframework.util.StringUtils;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -53,5 +56,18 @@ public class Utils {
     public static boolean isInteger(String str) {
         Pattern pattern = Pattern.compile("^[-\\+]?[\\d]*$");
         return pattern.matcher(str).matches();
+    }
+
+    /**
+     * 生成订单号
+     */
+    public static String generateOrderNum() {
+        //时间
+        Date date = new Date();
+        DateFormat format = new SimpleDateFormat("yyyyMMddHHmmssSS");
+        String d = format.format(date);
+        //随机数3位
+        int random = (int) (Math.random() * 1000);
+        return d + random;
     }
 }
