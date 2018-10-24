@@ -8,12 +8,11 @@
 
     <resultMap id="lecturerRM" type="com.shmilyou.entity.Lecturer" autoMapping="true">
         <id property="id" column="id"/>
-        <association property="commenter" column="user_id" javaType="com.shmilyou.entity.User"
-                     select="getUser"/>
+        <association property="organization" column="organization_id" javaType="com.shmilyou.entity.User"
+                     select="getOrganization"/>
     </resultMap>
-    <select id="getUser" resultType="com.shmilyou.entity.User">
-        <!-- 这里不加del=0，避免逻辑处理错误导致空指针异常 -->
-        SELECT id,name,head_img FROM user WHERE id=#{id}
+    <select id="getOrganization" resultType="com.shmilyou.entity.Organization">
+        SELECT * FROM organization WHERE id=#{id}
     </select>
 
 
@@ -34,7 +33,7 @@
     </update>
 
     <!-- queryById -->
-    <select id="queryById" resultType="com.shmilyou.entity.Lecturer">
+    <select id="queryById" resultMap="lecturerRM">
     SELECT * FROM ${tableName}
     WHERE id=#{id} AND del=0
     </select>

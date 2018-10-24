@@ -38,4 +38,8 @@ public class Lecturer extends BaseEntity {
     private String skill;
 
     private String organizationId;
+
+    //----------------- 非DB字段 -----------------
+
+    private Organization organization;
 }
