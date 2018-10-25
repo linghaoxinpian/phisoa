@@ -1,6 +1,8 @@
 package com.shmilyou.web.controller.vo;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Date;
 import java.util.List;
@@ -19,7 +21,7 @@ public class UserVO {
 
     private String password;
 
-    private String headImg;
+    private MultipartFile headImg;
 
     private String phone;
 
@@ -33,6 +35,7 @@ public class UserVO {
     /**
      * 出生日期
      */
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthDay;
 
     private Integer gender;

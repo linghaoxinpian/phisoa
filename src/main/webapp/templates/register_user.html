@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <title>用户注册</title>
+</head>
+<body>
+<div class="container">
+    <div class="raw">
+        <div class="col-sm-6 col-sm-offset-3">
+            <form action="/phisoa/register/user" method="post" enctype="multipart/form-data"
+                  class="form form-horizontal">
+                <div class="form-group">
+                    <label class="label label-info" for="nickname">昵称</label>
+                    <input type="text" class="form-control" id="nickname" name="nickname" value="素未平生">
+                </div>
+                <div class="form-group">
+                    <label class="label label-info" for="name">登录名</label>
+                    <input type="text" name="name" id="name" class="form-control" value="访客A">
+                </div>
+                <div class="form-group">
+                    <label class="label label-info" for="password">密码</label>
+                    <input type="password" id="password" name="password" class="form-control" value="123">
+                </div>
+                <div class="form-group">
+                    <label class="label label-info">上传头像</label>
+                    <input type="file" class="form-control" name="headImg">
+                </div>
+                <div class="form-group">
+                    <label class="label label-info">手机</label>
+                    <input type="tel" class="form-control" name="phone" value="15000126730">
+                </div>
+                <div class="form-group">
+                    <label class="label label-info">电子邮箱</label>
+                    <input type="email" name="email" class="form-control" value="530060499@qq.com">
+                </div>
+                <div class="form-group">
+                    <label class="label label-info">居住详细地址</label>
+                    <input type="text" name="place" class="form-control" value="沪城环路999">
+                </div>
+                <div class="form-group">
+                    <label class="label label-info">生日</label>
+                    <input type="date" name="birthDay" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label class="label label-info">性别</label>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="gender" value="0" checked>
+                            Man
+                        </label>
+                    </div>
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="gender" value="1">
+                            Lady
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="label label-info">选择所在地区（用于推荐）</label>
+                    <select name="fullAreaName" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="label label-info">感兴趣的标签</label>
+                    <select name="tagIds" class="form-control">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <input type="submit" value="注册" class="btn btn-success btn-large">
+                        <input type="submit" value="取消" class="btn btn-danger btn-large">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

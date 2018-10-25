@@ -11,11 +11,13 @@ import com.shmilyou.service.AmateurService;
 import com.shmilyou.service.AreaService;
 import com.shmilyou.service.OrganizationService;
 import com.shmilyou.service.UserService;
+import com.shmilyou.utils.WebUtils;
 import com.shmilyou.web.controller.vo.AmateurVO;
 import com.shmilyou.web.controller.vo.OrganizationVO;
 import com.shmilyou.web.controller.vo.UserVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -90,10 +92,10 @@ public class RegisterController extends BaseController {
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     @ResponseBody
-    public String registerUser(UserVO userVO) {
+    public ResponseEntity registerUser(UserVO userVO) {
         //校验
         if (StringUtils.isEmpty(userVO.getName())) {
-            return "no";
+            return WebUtils.error("登录名为空");
         }
         User user = new User();
         BeanUtils.copyProperties(userVO, user);
@@ -110,7 +112,7 @@ public class RegisterController extends BaseController {
             userVO.getTagIds().forEach(i -> tags.add(new UserTag(null, user.getId(), i, UserTag.STRONG_TAG)));
         }
         userService.addUserTag(tags);
-        return "{id:1,name:2}";
+        return WebUtils.ok("ok");
     }
 
 
