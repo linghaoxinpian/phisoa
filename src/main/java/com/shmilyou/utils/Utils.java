@@ -1,10 +1,17 @@
 package com.shmilyou.utils;
 
+import com.alibaba.fastjson.JSON;
+import org.codehaus.jackson.map.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,6 +20,9 @@ import java.util.regex.Pattern;
  * Date: 2018/8/16
  */
 public class Utils {
+
+    private static Logger logger = LoggerFactory.getLogger(Utils.class);
+
     /**
      * 驼峰法转下划线
      *
@@ -70,4 +80,32 @@ public class Utils {
         int random = (int) (Math.random() * 1000);
         return d + random;
     }
+
+    /**
+     * 利用Jackson解析json字符型数组
+     *
+     * @param json json数组, <b>NOTE:</b> ["1","2","3"]
+     * @return
+     */
+    public static List<String> parseJsonArr(String json) {
+        ObjectMapper objectMapper = new ObjectMapper();
+        List list = Collections.emptyList();
+        try {
+            list = objectMapper.readValue(json, List.class);
+        } catch (IOException e) {
+            logger.error(e.getLocalizedMessage(), e);
+        }
+        return list;
+    }
+
+    /**
+     * 利用fastJson生成json
+     */
+    public static String generateJson(Object obj) {
+        if (obj == null) {
+            return "";
+        }
+        return JSON.toJSONString(obj);
+    }
+
 }

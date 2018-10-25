@@ -1,10 +1,14 @@
 package com.shmilyou;
 
+import com.shmilyou.entity.User;
+import com.shmilyou.utils.Utils;
 import org.junit.Test;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created with 岂止是一丝涟漪     530060499@qq.com    2018/10/24
@@ -20,4 +24,27 @@ public class NoSpringTest {
             System.out.println(random);
         }
     }
+
+    @Test
+    public void jacksonParse() {
+        String json2 = "[\"北京\",\"天津\",\"杭州\"]";
+        List<String> list = Utils.parseJsonArr(json2);
+        System.out.println(list);
+
+    }
+
+    @Test
+    public void jsonGenerate() {
+        User user = new User();
+        user.setId("ddd");
+        user.setInterestList(new ArrayList() {
+            {
+                add("1");
+                add("2");
+            }
+        });
+        String s = Utils.generateJson(user);
+        System.out.println(s);
+    }
+
 }
