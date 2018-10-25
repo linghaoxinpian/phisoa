@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -35,7 +36,7 @@ public class Utils {
         }
         line = String.valueOf(line.charAt(0)).toUpperCase()
                 .concat(line.substring(1));
-        StringBuffer sb = new StringBuffer();
+        StringBuilder sb = new StringBuilder();
         Pattern pattern = Pattern.compile("[A-Z]([a-z\\d]+)?");
         Matcher matcher = pattern.matcher(line);
         while (matcher.find()) {
@@ -85,17 +86,15 @@ public class Utils {
      * 利用Jackson解析json字符型数组
      *
      * @param json json数组, <b>NOTE:</b> ["1","2","3"]
-     * @return
      */
     public static List<String> parseJsonArr(String json) {
         ObjectMapper objectMapper = new ObjectMapper();
-        List list = Collections.emptyList();
         try {
-            list = objectMapper.readValue(json, List.class);
+            return objectMapper.readValue(json, List.class);
         } catch (IOException e) {
             logger.error(e.getLocalizedMessage(), e);
         }
-        return list;
+        return Collections.emptyList();
     }
 
     /**
@@ -108,4 +107,10 @@ public class Utils {
         return JSON.toJSONString(obj);
     }
 
+    /**
+     * 判断目录是否存在，不存在则创建目录
+     */
+    public static void isExistDirectory(String path) {
+        new File(path).mkdirs();
+    }
 }

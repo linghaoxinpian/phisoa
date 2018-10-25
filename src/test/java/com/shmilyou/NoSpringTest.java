@@ -47,4 +47,9 @@ public class NoSpringTest {
         System.out.println(s);
     }
 
+    @Test
+    public void mkdir() {
+        Utils.isExistDirectory("D:\\ProgramData\\idea_project\\phisoa\\target//index.php");
+    }
+
 }

@@ -33,5 +33,5 @@ public final class Constant {
     /**
      * 【讲师】存储路径
      */
-    public static final String PIC_LECTURER_PATH = "static/upload/organization/photo/";
+    public static final String PIC_LECTURER_PATH = "static/upload/organization/lecturer/";
 }

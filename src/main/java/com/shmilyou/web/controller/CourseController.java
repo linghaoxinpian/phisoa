@@ -5,6 +5,7 @@ import com.shmilyou.entity.Course;
 import com.shmilyou.service.CategoryService;
 import com.shmilyou.service.CourseService;
 import com.shmilyou.utils.Constant;
+import com.shmilyou.utils.WebUtils;
 import com.shmilyou.web.controller.vo.CourseVO;
 import com.shmilyou.web.resolver.LoginOrganization;
 import org.springframework.beans.BeanUtils;
@@ -19,7 +20,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
@@ -51,17 +51,12 @@ public class CourseController extends BaseController {
         BeanUtils.copyProperties(courseVO, course);
         course.setOwnerId(loginOrganization.getId());
         course.setId(UUID.randomUUID().toString());
-        //处理图片
-        if (pic != null) {
-            String picName = pic.getOriginalFilename();
-            String picType = picName.substring(picName.lastIndexOf("."));
-            if (".png".equals(picType) || ".jpg".equals(picType) || ".jpeg".equals(picType)) {
-                String saveFileName = course.getName() + course.getId() + picType;
-                String realPath = session.getServletContext().getRealPath("/");
-                pic.transferTo(new File(realPath + Constant.PIC_COURSE_PATH + saveFileName));
-                course.setPicUrl(saveFileName);
-            }
-        }
+        //设置图片名
+        String saveFileName = "coursePic";
+        //指定图片路径
+        String path = session.getServletContext().getRealPath("/") + Constant.PIC_COURSE_PATH + course.getId() + "/";
+        //保存图片
+        WebUtils.uploadPicture(pic, path, saveFileName);
         //插入课程
         courseService.insert(course);
         return "ok";

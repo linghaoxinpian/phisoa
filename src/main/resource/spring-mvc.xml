@@ -73,6 +73,7 @@
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <!-- 支持的其中一个属性，支持的最大文件大小，以字节为单位	-->
         <property name="maxUploadSize" value="5242880"/>
+        <property name="defaultEncoding" value="UTF-8"/>
     </bean>
 
     <!-- 拦截器的配置, 默认是拦截器所有(与Struts相同),但是也可以配置基于方法的拦截器 -->
