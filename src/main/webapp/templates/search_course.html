@@ -31,10 +31,10 @@
             </ul>
         </div>
         <div class="col-sm-6 col-sm-offset-3" th:each="c,stat:${courses}">
-            <p th:text="${c.name}"></p>
+            <a th:href="${'/phisoa/course/'+c.id}" th:text="${c.name}"></a>
             <p th:text="${c.description}"></p>
             <p th:text="${c.price}"></p>
-            <img src="static/upload/organization/course/default.jpg" alt="" th:src="${'/'+path+c.id+'/'+c.getPicUrl()}">
+            <img width="100" height="100" alt="" th:src="${'/'+path+c.id+'/'+c.getPicUrl()}">
         </div>
     </div>
 </div>

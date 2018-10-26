@@ -23,6 +23,8 @@ public class Course extends BaseEntity {
 
     private String picUrl;
 
+    private int originalPrice;
+
     private int price;
 
     private String ownerId;

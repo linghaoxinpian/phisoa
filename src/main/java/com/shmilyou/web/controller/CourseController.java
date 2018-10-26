@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,6 +37,14 @@ public class CourseController extends BaseController {
     private CategoryService categoryService;
     @Autowired
     private CourseService courseService;
+
+    //课程详情页
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String index(@PathVariable("id") String courseId, ModelMap modelMap) {
+        Course course = courseService.queryById(courseId);
+        modelMap.addAttribute("course", course);
+        return "course_detail";
+    }
 
     @RequestMapping(value = "/organization/add", method = RequestMethod.POST)
     public ResponseEntity addCourse(@ModelAttribute("courseVO") CourseVO courseVO,
@@ -73,6 +82,7 @@ public class CourseController extends BaseController {
         modelMap.addAttribute("path", Constant.PIC_COURSE_PATH);
         return "search_course";
     }
+
 
     //--------------------- GET ---------------------
 

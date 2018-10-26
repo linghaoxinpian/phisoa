@@ -13,6 +13,8 @@ public class CourseVO {
 
     private Integer price;
 
+    private int originalPrice;
+
     private String categoryId;
 
 }
