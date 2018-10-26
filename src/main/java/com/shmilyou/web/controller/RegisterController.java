@@ -11,6 +11,8 @@ import com.shmilyou.service.AmateurService;
 import com.shmilyou.service.AreaService;
 import com.shmilyou.service.OrganizationService;
 import com.shmilyou.service.UserService;
+import com.shmilyou.utils.Constant;
+import com.shmilyou.utils.Utils;
 import com.shmilyou.utils.WebUtils;
 import com.shmilyou.web.controller.vo.AmateurVO;
 import com.shmilyou.web.controller.vo.OrganizationVO;
@@ -24,8 +26,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created with 岂止是一丝涟漪     530060499@qq.com    2018/10/4
@@ -92,16 +96,22 @@ public class RegisterController extends BaseController {
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity registerUser(UserVO userVO) {
+    public ResponseEntity registerUser(UserVO userVO, HttpSession session) {
         //校验
         if (StringUtils.isEmpty(userVO.getName())) {
             return WebUtils.error("登录名为空");
         }
         User user = new User();
         BeanUtils.copyProperties(userVO, user);
+        user.setId(UUID.randomUUID().toString());
         // 【地区】处理
         Area area = areaService.queryByFullName(userVO.getFullAreaName());
         user.setAreaId(area == null ? 0 : area.getAreaId());
+        //指定图片路径
+        String path = session.getServletContext().getRealPath("/") + Constant.PIC_USER_HEAD_PATH + user.getId() + "/";
+        //保存图片
+        String fileName = WebUtils.uploadPicture(userVO.getHeadImg(), path, Utils.generateDateNum());
+        user.setHeadImg(fileName);
 
         //注册
         userService.register(user);

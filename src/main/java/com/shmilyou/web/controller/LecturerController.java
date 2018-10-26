@@ -36,12 +36,11 @@ public class LecturerController extends BaseController {
         BeanUtils.copyProperties(lecturerVO, lecturer);
         lecturer.setOrganizationId(loginOrganization.getId());
         lecturer.setId(UUID.randomUUID().toString());
-        //设置图片名
-        String saveFileName = "selfie";
         //指定图片路径
         String path = session.getServletContext().getRealPath("/") + Constant.PIC_LECTURER_PATH + lecturer.getId() + "/";
         //保存图片
-        WebUtils.uploadPicture(lecturerVO.getSelfie(), path, saveFileName);
+        String fileName = WebUtils.uploadPicture(lecturerVO.getSelfie(), path, "selfie");
+        lecturer.setSelfie(fileName);
 
         //新增讲师
         int raw = lecturerService.insert(lecturer);

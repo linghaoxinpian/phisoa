@@ -22,9 +22,10 @@ public class WebUtils {
      * 保存上传的图片
      *
      * @param path     目录
-     * @param fileName 保存时的文件名
+     * @param fileName 保存时的文件名,不带后缀
+     * @return 带后缀的文件名
      */
-    public static void uploadPicture(MultipartFile pic, String path, String fileName) {
+    public static String uploadPicture(MultipartFile pic, String path, String fileName) {
         if (pic != null) {
             String picName = pic.getOriginalFilename();
             String picType = picName.substring(picName.lastIndexOf("."));
@@ -34,11 +35,13 @@ public class WebUtils {
                 try {
                     //存储图片
                     pic.transferTo(new File(path + fileName + picType));
+                    return fileName + picType;
                 } catch (IOException e) {
                     logger.error(e.getLocalizedMessage(), e);
                 }
             }
         }
+        return "default.jpg";
     }
 
     /**

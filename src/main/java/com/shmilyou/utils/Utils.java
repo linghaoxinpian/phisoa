@@ -113,4 +113,16 @@ public class Utils {
     public static void isExistDirectory(String path) {
         new File(path).mkdirs();
     }
+
+    /**
+     * 生成时间字符串，如 20181026100630
+     *
+     * @return [yyyyMMddHHmmss]
+     */
+    public static String generateDateNum() {
+        //时间
+        Date date = new Date();
+        DateFormat format = new SimpleDateFormat("yyyyMMddHHmmss");
+        return format.format(date);
+    }
 }
