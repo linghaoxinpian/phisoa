@@ -44,8 +44,10 @@
         <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
             select uuid()
         </selectKey>
-        INSERT INTO Organization(id,name,place,phone,area_id)
-        VALUES(#{id},#{name},#{place},#{phone},#{areaId})
+        INSERT INTO organization(id, name, login_name, password, logo, description, photo_album, phone, place,
+        student, area_id)
+        VALUES(#{id}, #{name}, #{loginName}, #{password}, #{logo}, #{description}, #{photoAlbum}, #{phone}, #{place},
+        #{student}, #{areaId})
     </insert>
 
     <insert id="insertOrganizationTag" parameterType="java.util.List">
@@ -68,8 +70,10 @@
         <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
             select uuid()
         </selectKey>
-        INSERT INTO Organization(id,name,nick_name)
-        VALUES(#{id},#{name},#{nickName})
+        INSERT INTO organization(id, name, login_name, password, logo, description, photo_album, phone, place,
+        student, area_id, level_id)
+        VALUES(#{id}, #{name}, #{loginName}, #{password}, #{logo}, #{description}, #{photoAlbum}, #{phone}, #{place},
+        #{student}, #{areaId}, #{levelId})
     </insert>
 
     <!--update -->

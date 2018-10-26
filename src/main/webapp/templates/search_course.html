@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <title>搜索课程</title>
+</head>
+<body>
+<div class="container">
+    <div class="raw">
+        <div class="col-sm-6 col-sm-offset-3">
+            <form class="navbar-form navbar-left" action="/phisoa/course/search" method="get">
+                <div class="form-group">
+                    <input type="text" name="searchStr" class="form-control" placeholder="课程" required value="添加课程">
+                </div>
+                <button type="submit" class="btn btn-default">搜索</button>
+            </form>
+            <ul class="nav navbar-nav navbar-left">
+                <li class="dropdown dropdown-menu-left">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">搜索范围<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">课程</a></li>
+                        <li><a href="#">机构</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="#">全部（未开放）</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="col-sm-6 col-sm-offset-3" th:each="c,stat:${courses}">
+            <p th:text="${c.name}"></p>
+            <p th:text="${c.description}"></p>
+            <p th:text="${c.price}"></p>
+            <img src="static/upload/organization/course/default.jpg" alt="" th:src="${'/'+path+c.id+'/'+c.getPicUrl()}">
+        </div>
+    </div>
+</div>
+</body>
+</html>

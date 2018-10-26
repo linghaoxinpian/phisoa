@@ -55,6 +55,16 @@ public class WebUtils {
     }
 
     /**
+     * 返回状态码200
+     */
+    public static ResponseEntity<Map<String, Object>> ok() {
+        Map<String, Object> map = new HashMap<>();
+        map.put("status", 200);
+        map.put("msg", "ok");
+        return new ResponseEntity<>(map, HttpStatus.OK);
+    }
+
+    /**
      * 返回状态码400，以及json数据
      */
     public static ResponseEntity<Map<String, Object>> error(Object msg) {

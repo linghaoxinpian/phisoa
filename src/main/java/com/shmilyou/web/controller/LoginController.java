@@ -10,12 +10,15 @@ import com.shmilyou.service.OpenCourseService;
 import com.shmilyou.service.OrganizationService;
 import com.shmilyou.service.UserService;
 import com.shmilyou.utils.Constant;
+import com.shmilyou.utils.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -56,16 +59,17 @@ public class LoginController extends BaseController {
     }
 
     @RequestMapping(value = "/organization", method = RequestMethod.POST)
-    public String loginInOrganization(String account, String password, HttpServletRequest request) {
+    @ResponseBody
+    public ResponseEntity loginInOrganization(String account, String password, HttpServletRequest request) {
         //机构登录校验
-        if (StringUtils.isEmpty(account) && StringUtils.isEmpty(password)) {
+        if (!StringUtils.isEmpty(account) && !StringUtils.isEmpty(password)) {
             Organization organization = organizationService.loginIn(account, password);
             if (organization != null) {
                 request.getSession().setAttribute(Constant.LOGIN_ORGANIZATION, organization);
-                return "index";
+                return WebUtils.ok();
             }
         }
-        return "login";
+        return WebUtils.error("登录失败");
     }
 
     @RequestMapping(value = "/amateur", method = RequestMethod.POST)
@@ -82,8 +86,13 @@ public class LoginController extends BaseController {
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public String loginIn() {
+    public String loginInUser() {
         return "login_user";
+    }
+
+    @RequestMapping(value = "/organization", method = RequestMethod.GET)
+    public String loginInOrganization() {
+        return "login_organization";
     }
 
     @RequestMapping(value = "/login_out", method = RequestMethod.GET)

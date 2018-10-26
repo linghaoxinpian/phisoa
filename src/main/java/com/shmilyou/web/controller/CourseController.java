@@ -10,6 +10,7 @@ import com.shmilyou.web.controller.vo.CourseVO;
 import com.shmilyou.web.resolver.LoginOrganization;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
@@ -37,29 +38,40 @@ public class CourseController extends BaseController {
     private CourseService courseService;
 
     @RequestMapping(value = "/organization/add", method = RequestMethod.POST)
-    public String addCourse(@ModelAttribute("courseVO") CourseVO courseVO,
-                            @RequestParam("pic") MultipartFile pic,
-                            HttpSession session, LoginOrganization loginOrganization) throws IOException {
+    public ResponseEntity addCourse(@ModelAttribute("courseVO") CourseVO courseVO,
+                                    @RequestParam("pic") MultipartFile pic,
+                                    HttpSession session, LoginOrganization loginOrganization) throws IOException {
 
         if (loginOrganization == null) {
-            return "非机构禁止访问";
+            return WebUtils.error("非机构禁止访问");
         }
         if (StringUtils.isEmpty(courseVO.getName()) || StringUtils.isEmpty(courseVO.getCategoryId())) {
-            return "字段为空";
+            return WebUtils.error("非机构禁止访问");
         }
         Course course = new Course();
         BeanUtils.copyProperties(courseVO, course);
         course.setOwnerId(loginOrganization.getId());
         course.setId(UUID.randomUUID().toString());
-        //设置图片名
-        String saveFileName = "coursePic";
         //指定图片路径
         String path = session.getServletContext().getRealPath("/") + Constant.PIC_COURSE_PATH + course.getId() + "/";
         //保存图片
-        WebUtils.uploadPicture(pic, path, saveFileName);
+        String fileName = WebUtils.uploadPicture(pic, path, "course");
+        course.setPicUrl(fileName);
         //插入课程
         courseService.insert(course);
-        return "ok";
+        return WebUtils.ok();
+    }
+
+    //搜索课程
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public String search(String searchStr, Integer pageIndex, Integer pageSize, ModelMap modelMap) {
+        pageIndex = 0;
+        pageSize = 20;
+        List<Course> courses = courseService.queryByName(searchStr, pageIndex, pageSize);
+        modelMap.addAttribute("courses", courses);
+        logger.info(courses.size() + "测试");
+        modelMap.addAttribute("path", Constant.PIC_COURSE_PATH);
+        return "search_course";
     }
 
     //--------------------- GET ---------------------

@@ -9,6 +9,7 @@ import com.shmilyou.utils.Encrypt;
 import com.shmilyou.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -68,7 +69,12 @@ public class OrganizationServiceImpl extends BaseServiceImpl<Organization> imple
 
     @Override
     public int register(Organization organization) {
-        return organizationRepository.register(organization);
+        if (!StringUtils.isEmpty(organization.getPassword())) {
+            String password = Encrypt.string2SHA256(organization.getPassword() + Constant.SALT);
+            organization.setPassword(password);
+            return organizationRepository.register(organization);
+        }
+        return 0;
     }
 
     @Override

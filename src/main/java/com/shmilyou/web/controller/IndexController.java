@@ -57,21 +57,6 @@ public class IndexController extends BaseController {
         return "index";
     }
 
-    /**
-     * 分类查询
-     *
-     * @param searchStr 查询字符串
-     * @param classify  0:机构，1：爱好者，2：标签
-     */
-    @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String search(String searchStr, String classify, Integer pageIndex, Integer pageSize) {
-        pageIndex = 1;
-        pageSize = 20;
-        //todo：根据【0.机构名/1.爱好者名/2.标签】 搜索
-
-        return "searchResult";
-    }
-
     @RequestMapping(value = "/news", method = RequestMethod.GET)
     @ResponseBody
     public List<Object> news() {

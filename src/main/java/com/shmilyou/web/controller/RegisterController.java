@@ -49,10 +49,10 @@ public class RegisterController extends BaseController {
 
     @RequestMapping(value = "/organization", method = RequestMethod.POST)
     @ResponseBody
-    public String registerOrganization(OrganizationVO organizationVO) {
+    public ResponseEntity registerOrganization(OrganizationVO organizationVO) {
         //校验
         if (StringUtils.isEmpty(organizationVO.getName())) {
-            return "no";
+            return WebUtils.error("名称为空");
         }
         Organization organization = new Organization();
         BeanUtils.copyProperties(organizationVO, organization);
@@ -68,7 +68,7 @@ public class RegisterController extends BaseController {
         organizationVO.getTagIds().forEach(i -> tags.add(new OrganizationTag(null, organization.getId(), i)));
         organizationService.addOrganizationTag(tags);
 
-        return "{id:1,name:2}";
+        return WebUtils.ok("ok");
     }
 
     @RequestMapping(value = "/amateur", method = RequestMethod.POST)
