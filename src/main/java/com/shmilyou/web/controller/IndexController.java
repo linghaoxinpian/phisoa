@@ -15,6 +15,7 @@ import com.shmilyou.service.UserService;
 import com.shmilyou.utils.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -61,13 +62,13 @@ public class IndexController extends BaseController {
         return "index";
     }
 
-    @RequestMapping(value = "/login_in", method = RequestMethod.GET)
+    @RequestMapping(value = "/login_in_user", method = RequestMethod.GET)
     public String loginIn() {
-        return "login";
+        return "login_user";
     }
 
     @RequestMapping(value = "/login_in_user", method = RequestMethod.POST)
-    public String loginInUser(String account, String password, HttpServletRequest request) {
+    public String loginInUser(String account, String password, HttpServletRequest request, ModelMap modelMap) {
         //求学者登录校验
         if (StringUtils.isEmpty(account) && StringUtils.isEmpty(password)) {
             User user = userService.loginIn(account, password);
@@ -76,7 +77,8 @@ public class IndexController extends BaseController {
                 return "index";
             }
         }
-        return "login";
+        modelMap.addAttribute("error", "用户名或密码错误");
+        return "login_user";
     }
 
     @RequestMapping(value = "/login_in_organization", method = RequestMethod.POST)
