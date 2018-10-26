@@ -40,4 +40,14 @@ public interface UserService extends BaseService<User> {
      * @return 批量执行成功条数
      */
     int addUserTag(List<UserTag> tags);
+
+    /**
+     * 是否该手机已存在
+     */
+    boolean existPhone(String phone);
+
+    /**
+     * 是否该邮箱已存在
+     */
+    boolean existEmail(String email);
 }

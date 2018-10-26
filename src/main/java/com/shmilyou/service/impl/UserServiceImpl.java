@@ -9,6 +9,7 @@ import com.shmilyou.utils.Encrypt;
 import com.shmilyou.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.HashMap;
 import java.util.List;
@@ -69,5 +70,23 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     @Override
     public int addUserTag(List<UserTag> userTags) {
         return userRepository.insertUserTag(userTags);
+    }
+
+    @Override
+    public boolean existPhone(String phone) {
+        if (!StringUtils.isEmpty(phone)) {
+            List<User> users = queryByColumn("phone", phone, 0, 1);
+            return users.size() > 0;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean existEmail(String email) {
+        if (!StringUtils.isEmpty(email)) {
+            List<User> users = queryByColumn("email", email, 0, 1);
+            return users.size() > 0;
+        }
+        return false;
     }
 }

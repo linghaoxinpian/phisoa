@@ -101,6 +101,16 @@ public class RegisterController extends BaseController {
         if (StringUtils.isEmpty(userVO.getName())) {
             return WebUtils.error("登录名为空");
         }
+        if (StringUtils.isEmpty(userVO.getPhone()) && StringUtils.isEmpty(userVO.getEmail())) {
+            return WebUtils.error("手机号与邮箱不能同时为空");
+        }
+        //校验是否已存在手机号
+        boolean existPhone = userService.existPhone(userVO.getPhone());
+        //校验是否已存在邮箱
+        boolean existEmail = userService.existEmail(userVO.getEmail());
+        if (existEmail || existPhone) {
+            return WebUtils.error("该手机或邮箱已注册");
+        }
         User user = new User();
         BeanUtils.copyProperties(userVO, user);
         user.setId(UUID.randomUUID().toString());
