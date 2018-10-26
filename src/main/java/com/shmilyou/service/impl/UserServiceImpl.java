@@ -33,6 +33,8 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     //-------------------方法区-------------------
     @Override
     public int register(User user) {
+        String password = Encrypt.string2SHA256(user.getPassword() + Constant.SALT);
+        user.setPassword(password);
         return insert(user);
     }
 

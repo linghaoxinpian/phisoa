@@ -70,7 +70,7 @@ public class IndexController extends BaseController {
     @RequestMapping(value = "/login_in_user", method = RequestMethod.POST)
     public String loginInUser(String account, String password, HttpServletRequest request, ModelMap modelMap) {
         //求学者登录校验
-        if (StringUtils.isEmpty(account) && StringUtils.isEmpty(password)) {
+        if (!StringUtils.isEmpty(account) && !StringUtils.isEmpty(password)) {
             User user = userService.loginIn(account, password);
             if (user != null) {
                 request.getSession().setAttribute(Constant.LOGIN_USER, user);
@@ -78,6 +78,7 @@ public class IndexController extends BaseController {
             }
         }
         modelMap.addAttribute("error", "用户名或密码错误");
+        modelMap.addAttribute("account", account);
         return "login_user";
     }
 

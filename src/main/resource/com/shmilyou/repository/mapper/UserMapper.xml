@@ -27,8 +27,8 @@
         <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
             select uuid()
         </selectKey>
-        INSERT INTO user(id,name,nickname)
-        VALUES(#{id},#{name},#{nickname})
+        INSERT INTO user (id, name, nickname, password, head_img, phone, email, gender)
+        VALUES(#{id},#{name},#{nickname},#{password}, #{headImg}, #{phone}, #{email}, #{gender})
     </insert>
 
     <!--update -->
