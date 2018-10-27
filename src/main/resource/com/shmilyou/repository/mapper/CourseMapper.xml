@@ -5,6 +5,18 @@
 <mapper namespace="com.shmilyou.repository.CourseRepository">
     <!--useGeneratedKeys="true" keyProperty="id" parameterType resultType statementType="STATEMENT"-->
     <!--select ${columns} from ${tableName}-->
+    <resultMap id="courseRM" type="com.shmilyou.entity.Course" autoMapping="true">
+        <id property="id" column="id"/>
+        <association property="tagName" column="category_id" javaType="java.lang.String" select="getTagName"/>
+        <association property="organization" column="owner_id" javaType="com.shmilyou.entity.Organization" select="getOwnerId"/>
+    </resultMap>
+    <select id="getTagName" resultType="java.lang.String">
+        <!-- 这里不加del=0,以免错误的逻辑导致空指针 -->
+        SELECT name FROM category WHERE id=#{id}
+    </select>
+    <select id="getOwnerId" resultType="com.shmilyou.entity.Organization">
+        SELECT * FROM organization WHERE id=#{id}
+    </select>
 
     <!-- queryByTagIds -->
     <select id="queryByTagIds" resultType="com.shmilyou.entity.Course">
@@ -35,7 +47,7 @@
     </update>
 
     <!-- queryById -->
-    <select id="queryById" resultType="com.shmilyou.entity.Course">
+    <select id="queryById" resultMap="courseRM">
     SELECT * FROM ${tableName}
     WHERE id=#{id} AND del=0
     </select>

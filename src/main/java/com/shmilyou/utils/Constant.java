@@ -38,5 +38,10 @@ public final class Constant {
     /**
      * 【求学者头像】存储路径
      */
-    public static final String PIC_USER_HEAD_PATH = "static/upload/user/photo";
+    public static final String PIC_USER_HEAD_PATH = "static/upload/user/photo/";
+
+    /**
+     * 【机构】logo存储路径
+     */
+    public static final String PIC_ORGANIZATION_PATH = "static/upload/organization/logo/";
 }

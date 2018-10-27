@@ -23,9 +23,15 @@ public class Course extends BaseEntity {
 
     private String picUrl;
 
+    private int price;
+
     private int originalPrice;
 
-    private int price;
+    /** 课程等级：初级 */
+    private String level;
+
+    /** 适合的等级：入门级，中级 */
+    private String suitable;
 
     private String ownerId;
 
@@ -35,5 +41,13 @@ public class Course extends BaseEntity {
     private String categoryId;
 
     private Date addTime;
+
+    //----------------- 非DB字段 -----------------
+
+    /** 标签名 */
+    private String tagName;
+
+    /** 所属机构 */
+    private Organization organization;
 
 }

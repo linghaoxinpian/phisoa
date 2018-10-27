@@ -43,6 +43,9 @@ public class CourseController extends BaseController {
     public String index(@PathVariable("id") String courseId, ModelMap modelMap) {
         Course course = courseService.queryById(courseId);
         modelMap.addAttribute("course", course);
+        modelMap.addAttribute("o", course.getOrganization());
+        modelMap.addAttribute("cPath", Constant.PIC_COURSE_PATH);
+        modelMap.addAttribute("oPath", Constant.PIC_ORGANIZATION_PATH);
         return "course_detail";
     }
 
