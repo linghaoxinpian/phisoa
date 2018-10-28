@@ -7,6 +7,8 @@
     <!--select ${columns} from ${tableName}-->
     <resultMap id="courseRM" type="com.shmilyou.entity.Course" autoMapping="true">
         <id property="id" column="id"/>
+        <!-- 由于 ownerId 是关联是关联查询时的中间属性，所以不指定映射列的话会导致正常查询时，ownerId=null -->
+        <result property="ownerId" column="owner_id"/>
         <association property="tagName" column="category_id" javaType="java.lang.String" select="getTagName"/>
         <association property="organization" column="owner_id" javaType="com.shmilyou.entity.Organization" select="getOwnerId"/>
     </resultMap>
