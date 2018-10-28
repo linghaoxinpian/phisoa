@@ -2,9 +2,15 @@ package com.shmilyou.web.controller;
 
 import com.shmilyou.entity.Category;
 import com.shmilyou.entity.Course;
+import com.shmilyou.entity.CourseComment;
+import com.shmilyou.entity.Organization;
+import com.shmilyou.entity.OrganizationOverview;
 import com.shmilyou.service.CategoryService;
+import com.shmilyou.service.CourseCommentService;
 import com.shmilyou.service.CourseService;
+import com.shmilyou.service.OrganizationService;
 import com.shmilyou.utils.Constant;
+import com.shmilyou.utils.Utils;
 import com.shmilyou.utils.WebUtils;
 import com.shmilyou.web.controller.vo.CourseVO;
 import com.shmilyou.web.resolver.LoginOrganization;
@@ -23,8 +29,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 /**
  * Created with 岂止是一丝涟漪     530060499@qq.com    2018/10/12
@@ -37,15 +45,47 @@ public class CourseController extends BaseController {
     private CategoryService categoryService;
     @Autowired
     private CourseService courseService;
+    @Autowired
+    private OrganizationService organizationService;
+    @Autowired
+    private CourseCommentService courseCommentService;
 
     //课程详情页
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String index(@PathVariable("id") String courseId, ModelMap modelMap) {
         Course course = courseService.queryById(courseId);
+        Organization organization = organizationService.queryById(course.getOwnerId());
+        List<String> tagNames = Collections.EMPTY_LIST;
+        OrganizationOverview overview = null;
+        if (organization != null) {
+            //解析主要培训
+            tagNames = organization.getCategoryList().stream().map(Category::getName).collect(Collectors.toList());
+            //获取机构评分
+            overview = organization.getOverview();
+        }
+        //解析讲师的作品图片
+        List<String> showreels = Collections.emptyList();
+        if (course.getLecturer() != null) {
+            showreels = Utils.parseJsonArr(course.getLecturer().getShowreel());
+        }
+        //该机构其它课程
+        List<Course> otherCourses = courseService.loadByOrganizationAndTagAndChildTag(course.getOwnerId(), course.getCategoryId());
+        //课程评价
+        List<CourseComment> comments = courseCommentService.loadNewestCommentsByCourseId(course.getId(), 0, 2);
+        //综合评价的星级数量
+
         modelMap.addAttribute("course", course);
         modelMap.addAttribute("o", course.getOrganization());
+        modelMap.addAttribute("overview", overview);
+        modelMap.addAttribute("tagNames", tagNames);
+        modelMap.addAttribute("lecturer", course.getLecturer());
+        modelMap.addAttribute("showreels", showreels);
+        modelMap.addAttribute("otherCourses", otherCourses);
+        modelMap.addAttribute("comments", comments);
         modelMap.addAttribute("cPath", Constant.PIC_COURSE_PATH);
         modelMap.addAttribute("oPath", Constant.PIC_ORGANIZATION_PATH);
+        modelMap.addAttribute("lPath", Constant.PIC_LECTURER_PATH);
+        modelMap.addAttribute("uPath", Constant.PIC_USER_HEAD_PATH);
         return "course_detail";
     }
 
@@ -128,7 +168,7 @@ public class CourseController extends BaseController {
         if (StringUtils.isEmpty(tagId)) {
             return "查询条件为空";
         }
-        List<Course> courses = courseService.loadCourseByTagAndChildTag(tagId, 0, 20);
+        List<Course> courses = courseService.loadByTagAndChildTag(tagId, 0, 20);
         return "result";
     }
 }

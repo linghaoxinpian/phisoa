@@ -33,12 +33,19 @@ public class Course extends BaseEntity {
     /** 适合的等级：入门级，中级 */
     private String suitable;
 
+    /** 教学形式：班级上课 */
+    private String trainingModel;
+
+    /** 经验 */
+    private String experience;
+
     private String ownerId;
 
-    /**
-     * 课程所属分类Id
-     */
+    /** 课程所属分类Id */
     private String categoryId;
+
+    /** 课程讲师Id */
+    private String lecturerId;
 
     private Date addTime;
 
@@ -49,5 +56,8 @@ public class Course extends BaseEntity {
 
     /** 所属机构 */
     private Organization organization;
+
+    /** 课程讲师 */
+    private Lecturer lecturer;
 
 }

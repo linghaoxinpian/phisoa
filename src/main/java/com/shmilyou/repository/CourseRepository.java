@@ -18,4 +18,12 @@ public interface CourseRepository extends BaseRepository<Course> {
      */
     List<Course> queryByTagIds(@Param("tagIds") List<String> tagIds, @Param("pageIndex") int pageIndex,
                                @Param("pageSize") int pageSize);
+
+    /**
+     * 根据机构id与多个标签加载课程
+     */
+    List<Course> queryByOrganizationAndTags(@Param("organizationId") String organizationId,
+                                            @Param("tagIds") List<String> tagIds);
+
+    List<Course> queryByOrganizationAndTag(@Param("organizationId") String organizationId, @Param("tagId") String tagId);
 }

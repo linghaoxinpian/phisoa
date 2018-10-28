@@ -13,6 +13,9 @@ public class CourseComment extends BaseEntity {
 
     private String comment;
 
+    /** 评论时所带的图片 */
+    private String pictures;
+
     private String courseId;
 
     private String userId;

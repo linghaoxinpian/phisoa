@@ -9,8 +9,10 @@
         <id property="id" column="id"/>
         <!-- 由于 ownerId 是关联是关联查询时的中间属性，所以不指定映射列的话会导致正常查询时，ownerId=null -->
         <result property="ownerId" column="owner_id"/>
+        <result property="categoryId" column="category_id"/>
         <association property="tagName" column="category_id" javaType="java.lang.String" select="getTagName"/>
         <association property="organization" column="owner_id" javaType="com.shmilyou.entity.Organization" select="getOwnerId"/>
+        <association property="lecturer" column="lecturer_id" javaType="com.shmilyou.entity.Lecturer" select="getLecturer"/>
     </resultMap>
     <select id="getTagName" resultType="java.lang.String">
         <!-- 这里不加del=0,以免错误的逻辑导致空指针 -->
@@ -18,6 +20,9 @@
     </select>
     <select id="getOwnerId" resultType="com.shmilyou.entity.Organization">
         SELECT * FROM organization WHERE id=#{id}
+    </select>
+    <select id="getLecturer" resultType="com.shmilyou.entity.Lecturer">
+        SELECT * FROM lecturer WHERE id=#{id}
     </select>
 
     <!-- queryByTagIds -->
@@ -30,6 +35,27 @@
             )
         </foreach>
         AND del=0 LIMIT #{pageIndex} , #{pageSize}
+    </select>
+
+    <!--queryByOrganizationAndTags-->
+    <select id="queryByOrganizationAndTags" resultMap="courseRM">
+        SELECT * FROM course
+        WHERE category_id IN
+        <foreach collection="tagIds" item="c" index="index" separator=",">
+            (
+            #{c}
+            )
+        </foreach>
+        AND owner_id=#{organizationId}
+        AND del=0
+    </select>
+
+    <!-- queryByOrganizationAndTag -->
+    <select id="queryByOrganizationAndTag" resultMap="courseRM">
+        SELECT * FROM course
+        WHERE owner_id=#{organizationId}
+        AND category_id=#{tagId}
+        AND del=0
     </select>
 
     <!--        基础方法区           -->

@@ -1,19 +1,31 @@
 package com.shmilyou.service.impl;
 
-import com.shmilyou.entity.CourseOrder;
-import com.shmilyou.repository.CourseOrderRepository;
-import com.shmilyou.service.CourseOrderService;
+import com.shmilyou.entity.CourseComment;
+import com.shmilyou.repository.CourseCommentRepository;
+import com.shmilyou.service.CourseCommentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * Created with 岂止是一丝涟漪     530060499@qq.com    2018年10月24日 17:14:06
  */
 @Service
-public class CourseCommentServiceImpl extends BaseServiceImpl<CourseOrder> implements CourseOrderService {
+public class CourseCommentServiceImpl extends BaseServiceImpl<CourseComment> implements CourseCommentService {
 
     @Autowired
-    CourseCommentServiceImpl(CourseOrderRepository baseRepository) {
+    CourseCommentServiceImpl(CourseCommentRepository baseRepository) {
         super(baseRepository);
+    }
+
+    @Autowired
+    private CourseCommentRepository courseCommentRepository;
+
+    //-------------------方法区-------------------
+
+    @Override
+    public List<CourseComment> loadNewestCommentsByCourseId(String courseId, int pageIndex, int pageSize) {
+        return courseCommentRepository.queryNewestCommentsByCourseId(courseId, pageIndex, pageSize);
     }
 }

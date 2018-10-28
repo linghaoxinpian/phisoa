@@ -4,9 +4,15 @@
     <meta charset="UTF-8">
     <title>课程详情页</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
     <style>
         .panel {
             margin-bottom: 5px;
+        }
+
+        .border {
+            border: 1px solid #ddd;
         }
     </style>
 </head>
@@ -85,17 +91,171 @@
             </div>
         </div>
         <div class="col-sm-5">
-            <div class="col-sm-3">
-                <img th:src="|/${oPath}${o.logo}|" alt="" class="img-circle">
+            <div class="row">
+                <div class="col-sm-3">
+                    <img th:src="|/${oPath}${o.logo}|" alt="" class="img-responsive">
+                </div>
+                <div class="col-sm-9">
+                    <div class="panel panel-default">
+                        <div class="panel-body text-center" th:text="|联系电话: ${o.phone}|">
+                            联系电话:xxxxx
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-sm-3"></div>
-            <div class="col-sm-3"></div>
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-body" style="padding: 40px;">
+                        <p th:text="|信誉度:${overview?.creditUltimate}|"></p>
+                        <p th:text="|环境:${overview?.environmentUltimate}|"></p>
+                        <p th:text="|师资:${overview?.facultyUltimate}|"></p>
+                        <p th:text="|效果:${overview?.effectUltimate}|"></p>
+                        <p th:text="|满意度:${overview?.satisfactionUltimate}|"></p>
+                        <p th:text="|认证等级:${overview?.certificationLevel}|"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-body" th:text="|主要培训方向: ${tagNames}|"></div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="col-sm-5">
 
     </div>
 </div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="row">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="container-fluid">
+                        <div>
+                            <ul class="nav navbar-nav">
+                                <li><a href="#">课程介绍</a></li>
+                                <li><a href="#">课程老师</a></li>
+                                <li><a href="#">老师作品</a></li>
+                                <li><a href="#">官方相册</a></li>
+                                <li><a href="#">该机构其它课程</a></li>
+                                <li><a href="#">课程评价</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <div class="row">
+                <ul class="list-group">
+                    <li class="list-group-item" th:text="|课程类型: ${course.tagName}|"></li>
+                    <li class="list-group-item">每次上课时长：45分钟</li>
+                    <li class="list-group-item">教学环境：环境优雅，宽敞明亮</li>
+                    <li class="list-group-item">
+                        <span class="badge">★</span>
+                        课程价格：叫其他同类课程便宜
+                    </li>
+                    <li class="list-group-item" th:text="|课程等级: ${course.level}|">课程等级：初级</li>
+                    <li class="list-group-item" th:text="|上课形式: ${course.trainingModel}|"></li>
+                    <li class="list-group-item" th:text="|适合基础: ${course.suitable}|"></li>
+                    <li class="list-group-item" th:text="|课程目标: 兴趣培养|">课程目标: 兴趣培养</li>
+                    <li class="list-group-item" th:text="|教师经验: ${course.experience}|">教师经验：专业书法家、从业十余年</li>
+                </ul>
+            </div>
+            <!-- 课程老师 -->
+            <div class="row">
+                <div class="panel">
+                    <div class="panel-body">
+                        课程老师
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <img class="img-responsive" th:src="|/${lPath}${lecturer.id}/${lecturer.selfie}|" alt="">
+                </div>
+                <div class="col-sm-8">
+                    <p th:text="|姓名: ${lecturer.name}|"></p>
+                    <p th:text="|教龄: ${lecturer.seniority}|"></p>
+                    <div class="panel panel-default" th:text="${lecturer.resume}">
+                    </div>
+                </div>
+            </div>
+
+            <!--老师作品-->
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel">
+                        <div class="panel-body">
+                            老师作品
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="col-sm-3" th:each="pic:${showreels}">
+                        <img class="img-responsive" th:src="|/${lPath}${lecturer.id}/${pic}|" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 官方相册 -->
+            <div class="row">
+                <div class="panel">
+                    <div class="panel-body">
+                        官方相册
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-3" th:each="pic:${showreels}">
+                    <img class="img-responsive" th:src="|/${lPath}${lecturer.id}/${pic}|" alt="">
+                </div>
+            </div>
+
+            <!-- 该机构其它课程 -->
+            <div class="row">
+                <div class="panel">
+                    <div class="panel-body">
+                        该机构其它课程
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-sm-3" th:each="oc:${otherCourses}">
+                    <img class="img-responsive" th:src="|/${lPath}${oc.id}/${oc.picUrl}|" alt="">
+                    <p th:text="${oc.name}"></p>
+                    <p th:text="${oc.level}"></p>
+                    <p th:utext="| ￥ <s class='text-danger'>${oc.originalPrice}</s> &nbsp;&nbsp;&nbsp;&nbsp;￥${oc.price}|"></p>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            广告区
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        课程评价
+    </div>
+    <div class="row">
+        <div class="well" th:text="|全部评价(1000) 好评(600) 中评(200) 差评(200)|"></div>
+    </div>
+    <div class="row" th:each="c:${comments}">
+        <div class="col-sm-1">
+            <img class="img-responsive" th:src="|/${uPath}${c.user.id}/${c.user.headImg}|" alt="">
+        </div>
+        <div class="col-sm-9">
+            <div class="row" th:text="${c.user.name}"></div>
+            <div class="row" th:text="${c.comment}"></div>
+            <div class="row">
+                <div class="col-sm-3" th:each="pic:${showreels}">
+                    <img class="img-responsive" th:src="|/${lPath}${lecturer.id}/${pic}|" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">待定六边形</div>
+    </div>
 </div>
 <h3 th:text="${course.name}"></h3>
 <h3 th:text="${course.description}"></h3>

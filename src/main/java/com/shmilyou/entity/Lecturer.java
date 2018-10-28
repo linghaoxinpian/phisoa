@@ -22,20 +22,17 @@ public class Lecturer extends BaseEntity {
      */
     private String selfie;
 
-    /**
-     * 简历
-     */
+    /** 简历 */
     private String resume;
 
-    /**
-     * 教龄，资历
-     */
+    /** 教龄，资历 */
     private Integer seniority;
 
-    /**
-     * 技能，如：舞蹈|钢琴
-     */
+    /** 技能，如：舞蹈|钢琴 */
     private String skill;
+
+    /** 作品集(json) */
+    private String showreel;
 
     private String organizationId;
 

@@ -8,6 +8,7 @@
 
     <resultMap id="courseCommentRM" type="com.shmilyou.entity.CourseComment" autoMapping="true">
         <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
         <association property="course" column="course_id" javaType="com.shmilyou.entity.Course" select="getCourse"/>
         <association property="user" column="user_id" javaType="com.shmilyou.entity.User" select="getUser"/>
     </resultMap>
@@ -16,6 +17,13 @@
     </select>
     <select id="getUser" resultType="com.shmilyou.entity.User">
         SELECT * FROM user WHERE id=#{id}
+    </select>
+
+    <select id="queryNewestCommentsByCourseId" resultMap="courseCommentRM">
+        SELECT * FROM course_comment
+        WHERE course_id=#{courseId} AND del=0
+        ORDER BY add_time DESC
+        LIMIT #{pageIndex},#{pageSize}
     </select>
 
 

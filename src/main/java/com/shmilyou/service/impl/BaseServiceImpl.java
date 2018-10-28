@@ -20,7 +20,7 @@ import java.util.Map;
  * Date: 2018/8/14
  */
 
-public class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
+public abstract class BaseServiceImpl<T extends BaseEntity> implements BaseService<T> {
 
     protected Logger logger = LoggerFactory.getLogger(this.getClass());
 

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,7 +46,7 @@ public class CourseServiceImpl extends BaseServiceImpl<Course> implements Course
     }
 
     @Override
-    public List<Course> loadCourseByTagAndChildTag(String tagId, int pageIndex, int pageSize) {
+    public List<Course> loadByTagAndChildTag(String tagId, int pageIndex, int pageSize) {
         Category category = categoryService.queryById(tagId);
         List<Course> courses = new ArrayList<>();
         if (category != null) {
@@ -68,4 +69,33 @@ public class CourseServiceImpl extends BaseServiceImpl<Course> implements Course
         List<Course> courses = source.stream().sorted(Comparator.comparing(Course::getAddTime).reversed()).collect(Collectors.toList());
         return courses;
     }
+
+    @Override
+    public List<Course> loadByOrganizationAndTag(String organizationId, String tagId) {
+        return courseRepository.queryByOrganizationAndTag(organizationId, tagId);
+    }
+
+    @Override
+    public List<Course> loadByOrganizationAndTagAndChildTag(String organizationId, String tagId) {
+        Category category = categoryService.queryById(tagId);
+        List<Course> courses = Collections.emptyList();
+        if (category != null) {
+            if (category.getLevel().equals(Category.level2)) {
+                //若是2级分类，直接加载
+                courses = loadByOrganizationAndTag(organizationId, tagId);
+            } else {
+                //若是1级分类，递归加载
+                List<Category> level2 = categoryService.queryByParentId(category.getId());
+                level2.add(category);
+                courses = loadByOrganizationAndTags(organizationId, level2.stream().map(Category::getId).collect(Collectors.toList()));
+            }
+        }
+        return courses;
+    }
+
+    @Override
+    public List<Course> loadByOrganizationAndTags(String organizationId, List<String> tagIds) {
+        return courseRepository.queryByOrganizationAndTags(organizationId, tagIds);
+    }
+
 }
