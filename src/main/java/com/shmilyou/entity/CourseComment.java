@@ -2,6 +2,8 @@ package com.shmilyou.entity;
 
 import lombok.Data;
 
+import java.util.List;
+
 /**
  * Created with 岂止是一丝涟漪     530060499@qq.com    2018/10/24
  */
@@ -25,4 +27,9 @@ public class CourseComment extends BaseEntity {
     private Course course;
 
     private User user;
+
+    //----------------- 附加属性 -----------------
+
+    /** 存放解析后的(pictures属性)图片名称 */
+    private List<String> parsedPictures;
 }

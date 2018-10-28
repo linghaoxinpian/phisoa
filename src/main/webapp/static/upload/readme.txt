@@ -6,6 +6,7 @@ organization/lecturer/讲师名+讲师id/selfie.jpg------------------ 机构讲�
 organization/lecturer/讲师名+讲师id/1-9.jpg------------------ 机构讲师的其它玩意照片
 
 organization/course/课程名+课程id/1.jpg---------课程宣传图片
+organization/course/课程名+课程id/1.jpg---------对课程的评论图片
 
 organization/video/视频名+视频id/1.mp3----------公开课视频
 

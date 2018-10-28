@@ -72,6 +72,8 @@ public class CourseController extends BaseController {
         List<Course> otherCourses = courseService.loadByOrganizationAndTagAndChildTag(course.getOwnerId(), course.getCategoryId());
         //课程评价
         List<CourseComment> comments = courseCommentService.loadNewestCommentsByCourseId(course.getId(), 0, 2);
+        //处理课程评价的图片
+        comments.forEach(c -> c.setParsedPictures(Utils.parseJsonArr(c.getPictures())));
         //综合评价的星级数量
 
         modelMap.addAttribute("course", course);
@@ -86,6 +88,7 @@ public class CourseController extends BaseController {
         modelMap.addAttribute("oPath", Constant.PIC_ORGANIZATION_PATH);
         modelMap.addAttribute("lPath", Constant.PIC_LECTURER_PATH);
         modelMap.addAttribute("uPath", Constant.PIC_USER_HEAD_PATH);
+        modelMap.addAttribute("ccPath", Constant.PIC_COURSE_COMMENT_PATH);
         return "course_detail";
     }
 

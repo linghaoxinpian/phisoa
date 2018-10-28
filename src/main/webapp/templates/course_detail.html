@@ -230,7 +230,9 @@
         </div>
 
         <div class="col-sm-3">
-            广告区
+            <div class="panel" style="height: 300px;background: #dddddd;">
+                广告区
+            </div>
         </div>
     </div>
 </div>
@@ -249,18 +251,13 @@
             <div class="row" th:text="${c.user.name}"></div>
             <div class="row" th:text="${c.comment}"></div>
             <div class="row">
-                <div class="col-sm-3" th:each="pic:${showreels}">
-                    <img class="img-responsive" th:src="|/${lPath}${lecturer.id}/${pic}|" alt="">
+                <div class="col-sm-3" th:each="pic:${c.getParsedPictures()}">
+                    <img class="img-responsive" th:src="|/${ccPath}${c.courseId}/${pic}|" alt="">
                 </div>
             </div>
         </div>
         <div class="col-sm-2">待定六边形</div>
     </div>
 </div>
-<h3 th:text="${course.name}"></h3>
-<h3 th:text="${course.description}"></h3>
-<h3 th:text="${course.price}"></h3>
-<a href="#">价格比官方价更高？点击这里反馈，我们将及时调整</a>
-<a href="">购买此课程</a>
 </body>
 </html>

@@ -44,4 +44,7 @@ public final class Constant {
      * 【机构】logo存储路径
      */
     public static final String PIC_ORGANIZATION_PATH = "static/upload/organization/logo/";
+
+    /** 课程评论 */
+    public static final String PIC_COURSE_COMMENT_PATH = "static/upload/organization/course/";
 }
