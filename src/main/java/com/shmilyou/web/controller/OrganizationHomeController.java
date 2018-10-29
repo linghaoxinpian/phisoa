@@ -14,7 +14,10 @@ import com.shmilyou.service.OrganizationService;
 import com.shmilyou.utils.Constant;
 import com.shmilyou.utils.Utils;
 import com.shmilyou.utils.WebUtils;
+import com.shmilyou.web.controller.vo.CourseVO;
+import com.shmilyou.web.controller.vo.LecturerVO;
 import com.shmilyou.web.resolver.LoginOrganization;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -26,8 +29,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 /** 机构的管理，非公开可访问的 */
 @Controller
@@ -80,6 +85,34 @@ public class OrganizationHomeController extends BaseController {
         //
         modelMap.addAttribute("o", organization);
         return "edit_organization";
+    }
+
+    /** 新增课程GET */
+    @RequestMapping(value = "/add/course", method = RequestMethod.GET)
+    public String addCourse(ModelMap modelMap, LoginOrganization loginOrganization) {
+        if (loginOrganization == null) {
+            return "非机构禁止访问";
+        }
+
+        //获取讲师
+        List<Lecturer> lecturers = lecturerService.queryByOrganizationId(loginOrganization.getId());
+
+        //
+        modelMap.addAttribute("o", loginOrganization);
+        modelMap.addAttribute("lecturers", lecturers);
+        return "add_course";
+    }
+
+    /** 新增课程POST */
+    @RequestMapping(value = "/add/course", method = RequestMethod.POST)
+    public ResponseEntity addCourse(LoginOrganization loginOrganization, ModelMap modelMap, CourseVO courseVO) {
+        if (loginOrganization == null) {
+            return WebUtils.error("非机构禁止访问");
+        }
+
+
+        //
+        return WebUtils.ok();
     }
 
     /** 课程管理 */
@@ -136,20 +169,38 @@ public class OrganizationHomeController extends BaseController {
         return WebUtils.error("删除失败");
     }
 
-    /** 机构新增课程 */
-    @RequestMapping(value = "/add/course", method = RequestMethod.GET)
-    public String addCourse1(ModelMap modelMap, LoginOrganization loginOrganization) {
+    /** 添加讲师GET */
+    @RequestMapping(value = "/add/lecturer", method = RequestMethod.GET)
+    public String addLecturer(LoginOrganization loginOrganization) {
         if (loginOrganization == null) {
             return "非机构禁止访问";
         }
+        return "add_lecturer";
+    }
 
-        //获取讲师
-        List<Lecturer> lecturers = lecturerService.queryByOrganizationId(loginOrganization.getId());
+    /** 添加讲师POST */
+    @RequestMapping(value = "/add/lecturer", method = RequestMethod.POST)
+    public String addLecturer(LoginOrganization loginOrganization, LecturerVO lecturerVO, HttpSession session) {
+        if (StringUtils.isEmpty(lecturerVO.getName())) {
+            return "name is null";
+        }
+        Lecturer lecturer = new Lecturer();
+        BeanUtils.copyProperties(lecturerVO, lecturer);
+        lecturer.setOrganizationId(loginOrganization.getId());
+        lecturer.setId(UUID.randomUUID().toString());
+        //指定图片路径
+        String path = session.getServletContext().getRealPath("/") + Constant.PIC_LECTURER_PATH + lecturer.getId() + "/";
+        //保存图片
+        String fileName = WebUtils.uploadPicture(lecturerVO.getSelfie(), path, "selfie");
+        lecturer.setSelfie(fileName);
 
-        //
-        modelMap.addAttribute("o", loginOrganization);
-        modelMap.addAttribute("lecturers", lecturers);
-        return "add_course";
+        //新增讲师
+        int raw = lecturerService.insert(lecturer);
+        if (raw <= 0) {
+            return "添加失败";
+        }
+        return "ok";
+
     }
 
     /** 讲师管理 */
