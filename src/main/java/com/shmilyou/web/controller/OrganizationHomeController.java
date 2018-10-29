@@ -44,4 +44,19 @@ public class OrganizationHomeController extends BaseController {
         modelMap.addAttribute("count", count);
         return "home_organization";
     }
+
+    /** 基础信息管理 */
+    @RequestMapping(value = "edit", method = RequestMethod.GET)
+    public String edit(LoginOrganization loginOrganization, ModelMap modelMap) {
+        if (loginOrganization == null) {
+            return "error";
+        }
+        //获取机构
+        Organization organization = organizationService.queryById(loginOrganization.getId());
+
+
+        //
+        modelMap.addAttribute("o", organization);
+        return "edit_organization";
+    }
 }
