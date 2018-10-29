@@ -51,4 +51,7 @@ public interface CourseService extends BaseService<Course> {
      * 根据机构与多个标签加载相似课程
      */
     List<Course> loadByOrganizationAndTags(String organizationId, List<String> tagIds);
+
+    /** 加载机构课程 */
+    List<Course> queryByOrganizationId(String organizationId, int pageIndex, int pageSize);
 }

@@ -43,7 +43,13 @@ public final class Constant {
     /**
      * 【机构】logo存储路径
      */
-    public static final String PIC_ORGANIZATION_PATH = "static/upload/organization/logo/";
+    public static final String PIC_ORGANIZATION_LOGO_PATH = "static/upload/organization/logo/";
+
+    /** 机构相册 */
+    public static final String PIC_ORGANIZATION_PHOTO_PATH = "static/upload/organization/photo/";
+
+    /** 对机构的评论 */
+    public static final String PIC_ORGANIZATION_COMMENTS_PATH = "static/upload/organization/comments/";
 
     /** 课程评论 */
     public static final String PIC_COURSE_COMMENT_PATH = "static/upload/organization/course/";

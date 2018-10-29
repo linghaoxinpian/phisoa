@@ -1,7 +1,7 @@
 backend------------------------------------- 后台处理（待定）
 organization/photo/机构名+机构id/1-9.jpg ----------- 机构的相册,目录以机构名命名,数据库存储的依旧是文件名，即使全部都是一样的(扩展性)
 organization/logo/机构名+机构id.jpg--------------- 机构的logo，因为只有一张，所以不再细分文件夹
-
+organization/comments/机构id/1.jpg-----------------对机构的评论
 organization/lecturer/讲师名+讲师id/selfie.jpg------------------ 机构讲师的自拍照
 organization/lecturer/讲师名+讲师id/1-9.jpg------------------ 机构讲师的其它玩意照片
 

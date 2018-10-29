@@ -85,7 +85,7 @@ public class CourseController extends BaseController {
         modelMap.addAttribute("otherCourses", otherCourses);
         modelMap.addAttribute("comments", comments);
         modelMap.addAttribute("cPath", Constant.PIC_COURSE_PATH);
-        modelMap.addAttribute("oPath", Constant.PIC_ORGANIZATION_PATH);
+        modelMap.addAttribute("oPath", Constant.PIC_ORGANIZATION_LOGO_PATH);
         modelMap.addAttribute("lPath", Constant.PIC_LECTURER_PATH);
         modelMap.addAttribute("uPath", Constant.PIC_USER_HEAD_PATH);
         modelMap.addAttribute("ccPath", Constant.PIC_COURSE_COMMENT_PATH);

@@ -64,6 +64,8 @@ public class Organization extends BaseEntity {
      */
     private Integer student;
 
+    /** 海报 */
+    private String posters;
     /**
      * 机构官方主页
      */
@@ -93,5 +95,13 @@ public class Organization extends BaseEntity {
      * 该教育机构课程列表
      */
     private List<Course> courseList;
+
+    //----------------- 附加属性 -----------------
+
+    /** 解析后的海报名称 */
+    private List<String> parsedPosters;
+
+    /** 解析后的海报名称 */
+    private List<String> parsedPhotoAlbums;
 
 }

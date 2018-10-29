@@ -98,4 +98,9 @@ public class CourseServiceImpl extends BaseServiceImpl<Course> implements Course
         return courseRepository.queryByOrganizationAndTags(organizationId, tagIds);
     }
 
+    @Override
+    public List<Course> queryByOrganizationId(String organizationId, int pageIndex, int pageSize) {
+        return queryByColumn("ownerId", organizationId, pageIndex, pageSize);
+    }
+
 }

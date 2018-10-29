@@ -1,10 +1,242 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>机构主页</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
 </head>
 <body>
-<a href="/phisoa/course/organization/add">添加课程</a>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="row">
+                <img src="" th:src="|/${oLogoPath}${o.getId()}/${o.parsedPosters.get(0)}|" alt="">
+            </div>
+            <div class="row">
+                <div class="col-sm-4" th:each="item:${o.parsedPosters}">
+                    <img th:src="|/${oPhotoPath}${o.getId()}/${item}|" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="row">
+                <div class="col-sm-3">
+                    <img src="" th:src="|/${oLogoPath}${o.getId()}/${o.getLogo()}|" alt="">
+                </div>
+                <div class="col-sm-9">
+                    <div class="panel panel-default">
+                        <div class="panel-body" th:text="${o.name}">商家名：</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-body" style="padding: 40px;">
+                        <p th:text="|信誉度:${overview?.creditUltimate}|"></p>
+                        <p th:text="|环境:${overview?.environmentUltimate}|"></p>
+                        <p th:text="|师资:${overview?.facultyUltimate}|"></p>
+                        <p th:text="|效果:${overview?.effectUltimate}|"></p>
+                        <p th:text="|满意度:${overview?.satisfactionUltimate}|"></p>
+                        <p th:text="|认证等级:${overview?.certificationLevel}|"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-body" th:text="|主要培训方向: ${tagNames}|"></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-body text-center" th:text="|联系电话: ${o.phone}|">
+                        联系电话:xxxxx
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <a href="#" th:text="'地址：'+${o?.place}">地址：</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row"></div>
+        </div>
+    </div>
+
+    <!--中间导航栏-->
+    <div class="row">
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container-fluid">
+                <div>
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">本店课程</a></li>
+                        <li><a href="#">商户简介</a></li>
+                        <li><a href="#">教师风采</a></li>
+                        <li><a href="#">官方视频</a></li>
+                        <li><a href="#">官方相册</a></li>
+                        <li><a href="#">顾客评价</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!--本店课程-->
+    <div class="row">
+        <div class="col-sm-3" th:each="oc:${otherCourses}">
+            <img class="img-responsive" th:src="|/${lPath}${oc.id}/${oc.picUrl}|" alt="">
+            <p th:text="${oc.name}"></p>
+            <p th:text="${oc.level}"></p>
+            <p th:utext="| ￥ <s class='text-danger'>${oc.originalPrice}</s> &nbsp;&nbsp;&nbsp;&nbsp;￥${oc.price}|"></p>
+        </div>
+    </div>
+
+    <!--商户简介-->
+    <div class="row">
+        <div class="panel">
+            <div class="panel-body">
+                商户简介
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel">
+            <div class="panel-body" th:text="${o.description}">商户简介</div>
+        </div>
+    </div>
+
+
+    <!--教师风采-->
+    <div class="row">
+        <div class="panel">
+            <div class="panel-body">
+                教师风采
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div id="myCarousel" class="carousel slide">
+            <!-- 轮播（Carousel）指标 -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+            </ol>
+            <!-- 轮播（Carousel）项目 -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=277935979,1711250335&fm=26&gp=0.jpg"
+                         alt="First slide">
+                </div>
+                <div class="item" th:each="l:${lecturers}">
+                    <img src="" th:src="|/${lPath}${l.id}/${l.selfie}|" alt="">
+                </div>
+            </div>
+            <!-- 轮播（Carousel）导航 -->
+            <a class="carousel-control left" href="#myCarousel"
+               data-slide="prev"> <span _ngcontent-c3="" aria-hidden="true"
+                                        class="glyphicon glyphicon-chevron-right"></span></a>
+            <a class="carousel-control right" href="#myCarousel"
+               data-slide="next">&rsaquo;</a>
+        </div>
+    </div>
+
+    <!--优秀公开课-->
+    <div class="row">
+        <div class="panel">
+            <div class="panel-body">优秀公开课</div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            <div>
+                <img class="img-responsive"
+                     src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=277935979,1711250335&fm=26&gp=0.jpg"
+                     alt="">
+            </div>
+            <div>
+                <p class="text-center">教学环境</p>
+                <p class="text-center">主教室</p>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div>
+                <img class="img-responsive"
+                     src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=277935979,1711250335&fm=26&gp=0.jpg"
+                     alt="">
+            </div>
+            <p class="text-center">教学环境</p>
+            <p class="text-center">主教室</p>
+        </div>
+        <div class="col-sm-4">
+            <div>
+                <img class="img-responsive"
+                     src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=277935979,1711250335&fm=26&gp=0.jpg"
+                     alt="">
+            </div>
+            <p class="text-center">教学环境</p>
+            <p class="text-center">主教室</p>
+        </div>
+    </div>
+
+    <!--官方相册-->
+    <div class="row">
+        <div class="panel">
+            <div class="panel-body" th:text="|官方相册:${o.parsedPhotoAlbums?.size()}|">官方相册(10)</div>
+        </div>
+    </div>
+    <div class="row">
+        <div id="myCarouse2" class="carousel slide">
+            <!-- 轮播（Carousel）指标 -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarouse2" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarouse2" data-slide-to="1"></li>
+                <li data-target="#myCarouse2" data-slide-to="2"></li>
+            </ol>
+            <!-- 轮播（Carousel）项目 -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=277935979,1711250335&fm=26&gp=0.jpg"
+                         alt="First slide">
+                </div>
+                <div class="item" th:each="photo:${o.parsedPhotoAlbums}">
+                    <img src="" th:src="|/${oPhotoPath}${o.id}/${photo}|" alt="">
+                </div>
+            </div>
+            <!-- 轮播（Carousel）导航 -->
+            <a class="carousel-control left" href="#myCarouse2"
+               data-slide="prev"> <span _ngcontent-c3="" aria-hidden="true"
+                                        class="glyphicon glyphicon-chevron-right"></span></a>
+            <a class="carousel-control right" href="#myCarouse2"
+               data-slide="next">&rsaquo;</a>
+        </div>
+    </div>
+
+    <!--顾客评价-->
+    <div class="row">
+        顾客评价
+    </div>
+    <div class="row">
+        <div class="well" th:text="|全部评价(1000) 好评(600) 中评(200) 差评(200)|"></div>
+    </div>
+    <div class="row" th:each="c:${comments}">
+        <div class="col-sm-1">
+            <img class="img-responsive" th:src="|/${uPath}${c.commenter?.id}/${c.commenter?.headImg}|" alt="">
+        </div>
+        <div class="col-sm-9">
+            <div class="row" th:text="${c.commenter?.name}">昵称</div>
+            <div class="row" th:text="${c.comment}">评论</div>
+            <div class="row">
+                <div class="col-sm-3" th:each="pic:${c.getParsedPictures()}">
+                    <img class="img-responsive" th:src="|/${oCommentsPath}${o.id}/${pic}|" alt="">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-2">待定六边形</div>
+    </div>
+</div>
 </body>
 </html>
