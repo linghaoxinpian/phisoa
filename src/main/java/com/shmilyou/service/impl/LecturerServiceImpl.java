@@ -23,4 +23,9 @@ public class LecturerServiceImpl extends BaseServiceImpl<Lecturer> implements Le
     public List<Lecturer> queryByOrganizationId(String organizationId, int pageIndex, int pageSize) {
         return queryByColumn("organizationId", organizationId, pageIndex, pageSize);
     }
+
+    @Override
+    public List<Lecturer> queryByOrganizationId(String organizationId) {
+        return queryByColumn("organizationId", organizationId);
+    }
 }

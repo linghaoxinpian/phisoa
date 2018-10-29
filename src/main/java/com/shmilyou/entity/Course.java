@@ -3,6 +3,7 @@ package com.shmilyou.entity;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created with 530060499@qq.com
@@ -36,8 +37,23 @@ public class Course extends BaseEntity {
     /** 教学形式：班级上课 */
     private String trainingModel;
 
-    /** 经验 */
-    private String experience;
+    /** 每次上课时长 */
+    private String duration;
+
+    /** 教学环境 */
+    private String environment;
+
+    /** 特色 */
+    private String feature;
+
+    /** 课程目标 */
+    private String target;
+
+    /** 开课时间 */
+    private Date startTime;
+
+    /** 课程相关的拍摄照片 */
+    private String pictures;
 
     private String ownerId;
 
@@ -59,5 +75,10 @@ public class Course extends BaseEntity {
 
     /** 课程讲师 */
     private Lecturer lecturer;
+
+    //----------------- 附加属性 -----------------
+
+    /** 解析后的照片名称 */
+    private List<String> parsedPictures;
 
 }

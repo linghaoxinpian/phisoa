@@ -3,10 +3,13 @@ package com.shmilyou.web.controller;
 /** Created with 岂止是一丝涟漪     530060499@qq.com    2018/10/29 */
 
 import com.shmilyou.entity.Course;
+import com.shmilyou.entity.Lecturer;
 import com.shmilyou.entity.Organization;
 import com.shmilyou.entity.OrganizationOverview;
+import com.shmilyou.service.CategoryService;
 import com.shmilyou.service.CourseOrderService;
 import com.shmilyou.service.CourseService;
+import com.shmilyou.service.LecturerService;
 import com.shmilyou.service.OrganizationService;
 import com.shmilyou.utils.Constant;
 import com.shmilyou.utils.WebUtils;
@@ -35,6 +38,10 @@ public class OrganizationHomeController extends BaseController {
     private CourseOrderService courseOrderService;
     @Autowired
     private CourseService courseService;
+    @Autowired
+    private CategoryService categoryService;
+    @Autowired
+    private LecturerService lecturerService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(LoginOrganization loginOrganization, ModelMap modelMap) {
@@ -59,7 +66,7 @@ public class OrganizationHomeController extends BaseController {
     }
 
     /** 基础信息管理 */
-    @RequestMapping(value = "edit", method = RequestMethod.GET)
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public String edit(LoginOrganization loginOrganization, ModelMap modelMap) {
         if (loginOrganization == null) {
             return "error";
@@ -74,7 +81,7 @@ public class OrganizationHomeController extends BaseController {
     }
 
     /** 课程管理 */
-    @RequestMapping(value = "show/courses", method = RequestMethod.GET)
+    @RequestMapping(value = "/show/courses", method = RequestMethod.GET)
     public String editCourse(LoginOrganization loginOrganization, ModelMap modelMap) {
         if (loginOrganization == null) {
             return "error";
@@ -100,7 +107,7 @@ public class OrganizationHomeController extends BaseController {
     }
 
     /** 课程编辑 */
-    @RequestMapping(value = "edit/course/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/edit/course/{id}", method = RequestMethod.GET)
     public String editCourse(LoginOrganization loginOrganization, @PathVariable("id") String courseId, ModelMap modelMap) {
         if (loginOrganization == null) {
             return "error";
@@ -117,7 +124,7 @@ public class OrganizationHomeController extends BaseController {
     }
 
     /** 删除课程 */
-    @RequestMapping(value = "rm/course", method = RequestMethod.POST)
+    @RequestMapping(value = "/rm/course", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Map<String, Object>> removeCourse(LoginOrganization loginOrganization, @RequestBody String courseId) {
         int row = courseService.delete(courseId);
@@ -125,5 +132,21 @@ public class OrganizationHomeController extends BaseController {
             return WebUtils.ok();
         }
         return WebUtils.error("删除失败");
+    }
+
+    /** 机构新增课程 */
+    @RequestMapping(value = "/add/course", method = RequestMethod.GET)
+    public String addCourse1(ModelMap modelMap, LoginOrganization loginOrganization) {
+        if (loginOrganization == null) {
+            return "非机构禁止访问";
+        }
+
+        //获取讲师
+        List<Lecturer> lecturers = lecturerService.queryByOrganizationId(loginOrganization.getId());
+
+        //
+        modelMap.addAttribute("o", loginOrganization);
+        modelMap.addAttribute("lecturers", lecturers);
+        return "add_course";
     }
 }

@@ -34,6 +34,9 @@ public class Lecturer extends BaseEntity {
     /** 作品集(json) */
     private String showreel;
 
+    /** 经验 */
+    private String experience;
+
     private String organizationId;
 
     //----------------- 非DB字段 -----------------

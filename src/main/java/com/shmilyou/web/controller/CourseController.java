@@ -132,17 +132,6 @@ public class CourseController extends BaseController {
 
     //--------------------- GET ---------------------
 
-    //机构新增课程
-    @RequestMapping(value = "/organization/add", method = RequestMethod.GET)
-    public String addCourse1(ModelMap modelMap, LoginOrganization loginOrganization) {
-        if (loginOrganization == null) {
-            return "非机构禁止访问";
-        }
-        List<Category> level1 = categoryService.queryByLevel(Category.Level1);
-        modelMap.addAttribute("level1", level1);
-        return "add_course";
-    }
-
     //爱好者新增课程
     @RequestMapping(value = "/add_course_amateur", method = RequestMethod.GET)
     public String addCourse2(ModelMap modelMap) {
