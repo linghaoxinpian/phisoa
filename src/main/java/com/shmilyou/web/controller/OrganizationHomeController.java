@@ -12,12 +12,14 @@ import com.shmilyou.service.CourseService;
 import com.shmilyou.service.LecturerService;
 import com.shmilyou.service.OrganizationService;
 import com.shmilyou.utils.Constant;
+import com.shmilyou.utils.Utils;
 import com.shmilyou.utils.WebUtils;
 import com.shmilyou.web.resolver.LoginOrganization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -204,4 +206,28 @@ public class OrganizationHomeController extends BaseController {
         return WebUtils.error("删除失败");
     }
 
+    /** 相册管理 */
+    @RequestMapping(value = "show/photos", method = RequestMethod.GET)
+    public String showPhotos(LoginOrganization loginOrganization, ModelMap modelMap) {
+        if (loginOrganization == null) {
+            return "error";
+        }
+        //获取机构
+        Organization organization = organizationService.queryById(loginOrganization.getId());
+        //解析
+        if (!StringUtils.isEmpty(organization.getPosters())) {
+            organization.setParsedPosters(Utils.parseJsonArr(organization.getPosters()));
+        }
+
+        //
+        modelMap.addAttribute("o", organization);
+
+        //modelMap.addAttribute("cPath", Constant.PIC_COURSE_PATH);
+        //modelMap.addAttribute("oPhotoPath", Constant.PIC_ORGANIZATION_PHOTO_PATH);
+        //modelMap.addAttribute("oLogoPath", Constant.PIC_ORGANIZATION_PHOTO_PATH);
+        //modelMap.addAttribute("oCommentsPath", Constant.PIC_ORGANIZATION_COMMENTS_PATH);
+        //modelMap.addAttribute("uPath", Constant.PIC_USER_HEAD_PATH);
+        //modelMap.addAttribute("ccPath", Constant.PIC_COURSE_COMMENT_PATH);
+        return "show_photos";
+    }
 }
