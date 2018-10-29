@@ -103,4 +103,9 @@ public class CourseServiceImpl extends BaseServiceImpl<Course> implements Course
         return queryByColumn("ownerId", organizationId, pageIndex, pageSize);
     }
 
+    @Override
+    public List<Course> queryByOrganizationId(String organizationId) {
+        return queryByColumn("ownerId", organizationId);
+    }
+
 }

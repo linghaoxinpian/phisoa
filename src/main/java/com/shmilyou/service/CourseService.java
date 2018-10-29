@@ -54,4 +54,7 @@ public interface CourseService extends BaseService<Course> {
 
     /** 加载机构课程 */
     List<Course> queryByOrganizationId(String organizationId, int pageIndex, int pageSize);
+
+    /** 加载机构所有课程 */
+    List<Course> queryByOrganizationId(String organizationId);
 }
