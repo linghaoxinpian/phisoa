@@ -42,4 +42,6 @@ public class Lecturer extends BaseEntity {
     //----------------- 非DB字段 -----------------
 
     private Organization organization;
+
+    private Category category;
 }

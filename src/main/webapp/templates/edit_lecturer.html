@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>新增讲师</title>
+    <title>更新讲师信息</title>
 </head>
 <body>
 <div class="container">
@@ -12,22 +12,23 @@
                   enctype="multipart/form-data">
                 <div class="form-group">
                     <label>姓名</label>
-                    <input type="text" class="form-control" name="name" value=""/>
+                    <input type="text" class="form-control" name="name" th:value="${l.name}" value=""/>
                 </div>
                 <div class="form-group">
                     <label>教龄</label>
-                    <input type="text" name="seniority" value="123">
+                    <input type="text" name="seniority" th:value="${l.seniority}" value="123">
                 </div>
                 <div class="form-group">
                     <label>培训类别</label>
-                    <input type="text" name="categoryId" value="">
+                    <input type="text" name="categoryId" th:value="${l.category?.name}" value="">
                 </div>
                 <div class="form-group">
                     <label>简介</label>
-                    <input type="text" name="resume" value="">
+                    <input type="text" name="resume" th:value="${l.resume}" value="">
                 </div>
                 <div class="form-group">
                     <label>自拍照</label>
+                    <img th:src="|${lPath}${l.id}/${l.selfie}|" alt="">
                     <input type="file" name="selfie">
                 </div>
                 <div class="form-group">

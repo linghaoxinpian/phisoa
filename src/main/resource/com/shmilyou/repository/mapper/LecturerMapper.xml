@@ -8,11 +8,14 @@
 
     <resultMap id="lecturerRM" type="com.shmilyou.entity.Lecturer" autoMapping="true">
         <id property="id" column="id"/>
-        <association property="organization" column="organization_id" javaType="com.shmilyou.entity.User"
-                     select="getOrganization"/>
+        <association property="organization" column="organization_id" javaType="com.shmilyou.entity.User" select="getOrganization"/>
+        <association property="category" column="category_id" javaType="com.shmilyou.entity.Category" select="getCategory"/>
     </resultMap>
     <select id="getOrganization" resultType="com.shmilyou.entity.Organization">
         SELECT * FROM organization WHERE id=#{id}
+    </select>
+    <select id="getCategory" resultType="com.shmilyou.entity.Category">
+        SELECT * FROM category WHERE id=#{id}
     </select>
 
 

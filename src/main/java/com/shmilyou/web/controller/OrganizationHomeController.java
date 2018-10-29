@@ -67,7 +67,7 @@ public class OrganizationHomeController extends BaseController {
 
     /** 基础信息管理 */
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public String edit(LoginOrganization loginOrganization, ModelMap modelMap) {
+    public String showCourses(LoginOrganization loginOrganization, ModelMap modelMap) {
         if (loginOrganization == null) {
             return "error";
         }
@@ -149,4 +149,59 @@ public class OrganizationHomeController extends BaseController {
         modelMap.addAttribute("lecturers", lecturers);
         return "add_course";
     }
+
+    /** 讲师管理 */
+    @RequestMapping(value = "/show/lecturers", method = RequestMethod.GET)
+    public String showLecturers(LoginOrganization loginOrganization, ModelMap modelMap) {
+        if (loginOrganization == null) {
+            return "error";
+        }
+        //获取机构
+        Organization organization = organizationService.queryById(loginOrganization.getId());
+        //获取所有讲师
+        List<Lecturer> lecturers = lecturerService.queryByOrganizationId(organization.getId());
+
+
+        //
+        modelMap.addAttribute("o", organization);
+        modelMap.addAttribute("lecturers", lecturers);
+
+        //modelMap.addAttribute("cPath", Constant.PIC_COURSE_PATH);
+        //modelMap.addAttribute("oPhotoPath", Constant.PIC_ORGANIZATION_PHOTO_PATH);
+        //modelMap.addAttribute("oLogoPath", Constant.PIC_ORGANIZATION_PHOTO_PATH);
+        //modelMap.addAttribute("oCommentsPath", Constant.PIC_ORGANIZATION_COMMENTS_PATH);
+        modelMap.addAttribute("lPath", Constant.PIC_LECTURER_PATH);
+        //modelMap.addAttribute("uPath", Constant.PIC_USER_HEAD_PATH);
+        //modelMap.addAttribute("ccPath", Constant.PIC_COURSE_COMMENT_PATH);
+        return "show_lecturer";
+    }
+
+    /** 讲师编辑 */
+    @RequestMapping(value = "/edit/lecturer/", method = RequestMethod.POST)
+    public String editLecturer(LoginOrganization loginOrganization, @RequestBody String lecturerId, ModelMap modelMap) {
+        if (loginOrganization == null) {
+            return "error";
+        }
+        //获取需要修改的
+        Lecturer lecturer = lecturerService.queryById(lecturerId);
+
+
+        //
+        modelMap.addAttribute("l", lecturer);
+        modelMap.addAttribute("lPath", Constant.PIC_LECTURER_PATH);
+
+        return "edit_lecturer";
+    }
+
+    /** 删除讲师 */
+    @RequestMapping(value = "/rm/lecturer", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<Map<String, Object>> removeLecturer(LoginOrganization loginOrganization, @RequestBody String lecturerId) {
+        int row = lecturerService.delete(lecturerId);
+        if (row > 0) {
+            return WebUtils.ok();
+        }
+        return WebUtils.error("删除失败");
+    }
+
 }
