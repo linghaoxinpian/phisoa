@@ -16,13 +16,20 @@ public class CourseOrder extends BaseEntity {
      */
     private String orderNum;
 
+    /** 订单金额 */
+    private int cash;
+
     private String courseId;
 
     private String userId;
+
+    private String organizationId;
 
     //----------------- 非DB字段 -----------------
 
     private Course course;
 
     private User user;
+
+    private Organization organization;
 }

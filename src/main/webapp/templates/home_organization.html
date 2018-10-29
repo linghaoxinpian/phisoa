@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>机构管理页面</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="row">1</div>
+            <div class="row">2</div>
+            <div class="row">3</div>
+            <div class="row">4</div>
+            <div class="row">5</div>
+            <div class="row">6</div>
+            <div class="row">7</div>
+            <div class="row">8</div>
+            <div class="row">9</div>
+            <div class="row">10</div>
+            <div class="row">11</div>
+            <div class="row">12</div>
+            <div class="row">13</div>
+            <div class="row">14</div>
+        </div>
+        <div class="col-sm-8">
+            <div class="col-sm-3">
+                <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1616165056,46158778&fm=26&gp=0.jpg"
+                     alt="logo">
+            </div>
+            <div class="col-sm-9">
+                <div class="row">
+                    <label th:text="|机构名: ${o.name}|"> 机构名 </label>
+                    <label>机构认证徽章</label>
+                    <a href="wwww.sdsd">编辑资料</a>
+                </div>
+                <div class="row">
+                    <label th:text="${tag}" th:each="tag:${o.categoryList}">
+                        标签名
+                    </label>
+                    <a href="sdsfsaf.fds">修改标签</a>
+                </div>
+                <div class="row">
+                    <label>关注：34</label>
+                    <label>粉丝：34</label>
+                    <label>浏览量：34</label>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        商家实时数据
+    </div>
+    <div class="row">
+        <label class="label label-info" th:text="|交易额: ${sumMoney}|"></label>
+        <label class="label label-info" th:text="|成交量: ${count}|"></label>
+    </div>
+</div>
+</body>
+</html>

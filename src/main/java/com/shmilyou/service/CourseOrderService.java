@@ -7,4 +7,6 @@ import com.shmilyou.entity.CourseOrder;
  */
 public interface CourseOrderService extends BaseService<CourseOrder> {
 
+    /** 获取交易额 */
+    int getAllMoney(String organizationId);
 }

@@ -16,4 +16,12 @@ public class CourseOrderServiceImpl extends BaseServiceImpl<CourseOrder> impleme
     CourseOrderServiceImpl(CourseOrderRepository baseRepository) {
         super(baseRepository);
     }
+
+    @Autowired
+    private CourseOrderRepository courseOrderRepository;
+
+    @Override
+    public int getAllMoney(String organizationId) {
+        return courseOrderRepository.getAllMoney(organizationId);
+    }
 }
