@@ -20,6 +20,7 @@ public class CategoryServiceImpl extends BaseServiceImpl<Category> implements Ca
     }
 
     //-------------------方法区-------------------
+
     @Override
     public List<Category> queryByParentId(String parentId) {
         return queryByColumn("parentId", parentId);

@@ -6,6 +6,8 @@ import com.shmilyou.service.AreaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * Created with 岂止是一丝涟漪     530060499@qq.com    2018/8/22
  */
@@ -25,5 +27,10 @@ public class AreaServiceImpl extends BaseServiceImpl<Area> implements AreaServic
     @Override
     public Area queryByFullName(String fullAreaName) {
         return areaRepository.queryByFullName(fullAreaName);
+    }
+
+    @Override
+    public List<Area> queryByParentId(Integer parentId) {
+        return queryByColumn("parentId", parentId.toString());
     }
 }
