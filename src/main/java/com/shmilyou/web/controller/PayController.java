@@ -4,6 +4,10 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
+import com.shmilyou.entity.CourseOrder;
+import com.shmilyou.service.CourseOrderService;
+import com.shmilyou.web.resolver.LoginUser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +23,10 @@ import java.io.IOException;
 @Controller
 public class PayController extends BaseController {
 
-    //支付宝网页支付
+    @Autowired
+    private CourseOrderService orderService;
+
+    /** 支付宝网页支付 */
     @RequestMapping(value = "/ali", method = RequestMethod.GET)
     public void alipayPage(HttpServletRequest httpRequest, HttpServletResponse httpResponse) {
         String APP_PRIVATE_KEY = "MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCqjsGvhNkftwsnZOOqiqQBAU3utw8xKtoKYp4D919tN3Q2YeluLK8n+vQaS6gXspSVtHnF6sBQiYYtt2YYEATTeBZ/wzrjadyAYu8me9Lw58vse5mXVBgecvOhVIlGe0Vt/bwY86mYU+FG4UM1BYGY1vwb7vHORD9ao7pe/A8TlLCtVclPvkL+zN9T0vYMwTvWTkoD9V9/3G2SRWDUEPSnu2MAAp0bRl7c9OqM63C9g/L5BwO72Qgy5C9D3bGMAJKuE2zhS3+2EYT2sorcySI+xNXb+ingzDRQ/HXKymeHMKPhAtN8MwiIuCEUnhYYUctF4arLJNby2FWdZExcLyLlAgMBAAECggEAaKUiLSCjXxQdodQC45YgvgUg3cAvcAlMsmaDcQeL4yTNBrjYUiLUbQFKV//naHLHO3r54/b+e+uFCfOmjkj1zRG3LDiKnxFKmvMYrFH4wJpXwgar2+9axQPeezO07iugE7ZEfEKz4aRFagm4BIYWV8I/+JuIfPferywZo0GftnDYSGRBTUWK5SgzZejgNtdJUUnVkHSfkWLFJny7xVuIC8CnfWDoSDi+EuJTbGzCP4Tet22rM+aVT1JcBc7QRvfcPB/qHDq6jF4luGCyvHsVPsvKtguehIdf80W3Nb06ZobRvfwA/l5JBshtVXjW5YTV73E10BR9EhDywNcMVz3/AQKBgQDqNqlocsynZ2Zfrwp4FnQHZ9lrwKVC/5JXdserz7H+W5NkBQnhzjFmvZoE2EpdBAj/2hh0XE3xTSajkHBurzZRzv4oRO8nsfR1AGJZhxrkXC3gUpjJMlxaqDXk8+JrxgZ5pXweG6u95lAnSfic8kIX9KKyjMX2ZXPxPgKJx3Lc4QKBgQC6bEET+7onYlweGCTOfQWA4K2j0OEAb+zWjFh/yrt/aaEHiW11ZtJivVHrIAg8m+GdlyFfwQRW65mKYCWMKylmjIU3ZJJKCnNAoz1QqdkQqGE9uM8sCqatFtFSfRv1kVtQL1eaM8AmHyTBtyacSjZjIovU7Sgaw8Z7qbGdaTyihQKBgGcZcs9goYgbcywxkGk2cRMFeub84YKxoAjSZ6jQ/6hZRXNk6Gm263YvhkoVr/5sFU4TAmrOax0KejTME0IV7NJsTOMLHT+bDWInriN83rChhyxVD56ZhZ/+peLIHOaWQClyWEWkpqAsbyIsZL0pw0BqVuhEIayKElSimFlwK7bhAoGBAIvpZ0Y6LNIWLhCgCi+3AQRim69Quy160wOKvXjbjLDpc+OWLsJn8woMEIkot0XVsBR4MqIM2NbrZ4bE9ikm06GVYP3byzcqdKlUWlZJwxGPbbvHEiV5sPJDJ8KDBxLcju21OkgPAu0ZfpqsfJvbzsnESbH6c5jyyepRx23eZ5WJAoGBAOPTaueDnQGxYWdRxnYL+jhqL1Ih4r5PTsdGZ1SJCu+fbdtS2zUEq7sLvZBJMBKP3YXQkZqV/RvNzENCaFZSszwE1wSoyZKFUnM+HlTEOC4hazWzY0VdFnDMxQ64Uiw9i9aWOrFp9fhdF3qKDzCOZjMMbGPkPQGE72lpPX61Yx4h";
@@ -61,4 +68,25 @@ public class PayController extends BaseController {
         }
     }
 
+    /** 翼支付接口 */
+    //@RequestMapping(value = "",method = RequestMethod.GET)
+    //在这里就要将订单存到数据库里，以免丢失
+
+    /** 支付成功处理 */
+    @RequestMapping(value = "/paySuccess")
+    public String paySuccess(LoginUser loginUser) {
+        CourseOrder order = new CourseOrder();
+        try {
+            order = loginUser.getOrders().peek();
+
+            //更新订单状态
+            orderService.updateStatus(order.getId(), CourseOrder.SUCCESS);
+        } catch (Exception e) {
+            logger.error("支付成功后的新建订单出错, 支付人:" + loginUser.getId() + " , 购买课程: " + order.getCourseId());
+            logger.error(e.getLocalizedMessage(), e);
+            //更新订单状态
+            orderService.updateStatus(order.getId(), CourseOrder.ERROR);
+        }
+        return "";
+    }
 }

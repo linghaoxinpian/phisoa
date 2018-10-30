@@ -24,4 +24,9 @@ public class CourseOrderServiceImpl extends BaseServiceImpl<CourseOrder> impleme
     public int getAllMoney(String organizationId) {
         return courseOrderRepository.getAllMoney(organizationId);
     }
+
+    @Override
+    public void updateStatus(String id, int status) {
+        courseOrderRepository.updateStatus(id, status);
+    }
 }

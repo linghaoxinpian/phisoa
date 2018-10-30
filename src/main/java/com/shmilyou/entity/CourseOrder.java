@@ -19,6 +19,9 @@ public class CourseOrder extends BaseEntity {
     /** 订单金额 */
     private int cash;
 
+    /** 订单状态 */
+    private int status;
+
     private String courseId;
 
     private String userId;
@@ -27,9 +30,14 @@ public class CourseOrder extends BaseEntity {
 
     //----------------- 非DB字段 -----------------
 
+    public final static int FAIL = 0;
+    public final static int SUCCESS = 1;
+    public final static int ERROR = 2;
+
     private Course course;
 
     private User user;
 
     private Organization organization;
+
 }

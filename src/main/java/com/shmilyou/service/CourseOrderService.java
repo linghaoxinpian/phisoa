@@ -9,4 +9,7 @@ public interface CourseOrderService extends BaseService<CourseOrder> {
 
     /** 获取交易额 */
     int getAllMoney(String organizationId);
+
+    /** 更新订单状态 */
+    void updateStatus(String id, int status);
 }

@@ -84,11 +84,17 @@
         <!-- 配置拦截部分方法的请求,支持正则运算 -->
         <mvc:interceptor>
             <mvc:mapping path="/phisoa/**"/>
-            <mvc:exclude-mapping path="/phisoa/"/>
+            <mvc:exclude-mapping path="/phisoa"/>
             <mvc:exclude-mapping path="/phisoa/index"/>
             <mvc:exclude-mapping path="/phisoa/login_in"/>
             <mvc:exclude-mapping path="/phisoa/login_out"/>
             <mvc:exclude-mapping path="/phisoa/register"/>
+
+            <mvc:exclude-mapping path="/phisoa/"/>
+            <mvc:exclude-mapping path="/phisoa/index/"/>
+            <mvc:exclude-mapping path="/phisoa/login_in/"/>
+            <mvc:exclude-mapping path="/phisoa/login_out/"/>
+            <mvc:exclude-mapping path="/phisoa/register/"/>
             <bean class="com.shmilyou.web.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>

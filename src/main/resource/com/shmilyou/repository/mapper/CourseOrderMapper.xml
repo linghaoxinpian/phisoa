@@ -23,6 +23,10 @@
         SELECT COUNT(cash) FROM course_order WHERE organization_id=#{organizationId} AND del=0
     </select>
 
+    <!--updateStatus-->
+    <select id="updateStatus">
+        UPDATE course_order SET status=#{status} WHERE id=#{id} AND del=0;
+    </select>
 
     <!--        基础方法区           -->
     <!-- insert -->
