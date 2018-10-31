@@ -6,7 +6,7 @@
     <!--useGeneratedKeys="true" keyProperty="id" parameterType resultType statementType="STATEMENT"-->
     <!--select ${columns} from ${tableName}-->
 
-    <resultMap id="courseOrder" type="com.shmilyou.entity.CourseOrder" autoMapping="true">
+    <resultMap id="courseOrderRM" type="com.shmilyou.entity.CourseOrder" autoMapping="true">
         <id property="id" column="id"/>
         <association property="course" column="course_id" javaType="com.shmilyou.entity.Course" select="getCourse"/>
         <association property="user" column="user_id" javaType="com.shmilyou.entity.User" select="getUser"/>
@@ -26,6 +26,13 @@
     <!--updateStatus-->
     <select id="updateStatus">
         UPDATE course_order SET status=#{status} WHERE id=#{id} AND del=0;
+    </select>
+
+    <select id="queryNewestByUserId" resultMap="courseOrderRM">
+        SELECT * FROM course_order
+        WHERE user_id=#{userId} AND del=0
+        ORDER BY add_time
+        LIMIT #{pageIndex},#{pageSize}
     </select>
 
     <!--        基础方法区           -->

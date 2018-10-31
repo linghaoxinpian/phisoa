@@ -25,32 +25,27 @@ public final class Constant {
      */
     public static final String SALT = "phisoa_1";
 
-    /**
-     * 【课程图片】存储路径
-     */
+    /** 【课程图片】存储路径 */
     public static final String PIC_COURSE_PATH = "static/upload/organization/course/";
 
-    /**
-     * 【讲师】存储路径
-     */
+    /** 【讲师】存储路径 */
     public static final String PIC_LECTURER_PATH = "static/upload/organization/lecturer/";
 
-    /**
-     * 【求学者头像】存储路径
-     */
+    /** 【求学者头像】存储路径 */
     public static final String PIC_USER_HEAD_PATH = "static/upload/user/photo/";
 
-    /**
-     * 【机构】logo存储路径
-     */
+    /** 【求学者】相册 */
+    public static final String PIC_USER_PHOTO_PATH = "static/upload/user/photo/";
+
+    /** 【机构】logo存储路径 */
     public static final String PIC_ORGANIZATION_LOGO_PATH = "static/upload/organization/logo/";
 
-    /** 机构相册 */
+    /** 【机构】相册 */
     public static final String PIC_ORGANIZATION_PHOTO_PATH = "static/upload/organization/photo/";
 
-    /** 对机构的评论 */
+    /** 对【机构】的评论 */
     public static final String PIC_ORGANIZATION_COMMENTS_PATH = "static/upload/organization/comments/";
 
-    /** 课程评论 */
+    /** 【课程】评论 */
     public static final String PIC_COURSE_COMMENT_PATH = "static/upload/organization/course/";
 }
