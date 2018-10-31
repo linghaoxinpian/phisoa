@@ -28,4 +28,9 @@ public class CourseCommentServiceImpl extends BaseServiceImpl<CourseComment> imp
     public List<CourseComment> loadNewestCommentsByCourseId(String courseId, int pageIndex, int pageSize) {
         return courseCommentRepository.queryNewestCommentsByCourseId(courseId, pageIndex, pageSize);
     }
+
+    @Override
+    public List<CourseComment> loadNewestCommentsByUserId(String userId, int pageIndex, int pageSize) {
+        return courseCommentRepository.queryNewestCommentsByUserId(userId, pageIndex, pageSize);
+    }
 }

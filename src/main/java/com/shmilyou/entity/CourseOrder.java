@@ -22,6 +22,9 @@ public class CourseOrder extends BaseEntity {
     /** 订单状态 */
     private int status;
 
+    /** 该笔订单已评论的条数 */
+    private int commentsNum;
+
     private String courseId;
 
     private String userId;
@@ -30,6 +33,7 @@ public class CourseOrder extends BaseEntity {
 
     //----------------- 非DB字段 -----------------
 
+    //课程状态
     public final static int FAIL = 0;
     public final static int SUCCESS = 1;
     public final static int ERROR = 2;

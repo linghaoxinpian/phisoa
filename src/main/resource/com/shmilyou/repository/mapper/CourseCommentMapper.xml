@@ -20,9 +20,17 @@
         SELECT * FROM user WHERE id=#{id}
     </select>
 
+
     <select id="queryNewestCommentsByCourseId" resultMap="courseCommentRM">
         SELECT * FROM course_comment
         WHERE course_id=#{courseId} AND del=0
+        ORDER BY add_time DESC
+        LIMIT #{pageIndex},#{pageSize}
+    </select>
+
+    <select id="queryNewestCommentsByUserId" resultMap="courseCommentRM">
+        SELECT * FROM course_comment
+        WHERE user_id=#{userId} AND del=0
         ORDER BY add_time DESC
         LIMIT #{pageIndex},#{pageSize}
     </select>

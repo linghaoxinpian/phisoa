@@ -30,13 +30,15 @@ public class UserTag extends BaseEntity {
     /**
      * STRONG_TAG：特长，INTEREST_TAG：爱好
      */
+    @Deprecated
     private Integer classify;
 
     //----------------- 非DB字段 -----------------
 
-    //特长标识符
-    public static final Integer STRONG_TAG = 0;
+    //分类
+    @Deprecated
+    public static final Integer STRONG_TAG = 0;     //特长标识符
+    @Deprecated
+    public static final Integer INTEREST_TAG = 1;   //爱好标识符
 
-    //爱好标识符
-    public static final Integer INTEREST_TAG = 1;
 }

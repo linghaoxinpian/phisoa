@@ -35,6 +35,11 @@ public class User extends BaseEntity {
     private String place;
 
     /**
+     * 相册,一个json串，如["1.jpg","2.jpg","3.jpg"]
+     */
+    private String photoAlbum;
+
+    /**
      * 所在地Id
      */
     private Integer areaId;
@@ -48,13 +53,22 @@ public class User extends BaseEntity {
 
     //----------------- 非DB字段 -----------------
 
+    private List<Category> categoryList;
+
     /**
      * 擅长的文化
      */
+    @Deprecated
     private List<UserTag> strongList;
 
     /**
      * 爱好的文化,用于论坛
      */
+    @Deprecated
     private List<UserTag> interestList;
+
+    //----------------- 附加属性 -----------------
+
+    /** 解析后的海报名称 */
+    private List<String> parsedPhotoAlbums;
 }

@@ -6,6 +6,19 @@
     <!--useGeneratedKeys="true" keyProperty="id" parameterType resultType statementType="STATEMENT"-->
     <!--select ${columns} from ${tableName}-->
 
+    <resultMap id="userRM" type="com.shmilyou.entity.User" autoMapping="true">
+        <id property="id" column="id"/>
+        <collection property="categoryList" javaType="ArrayList" column="id" ofType="com.shmilyou.entity.Category"
+                    select="getTags"/>
+    </resultMap>
+    <select id="getTags" resultType="com.shmilyou.entity.Category">
+        SELECT c.* FROM user_tag ut
+        INNER JOIN category c
+        on ut.category_id = c.id
+        AND ut.user_id=#{id}
+        AND c.del=0 AND ut.del=0
+    </select>
+
 
     <insert id="insertUserTag" parameterType="java.util.List">
         <!--<selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE">-->

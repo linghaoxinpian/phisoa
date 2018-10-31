@@ -10,6 +10,10 @@ import java.util.List;
  */
 public interface CourseCommentRepository extends BaseRepository<CourseComment> {
 
-    /** 加载最新评论 */
+    /** 加载课程的最新评论 */
     List<CourseComment> queryNewestCommentsByCourseId(@Param("courseId") String courseId, @Param("pageIndex") int pageIndex, @Param("pageSize") int pageSize);
+
+    /** 加载求学者的最新评论 */
+    List<CourseComment> queryNewestCommentsByUserId(@Param("userId") String userId, @Param("pageIndex") int pageIndex, @Param("pageSize") int pageSize);
+
 }

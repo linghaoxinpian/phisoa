@@ -10,7 +10,10 @@ import java.util.List;
 public interface CourseCommentService extends BaseService<CourseComment> {
 
     /**
-     * 加载最新评论
+     * 加载课程的最新评论
      */
     List<CourseComment> loadNewestCommentsByCourseId(String courseId, int pageIndex, int pageSize);
+
+    /** 加载求学者的最新评论 */
+    List<CourseComment> loadNewestCommentsByUserId(String userId, int pageIndex, int pageSize);
 }
