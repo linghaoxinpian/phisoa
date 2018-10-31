@@ -100,4 +100,19 @@ public class LoginController extends BaseController {
         request.getSession().invalidate();
         return "index";
     }
+
+    /** 求学者微信登录 */
+    @RequestMapping(value = "/weixin")
+    public String weixinLogin(String code) {
+        logger.info("code:" + code);
+        return "index";
+    }
+
+    /** 求学者QQ登录 */
+    @RequestMapping(value = "/QQ")
+    public String QQLogin(String code) {
+        logger.info("code:" + code);
+        return "index";
+    }
+
 }
