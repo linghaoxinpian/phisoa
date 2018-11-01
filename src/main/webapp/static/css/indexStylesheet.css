@@ -1,0 +1,1359 @@
+@charset "UTF-8";
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/*.navbar{*/
+/*background-color: gray;*/
+/*border-radius: 0px;*/
+/*}*/
+
+.navbar .gg {
+    margin-left: 700px;
+}
+
+.logo-input .logo {
+    float: left;
+}
+
+.logo-input {
+    height: 100px;
+    margin-top: 10px;
+    /*background-color: gainsboro;*/
+}
+
+.logo-input .logo img {
+    width: 200px;
+    margin-left: 90px;
+}
+
+.logo-input .geography {
+    width: 200px;
+    height: 100px;
+    background-color: blue;
+    margin-left: 20px;
+    float: left;
+}
+
+/*搜索框部分*/
+.search-bar {
+    height: 100px;
+    position: relative;
+    float: left;
+    width: 400px;
+    margin-left: 100px;
+    /*background-color: red;*/
+}
+
+/*.search-bar .i-input-search{*/
+/*width: 250px;*/
+/*height: 40px;*/
+/*margin-top: 32px;*/
+/*border: 2px solid gold;*/
+/*outline: none;*/
+/*}*/
+/*.search-bar .search-btn-panel .search-btn{*/
+/*width: 50px;*/
+/*height: 40px;*/
+/*color: gray;*/
+/*background-color:gold ;*/
+/*text-decoration: none;*/
+/*}*/
+.search-bar .form-control {
+    width: 300px;
+    margin-top: 32px;
+    float: left;
+}
+
+/*底部导航栏*/
+.bottom-container {
+    height: 50px;
+    /*background-color: red;*/
+}
+
+.top-container {
+    margin: 0 auto;
+    position: relative;
+}
+
+.bottom-container .top-container li {
+    list-style: none;
+    float: left;
+}
+
+.bottom-container .top-container .graphy {
+    float: left;
+    width: 40px;
+    height: 40px;
+}
+
+.bottom-container .top-container .classify {
+    width: 200px;
+    height: 50px;
+    background-color: burlywood;
+    margin-left: 90px;
+    background-color: rgb(254, 104, 55);
+}
+
+.bottom-container .top-container .classify a {
+    text-align: center;
+    height: 50px;
+    text-decoration: none;
+    display: block;
+    margin-left: 6px;
+    margin-top: 10px;
+    color: white;
+}
+
+.bottom-container .top-container .navx {
+    width: 70px;
+    /*background-color: blue;*/
+    height: 50px;
+    float: left;
+    margin-left: 50px;
+    /*position: absolute;*/
+}
+
+.bottom-container .top-container .navx a {
+    text-align: center;
+    height: 50px;
+    color: black;
+    font-size: 15px;
+    margin-top: 10px;
+    line-height: 50px;
+    text-decoration: none;
+    font-family: PingFangSC-Regular, Microsoft YaHei, Hiragino Sans GB, Helvetica;;
+}
+
+.bottom-container .top-container .navx a:hover {
+    color: sandybrown;
+}
+
+.main-index {
+    background-color: rgb(244, 244, 244);
+    height: 330px;
+}
+
+.main-index .aside {
+    /*width: 1424px;*/
+    margin: 0 auto;
+    float: left;
+}
+
+.main-index .aside .education-nav {
+    width: 200px;
+    height: 330px;
+    background-color: dimgrey;
+    margin-left: 90px;
+}
+
+.main-index .education-nav li {
+    list-style: none;
+}
+
+.main-index .education-nav .first-section a {
+    line-height: 30px;
+}
+
+.main-index .education-nav li:hover {
+    background-color: gray;
+}
+
+.main-index .education-nav .second-section {
+    display: none;
+    z-index: 999;
+}
+
+.main-index .education-nav .education {
+    width: 140px;
+    background-color: gray;
+    height: 330px;
+    /*position: absolute;*/
+    /*left: 200px;*/
+    /*top: 232px;*/
+    margin-left: 90px;
+}
+
+.main-index .education-nav li {
+    text-decoration: none;
+    padding-left: 12px;
+}
+
+.main-index .education-nav .first-section .name {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: PingFangSC-Regular, Microsoft YaHei, Hiragino Sans GB, Helvetica;
+
+}
+
+.main-index .education-nav .first-section .element {
+    color: gainsboro;
+    text-decoration: none;
+}
+
+.main-index .education-nav .second-section a {
+    line-height: 30px;
+    text-decoration: none;
+}
+
+.main-index .education-nav .second-section .title {
+    color: white;
+    font-family: PingFangSC-Regular, Microsoft YaHei, Hiragino Sans GB, Helvetica;
+}
+
+.main-index .education-nav .second-section .item {
+    color: gainsboro;
+    font-family: PingFangSC-Regular, Microsoft YaHei, Hiragino Sans GB, Helvetica;
+}
+
+.slide-index {
+    position: relative;
+    width: 756px;
+    height: 330px;
+    /*margin-left: 00px;*/
+    /*background-color: red;*/
+    float: left;
+}
+
+.slide-index .banner-main {
+    width: 740px;
+    height: 320px;
+    /*background-color: green;*/
+    position: absolute;
+    top: 10px;
+    left: 8px;
+    right: 8px;
+
+}
+
+.slide-index .banner-main img {
+    width: 740px;
+    height: 320px;
+}
+
+.store-index {
+    float: left;
+    width: 200px;
+    height: 330px;
+    /*border: 1px solid #dddddd;*/
+}
+
+.store-index .store-header {
+    margin-top: -10px;
+    width: 200px;
+    height: 50px;
+    /*background-color: white;*/
+    background-color: rgb(237, 111, 52);
+}
+
+.store-index .store-header li {
+    text-decoration: none;
+    list-style: none;
+    float: left;
+}
+
+.store-index .store-header {
+    /*border-bottom: 2px dashed rgb(237,111,52);*/
+    text-align: center;
+    line-height: 50px;
+    font-family: PingFangSC-Regular, Microsoft YaHei, Hiragino Sans GB, Helvetica;
+    font-size: 18px;
+    padding-left: 10px;
+}
+
+.store-index .store-header .store {
+    font-size: 20px;
+    float: left;
+}
+
+.store-index .store-header .store a {
+    font-size: 20px;
+    color: black;
+}
+
+.store-index .store-header .more a {
+    font-size: 16px;
+    color: black;
+}
+
+.store-index .store-header a:hover {
+    color: gainsboro;
+    text-decoration: none;
+
+}
+
+.store-index .store-header .more {
+    float: left;
+    margin-left: 50px;
+    color: gainsboro;
+}
+
+.store-index .store-content {
+    height: 270px;
+    /*border: 1px solid #dddddd;*/
+    /*background-color: grey;*/
+}
+
+.store-index .store-content .content-one {
+    /*position: relative;*/
+    height: 128px;
+    width: 200px;
+    /*background-color: red;*/
+    border: 2px solid #dddddd;
+    margin-top: 14px;
+    float: left;
+    background: url(../imgs/6.jpg) no-repeat top center;
+    background-size: 198px 128px;
+}
+
+.store-index .store-content .content-two {
+    position: relative;
+    height: 128px;
+    width: 200px;
+    /*background-color: red;*/
+    border: 2px solid #dddddd;
+    margin-top: 16px;
+    margin-left: -9px;
+    float: left;
+    background: url(../imgs/7.jpg) no-repeat top center;
+    background-size: 198px 128px;
+}
+
+.store-index .store-content .content-one .one {
+    position: relative;
+    width: 200px;
+    height: 50px;
+    margin-top: 78px;
+    background-color: rgb(249, 248, 246);
+    opacity: 0.8;
+    padding-left: 5px;
+
+}
+
+.store-index .content-one .love-one {
+    float: left;
+    background-color: red;
+    margin-left: -5px;
+}
+
+.store-index .content-one .love-two {
+    /*padding-left: 10px;*/
+    /*background-color: green;*/
+    /*position: relative;*/
+}
+
+.store-index .content-one .love-one a {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.store-index .content-one .love-one a:hover {
+    color: rgb(237, 111, 52);
+    /*text-decoration: none;*/
+}
+
+.store-index .content-one .love-two a {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.store-index .content-one .love-two a:hover {
+    color: rgb(237, 111, 52);
+    font-weight: bold;
+    /*text-decoration: none;*/
+}
+
+.store-index .store-content .content-two .two {
+    position: absolute;
+    width: 200px;
+    height: 50px;
+    top: 78px;
+    background-color: rgb(249, 248, 246);
+    float: left;
+    opacity: 0.8;
+}
+
+.store-index .store-content .money {
+    position: absolute;
+    /*background-color: yellow;*/
+    width: 50px;
+    height: 30px;
+    top: 20px;
+    left: 75px;
+}
+
+.store-index .love-two .money a {
+    position: absolute;
+    color: red;
+    font-size: 22px;
+    padding-left: 10px;
+    /*top: 0px;*/
+    /*margin-left: -90px;*/
+}
+
+.store-index .money strong {
+    font-size: 18px;
+}
+
+.empty {
+    height: 10px;
+    background-color: rgb(244, 244, 244);
+}
+
+.detail {
+    height: 520px;
+    background-color: rgb(244, 244, 244);
+}
+
+.detail .hot-training {
+    width: 867px;
+    height: 520px;
+    /*background-color: red;*/
+    float: left;
+    margin-left: 90px;
+}
+
+.detail .news {
+    width: 289px;
+    height: 520px;
+    float: left;
+}
+
+.detail .hot-training .title {
+    height: 20px;
+    float: left;
+    font-weight: 400;
+    padding-left: 10px;
+    border-left: 6px solid rgb(237, 111, 52);
+    line-height: 20px;
+    color: #333;
+    font-size: 20px;
+    /*background-color: green;*/
+    cursor: pointer;
+}
+
+.detail .hot-training ul {
+    list-style: none;
+}
+
+.detail .hot-training li {
+    float: left;
+    margin-left: 30px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.detail .hot-training .more-nav {
+    float: left;
+    margin-left: 790px;
+    margin-top: -18px;
+}
+
+.detail .hot-training .more-nav a {
+    color: #333333;
+    line-height: 18px;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.detail .hide {
+    display: none;
+}
+
+.detail .show {
+    height: 460px;
+    width: 867px;
+    background-color: white;
+    margin-top: 60px;
+}
+
+.detail .hot-training .show li {
+    width: 250px;
+    height: 200px;
+    background-color: brown;
+    list-style: none;
+}
+
+.detail .show1 {
+    background: url("../imgs/hot1.jpg");
+}
+
+.detail .show2 {
+    background: url("../imgs/hot2.jpg");
+}
+
+.show3 {
+    background: url("../imgs/hot3.jpg");
+}
+
+.show4 {
+    background: url("../imgs/hot4.jpg");
+}
+
+.show5 {
+    background: url("../imgs/hot5.jpg");
+}
+
+.show6 {
+    background: url("../imgs/hot6.jpg");
+}
+
+.store-all {
+    width: 250px;
+    height: 90px;
+    margin-top: 110px;
+    background-color: grey;
+    opacity: 0.8;
+}
+
+.store-name {
+    width: 250px;
+    height: 30px;
+    /*text-align: center;*/
+    /*font-size: 20px;*/
+    line-height: 30px;
+    text-decoration: none;
+    color: red;
+}
+
+.store-name a {
+    text-decoration: none;
+    color: black;
+    list-style: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.store-name a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.store-script {
+    width: 250px;
+    height: 30px;
+    float: left;
+    /*border-bottom: 2px dashed rgb(237,111,52);*/
+}
+
+.store-script a {
+    color: black;
+    font-family: 华文宋体;
+    text-decoration: none;
+
+}
+
+.store-script a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.store-order {
+    width: 250px;
+    height: 30px;
+}
+
+.store-gift1 {
+    border: 2px solid rgb(237, 111, 52);
+    width: 48px;
+    height: 20px;
+    float: left;
+    /*margin-top: 10px;*/
+}
+
+.store-gift1 a {
+    text-decoration: none;
+    color: black;
+    font-family: PingFangSC-Regular, Microsoft YaHei, Hiragino Sans GB, Helvetica;
+    text-align: center;
+    line-height: 20px;
+    font-size: 14px;
+}
+
+.store-gift1 a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.store-surprise {
+    height: 20px;
+    width: 200px;
+    float: left;
+    outline: none;
+    /*margin-top: 0px;*/
+    margin-left: 2px;
+}
+
+.store-surprise a {
+    text-decoration: none;
+    color: black;
+    font-family: PingFangSC-Regular, Microsoft YaHei, Hiragino Sans GB, Helvetica;
+    text-align: center;
+    line-height: 20px;
+    font-size: 14px;
+}
+
+.store-surprise a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.news-header {
+    /*padding-top: 10px;*/
+    height: 60px;
+    /*background-color: green;*/
+    color: black;
+    font-family: PingFangSC-Regular, Microsoft YaHei, Hiragino Sans GB, Helvetica;
+}
+
+.news-title {
+    float: left;
+    width: 100px;
+    height: 60px;
+    /*background-color: grey;*/
+    padding-top: 22px;
+    margin-left: 10px;
+}
+
+.news-nav {
+    height: 60px;
+    margin-left: 0px;
+    padding-left: 40px;
+    width: 100px;
+    float: left;
+    /*background-color: red;*/
+    margin-left: 79px;
+    padding-top: 29px;
+}
+
+.news-nav a {
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+}
+
+.news-nav a:hover {
+    text-decoration: none;
+    font-size: 18px;
+    color: grey;
+}
+
+.news-content {
+    width: 289px;
+    height: 460px;
+    background-color: white;
+    margin-top: -10px;
+}
+
+.content li {
+    list-style: none;
+}
+
+.industry {
+    float: left;
+    width: 140px;
+    height: 20px;
+    /*background-color: blueviolet;*/
+    margin-top: 0px;
+    margin-left: -110px;
+    padding-left: 106px;
+    cursor: pointer;
+}
+
+.industry:hover {
+    color: ghostwhite;
+}
+
+.official:hover {
+    color: ghostwhite;
+}
+
+.official {
+    width: 149px;
+    height: 20px;
+    /*background-color: goldenrod;*/
+    float: left;
+    cursor: pointer;
+}
+
+.picture {
+    margin-left: 10px;
+    width: 279px;
+    height: 180px;
+    /*background-color: grey;*/
+}
+
+.picture img {
+    height: 160px;
+    width: 279px;
+}
+
+.picture li {
+    list-style: none;
+}
+
+.picture1 {
+    /*background-color: green;*/
+    height: 30px;
+    margin-left: 10px;
+    margin-top: 20px;
+    border-bottom: 1px solid gray;
+    padding-top: 6px;
+}
+
+.picture1 a {
+    text-decoration: none;
+    font-size: 14px;
+    color: gray;
+    font-family: 华文宋体;
+    line-height: 20px;
+
+}
+
+.picture2 {
+    /*background-color: green;*/
+    height: 30px;
+    margin-left: 10px;
+    line-height: 20px;
+    padding-top: 6px;
+    color: gray;
+    border-bottom: 1px solid gray;
+
+}
+
+.picture2 a {
+    text-decoration: none;
+    font-size: 14px;
+    color: gray;
+    font-family: 华文宋体;
+    line-height: 20px;
+}
+
+.picture-one a:hover {
+    color: ghostwhite;
+    text-decoration: none;
+}
+
+.picture-two {
+    display: none;
+}
+
+.picture-two a {
+    color: ghostwhite;
+    text-decoration: none;
+}
+
+.open-empty {
+    height: 0px;
+    /*background-color: red;*/
+    width: 1160px;
+    margin-left: 90px;
+}
+
+.open-course {
+    height: 520px;
+    background-color: rgb(244, 244, 244);
+}
+
+.open-course-content {
+    margin-left: 90px;
+    width: 1160px;
+    height: 520px;
+}
+
+.title1 {
+    margin-top: 20px;
+    height: 20px;
+    float: left;
+    font-weight: 400;
+    padding-left: 10px;
+    border-left: 6px solid rgb(237, 111, 52);
+    line-height: 20px;
+    color: #333;
+    font-size: 20px;
+    /*background-color: green;*/
+    cursor: pointer;
+}
+
+.open-training {
+    height: 60px;
+    background-color: rgb(244, 244, 244);
+}
+
+.course-nav {
+    float: left;
+    margin-left: 950px;
+    margin-top: 20px;
+}
+
+.course-nav a {
+    color: #333333;
+    line-height: 18px;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.course-nav a:hover {
+    text-decoration: none;
+    color: gainsboro;
+}
+
+.open-main-content {
+    width: 1160px;
+    height: 460px;
+    background-color: white;
+}
+
+.open-main-content ul {
+    list-style: none;
+    margin-top: -10px;
+}
+
+.open-main-content li {
+    height: 200px;
+    width: 260px;
+    margin-top: 20px;
+    margin-left: 25px;
+    background-color: darkred;
+    float: left;
+}
+
+.shows {
+    cursor: pointer;
+}
+
+.course1 {
+    background: url(../imgs/open1.jpg);
+
+}
+
+.course2 {
+    background: url(../imgs/open2.jpg);
+}
+
+.course3 {
+    background: url(../imgs/open3.jpg);
+}
+
+.course4 {
+    background: url(../imgs/open4.jpg);
+}
+
+.course5 {
+    background: url(../imgs/open5.jpg);
+}
+
+.course6 {
+    background: url(../imgs/open6.jpg);
+}
+
+.course7 {
+    background: url(../imgs/open7.jpg);
+}
+
+.course8 {
+    background: url(../imgs/open8.jpg);
+}
+
+.store-all1 {
+    width: 260px;
+    height: 90px;
+    margin-top: 110px;
+    background-color: grey;
+    opacity: 0.8;
+}
+
+.store-name1 {
+    width: 260px;
+    height: 30px;
+    /*text-align: center;*/
+    /*font-size: 20px;*/
+    line-height: 30px;
+    text-decoration: none;
+    color: red;
+}
+
+.store-script {
+    width: 260px;
+    height: 30px;
+    /*border-bottom: 2px dashed rgb(237,111,52);*/
+}
+
+.store-surprise1 {
+    height: 20px;
+    width: 50px;
+    float: left;
+    outline: none;
+    /*margin-top: 10px;*/
+    margin-left: 2px;
+}
+
+.store-surprise1 a {
+    text-decoration: none;
+    color: red;
+    font-family: PingFangSC-Regular, Microsoft YaHei, Hiragino Sans GB, Helvetica;
+    text-align: center;
+    line-height: 20px;
+    font-size: 14px;
+}
+
+.store-surprise1 a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.address {
+    float: left;
+    /*background-color: green;*/
+    height: 30px;
+    margin-left: -10px;
+    /*margin-top: 10px;*/
+    /*width: 30px;*/
+}
+
+.address a {
+    text-decoration: none;
+    color: black;
+    font-family: PingFangSC-Regular, Microsoft YaHei, Hiragino Sans GB, Helvetica;
+    text-align: center;
+    line-height: 20px;
+    font-size: 10px;
+}
+
+.address a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.store-gift {
+    /*border: 2px solid rgb(237,111,52);*/
+    width: 48px;
+    height: 20px;
+    float: left;
+    /*margin-top: 10px;*/
+}
+
+.store-gift a {
+    text-decoration: none;
+    color: black;
+    font-family: PingFangSC-Regular, Microsoft YaHei, Hiragino Sans GB, Helvetica;
+    text-align: center;
+    line-height: 20px;
+    font-size: 14px;
+}
+
+.store-gift a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+.store-surprise {
+    height: 20px;
+    width: 200px;
+    float: left;
+    outline: none;
+    /*margin-top: 10px;*/
+    margin-left: 2px;
+}
+
+.person-prefecture {
+    height: 300px;
+    background-color: rgb(244, 244, 244);
+}
+
+.person-content {
+    height: 300px;
+    /*background-color: green;*/
+    margin-left: 90px;
+    width: 1160px;
+}
+
+.person-nav {
+    height: 60px;
+    background-color: rgb(244, 244, 244);
+
+}
+
+.person-nav ul {
+    list-style: none;
+    height: 60px;
+
+}
+
+.person-nav li {
+    float: left;
+    margin-left: 30px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.person-title {
+    height: 20px;
+    float: left;
+    font-weight: 400;
+    padding-left: 10px;
+    border-left: 6px solid rgb(237, 111, 52);
+    line-height: 20px;
+    color: #333;
+    font-size: 20px;
+    /*background-color: green;*/
+    cursor: pointer;
+}
+
+.person-nav .more-nav {
+    float: left;
+    margin-left: 1088px;
+    margin-top: -50px;
+}
+
+.person-nav .more-nav a {
+    color: #333333;
+    line-height: 18px;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.person-nav .more-nav a:hover {
+    color: gainsboro;
+}
+
+.personsh {
+    list-style: none;
+}
+
+.personsh li {
+    float: left;
+    width: 264px;
+    height: 200px;
+    margin-top: 10px;
+    margin-left: 20px;
+    /*background-color: darkred;*/
+}
+
+.person1 {
+    background: url(../imgs/person1.jpg);
+}
+
+.person2 {
+    background: url(../imgs/person2.jpg);
+}
+
+.person3 {
+    background: url(../imgs/person3.jpg);
+}
+
+.person4 {
+    background: url(../imgs/person4.jpg);
+}
+
+.store-all2 {
+    width: 264px;
+    height: 90px;
+    margin-top: 110px;
+    background-color: grey;
+    opacity: 0.8;
+}
+
+.instead {
+    float: left;
+    background: url("../imgs/kk2.jpg");
+    width: 26px;
+    height: 26px;
+}
+
+.store-name1 {
+    width: 234px;
+    height: 30px;
+    /*text-align: center;*/
+    /*font-size: 20px;*/
+    line-height: 30px;
+    text-decoration: none;
+    color: red;
+    float: left;
+    margin-left: 2px;
+}
+
+.store-name1 a {
+    text-decoration: none;
+    color: black;
+    list-style: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.store-name1 a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.store-rank {
+    width: 40px;
+    height: 30px;
+    float: left;
+    /*border-bottom: 2px dashed rgb(237,111,52);*/
+}
+
+.store-rank a {
+    color: black;
+    font-family: 华文宋体;
+    text-decoration: none;
+
+}
+
+.store-rank a:hover {
+    text-decoration: none;
+    color: black;
+}
+
+/*此部分排行*/
+.top-empty {
+
+    height: 60px;
+    background-color: rgb(244, 244, 244);
+    /*margin-top: -20px;*/
+
+}
+
+.top-nav {
+    width: 1160px;
+    margin-left: 90px;
+
+    height: 30px;
+
+}
+
+.top-title {
+    font-size: 16px;
+    padding-top: 20px;
+    font-weight: bold;
+    height: 30px;
+    border-left: 6px solid rgb(237, 111, 52);
+
+}
+
+.person-institution-top {
+    background-color: rgb(244, 244, 244);
+    height: 700px;
+    margin-top: -10px;
+}
+
+.person-institution-content {
+    width: 1360px;
+    height: 700px;
+    /*margin-left: 90px;*/
+    background-color: white;
+}
+
+.institution-top ul {
+    list-style: none;
+}
+
+.institution-top li {
+    height: 660px;
+    float: left;
+    width: 265px;
+    margin-left: 50px;
+    margin-top: 20px;
+}
+
+.institution li {
+    width: 265px;
+    height: 60px;
+    /*background-color: grey;*/
+    border-bottom: 1px solid darkred;
+    margin-top: 0px;
+    margin-left: 0px;
+}
+
+.top-header1 {
+    font-size: 18px;
+    font-family: 华文宋体;
+    padding-top: 15px;
+    padding-left: 4px;
+    color: rgb(237, 111, 52);
+}
+
+.ss {
+    width: 265px;
+    height: 60px;
+    position: relative;
+}
+
+.number {
+    width: 40px;
+    height: 58px;
+    float: left;
+    /*background-color: red;*/
+    position: absolute;
+    left: 0px;
+    font-size: 14px;
+    padding-top: 15px;
+    color: red;
+    font-family: 华文宋体;
+}
+
+.institution-logo {
+    margin-top: 5px;
+    margin-left: -2px;
+    width: 48px;
+    height: 48px;
+    -webkit-background-size: 55%;
+    background-size: 50px 50px;
+    float: left;
+    /*background-color: green;*/
+    position: absolute;
+    left: 0px;
+    border-radius: 50%;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    background: url("../imgs/shou.jpg");
+}
+
+.institution-name {
+    position: absolute;
+    width: 145px;
+    height: 58px;
+    float: left;
+    left: 60px;
+    padding-top: 18px;
+    /*margin-left: 4px;*/
+
+}
+
+.institution-name a {
+    /*white-space: nowrap;*/
+    /*overflow: hidden;*/
+    text-decoration: none;
+    font-size: 12px;
+    padding-top: 30px;
+    color: black;
+    font-family: 华文宋体;
+    word-break: keep-all; /* 不换行 */
+    white-space: nowrap; /* 不换行 */
+    overflow: hidden; /* 内容超出宽度时隐藏超出部分的内容 */
+    text-overflow: ellipsis; /* 当对象内文本溢出时显示省略标记(...) ；需与overflow:hidden;一起使用。*/
+}
+
+.institution-name a:hover {
+    text-decoration: none;
+    font-size: 18px;
+    padding-top: 30px;
+    color: rgb(237, 111, 52);
+    font-family: 华文宋体;
+}
+
+.search-number {
+    width: 60px;
+    height: 58px;
+    float: left;
+    /*background-color: red;*/
+    position: absolute;
+    left: 200px;
+    text-align: center;
+    padding-top: 20px;
+
+}
+
+.top {
+    width: 4px;
+    height: 58px;
+    /*background-color: green;*/
+    position: absolute;
+    left: 260px;
+    color: red;
+    font-size: 30px;
+    font-weight: bold;
+
+}
+
+.number1 {
+    width: 40px;
+    height: 58px;
+    float: left;
+    /*background-color: red;*/
+    position: absolute;
+    left: 0px;
+    font-size: 14px;
+    padding-top: 15px;
+    color: darkred;
+    font-family: 华文宋体;
+}
+
+.number2 {
+    width: 40px;
+    height: 58px;
+    float: left;
+    /*background-color: red;*/
+    position: absolute;
+    left: 0px;
+    font-size: 14px;
+    padding-top: 15px;
+    color: gold;
+    font-family: 华文宋体;
+}
+
+.number3 {
+    width: 40px;
+    height: 58px;
+    float: left;
+    /*background-color: red;*/
+    position: absolute;
+    left: 0px;
+    font-size: 14px;
+    padding-top: 15px;
+    color: black;
+    font-family: 华文宋体;
+}
+
+.institution-logo1 {
+    background: url("../imgs/logoi1.jpg");
+}
+
+.institution-logo2 {
+    background: url("../imgs/huawei.jpg");
+}
+
+.institution-logo3 {
+    background: url("../imgs/linzhi.jpg");
+}
+
+.institution-logo4 {
+    background: url("../imgs/alibaba.jpg");
+}
+
+.institution-logo5 {
+    background: url("../imgs/tenxun.jpg");
+}
+
+.institution-logo6 {
+    background: url("../imgs/sougou.jpg");
+}
+
+.institution-logo7 {
+    background: url("../imgs/lanren.jpg");
+}
+
+.institution-logo8 {
+    background: url("../imgs/xiangyu.jpg");
+}
+
+.institution-logo9 {
+    background: url("../imgs/kerui.jpg");
+}
+
+/*此部分页脚啊*/
+.last-empty {
+    height: 50px;
+    background-color: rgb(244, 244, 244);
+}
+
+.foot {
+    height: 120px;
+    background-color: grey;
+    text-align: center;
+    padding-top: 50px;
+}

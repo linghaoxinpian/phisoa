@@ -7,6 +7,17 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
     <title>用户注册</title>
     <script>
+        var code = "";
+
+        function checkCode() {
+            var verify = $("#code").val() == code;
+            if (verify) {
+                return true;
+            }
+            alert("验证码错误");
+            return false;
+        }
+
         function verificationCode() {
             var email = $("#email").val();
             $.ajax({
@@ -16,10 +27,15 @@
                 data: {
                     "email": email
                 },
-                // 成功后开启模态框
                 success: function (data) {
                     if (data.status == 200) {
-                        $("#sendCode").val("已发送");
+                        if (isEmpty(data.msg)) {
+                            $("#sendCode").val("已发送");
+                            code = data.msg;
+                        } else {
+                            alert("发送失败");
+                        }
+
                     } else {
                         alert("发送失败");
                     }
@@ -30,6 +46,14 @@
                 dataType: "json"
             });
         }
+
+        function isEmpty(obj) {
+            if (typeof obj == "undefined" || obj == null || obj == "") {
+                return true;
+            } else {
+                return false;
+            }
+        }
     </script>
 </head>
 <body>
@@ -37,53 +61,14 @@
     <div class="raw">
         <div class="col-sm-6 col-sm-offset-3">
             <form action="/phisoa/register/user" method="post" enctype="multipart/form-data"
-                  class="form form-horizontal">
-                <div class="form-group">
-                    <label class="label label-info" for="nickname">昵称</label>
-                    <input type="text" class="form-control" id="nickname" name="nickname" value="素未平生">
-                </div>
-                <!--<div class="form-group">-->
-                <!--<label class="label label-info" for="name">登录名</label>-->
-                <!--<input type="text" name="name" id="name" class="form-control" value="访客A">-->
-                <!--</div>-->
+                  class="form form-horizontal" onsubmit="return checkCode();">
                 <div class="form-group">
                     <label class="label label-info" for="password">密码</label>
                     <input type="password" id="password" name="password" class="form-control" value="123">
                 </div>
                 <div class="form-group">
-                    <label class="label label-info">上传头像</label>
-                    <input type="file" class="form-control" name="headImg">
-                </div>
-                <div class="form-group">
-                    <label class="label label-info">手机</label>
-                    <input type="tel" class="form-control" name="phone" value="15000126730">
-                </div>
-                <div class="form-group">
                     <label class="label label-info">电子邮箱</label>
                     <input type="email" name="email" id="email" class="form-control" value="530060499@qq.com">
-                </div>
-                <div class="form-group">
-                    <label class="label label-info">居住详细地址</label>
-                    <input type="text" name="place" class="form-control" value="沪城环路999">
-                </div>
-                <div class="form-group">
-                    <label class="label label-info">生日</label>
-                    <input type="date" name="birthDay" class="form-control" value="1996-01-01">
-                </div>
-                <div class="form-group">
-                    <label class="label label-info">性别</label>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="gender" value="0" checked>
-                            Man
-                        </label>
-                    </div>
-                    <div class="radio">
-                        <label>
-                            <input type="radio" name="gender" value="1">
-                            Lady
-                        </label>
-                    </div>
                 </div>
 
                 <div class="form-group">
@@ -118,9 +103,6 @@
                 <div class="form-group">
                     <div class="col-sm-3 col-sm-offset-3">
                         <input type="submit" value="注册" class="btn btn-success btn-large">
-                    </div>
-                    <div class="col-sm-3">
-                        <input type="submit" value="取消" class="btn btn-danger btn-large">
                     </div>
                 </div>
             </form>

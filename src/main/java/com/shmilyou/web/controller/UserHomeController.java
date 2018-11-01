@@ -10,6 +10,7 @@ import com.shmilyou.service.UserService;
 import com.shmilyou.utils.Constant;
 import com.shmilyou.utils.Utils;
 import com.shmilyou.utils.WebUtils;
+import com.shmilyou.web.controller.vo.UserVO;
 import com.shmilyou.web.resolver.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /** Created with 岂止是一丝涟漪     530060499@qq.com    2018/10/31 */
@@ -68,13 +70,17 @@ public class UserHomeController extends BaseController {
 
     /** 基础信息管理 */
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public String showCourses(LoginUser loginUser, ModelMap modelMap) {
+    public String showCourses(LoginUser loginUser, UserVO userVO, ModelMap modelMap, HttpSession session) {
         if (loginUser == null) {
             return "error";
         }
         //获取用户
         User user = userService.queryById(loginUser.getId());
-
+        //指定图片路径
+        String path = session.getServletContext().getRealPath("/") + Constant.PIC_USER_HEAD_PATH + user.getId() + "/";
+        //保存图片
+        String fileName = WebUtils.uploadPicture(userVO.getHeadImg(), path, Utils.generateDateNum());
+        user.setHeadImg(fileName);
 
         //
         modelMap.addAttribute("o", user);

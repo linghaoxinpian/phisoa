@@ -1,19 +1,2181 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
-    <!--<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>-->
-    <!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>-->
-    <title>爱智网，连接知识</title>
+    <title>爱智网首页</title>
+    <link rel="stylesheet" href="/static/css/indexStylesheet.css">
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
-<a href="phisoa/login/user" class="btn btn-block btn-success">用户登录</a>
-<a href="phisoa/login/organization" class="btn btn-block btn-success">机构登录</a>
-<a href="phisoa/register/user" class="btn btn-block btn-info">用户注册</a>
-<a href="phisoa/register/organization" class="btn btn-block btn-info">机构注册</a>
-<a href="phisoa/login/login_out" class="btn btn-block btn-info">退出</a>
-<a href="phisoa/organization/" class="btn btn-block btn-info">机构主页</a>
-<a href="phisoa/course/search" class="btn btn-block btn-info">搜索课程</a>
+<nav class="navbar navbar-inverse circle" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">爱智网首页</a>
+        </div>
+        <div class="gg">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="/phisoa/register/user">请注册</a></li>
+                <li><a href="/phisoa/login/user">登录</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        个人中心 <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">jmeter</a></li>
+                        <li><a href="#">EJB</a></li>
+                        <li><a href="#">Jasper Report</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">分离的链接</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">另一个分离的链接</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        商户服务 <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">jmeter</a></li>
+                        <li><a href="#">EJB</a></li>
+                        <li><a href="#">Jasper Report</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">分离的链接</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">另一个分离的链接</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        帮助中心 <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">jmeter</a></li>
+                        <li><a href="#">EJB</a></li>
+                        <li><a href="#">Jasper Report</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">分离的链接</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">另一个分离的链接</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">举报平台</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="logo-input" id="logo-input">
+    <div class="logo">
+        <a title="爱智慧首页" href="#"><img src="/static/imgs/logo.JPG"></a>
+    </div>
+    <!--<div class="geography">-->
+
+    <!--</div>-->
+    <div class="search-bar" id="search">
+        <div class="search-container">
+                <span class="search-content">
+                    <i class="i-search"></i>
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="机构、个人、地区、标签"
+                                   style="border: 2px solid rgb(237,111,52);width: 400px;height: 40px;">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button" style="position:absolute ;top: 32px; outline:none;
+						background-color: rgb(237,111,52);width: 90px;height: 40px;">
+                            搜索
+                        </button>
+					</span>
+                        </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+                </span>
+        </div>
+    </div>
+</div>
+<div class="bottom-container">
+    <div class="top-container">
+        <ul>
+            <li class="classify"><a href="#">培训分类 <img src="/static/imgs/classify.JPG"></a>
+                <!--<img src="../imgs/classify.JPG">-->
+            </li>
+            <li class="navx"><a href="#">首页</a></li>
+            <li class="navx"><a href="#">同城活动</a></li>
+            <li class="navx"><a href="#">行业专家</a></li>
+            <li class="navx"><a href="#">资料库</a></li>
+            <li class="navx"><a href="#">论坛</a></li>
+            <li class="navx"><a href="#">机构-个人</a></li>
+        </ul>
+    </div>
+</div>
+<!--内容部分-->
+<div class="main-index">
+    <!--此部分侧边栏-->
+    <div class="aside">
+        <ul class="education-nav">
+            <li class="first" id="eleven">
+                <div class="first-section">
+                    <a class="name" href="#" target="_blank">国学文化</a>
+                    <a class="element" href="#" target="_blank">读经</a>
+                    <a class="element" href="#" target="_blank">蒙学</a>
+                </div>
+                <div class="second-section" id="elevenSection" style="position: absolute;left: 200px;top: 232px">
+                    <ul class="education">
+                        <li><a class="title" href="" target="_blank">国学文化</a></li>
+                        <li><a class="item" href="" target="_blank">读经</a></li>
+                        <li><a class="item" href="" target="_blank">易经</a></li>
+                        <li><a class="item" href="" target="_blank">风水</a></li>
+                        <li><a class="item" href="" target="_blank">棋牌</a></li>
+                        <li><a class="item" href="" target="_blank">蒙学</a></li>
+                        <li><a class="item" href="" target="_blank">诗歌朗诵</a></li>
+                        <li><a class="item" href="" target="_blank">更多国学文化</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li id="firstSection">
+                <div class="first-section">
+                    <a class="name" href="#" target="_blank">传统技艺</a>
+                    <a class="element" href="#" target="_blank">剪纸</a>
+                    <a class="element" href="#" target="_blank">皮影</a>
+                </div>
+                <div class="second-section" id="secondSection" style="position: absolute;left: 200px;top: 232px;">
+                    <ul class="education" style="width: 140px;">
+                        <li><a class="title" href="" target="_blank" style="color: white;font-weight: bold;">传统技艺</a>
+                        </li>
+                        <li><a class="item" href="" target="_blank">剪纸</a></li>
+                        <li><a class="item" href="" target="_blank">皮影</a></li>
+                        <li><a class="item" href="" target="_blank">年画</a></li>
+                        <li><a class="item" href="" target="_blank">口技</a></li>
+                        <li><a class="item" href="" target="_blank">变脸</a></li>
+                        <li><a class="item" href="" target="_blank">戏曲</a></li>
+                        <li><a class="item" href="" target="_blank">木雕</a></li>
+                        <li><a class="item" href="" target="_blank">泥塑</a></li>
+                        <li><a class="item" href="" target="_blank">更多传统技艺</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li id="third">
+                <div class="first-section">
+                    <a class="name" href="#" target="_blank">外语培训</a>
+                    <a class="element" href="#" target="_blank">英语</a>
+                    <a class="element" href="#" target="_blank">日语</a>
+                </div>
+                <div class="second-section" id="thirdSection" style="position: absolute;left: 200px;top: 232px;">
+                    <ul class="education">
+                        <li><a class="title" href="" target="_blank">外语培训</a></li>
+                        <li><a class="item" href="" target="_blank">英语</a></li>
+                        <li><a class="item" href="" target="_blank">日语</a></li>
+                        <li><a class="item" href="" target="_blank">韩语</a></li>
+                        <li><a class="item" href="" target="_blank">德语</a></li>
+                        <li><a class="item" href="" target="_blank">法语</a></li>
+                        <li><a class="item" href="" target="_blank">西班牙语</a></li>
+                        <li><a class="item" href="" target="_blank">汉语</a></li>
+                        <li><a class="item" href="" target="_blank">更多外语培训</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li id="fourth">
+                <div class="first-section">
+                    <a class="name" href="#" target="_blank">音乐培训</a>
+                    <a class="element" href="#" target="_blank">古典音乐</a>
+                    <a class="element" href="#" target="_blank">流行音乐</a>
+                </div>
+                <div class="second-section" id="fourthSection" style="position: absolute;left: 200px;top: 232px;">
+                    <ul class="education">
+                        <li><a class="title" href="" target="_blank">音乐培训</a></li>
+                        <li><a class="item" href="" target="_blank">古典音乐</a></li>
+                        <li><a class="item" href="" target="_blank">流行音乐</a></li>
+                        <li><a class="item" href="" target="_blank">摇滚音乐</a></li>
+                        <li><a class="item" href="" target="_blank">爵士音乐</a></li>
+                        <li><a class="item" href="" target="_blank">民族音乐</a></li>
+                        <li><a class="item" href="" target="_blank">更多音乐培训</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li id="fifth">
+                <div class="first-section">
+                    <a class="name" href="#" target="_blank">美术培训</a>
+                    <a class="element" href="#" target="_blank">绘画</a>
+                    <a class="element" href="#" target="_blank">书法</a>
+                </div>
+                <div class="second-section" id="fifthSection" style="position: absolute;left: 200px;top: 232px;">
+                    <ul class="education">
+                        <li><a class="title" href="" target="_blank">美术培训</a></li>
+                        <li><a class="item" href="" target="_blank">绘画</a></li>
+                        <li><a class="item" href="" target="_blank">书法</a></li>
+                        <li><a class="item" href="" target="_blank">建筑</a></li>
+                        <li><a class="item" href="" target="_blank">雕塑</a></li>
+                        <li><a class="item" href="" target="_blank">篆刻</a></li>
+                        <li><a class="item" href="" target="_blank">设计</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li id="sixth">
+                <div class="first-section">
+                    <a class="name" href="#" target="_blank">舞蹈培训</a>
+                    <a class="element" href="#" target="_blank">古典舞</a>
+                    <a class="element" href="#" target="_blank">芭蕾舞</a>
+                </div>
+                <div class="second-section" id="sixthSection" style="position: absolute;left: 200px;top: 232px;">
+                    <ul class="education">
+                        <li><a class="title" href="" target="_blank">舞蹈培训</a></li>
+                        <li><a class="item" href="" target="_blank">古典舞</a></li>
+                        <li><a class="item" href="" target="_blank">芭蕾舞</a></li>
+                        <li><a class="item" href="" target="_blank">民族舞</a></li>
+                        <li><a class="item" href="" target="_blank">现代舞</a></li>
+                        <li><a class="item" href="" target="_blank">踢踏舞</a></li>
+                        <li><a class="item" href="" target="_blank">爵士舞</a></li>
+                        <li><a class="item" href="" target="_blank">街舞</a></li>
+                        <li><a class="item" href="" target="_blank">拉丁舞</a></li>
+                        <li><a class="item" href="" target="_blank">更多舞蹈培训</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li id="seventh">
+                <div class="first-section">
+                    <a class="name" href="#" target="_blank">留学专区</a>
+                    <a class="element" href="#" target="_blank">留学申请</a>
+                    <a class="element" href="#" target="_blank">留学考试</a>
+                </div>
+                <div class="second-section" id="seventhSection" style="position: absolute;left: 200px;top: 232px;">
+                    <ul class="education">
+                        <li><a class="title" href="" target="_blank">留学</a></li>
+                        <li><a class="item" href="" target="_blank">留学申请</a></li>
+                        <li><a class="item" href="" target="_blank">留学考试</a></li>
+                        <li><a class="item" href="" target="_blank">雅思托福</a></li>
+                        <li><a class="item" href="" target="_blank">综合留学服务</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li id="eighth">
+                <div class="first-section">
+                    <a class="name" href="#" target="_blank">升学辅导</a>
+                    <a class="element" href="#" target="_blank">启蒙辅导</a>
+                    <a class="element" href="#" target="_blank">高中辅导</a>
+                </div>
+                <div class="second-section" id="eighthSection" style="position: absolute;left: 200px;top: 232px;">
+                    <ul class="education">
+                        <li><a class="title" href="" target="_blank">升学辅导</a></li>
+                        <li><a class="item" href="" target="_blank">启蒙辅导</a></li>
+                        <li><a class="item" href="" target="_blank">高考辅导</a></li>
+                        <li><a class="item" href="" target="_blank">小学辅导</a></li>
+                        <li><a class="item" href="" target="_blank">初中辅导</a></li>
+                        <li><a class="item" href="" target="_blank">考研</a></li>
+                        <li><a class="item" href="" target="_blank">专升本</a></li>
+                        <li><a class="item" href="" target="_blank">艺考</a></li>
+                        <li><a class="item" href="" target="_blank">更多学习辅导</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li id="ninth">
+                <div class="first-section">
+                    <a class="name" href="#" target="_blank">体育运动</a>
+                    <a class="element" href="#" target="_blank">足球</a>
+                    <a class="element" href="#" target="_blank">篮球</a>
+                </div>
+                <div class="second-section" id="ninthSection" style="position: absolute;left: 200px;top: 232px;">
+                    <ul class="education">
+                        <li><a class="title" href="" target="_blank">体育运动</a></li>
+                        <li><a class="item" href="" target="_blank">足球</a></li>
+                        <li><a class="item" href="" target="_blank">篮球</a></li>
+                        <li><a class="item" href="" target="_blank">乒乓球</a></li>
+                        <li><a class="item" href="" target="_blank">羽毛球</a></li>
+                        <li><a class="item" href="" target="_blank">健身</a></li>
+                        <li><a class="item" href="" target="_blank">田径</a></li>
+                        <li><a class="item" href="" target="_blank">爬山</a></li>
+                        <li><a class="item" href="" target="_blank">自行车</a></li>
+                        <li><a class="item" href="" target="_blank">更多体育运动</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li id="tenth">
+                <div class="first-section">
+                    <a class="name" href="#" target="_blank">职业技术</a>
+                    <a class="element" href="#" target="_blank">美容化妆</a>
+                    <a class="element" href="#" target="_blank">管理培训</a>
+                </div>
+                <div class="second-section" id="tenthSection" style="position: absolute;left: 200px;top: 232px;">
+                    <ul class="education">
+                        <li><a class="title" href="" target="_blank">职业技术培训</a></li>
+                        <li><a class="item" href="" target="_blank">美容化妆</a></li>
+                        <li><a class="item" href="" target="_blank">管理培训</a></li>
+                        <li><a class="item" href="" target="_blank">会计</a></li>
+                        <li><a class="item" href="" target="_blank">厨艺</a></li>
+                        <li><a class="item" href="" target="_blank">摄影培训</a></li>
+                        <li><a class="item" href="" target="_blank">公务员培训</a></li>
+                        <li><a class="item" href="" target="_blank">家政</a></li>
+                        <li><a class="item" href="" target="_blank">IT</a></li>
+                        <li><a class="item" href="" target="_blank">更多职业技术培训</a></li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <div class="first-section">
+                    <a class="name" href="#" target="_blank">驾校</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <!--此部分轮播部分-->
+    <div class="slide-index">
+        <div class="banner-main">
+            <div id="myCarousel" class="carousel slide">
+                <!-- 轮播（Carousel）指标 -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <li data-target="#myCarousel" data-slide-to="3"></li>
+                </ol>
+                <!-- 轮播（Carousel）项目 -->
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <a href="" target="_blank"><img src="/static/imgs/1.jpg" alt="First slide"></a>
+                    </div>
+                    <div class="item">
+                        <a href="" target="_blank"><img src="/static/imgs/2.jpg" alt="Second slide"></a>
+                    </div>
+                    <div class="item">
+                        <a href="" target="_blank"><img src="/static/imgs/3.jpg" alt="Third slide"></a>
+                    </div>
+                    <div class="item">
+                        <a href="" target="_blank"><img src="/static/imgs/4.jpg" alt="Fourth slide"></a>
+                    </div>
+                </div>
+                <!-- 轮播（Carousel）导航 -->
+                <a class="carousel-control left" href="#myCarousel"
+                   data-slide="prev"> <span _ngcontent-c3="" aria-hidden="true"
+                                            class="glyphicon glyphicon-chevron-left"></span></a>
+                <a class="carousel-control right" href="#myCarousel"
+                   data-slide="next"><span _ngcontent-c3="" aria-hidden="true"
+                                           class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+        </div>
+    </div>
+    <!--此处商城部分啊-->
+    <div class="store-index">
+        <div class="store-header">
+            <ul>
+                <li class="store"><a href="">爱智商城</a></li>
+                <li class="more">
+                    <a href="">更多</a>
+                    <a href="">&rsaquo;&rsaquo;</a></li>
+            </ul>
+        </div>
+        <div class="store-content">
+            <div class="content-one">
+                <div class="one">
+                    <div class="love-one"><a href="">爱智精推</a></div>
+                    <div class="love-two"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">善琏湖笔,静纯狼毫抄经毛笔</a></span>
+                        <div class="money">
+                            <a href=""> ¥<strong>99</strong></a>
+                        </div>
+                    </div>
+                    <div class="content-two">
+                        <div class="one">
+                            <div class="love-one"><a href="">爱智精推</a></div>
+                            <div class="love-two"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="">精品狼毫套装</a></span>
+                                <span class="money">
+                                <a href=""> ¥<strong>99</strong></a>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--此部分热门推荐啊-->
+<div class="empty"></div>
+<div class="detail">
+    <div class="hot-training">
+        <h3 class="title">热门培训</h3>
+        <ul>
+            <li>推荐</li>
+            <li>钢琴</li>
+            <li>书法</li>
+            <li>绘画</li>
+            <li>围棋</li>
+            <li>音乐</li>
+        </ul>
+        <div class="more-nav">
+            <a href="">更多</a>
+            <a href="">&rsaquo;&rsaquo;</a>
+        </div>
+        <ul class="show">
+            <li class="show1">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">快笔书法教育</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift1">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show2">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">快笔书法教育</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift1">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show3">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">花与可可舞蹈中心</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift1">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show4">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">花语可可舞蹈中心</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift1">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show5">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">咖啡爱上钢琴课</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift1">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show6">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">YY-MUSIC音乐社</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift1">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul class="hide">
+            <li class="show1">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">快笔书法教育</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show2">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">快笔书法教育</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show3">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">花与可可舞蹈中心</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show4">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">花语可可舞蹈中心</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show5">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">咖啡爱上钢琴课</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show6">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">YY-MUSIC音乐社</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul class="hide">
+            <li class="show1">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">快笔书法教育</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show2">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">快笔书法教育</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show3">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">花与可可舞蹈中心</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show4">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">花语可可舞蹈中心</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show5">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">咖啡爱上钢琴课</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show6">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">YY-MUSIC音乐社</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul class="hide">
+            <li class="show1">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">快笔书法教育</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show2">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">快笔书法教育</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show3">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">花与可可舞蹈中心</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show4">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">花语可可舞蹈中心</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show5">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">咖啡爱上钢琴课</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show6">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">YY-MUSIC音乐社</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul class="hide">
+            <li class="show1">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">快笔书法教育</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show2">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">快笔书法教育</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show3">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">花与可可舞蹈中心</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show4">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">花语可可舞蹈中心</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show5">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">咖啡爱上钢琴课</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show6">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">YY-MUSIC音乐社</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <ul class="hide">
+            <li class="show1">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">快笔书法教育</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show2">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">快笔书法教育</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show3">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">花与可可舞蹈中心</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show4">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">花语可可舞蹈中心</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show5">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">咖啡爱上钢琴课</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li class="show6">
+                <div class="store-all">
+                    <div class="store-name">
+                        <a href="">YY-MUSIC音乐社</a>
+                    </div>
+                    <div class="store-script">
+                        <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                        <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                    </div>
+                    <div class="store-order">
+                        <div class="store-gift">
+                            <a href="">预约礼</a>
+                        </div>
+                        <div class="store-surprise">
+                            <a href="">免费20分钟试听</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="news">
+        <div class="news-header">
+            <h4 class="news-title">资讯</h4>
+            <div class="news-nav">
+                <a href="">更多</a>
+                <a href="">&rsaquo;&rsaquo;</a>
+            </div>
+        </div>
+        <div class="news-content">
+            <div class="content">
+                <ul>
+                    <li class="industry">行业&nbsp;</li>
+                    <li class="official">|&nbsp;官方</li>
+                </ul>
+                <div class="picture-one">
+                    <ul>
+                        <li class="picture"><a href=""><img src="/static/imgs/sink.jpg"></a></li>
+                        <li class="picture1"><a href="">丝绸之路经济带国家赴中国进行文化交流</a></li>
+                        <li class="picture2"><a href="">第十届上海书画展将在上海展览馆进行</a></li>
+                        <li class="picture2"><a href="">习主席重要讲话，发扬中国传统文化。</a></li>
+                        <li class="picture2"><a href="">第一届慈善公益活动将由上海海洋大学举办</a></li>
+                        <li class="picture2"><a href="">中国文化将进一步影响世界文化格局</a></li>
+                    </ul>
+                </div>
+                <div class="picture-two">
+                    <ul>
+                        <li class="picture"><a href=""><img src="/static/imgs/sink.jpg"></a></li>
+                        <li class="picture1"><a href="">丝绸之路经济带国家赴中国进行文化交流</a></li>
+                        <li class="picture2"><a href="">第十届上海书画展将在上海展览馆进行</a></li>
+                        <li class="picture2"><a href="">习主席重要讲话，发扬中国传统文化。</a></li>
+                        <li class="picture2"><a href="">第一届慈善公益活动将由上海海洋大学举办</a></li>
+                        <li class="picture2"><a href="">中国文化将进一步影响世界文化格局</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--此部分优秀培训公开课-->
+<div class="open-empty"></div>
+<div class="open-course">
+    <div class="open-course-content">
+        <div class="open-training">
+            <h4 class="title1">优秀文化公开课</h4>
+            <div class="course-nav">
+                <a href="">更多</a>
+                <a href="">&rsaquo;&rsaquo;</a>
+            </div>
+        </div>
+        <div class="open-main-content">
+            <ul class="shows">
+                <li class="course1">
+                    <div class="store-all1">
+                        <div class="store-name">
+                            <a href="">芭蕾舞动作集锦</a>
+                        </div>
+                        <div class="store-script">
+                            <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                            <a href="">入门级</a>
+                        </div>
+                        <div class="store-order">
+                            <div class="store-gift">
+                                <a href="">播放量</a>
+                            </div>
+                            <div class="store-surprise1">
+                                <a href="">20w</a>
+                            </div>
+                            <div class="address">
+                                <a href="">龙门书院（普陀店）</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="course2">
+                    <div class="store-all1">
+                        <div class="store-name">
+                            <a href="">戏曲的发展历程</a>
+                        </div>
+                        <div class="store-script">
+                            <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                            <a href="">初级</a>
+                        </div>
+                        <div class="store-order">
+                            <div class="store-gift">
+                                <a href="">播放量</a>
+                            </div>
+                            <div class="store-surprise1">
+                                <a href="">100w</a>
+                            </div>
+                            <div class="address">
+                                <a href="">戏曲艺术中心</a>
+                            </div>
+
+                            <!--<address>-->
+                            <!--龙门书院普陀店哈哈哈哈哈-->
+                            <!--</address>-->
+                        </div>
+                    </div>
+                </li>
+                <li class="course3">
+                    <div class="store-all1">
+                        <div class="store-name">
+                            <a href="">吉他进阶之路</a>
+                        </div>
+                        <div class="store-script">
+                            <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                            <a href="">中级入门</a>
+                        </div>
+                        <div class="store-order">
+                            <div class="store-gift">
+                                <a href="">播放量</a>
+                            </div>
+                            <div class="store-surprise1">
+                                <a href="">50w</a>
+                            </div>
+                            <div class="address">
+                                <a href="">LISTEN 音乐工作室</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="course4">
+                    <div class="store-all1">
+                        <div class="store-name">
+                            <a href="">街舞流行动作集锦</a>
+                        </div>
+                        <div class="store-script">
+                            <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                            <a href="">专业级</a>
+                        </div>
+                        <div class="store-order">
+                            <div class="store-gift">
+                                <a href="">播放量</a>
+                            </div>
+                            <div class="store-surprise1">
+                                <a href="">40w</a>
+                            </div>
+                            <div class="address">
+                                <a href="">水木青华权舞社</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="course5">
+                    <div class="store-all1">
+                        <div class="store-name">
+                            <a href="">软笔书法执笔技巧解读</a>
+                        </div>
+                        <div class="store-script">
+                            <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                            <a href="">&nbsp;&nbsp;软笔书法入门级</a>
+                        </div>
+                        <div class="store-order">
+                            <div class="store-gift">
+                                <a href="">播放量</a>
+                            </div>
+                            <div class="store-surprise1">
+                                <a href="">250w</a>
+                            </div>
+                            <div class="address">
+                                <a href="">龙门书院（普陀店）</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="course6">
+                    <div class="store-all1">
+                        <div class="store-name">
+                            <a href="">剪纸的几大分类</a>
+                        </div>
+                        <div class="store-script">
+                            <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                            <a href="">无分类</a>
+                        </div>
+                        <div class="store-order">
+                            <div class="store-gift">
+                                <a href="">播放量</a>
+                            </div>
+                            <div class="store-surprise1">
+                                <a href="">100w</a>
+                            </div>
+                            <div class="address">
+                                <a href="">海派剪纸中心</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="course7">
+                    <div class="store-all1">
+                        <div class="store-name">
+                            <a href="">拉丁舞快速入门</a>
+                        </div>
+                        <div class="store-script">
+                            <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                            <a href="">入门级</a>
+                        </div>
+                        <div class="store-order">
+                            <div class="store-gift">
+                                <a href="">播放量</a>
+                            </div>
+                            <div class="store-surprise1">
+                                <a href="">70w</a>
+                            </div>
+                            <div class="address">
+                                <a href="">UST拉丁舞</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="course8">
+                    <div class="store-all1">
+                        <div class="store-name">
+                            <a href="">京剧的前世今生</a>
+                        </div>
+                        <div class="store-script">
+                            <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                            <a href="">无分类</a>
+                        </div>
+                        <div class="store-order">
+                            <div class="store-gift">
+                                <a href="">播放量</a>
+                            </div>
+                            <div class="store-surprise1">
+                                <a href="">55w</a>
+                            </div>
+                            <div class="address">
+                                <a href="">徐汇燕萍京剧团</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--此部分个人专区啊-->
+<div class="open-empty"></div>
+<div class="person-prefecture">
+    <div class="person-content">
+        <div class="person-nav">
+            <h3 class="person-title">个人专区</h3>
+            <ul>
+                <li>推荐</li>
+                <li>钢琴</li>
+                <li>书法</li>
+                <li>绘画</li>
+                <li>围棋</li>
+                <li>音乐</li>
+            </ul>
+            <div class="more-nav">
+                <a href="">更多</a>
+                <a href="">&rsaquo;&rsaquo;</a>
+            </div>
+            <ul class="personsh">
+                <li class="person1">
+                    <div class="store-all2">
+                        <div class="instead"></div>
+                        <div class="store-name1">
+                            <a href="">快笔书法教育</a>
+                        </div>
+                        <div class="store-script">
+                            <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                            <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                        </div>
+                        <div class="store-order">
+                            <div class="store-rank">
+                                <a href="">等级</a>
+                            </div>
+                            <div class="store-surprise">
+                                <a href="">专业级</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="person2">
+                    <div class="store-all2">
+                        <div class="instead"></div>
+                        <div class="store-name1">
+                            <a href="">快笔书法教育</a>
+                        </div>
+                        <div class="store-script">
+                            <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                            <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                        </div>
+                        <div class="store-order">
+                            <div class="store-rank">
+                                <a href="">等级</a>
+                            </div>
+                            <div class="store-surprise">
+                                <a href="">大师级</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="person3">
+                    <div class="store-all2">
+                        <div class="instead"></div>
+                        <div class="store-name1">
+                            <a href="">快笔书法教育</a>
+                        </div>
+                        <div class="store-script">
+                            <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                            <a href="">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</a>
+                        </div>
+                        <div class="store-order">
+                            <div class="store-rank">
+                                <a href="">等级</a>
+                            </div>
+                            <div class="store-surprise">
+                                <a href="">专业级</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="person4">
+                    <div class="store-all2">
+                        <div class="instead"></div>
+                        <div class="store-name1">
+                            <a href="">快笔书法教育</a>
+                        </div>
+                        <div class="store-script">
+                            <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                            <a href="">教龄9年&nbsp;|&nbsp;软笔书法</a>
+                        </div>
+                        <div class="store-order">
+                            <div class="store-rank">
+                                <a href="">等级</a>
+                            </div>
+                            <div class="store-surprise">
+                                <a href="">专业级</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--<div class="person-main-content">-->
+
+        <!--</div>-->
+    </div>
+</div>
+<!--此部分机构专区-->
+<div class="person-prefecture">
+    <div class="person-content">
+        <div class="person-nav">
+            <h3 class="person-title">机构专区</h3>
+            <ul>
+                <li>推荐</li>
+                <li>钢琴</li>
+                <li>书法</li>
+                <li>绘画</li>
+                <li>围棋</li>
+                <li>音乐</li>
+            </ul>
+            <div class="more-nav">
+                <a href="">更多</a>
+                <a href="">&rsaquo;&rsaquo;</a>
+            </div>
+            <ul class="personsh">
+                <li class="person1">
+                    <div class="store-all2">
+                        <div class="instead"></div>
+                        <div class="store-name1">
+                            <a href="">YY MUSIC音乐社</a>
+                        </div>
+                        <div class="store-script">
+                            <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                            <a href="">培训类型：音乐&nbsp;美术</a>
+                        </div>
+                        <div class="store-order">
+                            <!--<div class="store-rank">-->
+                            <!--<a href=""></a>-->
+                            <!--</div>-->
+                            <div class="store-surprise">
+                                <a href="">世纪大道店</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="person2">
+                    <div class="store-all2">
+                        <div class="instead"></div>
+                        <div class="store-name1">
+                            <a href="">JUN之舞者舞蹈工作室</a>
+                        </div>
+                        <div class="store-script">
+                            <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                            <a href="">培训类型：音乐&nbsp;美术</a>
+                        </div>
+                        <div class="store-order">
+                            <!--<div class="store-rank">-->
+                            <!--<a href="">等级</a>-->
+                            <!--</div>-->
+                            <div class="store-surprise">
+                                <a href="">徐家汇港汇店</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="person3">
+                    <div class="store-all2">
+                        <div class="instead"></div>
+                        <div class="store-name1">
+                            <a href="">火舞冰点Dancing Club</a>
+                        </div>
+                        <div class="store-script">
+                            <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                            <a href="">培训类型：音乐&nbsp;名族舞</a>
+                        </div>
+                        <div class="store-order">
+                            <!--<div class="store-rank">-->
+                            <!--<a href="">等级</a>-->
+                            <!--</div>-->
+                            <div class="store-surprise">
+                                <a href="">徐汇漕溪路店</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="person4">
+                    <div class="store-all2">
+                        <div class="instead"></div>
+                        <div class="store-name1">
+                            <a href="">热舞舞蹈（富绅时代广场店）</a>
+                        </div>
+                        <div class="store-script">
+                            <!--<p title="1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动">1对1&nbsp;&nbsp;小班&nbsp;&nbsp;主题活动</p>-->
+                            <a href="">培训类型：音乐&nbsp;街舞</a>
+                        </div>
+                        <div class="store-order">
+                            <!--<div class="store-rank">-->
+                            <!--<a href="">等级</a>-->
+                            <!--</div>-->
+                            <div class="store-surprise">
+                                <a href="">世纪公园&nbsp;锦绣路666弄18号</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <!--<div class="person-main-content">-->
+
+        <!--</div>-->
+    </div>
+</div>
+<!--此部分机构个人排行-->
+<div class="top-empty">
+    <div class="top-nav">
+        <h3 class="person-title">机构-个人排行专区</h3>
+    </div>
+</div>
+<div class="person-institution-top">
+    <div class="person-institution-content">
+        <div class="institution-top">
+            <ul>
+                <li>
+                    <ul class="institution">
+                        <li class="top-header1">
+                            机构推荐榜&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;人气指数
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <!--<div class="number">-->
+                                <!--NO.1-->
+                                <!--</div>-->
+                                <div class="institution-logo">
+                                </div>
+                                <div class="institution-name">
+                                    <a href="">上海海洋大学</a>
+                                </div>
+                                <div class="search-number">
+                                    1211245
+                                </div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number1">
+                                    NO.2
+                                </div>
+                                <div class="institution-logo institution-logo1"></div>
+                                <div class="institution-name">
+                                    <a href="">苹果公司</a>
+                                </div>
+                                <div class="search-number">
+                                    555566
+                                </div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number2">
+                                    NO.3
+                                </div>
+                                <div class="institution-logo institution-logo2"></div>
+                                <div class="institution-name">
+                                    <a href="">华为大公司</a>
+                                </div>
+                                <div class="search-number">
+                                    1314520
+                                </div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.4
+                                </div>
+                                <div class="institution-logo institution-logo3"></div>
+                                <div class="institution-name">
+                                    <a href="">上海海洋大学</a>
+                                </div>
+                                <div class="search-number">
+                                    250
+                                </div>
+                                <div class="top">↓</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.5
+                                </div>
+                                <div class="institution-logo institution-logo4"></div>
+                                <div class="institution-name">
+                                    <a href="">凌志国际有限公司</a>
+                                </div>
+                                <div class="search-number">
+                                    666888
+                                </div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.6
+                                </div>
+                                <div class="institution-logo institution-logo5"></div>
+                                <div class="institution-name">
+                                    <a href="">腾讯公司</a>
+                                </div>
+                                <div class="search-number">
+                                    456123
+                                </div>
+                                <div class="top">↓</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.7
+                                </div>
+                                <div class="institution-logo institution-logo6"></div>
+                                <div class="institution-name">
+                                    <a href="">搜狗</a>
+                                </div>
+                                <div class="search-number">
+                                    994520
+                                </div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.8
+                                </div>
+                                <div class="institution-logo institution-logo7"></div>
+                                <div class="institution-name">
+                                    <a href="">懒人有限责任公司</a>
+                                </div>
+                                <div class="search-number">
+                                    12300
+                                </div>
+                                <div class="top">↓</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.9
+                                </div>
+                                <div class="institution-logo institution-logo8"></div>
+                                <div class="institution-name">
+                                    <a href="">祥玉有限责任公司</a>
+                                </div>
+                                <div class="search-number">
+                                    123411
+                                </div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.10
+                                </div>
+                                <div class="institution-logo institution-logo9"></div>
+                                <div class="institution-name">
+                                    <a href="" title="上海文耀教育科技有限公司">上海文耀教育科技有限公司</a>
+                                </div>
+                                <div class="search-number">
+                                    457652
+                                </div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="institution">
+                        <li class="top-header1">
+                            地区排行榜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;人气指数
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number">
+                                    NO.1
+                                </div>
+                                <div class="institution-logo">
+                                </div>
+                                <div class="institution-name">
+                                    <a href="">上海海洋大学</a>
+                                </div>
+                                <div class="search-number">
+                                    250
+                                </div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number1">
+                                    NO.2
+                                </div>
+                                <div class="institution-logo institution-logo1"></div>
+                                <div class="institution-name">
+                                    <a href="">苹果公司</a>
+                                </div>
+                                <div class="search-number">
+                                    141250
+                                </div>
+                                <div class="top">↓</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number2">
+                                    NO.3
+                                </div>
+                                <div class="institution-logo institution-logo2"></div>
+                                <div class="institution-name">
+                                    <a href="">华为大公司</a>
+                                </div>
+                                <div class="search-number">456741</div>
+                                <div class="top">↓</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.4
+                                </div>
+                                <div class="institution-logo institution-logo3"></div>
+                                <div class="institution-name">
+                                    <a href="">上海海洋大学</a>
+                                </div>
+                                <div class="search-number">412568</div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.5
+                                </div>
+                                <div class="institution-logo institution-logo4"></div>
+                                <div class="institution-name">
+                                    <a href="">凌志国际有限公司</a>
+                                </div>
+                                <div class="search-number">
+                                    789410
+                                </div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.6
+                                </div>
+                                <div class="institution-logo institution-logo5"></div>
+                                <div class="institution-name">
+                                    <a href="">腾讯公司</a>
+                                </div>
+                                <div class="search-number">
+                                    444789
+                                </div>
+                                <div class="top">↓</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.7
+                                </div>
+                                <div class="institution-logo institution-logo6"></div>
+                                <div class="institution-name">
+                                    <a href="">搜狗</a>
+                                </div>
+                                <div class="search-number">
+                                    451043
+                                </div>
+                                <div class="top">↓</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.8
+                                </div>
+                                <div class="institution-logo institution-logo7"></div>
+                                <div class="institution-name">
+                                    <a href="">懒人有限责任公司</a>
+                                </div>
+                                <div class="search-number">
+                                    410101
+                                </div>
+                                <div class="top">↓</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.9
+                                </div>
+                                <div class="institution-logo institution-logo8"></div>
+                                <div class="institution-name">
+                                    <a href="">祥玉有限责任公司</a>
+                                </div>
+                                <div class="search-number">
+                                    410235
+                                </div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.10
+                                </div>
+                                <div class="institution-logo institution-logo9"></div>
+                                <div class="institution-name">
+                                    <a href="">文耀科技有限公司</a>
+                                </div>
+                                <div class="search-number">
+                                    784586
+                                </div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="institution">
+                        <li class="top-header1">
+                            个人潜力榜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;人气指数
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number">
+                                    NO.1
+                                </div>
+                                <div class="institution-logo">
+                                </div>
+                                <div class="institution-name">
+                                    <a href="">上海海洋大学</a>
+                                </div>
+                                <div class="search-number">
+                                    456123
+                                </div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number1">
+                                    NO.2
+                                </div>
+                                <div class="institution-logo institution-logo1"></div>
+                                <div class="institution-name">
+                                    <a href="">苹果公司</a>
+                                </div>
+                                <div class="search-number">
+                                    123456
+                                </div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number2">
+                                    NO.3
+                                </div>
+                                <div class="institution-logo institution-logo2"></div>
+                                <div class="institution-name">
+                                    <a href="">华为大公司</a>
+                                </div>
+                                <div class="search-number">123456</div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.4
+                                </div>
+                                <div class="institution-logo institution-logo3"></div>
+                                <div class="institution-name">
+                                    <a href="">上海海洋大学</a>
+                                </div>
+                                <div class="search-number">124567</div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.5
+                                </div>
+                                <div class="institution-logo institution-logo4"></div>
+                                <div class="institution-name">
+                                    <a href="">凌志国际有限公司</a>
+                                </div>
+                                <div class="search-number">1234567</div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.6
+                                </div>
+                                <div class="institution-logo institution-logo5"></div>
+                                <div class="institution-name">
+                                    <a href="">腾讯公司</a>
+                                </div>
+                                <div class="search-number">9874562</div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.7
+                                </div>
+                                <div class="institution-logo institution-logo6"></div>
+                                <div class="institution-name">
+                                    <a href="">搜狗</a>
+                                </div>
+                                <div class="search-number">4567852</div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.8
+                                </div>
+                                <div class="institution-logo institution-logo7"></div>
+                                <div class="institution-name">
+                                    <a href="">懒人有限责任公司</a>
+                                </div>
+                                <div class="search-number">123410</div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.9
+                                </div>
+                                <div class="institution-logo institution-logo8"></div>
+                                <div class="institution-name">
+                                    <a href="">祥玉有限责任公司</a>
+                                </div>
+                                <div class="search-number">147852</div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.10
+                                </div>
+                                <div class="institution-logo institution-logo9"></div>
+                                <div class="institution-name">
+                                    <a href="">文耀科技有限公司</a>
+                                </div>
+                                <div class="search-number">417520</div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <ul class="institution">
+                        <li class="top-header1">
+                            专家大师榜&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;人气指数
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number">
+                                    NO.1
+                                </div>
+                                <div class="institution-logo">
+                                </div>
+                                <div class="institution-name">
+                                    <a href="">上海海洋大学</a>
+                                </div>
+                                <div class="search-number">
+                                    147852
+                                </div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number1">
+                                    NO.2
+                                </div>
+                                <div class="institution-logo institution-logo1"></div>
+                                <div class="institution-name">
+                                    <a href="">苹果公司</a>
+                                </div>
+                                <div class="search-number">147852</div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number2">
+                                    NO.3
+                                </div>
+                                <div class="institution-logo institution-logo2"></div>
+                                <div class="institution-name">
+                                    <a href="">华为大公司</a>
+                                </div>
+                                <div class="search-number">147852</div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.4
+                                </div>
+                                <div class="institution-logo institution-logo3"></div>
+                                <div class="institution-name">
+                                    <a href="">上海海洋大学</a>
+                                </div>
+                                <div class="search-number">458963</div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.5
+                                </div>
+                                <div class="institution-logo institution-logo4"></div>
+                                <div class="institution-name">
+                                    <a href="">凌志国际有限公司</a>
+                                </div>
+                                <div class="search-number">478536</div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.6
+                                </div>
+                                <div class="institution-logo institution-logo5"></div>
+                                <div class="institution-name">
+                                    <a href="">腾讯公司</a>
+                                </div>
+                                <div class="search-number">785412</div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.7
+                                </div>
+                                <div class="institution-logo institution-logo6"></div>
+                                <div class="institution-name">
+                                    <a href="">搜狗</a>
+                                </div>
+                                <div class="search-number">145632</div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.8
+                                </div>
+                                <div class="institution-logo institution-logo7"></div>
+                                <div class="institution-name">
+                                    <a href="">懒人有限责任公司</a>
+                                </div>
+                                <div class="search-number">147852</div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.9
+                                </div>
+                                <div class="institution-logo institution-logo8"></div>
+                                <div class="institution-name">
+                                    <a href="">祥玉有限责任公司</a>
+                                </div>
+                                <div class="search-number">478536</div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="ss">
+                                <div class="number3">
+                                    NO.10
+                                </div>
+                                <div class="institution-logo institution-logo9"></div>
+                                <div class="institution-name">
+                                    <a href="">文耀科技有限公司</a>
+                                </div>
+                                <div class="search-number">478569</div>
+                                <div class="top">↑</div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <!--<div class="person-top"></div>-->
+
+    </div>
+</div>
+<!--此部分是网站页脚啊-->
+<div class="last-empty"></div>
+<div class="foot">
+    <p>
+        Copyright&copy;爱智网
+    </p>
+</div>
 </body>
+<script>
+    $(document).ready(function () {
+        $('.carousel').carousel({
+            interval: 2000
+        })
+    })
+</script>
 </html>
