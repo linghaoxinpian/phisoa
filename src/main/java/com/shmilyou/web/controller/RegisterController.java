@@ -47,6 +47,19 @@ public class RegisterController extends BaseController {
     @Autowired
     private AreaService areaService;
 
+    /** 发送邮件验证码 */
+    @RequestMapping(value = "/verificationCode")
+    @ResponseBody
+    public ResponseEntity verificationCode(User user) {
+        boolean isSend = false;
+        String code = String.valueOf((int) (Math.random() * 100000));
+        if (user != null && user.getEmail() != null) {
+            isSend = WebUtils.sendVerificationCode(user.getEmail(), code);
+
+        }
+        return isSend ? WebUtils.ok(code) : WebUtils.error("发送失败");
+    }
+
     @RequestMapping(value = "/organization", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity registerOrganization(OrganizationVO organizationVO) {

@@ -2,7 +2,6 @@ package com.shmilyou;
 
 import com.shmilyou.entity.User;
 import com.shmilyou.utils.Utils;
-import com.shmilyou.utils.WebUtils;
 import org.junit.Test;
 
 import java.text.DateFormat;
@@ -56,7 +55,7 @@ public class NoSpringTest {
     //邮件
     @Test
     public void javaxMail() throws Exception {
-        WebUtils.sendQQEmail("1159171637@qq.com", "dlhpbctezbhlbabd", "530060499@qq.com", "w2u6");
+        Utils.sendQQEmail("1159171637@qq.com", "dlhpbctezbhlbabd", "530060499@qq.com", "w2u6");
     }
 
 }

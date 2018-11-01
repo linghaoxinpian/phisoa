@@ -3,7 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
     <title>用户注册</title>
+    <script>
+        function verificationCode() {
+            var email = $("#email").val();
+            $.ajax({
+                url: "/phisoa/register/verificationCode",
+                async: true,
+                type: "POST",
+                data: {
+                    "email": email
+                },
+                // 成功后开启模态框
+                success: function (data) {
+                    if (data.status == 200) {
+                        $("#sendCode").val("已发送");
+                    } else {
+                        alert("发送失败");
+                    }
+                },
+                error: function () {
+                    $("#sendCode").val("发送失败");
+                },
+                dataType: "json"
+            });
+        }
+    </script>
 </head>
 <body>
 <div class="container">
@@ -33,7 +60,7 @@
                 </div>
                 <div class="form-group">
                     <label class="label label-info">电子邮箱</label>
-                    <input type="email" name="email" class="form-control" value="530060499@qq.com">
+                    <input type="email" name="email" id="email" class="form-control" value="530060499@qq.com">
                 </div>
                 <div class="form-group">
                     <label class="label label-info">居住详细地址</label>
@@ -79,6 +106,13 @@
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" id="code">
+                    <a class="queryA" id="sendCode" href="javascript:void(0)" onclick="verificationCode()">
+                        发送验证码
+                    </a>
                 </div>
 
                 <div class="form-group">

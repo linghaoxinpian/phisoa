@@ -48,4 +48,9 @@ public final class Constant {
 
     /** 【课程】评论 */
     public static final String PIC_COURSE_COMMENT_PATH = "static/upload/organization/course/";
+
+    /** 邮件发送人 */
+    public static final String SEND_ACCOUNT_EMAIL = "1159171637@qq.com";
+    /** 邮件发送人的密码 */
+    public static final String SEND_ACCOUNT_PASSWORD = "dlhpbctezbhlbabd";
 }
