@@ -1,6 +1,7 @@
 package com.shmilyou.service;
 
 import com.shmilyou.entity.Area;
+import com.shmilyou.service.bo.AreaCode;
 
 import java.util.List;
 
@@ -23,4 +24,12 @@ public interface AreaService extends BaseService<Area> {
      * @param parentId
      */
     List<Area> queryByParentId(Integer parentId);
+
+    /**
+     * 在【省、市、县】三个地区编码，选取一个合适的编码
+     *
+     * @param areaCode
+     * @return
+     */
+    String loadSelectAreaCode(AreaCode areaCode);
 }

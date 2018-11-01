@@ -28,24 +28,12 @@ public class UserVO {
     private String email;
 
     /**
-     * 居住地址
-     */
-    private String place;
-
-    /**
      * 出生日期
      */
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthDay;
 
-    private Integer gender;
-
     //----------------- 非DB字段 -----------------
-
-    /**
-     * 地区全称
-     */
-    private String fullAreaName;
 
     /**
      * 所选标签的字符串集合

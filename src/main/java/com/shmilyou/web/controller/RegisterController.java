@@ -3,14 +3,18 @@ package com.shmilyou.web.controller;
 import com.shmilyou.entity.Amateur;
 import com.shmilyou.entity.AmateurTag;
 import com.shmilyou.entity.Area;
+import com.shmilyou.entity.Category;
 import com.shmilyou.entity.Organization;
 import com.shmilyou.entity.OrganizationTag;
 import com.shmilyou.entity.User;
 import com.shmilyou.entity.UserTag;
 import com.shmilyou.service.AmateurService;
 import com.shmilyou.service.AreaService;
+import com.shmilyou.service.CategoryService;
 import com.shmilyou.service.OrganizationService;
 import com.shmilyou.service.UserService;
+import com.shmilyou.service.bo.AreaCode;
+import com.shmilyou.utils.ConfigUtils;
 import com.shmilyou.utils.WebUtils;
 import com.shmilyou.web.controller.vo.AmateurVO;
 import com.shmilyou.web.controller.vo.OrganizationVO;
@@ -19,12 +23,12 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -44,6 +48,8 @@ public class RegisterController extends BaseController {
     private UserService userService;
     @Autowired
     private AreaService areaService;
+    @Autowired
+    private CategoryService categoryService;
 
     /** 发送邮件验证码 */
     @RequestMapping(value = "/verificationCode")
@@ -68,7 +74,7 @@ public class RegisterController extends BaseController {
         BeanUtils.copyProperties(organizationVO, organization);
         // 【地区】处理
         Area area = areaService.queryByFullName(organizationVO.getFullAreaName());
-        organization.setAreaId(area == null ? 0 : area.getAreaId());
+        //organization.setAreaId(area == null ? 0 : area.getAreaId());
 
         //注册机构
         int raw = organizationService.register(organization);
@@ -106,12 +112,15 @@ public class RegisterController extends BaseController {
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity registerUser(UserVO userVO, HttpSession session) {
+    public ResponseEntity registerUser(UserVO userVO, AreaCode areaCode) {
         //校验
         if (StringUtils.isEmpty(userVO.getEmail())) {
             return WebUtils.error("邮箱为空");
         }
         boolean existEmail = userService.existEmail(userVO.getEmail());
+        if (ConfigUtils.IS_DEBUG) {
+            existEmail = false;
+        }
         if (existEmail) {
             return WebUtils.error("该邮箱已注册");
         }
@@ -120,8 +129,8 @@ public class RegisterController extends BaseController {
         BeanUtils.copyProperties(userVO, user);
         user.setId(UUID.randomUUID().toString());
         // 【地区】处理
-        Area area = areaService.queryByFullName(userVO.getFullAreaName());
-        user.setAreaId(area == null ? 0 : area.getAreaId());
+        String code = areaService.loadSelectAreaCode(areaCode);
+        user.setAreaCode(code);
         //设置默认头像
         user.setHeadImg("default.jpg");
 
@@ -151,7 +160,10 @@ public class RegisterController extends BaseController {
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.GET)
-    public String registerUser() {
+    public String registerUser(ModelMap modelMap) {
+        List<Category> tags = categoryService.queryByLevel(Category.Level1);
+        modelMap.addAttribute("tags", tags);
         return "register_user";
     }
+
 }

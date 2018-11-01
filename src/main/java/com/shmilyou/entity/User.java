@@ -30,26 +30,21 @@ public class User extends BaseEntity {
     private String email;
 
     /**
-     * 居住地址
-     */
-    private String place;
-
-    /**
      * 相册,一个json串，如["1.jpg","2.jpg","3.jpg"]
      */
     private String photoAlbum;
 
     /**
-     * 所在地Id
+     * 地区编码
      */
-    private Integer areaId;
+    private String areaCode;
 
     /**
      * 出生日期
      */
     private Date birthDay;
 
-    private Integer gender;
+    private int gender;
 
     //----------------- 非DB字段 -----------------
 

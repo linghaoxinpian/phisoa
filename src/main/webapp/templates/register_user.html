@@ -7,11 +7,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
     <title>用户注册</title>
     <script>
-        var code = "";
+        var code;
 
         function checkCode() {
             var verify = $("#code").val() == code;
+            verify = true;
             if (verify) {
+                var province = $("#province").find("option:selected").data("code");
+                var city = $("#city").find("option:selected").data("code");
+                var district = $("#district").find("option:selected").data("code");
+                $("#p").val(province);
+                $("#c").val(city);
+                $("#d").val(district);
                 return true;
             }
             alert("验证码错误");
@@ -29,16 +36,15 @@
                 },
                 success: function (data) {
                     if (data.status == 200) {
-                        if (isEmpty(data.msg)) {
-                            $("#sendCode").val("已发送");
+                        if (!isEmpty(data.msg)) {
+                            $("#code_status").text("已发送");
                             code = data.msg;
-                        } else {
-                            alert("发送失败");
+                            return;
                         }
 
-                    } else {
-                        alert("发送失败");
                     }
+                    $("#code_status").text("发送失败");
+
                 },
                 error: function () {
                     $("#sendCode").val("发送失败");
@@ -62,24 +68,24 @@
         <div class="col-sm-6 col-sm-offset-3">
             <form action="/phisoa/register/user" method="post" enctype="multipart/form-data"
                   class="form form-horizontal" onsubmit="return checkCode();">
-                <div class="form-group">
-                    <label class="label label-info" for="password">密码</label>
-                    <input type="password" id="password" name="password" class="form-control" value="123">
-                </div>
+
                 <div class="form-group">
                     <label class="label label-info">电子邮箱</label>
                     <input type="email" name="email" id="email" class="form-control" value="530060499@qq.com">
                 </div>
 
                 <div class="form-group">
-                    <label class="label label-info">选择所在地区（用于推荐）</label>
-                    <select name="fullAreaName" class="form-control">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
+                    <label class="label label-info" for="password">密码</label>
+                    <input type="password" id="password" name="password" class="form-control" value="123">
+                </div>
+
+                <div data-toggle="distpicker">
+                    <select data-province="上海市" id="province"></select>
+                    <select data-city="上海市市辖区" id="city"></select>
+                    <select data-district="浦东新区" id="district"></select>
+                    <input type="hidden" id="p" name="province">
+                    <input type="hidden" id="c" name="city">
+                    <input type="hidden" id="d" name="district">
                 </div>
 
                 <div class="form-group">
@@ -98,6 +104,7 @@
                     <a class="queryA" id="sendCode" href="javascript:void(0)" onclick="verificationCode()">
                         发送验证码
                     </a>
+                    <label id="code_status" class="label label-success pull-left" style="line-height: 13px;"></label>
                 </div>
 
                 <div class="form-group">
@@ -110,5 +117,8 @@
         3
     </div>
 </div>
+<script src="/static/area/js/distpicker.data.js"></script>
+<script src="/static/area/js/distpicker.js"></script>
+<script src="/static/area/js/main.js"></script>
 </body>
 </html>

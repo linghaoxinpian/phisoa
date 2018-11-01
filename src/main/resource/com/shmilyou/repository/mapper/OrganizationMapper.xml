@@ -8,6 +8,7 @@
 
     <resultMap id="organizationRM" type="com.shmilyou.entity.Organization" autoMapping="true">
         <id property="id" column="id"/>
+        <result property="levelId" column="level_id"/>
         <association property="level" column="level_id" javaType="com.shmilyou.entity.OrganizationLevel"
                      select="getLevel"/>
         <association property="overview" column="id" javaType="com.shmilyou.entity.OrganizationOverview"

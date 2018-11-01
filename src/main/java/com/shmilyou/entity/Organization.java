@@ -72,14 +72,14 @@ public class Organization extends BaseEntity {
     private String homeUrl;
 
     /**
-     * 位置Id
+     * 地区编码
      */
-    private Integer areaId;
+    private String areaCode;
 
     /**
      * 机构在我方的评级
      */
-    //private String levelId;
+    private String levelId;
 
     //----------------- 非DB字段 -----------------
 
