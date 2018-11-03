@@ -28,6 +28,9 @@ public final class Constant {
     /** 【课程图片】存储路径 */
     public static final String PIC_COURSE_PATH = "static/upload/organization/course/";
 
+    /** 【课程】评论 */
+    public static final String PIC_COURSE_COMMENT_PATH = "static/upload/organization/course/";
+
     /** 【讲师】存储路径 */
     public static final String PIC_LECTURER_PATH = "static/upload/organization/lecturer/";
 
@@ -45,9 +48,6 @@ public final class Constant {
 
     /** 对【机构】的评论 */
     public static final String PIC_ORGANIZATION_COMMENTS_PATH = "static/upload/organization/comments/";
-
-    /** 【课程】评论 */
-    public static final String PIC_COURSE_COMMENT_PATH = "static/upload/organization/course/";
 
     /** 邮件发送人 */
     public static final String SEND_ACCOUNT_EMAIL = "1159171637@qq.com";

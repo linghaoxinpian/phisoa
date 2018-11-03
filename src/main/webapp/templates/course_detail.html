@@ -10,10 +10,6 @@
         .panel {
             margin-bottom: 5px;
         }
-
-        .border {
-            border: 1px solid #ddd;
-        }
     </style>
 </head>
 <body>
@@ -242,6 +238,9 @@
 <div class="container">
     <div class="row">
         课程评价
+        <button type="button" class="btn btn-default btn-sm">
+            <span class="glyphicon glyphicon-comment"></span> <a href="/phisoa/organization/comment/add">我要评价</a>
+        </button>
     </div>
     <div class="row">
         <div class="well" th:text="|全部评价(1000) 好评(600) 中评(200) 差评(200)|"></div>

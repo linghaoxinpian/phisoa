@@ -17,4 +17,10 @@ public interface CourseOrderService extends BaseService<CourseOrder> {
 
     /** 加载最新订单 */
     List<CourseOrder> loadNewestByUserId(String userId, int pageIndex, int pageSize);
+
+    /** 检查用户是否购买过此课程 */
+    CourseOrder loadByCourseIdAndUserId(String courseId, String userId);
+
+    /** 更新某一订单的评论次数 */
+    int plusCommentsNum(String id);
 }

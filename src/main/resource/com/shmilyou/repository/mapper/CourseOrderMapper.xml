@@ -24,9 +24,9 @@
     </select>
 
     <!--updateStatus-->
-    <select id="updateStatus">
+    <update id="updateStatus">
         UPDATE course_order SET status=#{status} WHERE id=#{id} AND del=0;
-    </select>
+    </update>
 
     <select id="queryNewestByUserId" resultMap="courseOrderRM">
         SELECT * FROM course_order
@@ -34,6 +34,16 @@
         ORDER BY add_time
         LIMIT #{pageIndex},#{pageSize}
     </select>
+
+    <select id="queryByCourseIdAndUserId" resultMap="courseOrderRM">
+        SELECT * FROM course_order
+        WHERE user_id=#{userId} AND course_id=#{courseId} AND status=1 AND del=0
+    </select>
+
+    <update id="plusCommentsNum">
+        UPDATE course_order set comments_num=comments_num+1
+        WHERE id=#{id} AND del=0
+    </update>
 
     <!--        基础方法区           -->
     <!-- insert -->

@@ -26,7 +26,7 @@ public class WebUtils {
      * @return 带后缀的文件名
      */
     public static String uploadPicture(MultipartFile pic, String path, String fileName) {
-        if (pic != null) {
+        if (pic != null && pic.getSize() > 0) {
             String picName = pic.getOriginalFilename();
             String picType = picName.substring(picName.lastIndexOf("."));
             if (".png".equals(picType) || ".jpg".equals(picType) || ".jpeg".equals(picType)) {
@@ -41,7 +41,7 @@ public class WebUtils {
                 }
             }
         }
-        return "default.jpg";
+        return "";
     }
 
     /** 返回状态码200，以及json数据 */

@@ -12,6 +12,7 @@ import com.shmilyou.service.OrganizationCommentService;
 import com.shmilyou.service.OrganizationService;
 import com.shmilyou.utils.Constant;
 import com.shmilyou.utils.Utils;
+import com.shmilyou.web.resolver.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -83,6 +84,20 @@ public class OrganizationIndexController extends BaseController {
         modelMap.addAttribute("uPath", Constant.PIC_USER_HEAD_PATH);
         modelMap.addAttribute("ccPath", Constant.PIC_COURSE_COMMENT_PATH);
         return "index_organization";
+    }
+
+    /** 评论机构 */
+    @RequestMapping(value = "/comment/add", method = RequestMethod.POST)
+    public String addComment(LoginUser loginUser, OrganizationComment comment) {
+        if (StringUtils.isEmpty(comment.getComment())) {
+            return "comment is null";
+        }
+        comment.setUserId(loginUser.getId());
+        int raw = organizationCommentService.add(comment);
+        if (raw <= 0) {
+            return "评论失败";
+        }
+        return "ok";
     }
 
     /**

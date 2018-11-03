@@ -3,11 +3,13 @@ package com.shmilyou.entity;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.Date;
 
-/**
+/*
  * Created with 岂止是一丝涟漪     530060499@qq.com    2018/10/24
  */
-// 用户购买课程
+
+/** 用户购买课程 */
 @Data
 public class CourseOrder extends BaseEntity {
 
@@ -38,6 +40,8 @@ public class CourseOrder extends BaseEntity {
     private String userId;
 
     private String organizationId;
+
+    private Date addTime;
 
     //----------------- 非DB字段 -----------------
 

@@ -3,17 +3,21 @@ package com.shmilyou.web.controller;
 import com.shmilyou.entity.Category;
 import com.shmilyou.entity.Course;
 import com.shmilyou.entity.CourseComment;
+import com.shmilyou.entity.CourseOrder;
 import com.shmilyou.entity.Organization;
 import com.shmilyou.entity.OrganizationOverview;
 import com.shmilyou.service.CategoryService;
 import com.shmilyou.service.CourseCommentService;
+import com.shmilyou.service.CourseOrderService;
 import com.shmilyou.service.CourseService;
 import com.shmilyou.service.OrganizationService;
 import com.shmilyou.utils.Constant;
 import com.shmilyou.utils.Utils;
 import com.shmilyou.utils.WebUtils;
+import com.shmilyou.web.controller.vo.CourseCommentVO;
 import com.shmilyou.web.controller.vo.CourseVO;
 import com.shmilyou.web.resolver.LoginOrganization;
+import com.shmilyou.web.resolver.LoginUser;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -25,12 +29,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -49,6 +56,8 @@ public class CourseController extends BaseController {
     private OrganizationService organizationService;
     @Autowired
     private CourseCommentService courseCommentService;
+    @Autowired
+    private CourseOrderService courseOrderService;
 
     //课程详情页
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -123,8 +132,37 @@ public class CourseController extends BaseController {
         return "search_course";
     }
 
+    /** 评论课程 */
+    @RequestMapping(value = "/comment/add", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity<Map<String, Object>> commentCourse(LoginUser loginUser, CourseCommentVO commentVO, HttpSession session) {
+        //评论权限
+        CourseOrder order = courseOrderService.loadByCourseIdAndUserId(commentVO.getCourseId(), loginUser.getId());
+        if (order != null) {
+            CourseComment comment = new CourseComment();
+            comment.setComment(commentVO.getComment());
+            comment.setCourseId(commentVO.getCourseId());
+            comment.setUserId(loginUser.getId());
+            //处理图片
+            List pictures = new ArrayList();
+            if (commentVO.getPics() != null) {
+                String path = session.getServletContext().getRealPath("/") + Constant.PIC_COURSE_COMMENT_PATH + commentVO.getCourseId() + "/";
+                for (MultipartFile pic : commentVO.getPics()) {
+                    String fileName = WebUtils.uploadPicture(pic, path, UUID.randomUUID().toString());
+                    pictures.add(fileName);
+                }
+            }
+            comment.setPictures(Utils.generateJson(pictures));
 
-    //--------------------- GET ---------------------
+            //插入评论
+            courseCommentService.insert(comment);
+            //更新订单评论数
+            courseOrderService.plusCommentsNum(order.getId());
+            return WebUtils.ok();
+        }
+        return WebUtils.error("未购买不能评论");
+    }
+
 
     //爱好者新增课程
     @RequestMapping(value = "/add_course_amateur", method = RequestMethod.GET)
