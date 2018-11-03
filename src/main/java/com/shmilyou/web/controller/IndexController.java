@@ -1,5 +1,6 @@
 package com.shmilyou.web.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.shmilyou.entity.Amateur;
 import com.shmilyou.entity.Category;
 import com.shmilyou.entity.Course;
@@ -11,8 +12,12 @@ import com.shmilyou.service.CourseService;
 import com.shmilyou.service.OpenCourseService;
 import com.shmilyou.service.OrganizationService;
 import com.shmilyou.service.UserService;
+import com.shmilyou.utils.WebUtils;
+import com.shmilyou.web.controller.vo.AppIdAndOpenId;
+import com.shmilyou.web.controller.vo.QQUserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -93,5 +98,22 @@ public class IndexController extends BaseController {
     @RequestMapping(value = "to_denounce", method = RequestMethod.POST)
     public String toDenounce(String profile, String email, String phone, String isAnonymity, String content) {
         return "to_denounce";
+    }
+
+    @RequestMapping(value = "/qqcallback")
+    public String authQQ(String access_token) {
+        //1.未获取到token
+        if (StringUtils.isEmpty(access_token)) {
+            return "forward:/QQcallback";
+        }
+        //2.已获取到token
+        String json = WebUtils.getJsonFromUrl("https://graph.qq.com/oauth2.0/me?access_token=" + access_token);
+        AppIdAndOpenId appIdAndOpenId = JSON.parseObject(json, AppIdAndOpenId.class);
+        //3.根据2.获取个人信息
+        String userInfo = WebUtils.getJsonFromUrl("https://graph.qq.com/user/get_user_info?access_token=" + access_token + "&oauth_consumer_key=" + appIdAndOpenId.getClient_id() + "&openid=" + appIdAndOpenId.getOpenid());
+        QQUserInfo qqUserInfo = JSON.parseObject(userInfo, QQUserInfo.class);
+        logger.info(qqUserInfo.toString());
+
+        return "";
     }
 }

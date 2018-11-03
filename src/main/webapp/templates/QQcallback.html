@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<!--用于获取access_token与appid的临时页面-->
+<script type="text/javascript">
+    var urlStr = "http://www.shmilyou.com/phisoa/qqcallback?#access_token=0B43362735760F8D25EFF6698436C8A5&expires_in=7776000"
+    //replace('#', '&').replace('auth_qq', 'auth_qq_redirect');
+    var tokenStr = "#access_token=";
+    var split1 = urlStr.indexOf(tokenStr);
+    var split2 = urlStr.indexOf("&");
+    var token = urlStr.substring(split1 + tokenStr.length, split2);
+
+    //将token传给服务器
+    location.href = "http://www.shmilyou.com/phisoa/qqcallback?access_token=" + token;
+</script>
+</body>
+</html>

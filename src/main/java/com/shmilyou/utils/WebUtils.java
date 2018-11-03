@@ -6,8 +6,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -71,5 +76,25 @@ public class WebUtils {
     /** 发送验证码 */
     public static boolean sendVerificationCode(String reviceEmail, String code) {
         return Utils.sendQQEmail(Constant.SEND_ACCOUNT_EMAIL, Constant.SEND_ACCOUNT_PASSWORD, reviceEmail, code);
+    }
+
+    /** 访问远程接口，并获取json数据 */
+    public static String getJsonFromUrl(String urlStr) {
+        StringBuilder json = new StringBuilder();
+        try {
+            URL url = new URL(urlStr);
+            URLConnection connection = url.openConnection();
+            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"));
+            String inputLine = null;
+            while ((inputLine = reader.readLine()) != null) {
+                json.append(inputLine);
+            }
+            reader.close();
+        } catch (MalformedURLException e) {
+            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return json.toString();
     }
 }
