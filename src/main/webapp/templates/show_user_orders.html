@@ -1,10 +1,62 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>用户订单管理</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <script>
+        function rmOrder(id) {
+            $.ajax({
+                url: "/phisoa/manager/user/rm/order",
+                async: true,
+                type: "POST",
+                data: {
+                    "id": id
+                },
+                success: function (data) {
+                    if (data.status == 200) {
+                        $("#code_status").text("已发送");
+                        code = data.msg;
+                        return;
+                    }
+                    $("#code_status").text("发送失败");
+
+                },
+                error: function () {
+                    $("#sendCode").val("发送失败");
+                },
+                dataType: "json"
+            });
+        }
+    </script>
 </head>
 <body>
-
+<div class="container">
+    <div class="row">
+        <table class="table table-striped">
+            <caption>订单管理</caption>
+            <thead>
+            <tr>
+                <th>订单编号</th>
+                <th>商品名称</th>
+                <th>商品价格</th>
+                <th>实付价格</th>
+                <th>删除</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="o:${orders}">
+                <td><a th:text="${o.courseName}" th:href="|/phisoa/course/${o.courseId}|"></a></td>
+                <td th:text="${o.courseName}">Bangalore</td>
+                <td th:text="${o.price}">560001</td>
+                <td th:text="${o.cash}">560001</td>
+                <td>
+                    <button href="#" onclick="rmOrder()" th:onclick="|rmOrder(${o.orderNum})|">删除</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </body>
 </html>

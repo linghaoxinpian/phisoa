@@ -8,6 +8,7 @@ import com.shmilyou.utils.Utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -74,7 +75,10 @@ public abstract class BaseServiceImpl<T extends BaseEntity> implements BaseServi
 
     @Override
     public T queryById(String id) {
-        return baseRepository.queryById(T_name, id);
+        if (!StringUtils.isEmpty(id)) {
+            return baseRepository.queryById(T_name, id);
+        }
+        return null;
     }
 
     @Override

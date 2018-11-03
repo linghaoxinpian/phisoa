@@ -4,8 +4,11 @@ import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.request.AlipayTradePagePayRequest;
+import com.shmilyou.entity.Course;
 import com.shmilyou.entity.CourseOrder;
 import com.shmilyou.service.CourseOrderService;
+import com.shmilyou.service.CourseService;
+import com.shmilyou.utils.Utils;
 import com.shmilyou.web.resolver.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +28,8 @@ public class PayController extends BaseController {
 
     @Autowired
     private CourseOrderService orderService;
+    @Autowired
+    private CourseService courseService;
 
     /** 支付宝网页支付 */
     @RequestMapping(value = "/ali", method = RequestMethod.GET)
@@ -69,8 +74,35 @@ public class PayController extends BaseController {
     }
 
     /** 翼支付接口 */
-    //@RequestMapping(value = "",method = RequestMethod.GET)
-    //在这里就要将订单存到数据库里，以免丢失
+    @RequestMapping(value = "/yi", method = RequestMethod.POST)
+    public String yiPay(LoginUser loginUser, String courseId) {
+        if (loginUser == null) {
+            return "error";
+        }
+        //在这里就要将订单存到数据库里，以免丢失
+        Course course = courseService.queryById(courseId);
+        if (course != null) {
+            CourseOrder courseOrder = new CourseOrder();
+            courseOrder.setOrderNum(Utils.generateOrderNum());
+            courseOrder.setCourseName(course.getName());
+            courseOrder.setPrice(course.getPrice());
+            courseOrder.setCourseId(courseId);
+            courseOrder.setUserId(loginUser.getId());
+            courseOrder.setOrganizationId(course.getCategoryId());
+            try {
+                int row = orderService.insert(courseOrder);
+                if (row <= 0) {
+                    logger.error("生成订单失败：" + courseOrder.toString());
+                }
+            } catch (Exception e) {
+                logger.error("生成订单失败：" + courseOrder.toString());
+                logger.error(e.getLocalizedMessage(), e);
+            }
+            return "支付页面";
+        }
+        return "error";
+
+    }
 
     /** 支付成功处理 */
     @RequestMapping(value = "/paySuccess")

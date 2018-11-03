@@ -90,7 +90,7 @@ public class IndexController extends BaseController {
      * @param isAnonymity 是否匿名
      * @param content     举报内容
      */
-    @RequestMapping(value = " to_denounce", method = RequestMethod.POST)
+    @RequestMapping(value = "to_denounce", method = RequestMethod.POST)
     public String toDenounce(String profile, String email, String phone, String isAnonymity, String content) {
         return "to_denounce";
     }

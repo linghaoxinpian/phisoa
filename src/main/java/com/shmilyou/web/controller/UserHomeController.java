@@ -70,7 +70,21 @@ public class UserHomeController extends BaseController {
 
     /** 基础信息管理 */
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public String showCourses(LoginUser loginUser, UserVO userVO, ModelMap modelMap, HttpSession session) {
+    public String showUserInfo(LoginUser loginUser, ModelMap modelMap) {
+        if (loginUser == null) {
+            return "error";
+        }
+        //获取用户
+        User user = userService.queryById(loginUser.getId());
+
+        //
+        modelMap.addAttribute("o", user);
+        return "edit_user";
+    }
+
+    /** 更新基础信息 */
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String updateUserInfo(LoginUser loginUser, UserVO userVO, ModelMap modelMap, HttpSession session) {
         if (loginUser == null) {
             return "error";
         }
@@ -84,11 +98,11 @@ public class UserHomeController extends BaseController {
 
         //
         modelMap.addAttribute("o", user);
-        return "edit_user";
+        return "home_user";
     }
 
     /** 订单管理 */
-    @RequestMapping(value = "/show/orders")
+    @RequestMapping(value = "/show/orders", method = RequestMethod.GET)
     public String showOrders(LoginUser loginUser, ModelMap modelMap) {
         if (loginUser == null) {
             return "error";

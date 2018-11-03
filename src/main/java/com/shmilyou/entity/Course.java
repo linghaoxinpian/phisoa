@@ -2,12 +2,13 @@ package com.shmilyou.entity;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created with 530060499@qq.com
- * Date: 2018/8/16
+/*
+  Created with 530060499@qq.com
+  Date: 2018/8/16
  */
 
 /**
@@ -24,9 +25,9 @@ public class Course extends BaseEntity {
 
     private String picUrl;
 
-    private int price;
+    private BigDecimal price;
 
-    private int originalPrice;
+    private BigDecimal originalPrice;
 
     /** 课程等级：初级 */
     private String level;

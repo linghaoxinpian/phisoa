@@ -11,9 +11,9 @@
 <div class="container">
     <div class="raw">
         <div class="col-sm-6 col-sm-offset-3">
-            <form class="navbar-form navbar-left" action="/phisoa/course/search" method="get">
+            <form class="navbar-form navbar-left" action="/phisoa/course/search/name" method="get">
                 <div class="form-group">
-                    <input type="text" name="searchStr" class="form-control" placeholder="课程" required value="添加课程">
+                    <input type="text" name="searchStr" class="form-control" placeholder="课程名" required th:value="${condition}">
                 </div>
                 <button type="submit" class="btn btn-default">搜索</button>
             </form>
@@ -34,7 +34,8 @@
             <a th:href="${'/phisoa/course/'+c.id}" th:text="${c.name}"></a>
             <p th:text="${c.description}"></p>
             <p th:text="${c.price}"></p>
-            <img width="100" height="100" alt="" th:src="${'/'+path+c.id+'/'+c.getPicUrl()}">
+            <p><s th:text="${c.originalPrice}"></s></p>
+            <img width="100" height="100" alt="" th:src="${c.picUrl}">
         </div>
     </div>
 </div>

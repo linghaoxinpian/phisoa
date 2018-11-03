@@ -25,13 +25,10 @@
                         个人中心 <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">jmeter</a></li>
-                        <li><a href="#">EJB</a></li>
-                        <li><a href="#">Jasper Report</a></li>
-                        <li class="divider"></li>
+                        <li><a href="/phisoa/manager/user/">管理</a></li>
                         <li><a href="#">分离的链接</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">另一个分离的链接</a></li>
+                        <li><a href="/phisoa/login/login_out">退出</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -62,14 +59,14 @@
                         <li><a href="#">另一个分离的链接</a></li>
                     </ul>
                 </li>
-                <li><a href="#">举报平台</a></li>
+                <li><a href="/phisoa/to_denounce">举报平台</a></li>
             </ul>
         </div>
     </div>
 </nav>
 <div class="logo-input" id="logo-input">
     <div class="logo">
-        <a title="爱智慧首页" href="#"><img src="/static/imgs/logo.JPG"></a>
+        <a title="爱智慧首页" href="/phisoa"><img src="/static/imgs/logo.JPG"></a>
     </div>
     <!--<div class="geography">-->
 
@@ -80,14 +77,23 @@
                     <i class="i-search"></i>
                     <div class="col-lg-6">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="机构、个人、地区、标签"
-                                   style="border: 2px solid rgb(237,111,52);width: 400px;height: 40px;">
-					<span class="input-group-btn">
-						<button class="btn btn-default" type="button" style="position:absolute ;top: 32px; outline:none;
-						background-color: rgb(237,111,52);width: 90px;height: 40px;">
-                            搜索
-                        </button>
-					</span>
+                            <form action="/phisoa/course/search/name" method="post" onsubmit="return search();">
+                                <input type="text" name="name" class="form-control" placeholder="机构、个人、地区、标签"
+                                       style="border:
+                                 2px solid rgb(237,111,52);width: 400px;height: 40px;">
+                                <!-- 分类搜索 -->
+                                <select id="classify">
+                                    <option value="0">课程</option>
+                                    <option value="1">机构</option>
+                                    <option value="2">地区</option>
+                                    <option value="3">标签</option>
+                                </select>
+                                <span class="input-group-btn">
+                                    <input type="submit" class="btn btn-default" style="position:absolute ;top: 32px; outline:none;background-color: rgb(237,111,52);width: 90px;height: 40px;">
+                                        搜索
+                                    </a>
+                                </span>
+                            </form>
                         </div><!-- /input-group -->
                     </div><!-- /.col-lg-6 -->
                 </span>
@@ -100,7 +106,7 @@
             <li class="classify"><a href="#">培训分类 <img src="/static/imgs/classify.JPG"></a>
                 <!--<img src="../imgs/classify.JPG">-->
             </li>
-            <li class="navx"><a href="#">首页</a></li>
+            <li class="navx"><a href="/phisoa">首页</a></li>
             <li class="navx"><a href="#">同城活动</a></li>
             <li class="navx"><a href="#">行业专家</a></li>
             <li class="navx"><a href="#">资料库</a></li>

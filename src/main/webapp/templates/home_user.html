@@ -11,7 +11,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-4">
-            <div class="row">1</div>
+            <div class="row"><a href="/phisoa/manager/user/show/orders">订单管理</a></div>
             <div class="row">2</div>
             <div class="row">3</div>
             <div class="row">4</div>
@@ -35,7 +35,7 @@
                 <div class="row">
                     <label th:text="|用户名: ${u.name}|"> 机构名 </label>
                     <label>机构认证徽章</label>
-                    <a href="wwww.sdsd">编辑资料</a>
+                    <a href="/phisoa/manager/user/edit">编辑资料</a>
                 </div>
                 <div class="row">
                     <label th:text="${tag}" th:each="tag:${u.categoryList}">

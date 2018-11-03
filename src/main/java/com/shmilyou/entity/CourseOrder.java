@@ -2,6 +2,8 @@ package com.shmilyou.entity;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 /**
  * Created with 岂止是一丝涟漪     530060499@qq.com    2018/10/24
  */
@@ -16,7 +18,13 @@ public class CourseOrder extends BaseEntity {
      */
     private String orderNum;
 
-    /** 订单金额 */
+    /** 所购买的课程的名称(以购买时的课程名称为准，后续不更改名称) */
+    private String courseName;
+
+    /** 课程价格 */
+    private BigDecimal price;
+
+    /** 订单实付金额金额 */
     private int cash;
 
     /** 订单状态 */

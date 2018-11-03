@@ -69,7 +69,10 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
 
     @Override
     public int addUserTag(List<UserTag> userTags) {
-        return userRepository.insertUserTag(userTags);
+        if (userTags.size() > 0) {
+            return userRepository.insertUserTag(userTags);
+        }
+        return 0;
     }
 
     @Override

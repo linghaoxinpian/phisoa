@@ -55,7 +55,10 @@
                             <a href="#" class="btn">预约试听</a>
                         </div>
                         <div class="col-md-6">
-                            <a href="/phisoa/pay" class="btn btn-info">购买课程</a>
+                            <form action="/phisoa/pay/yi" method="post">
+                                <input type="hidden" name="courseId" th:value="${course.id}">
+                                <input type="submit" class="btn btn-info">购买课程</input>
+                            </form>
                         </div>
                     </div>
                 </div>

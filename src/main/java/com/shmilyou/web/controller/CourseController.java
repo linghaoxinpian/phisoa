@@ -119,13 +119,7 @@ public class CourseController extends BaseController {
 
     //搜索课程
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public String search(String searchStr, Integer pageIndex, Integer pageSize, ModelMap modelMap) {
-        pageIndex = 0;
-        pageSize = 20;
-        List<Course> courses = courseService.queryByName(searchStr, pageIndex, pageSize);
-        modelMap.addAttribute("courses", courses);
-        logger.info(courses.size() + "测试");
-        modelMap.addAttribute("path", Constant.PIC_COURSE_PATH);
+    public String search() {
         return "search_course";
     }
 
@@ -142,16 +136,31 @@ public class CourseController extends BaseController {
 
     //搜索课程by name
     @RequestMapping(value = "/search/name", method = RequestMethod.GET)
-    public String searchCourse(@RequestParam(value = "name") String name, @RequestParam("pageIndex") Integer pageIndex, @RequestParam("pageSize") Integer pageSize) {
+    public String searchCourse(@RequestParam(value = "name") String name, @RequestParam("pageIndex") Integer pageIndex, ModelMap modelMap) {
         if (StringUtils.isEmpty(name)) {
             //搜索条件为空，随意加载课程
             return "异步与否？";
         }
+        //处理分页，这里页面大小固定
+        int pageSize = 20;
+        if (pageIndex == null || pageIndex <= 0) {
+            pageIndex = 1;
+        }
+
         //查询总数量，生成分页
         int count = courseService.count();
+        int totalPage = Math.floorMod(count, pageSize);
 
         List<Course> courses = courseService.queryByName(name, pageIndex - 1, pageSize);
-        return "search_course_result";
+        courses.forEach(c -> {
+            c.setPicUrl(Constant.PIC_COURSE_PATH + c.getId() + "/" + c.getPicUrl());
+        });
+
+        modelMap.addAttribute("condition", name);
+        modelMap.addAttribute("courses", courses);
+        modelMap.addAttribute("totalPage", totalPage);
+        modelMap.addAttribute("pageIndex", pageIndex);
+        return "search_course";
     }
 
     //搜索课程by tagId
