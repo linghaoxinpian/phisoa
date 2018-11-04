@@ -112,12 +112,16 @@ public class IndexController extends BaseController {
 
     @RequestMapping(value = "/qqcallback")
     public String authQQ(String access_token) {
+        logger.info("测试：access_token=" + access_token);
         //1.未获取到token
         if (StringUtils.isEmpty(access_token)) {
-            return "forward:/QQcallback";
+            return "QQcallback";
         }
         //2.已获取到token
         String json = WebUtils.getJsonFromUrl("https://graph.qq.com/oauth2.0/me?access_token=" + access_token);
+        logger.info("测试:原始json=" + json);
+        json = json.substring(json.indexOf("{"), json.indexOf("}") + 1);
+        logger.info("测试:截取后的json=" + json);
         AppIdAndOpenId appIdAndOpenId = JSON.parseObject(json, AppIdAndOpenId.class);
         //3.根据2.获取个人信息
         String userInfo = WebUtils.getJsonFromUrl("https://graph.qq.com/user/get_user_info?access_token=" + access_token + "&oauth_consumer_key=" + appIdAndOpenId.getClient_id() + "&openid=" + appIdAndOpenId.getOpenid());

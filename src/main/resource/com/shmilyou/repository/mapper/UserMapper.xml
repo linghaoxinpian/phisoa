@@ -35,7 +35,11 @@
     </insert>
 
     <insert id="insertOpenUser" parameterType="com.shmilyou.entity.OpenUser">
-        INSERT INTO open_user (id, open_type, open_id, access_token, expired_time, nickname, avatar, user_id) VALUES (#{id}, #{openType}, #{openId}, #{accessToken}, #{expiredTime}, #{nickname}, #{avatar}, #{userId})
+        <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
+            select uuid()
+        </selectKey>
+        INSERT INTO open_user (id, open_type, open_id, access_token, expired_time, nickname, avatar, user_id) VALUES
+        (#{id}, #{openType}, #{openId}, #{accessToken}, #{expiredTime}, #{nickname}, #{avatar}, #{userId})
     </insert>
 
     <!--        基础方法区           -->
