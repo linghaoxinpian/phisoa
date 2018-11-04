@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
 
     <meta charset="UTF-8">
@@ -18,15 +18,15 @@
         </div>
         <div class="gg">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/phisoa/register/user">请注册</a></li>
-                <li><a href="/phisoa/login/user">登录</a></li>
+                <li class="active" th:if="${u} == null"><a href="/phisoa/register/user">请注册</a></li>
+                <li th:if="${u} == null"><a href="/phisoa/login/user">登录</a></li>
+
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         个人中心 <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="/phisoa/manager/user/">管理</a></li>
-                        <li><a href="#">分离的链接</a></li>
                         <li class="divider"></li>
                         <li><a href="/phisoa/login/login_out">退出</a></li>
                     </ul>
@@ -36,13 +36,9 @@
                         商户服务 <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">jmeter</a></li>
-                        <li><a href="#">EJB</a></li>
-                        <li><a href="#">Jasper Report</a></li>
+                        <li><a href="/phisoa/manager/organization/">管理</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">分离的链接</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">另一个分离的链接</a></li>
+                        <li><a href="/phisoa/login/login_out">退出</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

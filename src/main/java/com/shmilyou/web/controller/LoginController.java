@@ -11,6 +11,8 @@ import com.shmilyou.service.OrganizationService;
 import com.shmilyou.service.UserService;
 import com.shmilyou.utils.Constant;
 import com.shmilyou.utils.WebUtils;
+import com.shmilyou.web.resolver.LoginUser;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -49,8 +51,10 @@ public class LoginController extends BaseController {
         if (!StringUtils.isEmpty(account) && !StringUtils.isEmpty(password)) {
             User user = userService.loginIn(account, password);
             if (user != null) {
-                request.getSession().setAttribute(Constant.LOGIN_USER, user);
-                return "index";
+                LoginUser loginUser = new LoginUser();
+                BeanUtils.copyProperties(user, loginUser);
+                request.getSession().setAttribute(Constant.LOGIN_USER, loginUser);
+                return "redirect:/phisoa";
             }
         }
         modelMap.addAttribute("error", "用户名或密码错误");
@@ -98,7 +102,7 @@ public class LoginController extends BaseController {
     @RequestMapping(value = "/login_out", method = RequestMethod.GET)
     public String loginOut(HttpServletRequest request) {
         request.getSession().invalidate();
-        return "index";
+        return "redirect:/phisoa";
     }
 
     /** 求学者微信登录 */

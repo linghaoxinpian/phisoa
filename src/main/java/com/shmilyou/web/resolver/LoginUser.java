@@ -30,15 +30,8 @@ public class LoginUser {
 
     private String email;
 
-    /**
-     * 居住地址
-     */
-    private String place;
-
-    /**
-     * 所在地Id
-     */
-    private Integer areaId;
+    /** 地区编码 */
+    private String areaCode;
 
     /**
      * 出生日期

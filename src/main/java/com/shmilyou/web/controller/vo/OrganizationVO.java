@@ -1,6 +1,7 @@
 package com.shmilyou.web.controller.vo;
 
 import lombok.Data;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class OrganizationVO {
     /**
      * logo
      */
-    private String logo;
+    private MultipartFile logo;
 
     /**
      * 简述
@@ -53,31 +54,11 @@ public class OrganizationVO {
     private String place;
 
     /**
-     * 位置Id
-     */
-    private Integer areaId;
-
-    /**
-     * 机构官方主页
-     */
-    private String homeUrl;
-
-    /**
-     * 机构在我方的评级
-     */
-    //private String levelId;
-
-    /**
      * 培训人数
      */
     private Integer trainers;
 
     //----------------- 非DB字段 -----------------
-
-    /**
-     * 地区全称
-     */
-    private String fullAreaName;
 
     /**
      * 所选标签的字符串集合

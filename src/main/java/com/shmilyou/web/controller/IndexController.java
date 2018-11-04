@@ -16,8 +16,10 @@ import com.shmilyou.service.UserService;
 import com.shmilyou.utils.WebUtils;
 import com.shmilyou.web.controller.vo.AppIdAndOpenId;
 import com.shmilyou.web.controller.vo.QQUserInfo;
+import com.shmilyou.web.resolver.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,7 +48,7 @@ public class IndexController extends BaseController {
     private OpenCourseService openCourseService;
 
     @RequestMapping(value = {"/index", "/", ""})
-    public String index() {
+    public String index(LoginUser loginUser, ModelMap modelMap) {
         //1.加载1级分类
         List<Category> level1Tag = categoryService.queryByLevel(Category.Level1);
         //2.加载【热门培训】
@@ -60,6 +62,13 @@ public class IndexController extends BaseController {
         //6.排行【机构】【爱好者】
         List<Amateur> top1 = amateurService.indexRecommendTop();
         List<Organization> top2 = organizationService.indexRecommendTop();
+
+        //
+        modelMap.addAttribute("u", loginUser);
+        modelMap.addAttribute("level1Tag", level1Tag);
+        modelMap.addAttribute("courses_hot", courses_hot);
+        modelMap.addAttribute("organizations_hot", organizations_hot);
+        modelMap.addAttribute("organization_rank", top2);
         return "index";
     }
 

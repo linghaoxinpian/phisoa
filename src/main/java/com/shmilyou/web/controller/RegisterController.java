@@ -73,7 +73,7 @@ public class RegisterController extends BaseController {
         Organization organization = new Organization();
         BeanUtils.copyProperties(organizationVO, organization);
         // 【地区】处理
-        Area area = areaService.queryByFullName(organizationVO.getFullAreaName());
+        //Area area = areaService.queryByFullName(organizationVO.getFullAreaName());
         //organization.setAreaId(area == null ? 0 : area.getAreaId());
 
         //注册机构
@@ -111,18 +111,21 @@ public class RegisterController extends BaseController {
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
-    @ResponseBody
-    public ResponseEntity registerUser(UserVO userVO, AreaCode areaCode) {
+    public String registerUser(UserVO userVO, AreaCode areaCode, ModelMap modelMap) {
         //校验
         if (StringUtils.isEmpty(userVO.getEmail())) {
-            return WebUtils.error("邮箱为空");
+            //return WebUtils.error("邮箱为空");
+            modelMap.addAttribute("u", userVO);
+            return "register_user";
         }
         boolean existEmail = userService.existEmail(userVO.getEmail());
         if (ConfigUtils.IS_DEBUG) {
             existEmail = false;
         }
         if (existEmail) {
-            return WebUtils.error("该邮箱已注册");
+            //return WebUtils.error("该邮箱已注册");
+            modelMap.addAttribute("u", userVO);
+            return "register_user";
         }
 
         User user = new User();
@@ -144,7 +147,8 @@ public class RegisterController extends BaseController {
         }
         userService.addUserTag(tags);
 
-        return WebUtils.ok("ok");
+        //return WebUtils.ok("ok");
+        return "index";
     }
 
 

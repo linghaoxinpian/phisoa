@@ -28,7 +28,7 @@ public class WebUtils {
      *
      * @param path     目录
      * @param fileName 保存时的文件名,不带后缀
-     * @return 带后缀的文件名
+     * @return 带后缀的文件名，若传入的文件为空，则不做任何处理，返回空字符串
      */
     public static String uploadPicture(MultipartFile pic, String path, String fileName) {
         if (pic != null && pic.getSize() > 0) {

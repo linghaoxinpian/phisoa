@@ -72,14 +72,24 @@
             select uuid()
         </selectKey>
         INSERT INTO organization(id, name, login_name, password, logo, description, photo_album, phone, place,
-        student, area_id, level_id)
+        student, area_code, level_id)
         VALUES(#{id}, #{name}, #{loginName}, #{password}, #{logo}, #{description}, #{photoAlbum}, #{phone}, #{place},
-        #{student}, #{areaId}, #{levelId})
+        #{student}, #{areaCode}, #{levelId})
     </insert>
 
     <!--update -->
     <update id="update">
-    UPDATE Organization SET name=#{name},nick_name=#{nickName}
+    UPDATE organization SET name=#{name},
+      login_name=#{loginName},
+      password=#{password},
+      logo=#{logo},
+      description=#{description},
+      photo_album=#{photoAlbum},
+      phone=#{phone},
+      place=#{place},
+      student=#{student},
+      area_code=#{areaCode},
+      level_id=#{levelId}
     WHERE id=#{id} AND del=0
     </update>
 

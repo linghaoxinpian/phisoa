@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
@@ -9,16 +9,21 @@
     <script>
         var code;
 
+        //处理地区函数
+        function handleArea() {
+            var province = $("#province").find("option:selected").data("code");
+            var city = $("#city").find("option:selected").data("code");
+            var district = $("#district").find("option:selected").data("code");
+            $("#p").val(province);
+            $("#c").val(city);
+            $("#d").val(district);
+        }
+
         function checkCode() {
             var verify = $("#code").val() == code;
             verify = true;
             if (verify) {
-                var province = $("#province").find("option:selected").data("code");
-                var city = $("#city").find("option:selected").data("code");
-                var district = $("#district").find("option:selected").data("code");
-                $("#p").val(province);
-                $("#c").val(city);
-                $("#d").val(district);
+                handleArea();
                 return true;
             }
             alert("验证码错误");
@@ -26,6 +31,7 @@
         }
 
         function verificationCode() {
+            $("#code_status").text("发送中...");
             var email = $("#email").val();
             $.ajax({
                 url: "/phisoa/register/verificationCode",
@@ -71,7 +77,7 @@
 
                 <div class="form-group">
                     <label class="label label-info">电子邮箱</label>
-                    <input type="email" name="email" id="email" class="form-control" value="530060499@qq.com">
+                    <input type="email" name="email" id="email" class="form-control" th:value="${u.email}" value="530060499@qq.com">
                 </div>
 
                 <div class="form-group">
@@ -79,32 +85,41 @@
                     <input type="password" id="password" name="password" class="form-control" value="123">
                 </div>
 
-                <div data-toggle="distpicker">
-                    <select data-province="上海市" id="province"></select>
-                    <select data-city="上海市市辖区" id="city"></select>
-                    <select data-district="浦东新区" id="district"></select>
-                    <input type="hidden" id="p" name="province">
-                    <input type="hidden" id="c" name="city">
-                    <input type="hidden" id="d" name="district">
-                </div>
-
+                <!-- 选择地区 -->
+                <!--<div data-toggle="distpicker">-->
+                <!--<select data-province="上海市" id="province"></select>-->
+                <!--<select data-city="上海市市辖区" id="city"></select>-->
+                <!--<select data-district="浦东新区" id="district"></select>-->
+                <!--<input type="hidden" id="p" name="province">-->
+                <!--<input type="hidden" id="c" name="city">-->
+                <!--<input type="hidden" id="d" name="district">-->
+                <!--</div>-->
                 <div class="form-group">
-                    <label class="label label-info">感兴趣的标签</label>
-                    <select name="tagIds" class="form-control">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                    </select>
+                    <div class="checkbox">
+                        <label th:each="item:${tags}" class="checkbox-inline">
+                            <input type="checkbox" name="tagIds" th:value="${item.id}" th:text="${item.name}"/>
+                        </label>
+                    </div>
                 </div>
-
                 <div class="form-group">
-                    <input type="text" id="code">
-                    <a class="queryA" id="sendCode" href="javascript:void(0)" onclick="verificationCode()">
-                        发送验证码
-                    </a>
-                    <label id="code_status" class="label label-success pull-left" style="line-height: 13px;"></label>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="code" placeholder="输入验证码">
+                                </div>
+                                <div class="col-sm-4">
+                                    <label id="code_status" class="label label-success"></label>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <a id="sendCode" href="javascript:void(0)" onclick="verificationCode()">
+                                发送验证码
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="form-group">

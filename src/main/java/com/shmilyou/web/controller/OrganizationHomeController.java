@@ -6,16 +6,19 @@ import com.shmilyou.entity.Course;
 import com.shmilyou.entity.Lecturer;
 import com.shmilyou.entity.Organization;
 import com.shmilyou.entity.OrganizationOverview;
+import com.shmilyou.service.AreaService;
 import com.shmilyou.service.CategoryService;
 import com.shmilyou.service.CourseOrderService;
 import com.shmilyou.service.CourseService;
 import com.shmilyou.service.LecturerService;
 import com.shmilyou.service.OrganizationService;
+import com.shmilyou.service.bo.AreaCode;
 import com.shmilyou.utils.Constant;
 import com.shmilyou.utils.Utils;
 import com.shmilyou.utils.WebUtils;
 import com.shmilyou.web.controller.vo.CourseVO;
 import com.shmilyou.web.controller.vo.LecturerVO;
+import com.shmilyou.web.controller.vo.OrganizationVO;
 import com.shmilyou.web.resolver.LoginOrganization;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +52,8 @@ public class OrganizationHomeController extends BaseController {
     private CategoryService categoryService;
     @Autowired
     private LecturerService lecturerService;
+    @Autowired
+    private AreaService areaService;
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index(LoginOrganization loginOrganization, ModelMap modelMap) {
@@ -74,7 +79,7 @@ public class OrganizationHomeController extends BaseController {
 
     /** 基础信息管理 */
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public String showCourses(LoginOrganization loginOrganization, ModelMap modelMap) {
+    public String showOrganizationInfo(LoginOrganization loginOrganization, ModelMap modelMap) {
         if (loginOrganization == null) {
             return "error";
         }
@@ -85,6 +90,35 @@ public class OrganizationHomeController extends BaseController {
         //
         modelMap.addAttribute("o", organization);
         return "edit_organization";
+    }
+
+    /** 更新基础信息 */
+    @RequestMapping(value = "/edit", method = RequestMethod.POST)
+    public String updateOrganizationInfo(LoginOrganization loginOrganization, OrganizationVO organizationVO, AreaCode areaCode, ModelMap modelMap, HttpSession session) {
+        if (loginOrganization == null) {
+            return "error";
+        }
+        //1.获取机构
+        Organization organization = organizationService.queryById(loginOrganization.getId());
+        //2.更新logo
+        if (organizationVO.getLogo() != null) {
+            String path = session.getServletContext().getRealPath("/") + Constant.PIC_ORGANIZATION_LOGO_PATH + organization.getId() + "/";
+            String fileName = WebUtils.uploadPicture(organizationVO.getLogo(), path, Utils.generateDateNum());
+            organization.setLogo(fileName);
+        }
+        //3.更新地区
+        String code = areaService.loadSelectAreaCode(areaCode);
+        organization.setAreaCode(code.length() > 0 ? code : organization.getAreaCode());
+        //4.更新其它文本数据
+        organization.setName(organizationVO.getName());
+        organization.setPlace(organizationVO.getPlace());
+        organization.setPhone(organizationVO.getPhone());
+        //5.同步至数据库
+        organizationService.update(organization);
+
+        //
+        modelMap.addAttribute("o", organization);
+        return "home_organization";
     }
 
     /** 新增课程GET */
