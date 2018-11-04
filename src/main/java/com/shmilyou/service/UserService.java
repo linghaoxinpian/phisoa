@@ -1,5 +1,6 @@
 package com.shmilyou.service;
 
+import com.shmilyou.entity.OpenUser;
 import com.shmilyou.entity.User;
 import com.shmilyou.entity.UserTag;
 
@@ -50,4 +51,7 @@ public interface UserService extends BaseService<User> {
      * 是否该邮箱已存在
      */
     boolean existEmail(String email);
+
+    /** 注册第三方登录 */
+    int registerOpenUser(OpenUser openUser);
 }

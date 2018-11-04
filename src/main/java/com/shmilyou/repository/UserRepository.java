@@ -1,5 +1,6 @@
 package com.shmilyou.repository;
 
+import com.shmilyou.entity.OpenUser;
 import com.shmilyou.entity.User;
 import com.shmilyou.entity.UserTag;
 
@@ -18,4 +19,7 @@ public interface UserRepository extends BaseRepository<User> {
      * @return 批量执行成功条数
      */
     int insertUserTag(List<UserTag> userTags);
+
+    /** 新增第三方登录 */
+    int insertOpenUser(OpenUser openUser);
 }

@@ -5,6 +5,7 @@ import com.shmilyou.entity.Amateur;
 import com.shmilyou.entity.Category;
 import com.shmilyou.entity.Course;
 import com.shmilyou.entity.OpenCourse;
+import com.shmilyou.entity.OpenUser;
 import com.shmilyou.entity.Organization;
 import com.shmilyou.service.AmateurService;
 import com.shmilyou.service.CategoryService;
@@ -114,6 +115,15 @@ public class IndexController extends BaseController {
         QQUserInfo qqUserInfo = JSON.parseObject(userInfo, QQUserInfo.class);
         logger.info(qqUserInfo.toString());
 
-        return "";
+        //插入第三方登录表
+        OpenUser openUser = new OpenUser();
+        openUser.setOpenType("QQ");
+        openUser.setOpenId(appIdAndOpenId.getOpenid());
+        openUser.setAccessToken(access_token);
+        openUser.setNickname(qqUserInfo.getNickname());
+        openUser.setAvatar(qqUserInfo.getFigureurl_qq_1());
+        userService.registerOpenUser(openUser);
+
+        return "index";
     }
 }

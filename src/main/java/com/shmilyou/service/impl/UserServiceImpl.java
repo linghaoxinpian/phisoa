@@ -1,5 +1,6 @@
 package com.shmilyou.service.impl;
 
+import com.shmilyou.entity.OpenUser;
 import com.shmilyou.entity.User;
 import com.shmilyou.entity.UserTag;
 import com.shmilyou.repository.UserRepository;
@@ -91,5 +92,10 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
             return users.size() > 0;
         }
         return false;
+    }
+
+    @Override
+    public int registerOpenUser(OpenUser openUser) {
+        return userRepository.insertOpenUser(openUser);
     }
 }
