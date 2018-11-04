@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -106,6 +108,15 @@ public class CourseServiceImpl extends BaseServiceImpl<Course> implements Course
     @Override
     public List<Course> queryByOrganizationId(String organizationId) {
         return queryByColumn("ownerId", organizationId);
+    }
+
+    @Override
+    public Course loadByOrganizationIdAndCourseId(String organizationId, String courseId) {
+        Map<String, String> map = new HashMap<>();
+        map.put("organizationId", organizationId);
+        map.put("courseId", courseId);
+        List<Course> courses = queryByColumns(map);
+        return courses.size() > 0 ? courses.get(0) : null;
     }
 
 }

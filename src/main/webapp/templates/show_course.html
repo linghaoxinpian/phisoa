@@ -11,7 +11,7 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-3" th:each="c:${courses}">
-            <img src="" class="img-responsive" th:src="|/${cPath}${c.id}/${c?.picUrl}|" alt="">
+            <img src="" class="img-responsive" th:src="${c.picUrl}" alt="">
             <div>
                 <p class="text-center" th:text="${c.name}"></p>
                 <p class="text-center" th:text="${c.level}"></p>
@@ -21,7 +21,7 @@
                 </p>
             </div>
             <div>
-                <a href="#" th:href="|${c.id}|">修改课程</a>
+                <a href="/phisoa/manager/organization/edit/course/" th:href="|${c.id}|">修改课程</a>
                 <a href="#" th:href="|${c.id}|">删除课程</a>
             </div>
         </div>

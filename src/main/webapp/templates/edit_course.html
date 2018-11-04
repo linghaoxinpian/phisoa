@@ -1,34 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/bootstrap-3.3.7/dist/css/bootstrap.css">
-    <title>添加课程</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <title>编辑课程</title>
+    <script src="/static/js/selectTags.js" type="javascript"></script>
 </head>
 <body>
 <div class="container">
     <div class="raw">
-        <div class="col-sm-4 col-offset-sm-4">
-            <form class="form-horizontal" action="/phisoa/course/organization/add" method="post"
+        <div class="col-sm-4 col-sm-offset-4">
+            <form class="form-horizontal" action="/phisoa/manager/organization/add/course" method="post"
                   enctype="multipart/form-data">
+                <input type="hidden" th:value="${c.id}" name="id">
                 <div class="form-group">
                     <label>课程名</label>
-                    <input type="text" class="form-control" name="name" value="什么课程"/>
+                    <input type="text" class="form-control" name="name" th:value="${c.name}" value="什么课程"/>
                 </div>
                 <div class="form-group">
-                    <label>标签</label>
-                    <input type="text" name="categoryId" value="123">
+                    <div class="row">
+                        <label>课程类型</label>
+                        <input type="text" class="form-control" name="tag" th:value="${c.category.name}" value="课程类型"/>
+                    </div>
+                    <div class="row">
+                        <select name="categoryId" id="selectTag1" onchange="getTag()" th:each="item:${tagLevel_1}">
+                            <option th:value="${item.id}" th:text="${item.name}" value="7078ac33-befe-11e8-94b3-a353b48ca080">
+                                国学文化
+                            </option>
+                        </select>
+                        <select name="categoryId" id="selectTag2" onchange="getTag2()">
+                            <!--<option value="">请选择</option>-->
+                        </select>
+                        <select name="categoryId" id="selectTag3">
+                            <!--<option>请选择</option>-->
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>每次上课时长</label>
+                    <input type="text" class="form-control" name="duration" th:value="${c.duration}" value="什么课程"/>
+                </div>
+                <div class="form-group">
+                    <label>课程等级</label>
+                    <input type="text" class="form-control" name="level" th:value="${c.level}" value="初级"/>
                 </div>
                 <div class="form-group">
                     <label>价格</label>
-                    <input type="text" name="price" value="999">
+                    <input type="text" name="price" th:value="${c.price}" value="999">
                 </div>
+                <div class="form-group">
+                    <label>门店价</label>
+                    <input type="text" name="originalPrice" th:value="${c.originalPrice}" value="9199">
+                </div>
+
+                <div class="form-group">
+                    <label>教学环境</label>
+                    <input type="text" name="environment" th:text="${c.environment}" value="999">
+                </div>
+
+                <div class="form-group">
+                    <label>教学特色</label>
+                    <input type="text" name="feature" placeholder="有什么特色？" th:value="${c.feature}" value="有什么特色？">
+                </div>
+
+                <div class="form-group">
+                    <label>适合基础</label>
+                    <input type="text" name="suitable" placeholder="适合基础" th:value="${c.suitable}" value="零基础">
+                </div>
+
+                <div class="form-group">
+                    <label>课程目标</label>
+                    <input type="text" name="target" placeholder="" th:value="${c.target}" value="兴趣培养">
+                </div>
+
+                <div class="form-group">
+                    <label>上课形势</label>
+                    <input type="text" name="trainingModel" placeholder="如：班级上课" th:value="${c.trainingModel}" value="班级上课">
+                </div>
+
+                <div class="form-group">
+                    <label>开课时间</label>
+                    <input type="date" name="trainingModel" th:value="${c.startTime}">
+                </div>
+
+                <div class="form-group">
+                    <label>选择老师</label>
+                    <select name="lecturerId" th:each="l:${lecturers}">
+                        <option th:value="${l.id}" th:text="${l.name}"></option>
+                    </select>
+                </div>
+
+                <!-- 图片回显 -->
+                <div class="form-group">
+
+                </div>
+
                 <div class="form-group">
                     <label>上传图片</label>
-                    <input type="file" name="pic">
+                    <input type="file" name="pictures" multiple>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-info">提交</button>
+                    <button type="submit" class="btn btn-info">更新</button>
                 </div>
             </form>
         </div>

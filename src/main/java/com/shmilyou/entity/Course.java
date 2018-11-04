@@ -23,6 +23,7 @@ public class Course extends BaseEntity {
 
     private String description;
 
+    /** 课程封面 */
     private String picUrl;
 
     private BigDecimal price;
@@ -69,7 +70,7 @@ public class Course extends BaseEntity {
     //----------------- 非DB字段 -----------------
 
     /** 标签名 */
-    private String tagName;
+    private Category category;
 
     /** 所属机构 */
     private Organization organization;

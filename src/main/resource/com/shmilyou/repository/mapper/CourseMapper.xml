@@ -10,13 +10,13 @@
         <!-- 由于 ownerId 是关联是关联查询时的中间属性，所以不指定映射列的话会导致正常查询时，ownerId=null -->
         <result property="ownerId" column="owner_id"/>
         <result property="categoryId" column="category_id"/>
-        <association property="tagName" column="category_id" javaType="java.lang.String" select="getTagName"/>
+        <association property="category" column="category_id" javaType="com.shmilyou.entity.Category" select="getTag"/>
         <association property="organization" column="owner_id" javaType="com.shmilyou.entity.Organization" select="getOwnerId"/>
         <association property="lecturer" column="lecturer_id" javaType="com.shmilyou.entity.Lecturer" select="getLecturer"/>
     </resultMap>
-    <select id="getTagName" resultType="java.lang.String">
+    <select id="getTag" resultType="com.shmilyou.entity.Category">
         <!-- 这里不加del=0,以免错误的逻辑导致空指针 -->
-        SELECT name FROM category WHERE id=#{id}
+        SELECT * FROM category WHERE id=#{id}
     </select>
     <select id="getOwnerId" resultType="com.shmilyou.entity.Organization">
         SELECT * FROM organization WHERE id=#{id}
@@ -70,7 +70,23 @@
 
     <!--update -->
     <update id="update">
-    UPDATE Course SET name=#{name},nick_name=#{nickName}
+    UPDATE Course SET name=#{name},
+    description=#{description},
+    pic_url=#{picUrl},
+    price=#{price},
+    original_price=#{originalPrice},
+    level=#{level},
+    suitable=#{suitable},
+    training_mode=#{trainingMode},
+    duration=#{duration},
+    environment=#{environment},
+    feature=#{feature},
+    target=#{target},
+    start_time=#{startTime},
+    pictures=#{pictures},
+    owner_id=#{ownerId},
+    category_id=#{categoryId},
+    lecturer_id=#{lecturerId}
     WHERE id=#{id} AND del=0
     </update>
 

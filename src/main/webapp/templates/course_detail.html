@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <p class="lead" th:text="${course.tagName}">分类</p>
+                        <p class="lead" th:text="${course.category.name}">分类</p>
                         <div><label class="label label-info">课程等级：</label>
                             <span th:text="${course.level}">null</span>
                         </div>
@@ -146,7 +146,7 @@
             </div>
             <div class="row">
                 <ul class="list-group">
-                    <li class="list-group-item" th:text="|课程类型: ${course.tagName}|"></li>
+                    <li class="list-group-item" th:text="|课程类型: ${course.category.name}|"></li>
                     <li class="list-group-item">每次上课时长：45分钟</li>
                     <li class="list-group-item">教学环境：环境优雅，宽敞明亮</li>
                     <li class="list-group-item">

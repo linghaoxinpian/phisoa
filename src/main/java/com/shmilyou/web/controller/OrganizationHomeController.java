@@ -1,7 +1,8 @@
 package com.shmilyou.web.controller;
 
-/** Created with 岂止是一丝涟漪     530060499@qq.com    2018/10/29 */
+/* Created with 岂止是一丝涟漪     530060499@qq.com    2018/10/29 */
 
+import com.shmilyou.entity.Category;
 import com.shmilyou.entity.Course;
 import com.shmilyou.entity.Lecturer;
 import com.shmilyou.entity.Organization;
@@ -31,8 +32,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -155,23 +158,18 @@ public class OrganizationHomeController extends BaseController {
         if (loginOrganization == null) {
             return "error";
         }
-        //获取机构
-        Organization organization = organizationService.queryById(loginOrganization.getId());
-        //获取所有课程
-        List<Course> courses = courseService.queryByOrganizationId(organization.getId());
 
+        //获取所有课程
+        List<Course> courses = courseService.queryByOrganizationId(loginOrganization.getId());
+        //处理图片地址
+        courses.forEach(c -> {
+            c.setPicUrl(Constant.PIC_COURSE_PATH + c.getId() + "/" + c.getPicUrl());
+        });
 
         //
-        modelMap.addAttribute("o", organization);
+        modelMap.addAttribute("o", loginOrganization);
         modelMap.addAttribute("courses", courses);
 
-        modelMap.addAttribute("cPath", Constant.PIC_COURSE_PATH);
-        //modelMap.addAttribute("oPhotoPath", Constant.PIC_ORGANIZATION_PHOTO_PATH);
-        //modelMap.addAttribute("oLogoPath", Constant.PIC_ORGANIZATION_PHOTO_PATH);
-        //modelMap.addAttribute("oCommentsPath", Constant.PIC_ORGANIZATION_COMMENTS_PATH);
-        //modelMap.addAttribute("lPath", Constant.PIC_LECTURER_PATH);
-        //modelMap.addAttribute("uPath", Constant.PIC_USER_HEAD_PATH);
-        //modelMap.addAttribute("ccPath", Constant.PIC_COURSE_COMMENT_PATH);
         return "show_course";
     }
 
@@ -181,15 +179,77 @@ public class OrganizationHomeController extends BaseController {
         if (loginOrganization == null) {
             return "error";
         }
-        //获取需要修改的课程
-        Course course = courseService.queryById(courseId);
-
-
+        //1.获取需要修改的课程
+        Course course = courseService.loadByOrganizationIdAndCourseId(loginOrganization.getId(), courseId);
+        if (course == null) {
+            //该课程非当前登录机构的课程
+            return "error";
+        }
+        course.setPicUrl(Constant.PIC_COURSE_PATH + course.getId() + course.getPicUrl());
+        course.setParsedPictures(Utils.parseJsonArr(course.getPictures()));
+        //2.获取机构讲师
+        List<Lecturer> lecturers = lecturerService.queryByOrganizationId(loginOrganization.getId());
+        //3.获取一级标签分类
+        List<Category> tagLevel_1 = categoryService.queryByLevel(Category.Level1);
         //
-        modelMap.addAttribute("course", course);
-        modelMap.addAttribute("cPath", Constant.PIC_COURSE_PATH);
-
+        modelMap.addAttribute("c", course);
+        modelMap.addAttribute("lecturers", lecturers);
+        modelMap.addAttribute("tagLevel_1", tagLevel_1);
         return "edit_course";
+    }
+
+    /** 更新课程 */
+    @RequestMapping(value = "/edit/course", method = RequestMethod.POST)
+    public String editCourse(LoginOrganization loginOrganization, CourseVO courseVO, ModelMap modelMap, HttpSession session) {
+        if (loginOrganization == null) {
+            return "error";
+        }
+        //1.获取待更新课程
+        Course course = courseService.loadByOrganizationIdAndCourseId(loginOrganization.getId(), courseVO.getId());
+        if (course == null) {
+            //该课程非当前登录机构的课程
+            return "error";
+        }
+        //2.处理封面图片
+        if (courseVO.getPicUrl() != null) {
+            String path = session.getServletContext().getRealPath("/") + Constant.PIC_COURSE_PATH + course.getId() + "/";
+            String fileName = WebUtils.uploadPicture(courseVO.getPicUrl(), path, Utils.generateDateNum());
+            course.setPicUrl(fileName.length() > 0 ? fileName : course.getPicUrl());
+        }
+        //3.处理多张宣传图片
+        if (courseVO.getPictures() != null) {
+            List pictures = new ArrayList();
+            String path = session.getServletContext().getRealPath("/") + Constant.PIC_COURSE_PATH + course.getId() + "/";
+            for (MultipartFile pic : courseVO.getPictures()) {
+                String fileName = WebUtils.uploadPicture(pic, path, UUID.randomUUID().toString());
+                if (!StringUtils.isEmpty(fileName)) {
+                    pictures.add(fileName);
+                }
+            }
+            if (pictures.size() > 0) {
+                course.setPictures(Utils.generateJson(pictures));
+            }
+        }
+        //4.处理基本数据
+        course.setName(courseVO.getName());
+        course.setDescription(courseVO.getDescription());
+        course.setPrice(courseVO.getPrice());
+        course.setOriginalPrice(courseVO.getOriginalPrice());
+        course.setLevel(courseVO.getLevel());
+        course.setSuitable(courseVO.getSuitable());
+        course.setTrainingModel(courseVO.getTrainingModel());
+        course.setDuration(courseVO.getDuration());
+        course.setEnvironment(courseVO.getEnvironment());
+        course.setFeature(courseVO.getFeature());
+        course.setTarget(courseVO.getTarget());
+        course.setStartTime(courseVO.getStartTime());
+        course.setOwnerId(loginOrganization.getId());
+        course.setCategoryId(courseVO.getCategoryId());
+        course.setLecturerId(courseVO.getLecturerId());
+        //5.更新
+        courseService.update(course);
+
+        return "redirect:/phisoa/manager/organization/";
     }
 
     /** 删除课程 */

@@ -57,4 +57,7 @@ public interface CourseService extends BaseService<Course> {
 
     /** 加载机构所有课程 */
     List<Course> queryByOrganizationId(String organizationId);
+
+    /** 根据机构id与课程id加载，具有验证功能 */
+    Course loadByOrganizationIdAndCourseId(String organizationId, String courseId);
 }
