@@ -19,6 +19,9 @@ public class LecturerServiceImpl extends BaseServiceImpl<Lecturer> implements Le
         super(baseRepository);
     }
 
+    @Autowired
+    private LecturerRepository lecturerRepository;
+
     @Override
     public List<Lecturer> queryByOrganizationId(String organizationId, int pageIndex, int pageSize) {
         return queryByColumn("organizationId", organizationId, pageIndex, pageSize);
@@ -27,5 +30,10 @@ public class LecturerServiceImpl extends BaseServiceImpl<Lecturer> implements Le
     @Override
     public List<Lecturer> queryByOrganizationId(String organizationId) {
         return queryByColumn("organizationId", organizationId);
+    }
+
+    @Override
+    public Lecturer loadByOrganizationIdAndLecturerId(String organizationId, String lecturerId) {
+        return lecturerRepository.queryByOrganizationIdAndLecturerId(organizationId, lecturerId);
     }
 }

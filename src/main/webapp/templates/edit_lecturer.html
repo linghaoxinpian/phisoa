@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>更新讲师信息</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-sm-4 col-offset-sm-4">
-            <form class="form-horizontal" action="/phisoa/course/organization/add" method="post"
+        <div class="col-sm-4 col-sm-offset-4">
+            <form class="form-horizontal" action="/phisoa/manager/organization/edit/lecturer/" method="post"
                   enctype="multipart/form-data">
+                <input type="hidden" name="id" th:value="${l.id}">
                 <div class="form-group">
                     <label>姓名</label>
                     <input type="text" class="form-control" name="name" th:value="${l.name}" value=""/>
@@ -19,17 +23,17 @@
                     <input type="text" name="seniority" th:value="${l.seniority}" value="123">
                 </div>
                 <div class="form-group">
-                    <label>培训类别</label>
-                    <input type="text" name="categoryId" th:value="${l.category?.name}" value="">
-                </div>
-                <div class="form-group">
                     <label>简介</label>
                     <input type="text" name="resume" th:value="${l.resume}" value="">
                 </div>
                 <div class="form-group">
                     <label>自拍照</label>
-                    <img th:src="|${lPath}${l.id}/${l.selfie}|" alt="">
+                    <img th:src="${l.selfie}" class="img-responsive" alt="">
                     <input type="file" name="selfie">
+                </div>
+                <div class="form-group">
+                    <label>作品集</label>
+                    <input type="file" name="showreel" multiple>
                 </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-info">提交</button>

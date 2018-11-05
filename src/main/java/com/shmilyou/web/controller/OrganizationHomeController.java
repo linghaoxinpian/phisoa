@@ -28,7 +28,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -312,26 +311,44 @@ public class OrganizationHomeController extends BaseController {
 
     /** 添加讲师POST */
     @RequestMapping(value = "/add/lecturer", method = RequestMethod.POST)
-    public String addLecturer(LoginOrganization loginOrganization, LecturerVO lecturerVO, HttpSession session) {
-        if (StringUtils.isEmpty(lecturerVO.getName())) {
-            return "name is null";
+    public String addLecturer(LoginOrganization loginOrganization, LecturerVO lecturerVO, ModelMap modelMap, HttpSession session) {
+        if (loginOrganization == null) {
+            return "error";
         }
+
+        //1.copy
         Lecturer lecturer = new Lecturer();
         BeanUtils.copyProperties(lecturerVO, lecturer);
-        lecturer.setOrganizationId(loginOrganization.getId());
         lecturer.setId(UUID.randomUUID().toString());
-        //指定图片路径
-        String path = session.getServletContext().getRealPath("/") + Constant.PIC_LECTURER_PATH + lecturer.getId() + "/";
-        //保存图片
-        String fileName = WebUtils.uploadPicture(lecturerVO.getSelfie(), path, "selfie");
-        lecturer.setSelfie(fileName);
+        lecturer.setOrganizationId(loginOrganization.getId());
+        //2.处理封面图片(新上传覆盖旧的)
+        if (lecturerVO.getSelfie() != null) {
+            String path = session.getServletContext().getRealPath("/") + Constant.PIC_LECTURER_PATH + lecturer.getId() + "/";
+            String fileName = WebUtils.uploadPicture(lecturerVO.getSelfie(), path, Utils.generateDateNum());
+            lecturer.setSelfie(fileName.length() > 0 ? fileName : lecturer.getSelfie());
+        }
+        //3.处理多张图片(新上传覆盖旧的)
+        if (lecturerVO.getShowreel() != null) {
+            List pictures = new ArrayList();
+            String path = session.getServletContext().getRealPath("/") + Constant.PIC_LECTURER_PATH + lecturer.getId() + "/";
+            for (MultipartFile pic : lecturerVO.getShowreel()) {
+                String fileName = WebUtils.uploadPicture(pic, path, UUID.randomUUID().toString());
+                if (!StringUtils.isEmpty(fileName)) {
+                    pictures.add(fileName);
+                }
+            }
+            if (pictures.size() > 0) {
+                lecturer.setShowreel(Utils.generateJson(pictures));
+            }
+        }
 
         //新增讲师
         int raw = lecturerService.insert(lecturer);
         if (raw <= 0) {
-            return "添加失败";
+            logger.error("添加讲师失败：lecturerVO=" + lecturerVO.toString() + "-----lecturer=" + lecturer.toString());
+            return "error";
         }
-        return "ok";
+        return "redirect:/phisoa/manager/organization/show/lecturers";
 
     }
 
@@ -350,38 +367,84 @@ public class OrganizationHomeController extends BaseController {
         //
         modelMap.addAttribute("o", organization);
         modelMap.addAttribute("lecturers", lecturers);
+        lecturers.forEach(l -> l.setSelfie(Constant.PIC_LECTURER_PATH + l.getId() + "/" + l.getSelfie()));
 
-        //modelMap.addAttribute("cPath", Constant.PIC_COURSE_PATH);
-        //modelMap.addAttribute("oPhotoPath", Constant.PIC_ORGANIZATION_PHOTO_PATH);
-        //modelMap.addAttribute("oLogoPath", Constant.PIC_ORGANIZATION_PHOTO_PATH);
-        //modelMap.addAttribute("oCommentsPath", Constant.PIC_ORGANIZATION_COMMENTS_PATH);
-        modelMap.addAttribute("lPath", Constant.PIC_LECTURER_PATH);
-        //modelMap.addAttribute("uPath", Constant.PIC_USER_HEAD_PATH);
-        //modelMap.addAttribute("ccPath", Constant.PIC_COURSE_COMMENT_PATH);
         return "show_lecturer";
     }
 
     /** 讲师编辑 */
-    @RequestMapping(value = "/edit/lecturer/", method = RequestMethod.POST)
-    public String editLecturer(LoginOrganization loginOrganization, @RequestBody String lecturerId, ModelMap modelMap) {
+    @RequestMapping(value = "/edit/lecturer/{lecturerId}", method = RequestMethod.GET)
+    public String editLecturer(LoginOrganization loginOrganization, @PathVariable("lecturerId") String lecturerId, ModelMap modelMap) {
         if (loginOrganization == null) {
             return "error";
         }
         //获取需要修改的
-        Lecturer lecturer = lecturerService.queryById(lecturerId);
+        Lecturer lecturer = lecturerService.loadByOrganizationIdAndLecturerId(loginOrganization.getId(), lecturerId);
+        if (lecturer == null) {
+            //当前讲师不属于当前登录机构
+            return "error";
+        }
 
-
-        //
         modelMap.addAttribute("l", lecturer);
-        modelMap.addAttribute("lPath", Constant.PIC_LECTURER_PATH);
 
         return "edit_lecturer";
+    }
+
+    /** 讲师更新 */
+    @RequestMapping(value = "/edit/lecturer/", method = RequestMethod.POST)
+    public String updateLecturer(LoginOrganization loginOrganization, LecturerVO lecturerVO, ModelMap modelMap, HttpSession session) {
+        if (loginOrganization == null) {
+            return "error";
+        }
+        //获取需要修改的
+        Lecturer lecturer = lecturerService.loadByOrganizationIdAndLecturerId(loginOrganization.getId(), lecturerVO.getId());
+        if (lecturer == null) {
+            //当前讲师不属于当前登录机构
+            return "error";
+        }
+
+        //1 copy
+        lecturer.setExperience(lecturerVO.getExperience());
+        lecturer.setName(lecturerVO.getName());
+        lecturer.setResume(lecturerVO.getResume());
+        lecturer.setSeniority(lecturerVO.getSeniority());
+        lecturer.setSkill(lecturerVO.getSkill());
+        //2.处理封面图片(新上传覆盖旧的)
+        if (lecturerVO.getSelfie() != null) {
+            String path = session.getServletContext().getRealPath("/") + Constant.PIC_LECTURER_PATH + lecturer.getId() + "/";
+            String fileName = WebUtils.uploadPicture(lecturerVO.getSelfie(), path, Utils.generateDateNum());
+            lecturer.setSelfie(fileName.length() > 0 ? fileName : lecturer.getSelfie());
+        }
+        //3.处理多张图片(新上传覆盖旧的)
+        if (lecturerVO.getShowreel() != null) {
+            List pictures = new ArrayList();
+            String path = session.getServletContext().getRealPath("/") + Constant.PIC_LECTURER_PATH + lecturer.getId() + "/";
+            for (MultipartFile pic : lecturerVO.getShowreel()) {
+                String fileName = WebUtils.uploadPicture(pic, path, UUID.randomUUID().toString());
+                if (!StringUtils.isEmpty(fileName)) {
+                    pictures.add(fileName);
+                }
+            }
+            if (pictures.size() > 0) {
+                lecturer.setShowreel(Utils.generateJson(pictures));
+            }
+        }
+
+        //4.更新
+        int raw = lecturerService.update(lecturer);
+        if (raw <= 0) {
+            logger.error("更新讲师失败：lecturerVO=" + lecturerVO.toString() + "-----lecturer=" + lecturer.toString());
+            modelMap.addAttribute("l", lecturerVO);
+            return "edit_lecturer";
+        }
+
+        return "redirect:/phisoa/manager/organization/show/lecturers";
     }
 
     /** 删除讲师 */
     @RequestMapping(value = "/rm/lecturer", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<Map<String, Object>> removeLecturer(LoginOrganization loginOrganization, @RequestBody String lecturerId) {
+    public ResponseEntity<Map<String, Object>> removeLecturer(LoginOrganization loginOrganization, String lecturerId) {
         int row = lecturerService.delete(lecturerId);
         if (row > 0) {
             return WebUtils.ok();

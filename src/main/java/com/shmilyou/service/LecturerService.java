@@ -16,4 +16,7 @@ public interface LecturerService extends BaseService<Lecturer> {
 
     /** 获取机构全部讲师 */
     List<Lecturer> queryByOrganizationId(String organizationId);
+
+    /** 查询的同时可以进行校验 */
+    Lecturer loadByOrganizationIdAndLecturerId(String organizationId, String lecturerId);
 }

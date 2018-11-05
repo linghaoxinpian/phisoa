@@ -8,6 +8,7 @@
 
     <resultMap id="lecturerRM" type="com.shmilyou.entity.Lecturer" autoMapping="true">
         <id property="id" column="id"/>
+        <result property="organizationId" column="organization_id"/>
         <association property="organization" column="organization_id" javaType="com.shmilyou.entity.User" select="getOrganization"/>
         <association property="category" column="category_id" javaType="com.shmilyou.entity.Category" select="getCategory"/>
     </resultMap>
@@ -16,6 +17,10 @@
     </select>
     <select id="getCategory" resultType="com.shmilyou.entity.Category">
         SELECT * FROM category WHERE id=#{id}
+    </select>
+
+    <select id="queryByOrganizationIdAndLecturerId" resultMap="lecturerRM">
+        SELECT * FROM lecturer WHERE organization_id=#{organizationId} AND id=#{lecturerId} AND del=0
     </select>
 
 
@@ -31,7 +36,13 @@
 
     <!--update -->
     <update id="update">
-    UPDATE Lecturer SET name=#{name},nick_name=#{nickName}
+    UPDATE Lecturer SET
+    name=#{name},
+    resume=#{resume},
+    seniority=#{seniority},
+    skill=#{skill},
+    selfie=#{selfie},
+    organization_id=#{organizationId}
     WHERE id=#{id} AND del=0
     </update>
 

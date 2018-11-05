@@ -31,7 +31,7 @@ public class Lecturer extends BaseEntity {
     /** 技能，如：舞蹈|钢琴 */
     private String skill;
 
-    /** 作品集(json) */
+    /** 作品集,相册(json) */
     private String showreel;
 
     /** 经验 */
@@ -43,5 +43,6 @@ public class Lecturer extends BaseEntity {
 
     private Organization organization;
 
+    @Deprecated
     private Category category;
 }

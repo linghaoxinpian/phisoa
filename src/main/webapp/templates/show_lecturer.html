@@ -10,22 +10,27 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-sm-3" th:each="l:${lecturers}">
-            <img src="" class="img-responsive" th:src="|/${lPath}${l.id}/${l?.selfie}|" alt="">
+        <div class="col-sm-3" style="border:1px solid #d7e52f;" th:each="l:${lecturers}">
+            <img src="" class="img-responsive" th:src="${l.selfie}" alt="">
             <div>
                 <p class="text-center" th:text="${l.name}"></p>
                 <p class="text-center">
                     <label th:text="|教龄: ${l.seniority}|">教龄：10</label>|
-                    <label th:text="${l.category?.name}">标签</label>
                 </p>
                 <p class="text-center" th:text="${l.resume}">
                 </p>
             </div>
             <div>
-                <a href="#" th:href="|${l.id}|">修改</a>
-                <a href="#" th:href="|${l.id}|">删除</a>
+                <a href="#" th:href="|/phisoa/manager/organization/edit/lecturer/${l.id}|">修改</a>
+                <form action="/phisoa/manager/organization/rm/lecturer" method="post">
+                    <input type="hidden" name="lecturerId" th:value="${l.id}">
+                    <button type="submit">删除</button>
+                </form>
             </div>
         </div>
+    </div>
+    <div class="row">
+        <a class="btn btn-info" href="/phisoa/manager/organization/add/lecturer">添加讲师</a>
     </div>
 </div>
 </body>

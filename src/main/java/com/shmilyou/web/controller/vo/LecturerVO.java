@@ -3,6 +3,8 @@ package com.shmilyou.web.controller.vo;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.LinkedList;
+
 /**
  * Created with 岂止是一丝涟漪     530060499@qq.com    2018/10/24
  */
@@ -32,6 +34,12 @@ public class LecturerVO {
      * 技能，如：舞蹈|钢琴
      */
     private String skill;
+
+    /** 作品集,相册(json) */
+    private LinkedList<MultipartFile> showreel;
+
+    /** 经验 */
+    private String experience;
 
     private String organizationId;
 
