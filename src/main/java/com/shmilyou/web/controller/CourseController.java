@@ -59,7 +59,7 @@ public class CourseController extends BaseController {
     @Autowired
     private CourseOrderService courseOrderService;
 
-    //课程详情页
+    /** 课程详情页 */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public String index(@PathVariable("id") String courseId, ModelMap modelMap) {
         Course course = courseService.queryById(courseId);
@@ -139,8 +139,7 @@ public class CourseController extends BaseController {
         CourseOrder order = courseOrderService.loadByCourseIdAndUserId(commentVO.getCourseId(), loginUser.getId());
         if (order != null) {
             CourseComment comment = new CourseComment();
-            comment.setComment(commentVO.getComment());
-            comment.setCourseId(commentVO.getCourseId());
+            BeanUtils.copyProperties(commentVO, comment);
             comment.setUserId(loginUser.getId());
             //处理图片
             List pictures = new ArrayList();

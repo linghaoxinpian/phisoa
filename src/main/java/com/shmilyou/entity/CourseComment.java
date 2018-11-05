@@ -15,6 +15,9 @@ public class CourseComment extends BaseEntity {
 
     private String comment;
 
+    /** 是否匿名 */
+    private boolean anonymous;
+
     /** 评论时所带的图片 */
     private String pictures;
 

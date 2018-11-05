@@ -15,7 +15,7 @@ public class CourseCommentVO {
     private LinkedList<MultipartFile> pics;
 
     /** 是否匿名 */
-    private boolean isAnonymous;
+    private boolean anonymous;
 
     private String courseId;
 

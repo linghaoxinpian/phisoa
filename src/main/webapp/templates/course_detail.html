@@ -21,9 +21,39 @@
                     <img alt="Brand">
                 </a>
                 <p th:text="${course.name}" class="navbar-text">课程名</p>
+                <a class="btn btn-success" data-toggle="modal" data-target="#myModal" href="/phisoa/course/comment/add">评价此课程</a>
             </div>
         </div>
     </nav>
+    <div class="row">
+        <!-- 评价弹窗-->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <form class="modal-dialog" action="/phisoa/course/comment/add" method="post" enctype="multipart/form-data">
+
+                <!--<div class="modal-dialog">-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">发表评论</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" name="comment">
+                        <input type="file" name="pics" multiple>
+                        <input type="radio" name="isAnonymous" value="0" checked/>非匿名
+                        <input type="radio" name="isAnonymous" value="1"/>匿名
+                        <input type="hidden" name="courseId" th:value="${course.id}">
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary">提交更改</button>
+                    </div>
+                </div><!-- /.modal-content -->
+                <!--</div>&lt;!&ndash; /.modal &ndash;&gt;-->
+            </form>
+        </div>
+    </div>
 </div>
 <div class="container">
     <div class="row">
