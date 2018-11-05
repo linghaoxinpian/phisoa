@@ -27,7 +27,7 @@ public class CourseOrder extends BaseEntity {
     private BigDecimal price;
 
     /** 订单实付金额金额 */
-    private int cash;
+    private BigDecimal cash;
 
     /** 订单状态 */
     private int status;

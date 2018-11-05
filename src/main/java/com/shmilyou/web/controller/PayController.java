@@ -40,22 +40,11 @@ public class PayController extends BaseController {
         String CHARSET = "UTF-8";
         String ALIPAY_PUBLIC_KEY = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxx4ShnPL2IBoYL1oPtz8PEQQCQOjoEVs8A1lU2PZgzEeMu+nugVtQKmVloDHCMK1/owvT7UAmc6mKSOGbM2p7DVbyc9JsbyzVDIkb2imesMq5vTam89zRXJH4uie9DOVt/WYdrjyJngLUi/BfUSdiYBLxpoktkfsrDlNzQ0Scxgqq4stp8cYF32qN4pHvyXo7e/8r4HmNyG8HgSIS1addknUQM5c3/phmvmqRhRntR/0CWyctpWDplHDbiAI1I+EdTUA/9rQ0f397F0R9upLrCQgpGfzdCw4Yi0cz0sra6bZzChfISvndCJNnNxSfmCXy2c1ODvZukva+16pjfq9fQIDAQAB";
         String SIGN_TYPE = "RSA2";
-        AlipayClient alipayClient = new DefaultAlipayClient("https://openapi.alipaydev.com/gateway.do\n", appId,
-                APP_PRIVATE_KEY, FORMAT, CHARSET, ALIPAY_PUBLIC_KEY, SIGN_TYPE); //获得初始化的AlipayClient
+        AlipayClient alipayClient = new DefaultAlipayClient("https://openapi.alipaydev.com/gateway.do\n", appId, APP_PRIVATE_KEY, FORMAT, CHARSET, ALIPAY_PUBLIC_KEY, SIGN_TYPE); //获得初始化的AlipayClient
         AlipayTradePagePayRequest alipayRequest = new AlipayTradePagePayRequest();//创建API对应的request
         alipayRequest.setReturnUrl("http://domain.com/CallBack/return_url.jsp");
         alipayRequest.setNotifyUrl("http://domain.com/CallBack/notify_url.jsp");//在公共参数中设置回跳和通知地址
-        alipayRequest.setBizContent("{" +
-                "    \"out_trade_no\":\"20150320010101001\"," +
-                "    \"product_code\":\"FAST_INSTANT_TRADE_PAY\"," +
-                "    \"total_amount\":88.88," +
-                "    \"subject\":\"Iphone6 16G\"," +
-                "    \"body\":\"Iphone6 16G\"," +
-                "    \"passback_params\":\"merchantBizType%3d3C%26merchantBizNo%3d2016010101111\"," +
-                "    \"extend_params\":{" +
-                "    \"sys_service_provider_id\":\"2088511833207846\"" +
-                "    }" +
-                "  }");//填充业务参数
+        alipayRequest.setBizContent("{" + "    \"out_trade_no\":\"20150320010101001\"," + "    \"product_code\":\"FAST_INSTANT_TRADE_PAY\"," + "    \"total_amount\":88.88," + "    \"subject\":\"Iphone6 16G\"," + "    \"body\":\"Iphone6 16G\"," + "    \"passback_params\":\"merchantBizType%3d3C%26merchantBizNo%3d2016010101111\"," + "    \"extend_params\":{" + "    \"sys_service_provider_id\":\"2088511833207846\"" + "    }" + "  }");//填充业务参数
         String form = "";
         try {
             form = alipayClient.pageExecute(alipayRequest).getBody(); //调用SDK生成表单
@@ -86,19 +75,25 @@ public class PayController extends BaseController {
             courseOrder.setOrderNum(Utils.generateOrderNum());
             courseOrder.setCourseName(course.getName());
             courseOrder.setPrice(course.getPrice());
+            courseOrder.setCash(course.getPrice());
             courseOrder.setCourseId(courseId);
             courseOrder.setUserId(loginUser.getId());
-            courseOrder.setOrganizationId(course.getCategoryId());
+            courseOrder.setOrganizationId(course.getOwnerId());
             try {
                 int row = orderService.insert(courseOrder);
                 if (row <= 0) {
                     logger.error("生成订单失败：" + courseOrder.toString());
                 }
+                loginUser.getOrders().push(courseOrder);
             } catch (Exception e) {
                 logger.error("生成订单失败：" + courseOrder.toString());
                 logger.error(e.getLocalizedMessage(), e);
             }
-            return "支付页面";
+
+            //调用第三方支付页面
+            //todo
+
+            return "redirect:/phisoa/pay/paySuccess";
         }
         return "error";
 
@@ -110,15 +105,16 @@ public class PayController extends BaseController {
         CourseOrder order = new CourseOrder();
         try {
             order = loginUser.getOrders().peek();
-
+            //跟据第三方返回的结果更新订单的状态
+            //todo
             //更新订单状态
             orderService.updateStatus(order.getId(), CourseOrder.SUCCESS);
         } catch (Exception e) {
-            logger.error("支付成功后的新建订单出错, 支付人:" + loginUser.getId() + " , 购买课程: " + order.getCourseId());
+            logger.error("支付成功后的新建订单出错, 支付人:" + loginUser.toString() + " , 购买课程: " + order.toString());
             logger.error(e.getLocalizedMessage(), e);
             //更新订单状态
             orderService.updateStatus(order.getId(), CourseOrder.ERROR);
         }
-        return "";
+        return "pay_success";
     }
 }

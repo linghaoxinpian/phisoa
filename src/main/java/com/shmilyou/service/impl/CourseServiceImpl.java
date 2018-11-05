@@ -128,4 +128,9 @@ public class CourseServiceImpl extends BaseServiceImpl<Course> implements Course
         return 0;
     }
 
+    @Override
+    public List<Course> queryByNameForLike(String courseName, int pageIndex, int pageSize) {
+        return courseRepository.queryByNameForLike(courseName, pageIndex, pageSize);
+    }
+
 }

@@ -26,4 +26,7 @@ public interface CourseRepository extends BaseRepository<Course> {
                                             @Param("tagIds") List<String> tagIds);
 
     List<Course> queryByOrganizationAndTag(@Param("organizationId") String organizationId, @Param("tagId") String tagId);
+
+    /** 模糊查询【名称】 */
+    List<Course> queryByNameForLike(@Param("courseName") String courseName, @Param("pageIndex") int pageIndex, @Param("pageSize") int pageSize);
 }

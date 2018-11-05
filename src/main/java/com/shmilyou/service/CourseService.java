@@ -63,4 +63,7 @@ public interface CourseService extends BaseService<Course> {
 
     /** 删除某机构的某门口 */
     int deleteByOrganizationIdAndCourseId(String organizationId, String courseId);
+
+    /** like 模糊查询【名称】 */
+    List<Course> queryByNameForLike(String searchStr, int pageIndex, int pageSize);
 }

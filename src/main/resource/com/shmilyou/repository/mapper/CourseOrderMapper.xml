@@ -51,8 +51,20 @@
         <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
             select uuid()
         </selectKey>
-        INSERT INTO course_order(id,name,nick_name)
-        VALUES(#{id},#{name},#{nickName})
+        INSERT INTO course_order(id, order_num, course_name, price, cash, status, comments_num, course_id, user_id,
+        organization_id)
+        VALUES(
+        #{id},
+        #{orderNum},
+        #{courseName},
+        #{price},
+        #{cash},
+        #{status},
+        #{commentsNum},
+        #{courseId},
+        #{userId},
+        #{organizationId}
+        )
     </insert>
 
     <!--update -->

@@ -28,24 +28,22 @@
     <!-- queryByTagIds -->
     <select id="queryByTagIds" resultType="com.shmilyou.entity.Course">
         SELECT * FROM course
-        WHERE category_id IN
+        WHERE category_id IN(
         <foreach collection="tagIds" item="c" index="index" separator=",">
-            (
             #{c}
-            )
         </foreach>
+        )
         AND del=0 LIMIT #{pageIndex} , #{pageSize}
     </select>
 
     <!--queryByOrganizationAndTags-->
     <select id="queryByOrganizationAndTags" resultMap="courseRM">
         SELECT * FROM course
-        WHERE category_id IN
+        WHERE category_id IN(
         <foreach collection="tagIds" item="c" index="index" separator=",">
-            (
             #{c}
-            )
         </foreach>
+        )
         AND owner_id=#{organizationId}
         AND del=0
     </select>
@@ -58,6 +56,12 @@
         AND del=0
     </select>
 
+    <select id="queryByNameForLike" resultMap="courseRM">
+        SELECT * from phisoa.course
+        WHERE name LIKE CONCAT('%',#{courseName},'%')
+        AND del=0
+        LIMIT #{pageIndex} , #{pageSize}
+    </select>
     <!--        基础方法区           -->
     <!-- insert -->
     <insert id="insert" parameterType="com.shmilyou.entity.Course">

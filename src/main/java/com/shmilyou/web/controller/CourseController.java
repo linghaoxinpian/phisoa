@@ -79,6 +79,7 @@ public class CourseController extends BaseController {
         }
         //该机构其它课程
         List<Course> otherCourses = courseService.loadByOrganizationAndTagAndChildTag(course.getOwnerId(), course.getCategoryId());
+        //otherCourses.forEach(oc -> oc.setPicUrl(Constant.PIC_COURSE_PATH + oc.getId() + "/" + oc.getPicUrl()));
         //课程评价
         List<CourseComment> comments = courseCommentService.loadNewestCommentsByCourseId(course.getId(), 0, 2);
         //处理课程评价的图片
@@ -102,9 +103,7 @@ public class CourseController extends BaseController {
     }
 
     @RequestMapping(value = "/organization/add", method = RequestMethod.POST)
-    public ResponseEntity addCourse(@ModelAttribute("courseVO") CourseVO courseVO,
-                                    @RequestParam("pic") MultipartFile pic,
-                                    HttpSession session, LoginOrganization loginOrganization) throws IOException {
+    public ResponseEntity addCourse(@ModelAttribute("courseVO") CourseVO courseVO, @RequestParam("pic") MultipartFile pic, HttpSession session, LoginOrganization loginOrganization) throws IOException {
 
         if (loginOrganization == null) {
             return WebUtils.error("非机构禁止访问");
@@ -174,10 +173,10 @@ public class CourseController extends BaseController {
 
     //搜索课程by name
     @RequestMapping(value = "/search/name", method = RequestMethod.GET)
-    public String searchCourse(@RequestParam(value = "name") String name, @RequestParam("pageIndex") Integer pageIndex, ModelMap modelMap) {
-        if (StringUtils.isEmpty(name)) {
-            //搜索条件为空，随意加载课程
-            return "异步与否？";
+    public String searchCourse(@RequestParam(value = "searchStr", required = false) String searchStr, @RequestParam(value = "pageIndex", required = false) Integer pageIndex, ModelMap modelMap) {
+        if (StringUtils.isEmpty(searchStr)) {
+            //搜索条件为空，打开搜索页
+            return "search_course";
         }
         //处理分页，这里页面大小固定
         int pageSize = 20;
@@ -189,12 +188,12 @@ public class CourseController extends BaseController {
         int count = courseService.count();
         int totalPage = Math.floorMod(count, pageSize);
 
-        List<Course> courses = courseService.queryByName(name, pageIndex - 1, pageSize);
+        List<Course> courses = courseService.queryByNameForLike(searchStr, pageIndex - 1, pageSize);
         courses.forEach(c -> {
             c.setPicUrl(Constant.PIC_COURSE_PATH + c.getId() + "/" + c.getPicUrl());
         });
 
-        modelMap.addAttribute("condition", name);
+        modelMap.addAttribute("condition", searchStr);
         modelMap.addAttribute("courses", courses);
         modelMap.addAttribute("totalPage", totalPage);
         modelMap.addAttribute("pageIndex", pageIndex);

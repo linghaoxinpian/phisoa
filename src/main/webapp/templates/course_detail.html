@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="panel panel-default">
                     <div class="panel-body">
-                        <p class="lead" th:text="${course.category.name}">分类</p>
+                        <p class="lead" th:text="${course.category?.name}">分类</p>
                         <div><label class="label label-info">课程等级：</label>
                             <span th:text="${course.level}">null</span>
                         </div>
@@ -53,7 +53,7 @@
                         <div class="col-md-6">
                             <form action="/phisoa/pay/yi" method="post">
                                 <input type="hidden" name="courseId" th:value="${course.id}">
-                                <input type="submit" class="btn btn-info">购买课程</input>
+                                <button type="submit" class="btn btn-info">购买课程</button>
                             </form>
                         </div>
                     </div>
@@ -146,7 +146,7 @@
             </div>
             <div class="row">
                 <ul class="list-group">
-                    <li class="list-group-item" th:text="|课程类型: ${course.category.name}|"></li>
+                    <li class="list-group-item" th:text="|课程类型: ${course.category?.name}|"></li>
                     <li class="list-group-item">每次上课时长：45分钟</li>
                     <li class="list-group-item">教学环境：环境优雅，宽敞明亮</li>
                     <li class="list-group-item">
@@ -154,10 +154,10 @@
                         课程价格：叫其他同类课程便宜
                     </li>
                     <li class="list-group-item" th:text="|课程等级: ${course.level}|">课程等级：初级</li>
-                    <li class="list-group-item" th:text="|上课形式: ${course.getTrainingMode}|"></li>
+                    <li class="list-group-item" th:text="|上课形式: ${course.trainingMode}|"></li>
                     <li class="list-group-item" th:text="|适合基础: ${course.suitable}|"></li>
                     <li class="list-group-item" th:text="|课程目标: 兴趣培养|">课程目标: 兴趣培养</li>
-                    <li class="list-group-item" th:text="|教师经验: ${lecturer.experience}|">教师经验：专业书法家、从业十余年</li>
+                    <li class="list-group-item" th:text="|教师经验: ${lecturer?.experience}|">教师经验：专业书法家、从业十余年</li>
                 </ul>
             </div>
             <!-- 课程老师 -->
