@@ -40,7 +40,7 @@ public class LecturerServiceImpl extends BaseServiceImpl<Lecturer> implements Le
     @Override
     public int deleteByOrganizationIdAndLecturerId(String organizationId, String lecturerId) {
         Lecturer lecturer = queryById(lecturerId);
-        if (organizationId.equals(lecturer.getOrganizationId())) {
+        if (lecturer != null && organizationId.equals(lecturer.getOrganizationId())) {
             return delete(lecturerId);
         }
         return -1;

@@ -19,7 +19,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -129,14 +128,16 @@ public class UserHomeController extends BaseController {
     /** 删除订单 */
     @RequestMapping(value = "/rm/order", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity removeOrder(LoginUser loginUser, @RequestBody String orderId) {
+    public ResponseEntity removeOrder(LoginUser loginUser, String orderId) {
         if (loginUser == null) {
             return WebUtils.error("请先登录");
         }
-        //删除
-        int row = courseOrderService.delete(orderId);
-        if (row > 0) {
-            return WebUtils.ok();
+        if (!StringUtils.isEmpty(orderId)) {
+            //删除
+            int row = courseOrderService.deleteByUserIdAndOrderId(loginUser.getId(), orderId);
+            if (row > 0) {
+                return WebUtils.ok();
+            }
         }
         return WebUtils.error("删除失败");
     }

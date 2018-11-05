@@ -23,4 +23,7 @@ public interface CourseOrderService extends BaseService<CourseOrder> {
 
     /** 更新某一订单的评论次数 */
     int plusCommentsNum(String id);
+
+    /** 删除某求学者的订单 */
+    int deleteByUserIdAndOrderId(String userId, String orderId);
 }

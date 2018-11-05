@@ -122,7 +122,7 @@ public class CourseServiceImpl extends BaseServiceImpl<Course> implements Course
     @Override
     public int deleteByOrganizationIdAndCourseId(String organizationId, String courseId) {
         Course course = queryById(courseId);
-        if (course.getOwnerId().equals(organizationId)) {
+        if (course != null && course.getOwnerId().equals(organizationId)) {
             return delete(courseId);
         }
         return 0;

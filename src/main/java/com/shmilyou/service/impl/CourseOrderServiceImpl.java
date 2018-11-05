@@ -43,9 +43,7 @@ public class CourseOrderServiceImpl extends BaseServiceImpl<CourseOrder> impleme
     public CourseOrder loadByCourseIdAndUserId(String courseId, String userId) {
         List<CourseOrder> courseOrders = courseOrderRepository.queryByCourseIdAndUserId(courseId, userId);
         if (courseOrders.size() > 0) {
-            return courseOrders.stream()
-                    .sorted(Comparator.comparing(CourseOrder::getAddTime).reversed())
-                    .collect(Collectors.toList()).get(0);
+            return courseOrders.stream().sorted(Comparator.comparing(CourseOrder::getAddTime).reversed()).collect(Collectors.toList()).get(0);
         }
         return null;
     }
@@ -53,5 +51,14 @@ public class CourseOrderServiceImpl extends BaseServiceImpl<CourseOrder> impleme
     @Override
     public int plusCommentsNum(String id) {
         return courseOrderRepository.plusCommentsNum(id);
+    }
+
+    @Override
+    public int deleteByUserIdAndOrderId(String userId, String orderId) {
+        CourseOrder order = queryById(orderId);
+        if (order != null && order.getUserId().equals(userId)) {
+            return delete(orderId);
+        }
+        return -1;
     }
 }
