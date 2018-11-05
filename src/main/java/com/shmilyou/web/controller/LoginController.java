@@ -56,7 +56,7 @@ public class LoginController extends BaseController {
     }
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
-    public String loginInUser(String account, String password, HttpServletRequest request, ModelMap modelMap) {
+    public String loginInUser(String account, String password, HttpServletRequest request, ModelMap modelMap, HttpServletResponse response) {
         //求学者登录校验
         if (!StringUtils.isEmpty(account) && !StringUtils.isEmpty(password)) {
             User user = userService.loginIn(account, password);
@@ -64,6 +64,15 @@ public class LoginController extends BaseController {
                 LoginUser loginUser = new LoginUser();
                 BeanUtils.copyProperties(user, loginUser);
                 request.getSession().setAttribute(Constant.LOGIN_USER, loginUser);
+                //跳转之前访问的页面
+                String requestURI = (String) request.getSession().getAttribute("requestURI");
+                if (requestURI != null) {
+                    try {
+                        response.sendRedirect(requestURI);
+                    } catch (IOException e) {
+                        logger.error(e.getLocalizedMessage(), e);
+                    }
+                }
                 return "redirect:/phisoa";
             }
         }
