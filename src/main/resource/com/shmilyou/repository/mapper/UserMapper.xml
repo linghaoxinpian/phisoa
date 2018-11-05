@@ -61,13 +61,32 @@
         <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
             select uuid()
         </selectKey>
-        INSERT INTO user (id, name, nickname, password, head_img, phone, email, gender)
-        VALUES(#{id},#{name},#{nickname},#{password}, #{headImg}, #{phone}, #{email}, #{gender})
+        INSERT INTO user (id, name, nickname, password, head_img, phone, email, photo_album, area_code, gender)
+        VALUES(
+        #{id},
+        #{name},
+        #{nickname},
+        #{password},
+        #{headImg},
+        #{phone},
+        #{email},
+        #{photoAlbum},
+        #{areaCode},
+        #{gender})
     </insert>
 
     <!--update -->
     <update id="update">
-    UPDATE user SET name=#{name},nick_name=#{nickName}
+    UPDATE user SET
+        name=#{name},
+        nickname=#{nickname},
+        password=#{password},
+        head_img=#{headImg},
+        phone=#{phone},
+        email=#{email},
+        photo_album=#{photoAlbum},
+        area_code=#{areaCode},
+        gender=#{gender}
     WHERE id=#{id} AND del=0
     </update>
 

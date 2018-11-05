@@ -4,9 +4,11 @@ import com.shmilyou.entity.Course;
 import com.shmilyou.entity.CourseComment;
 import com.shmilyou.entity.CourseOrder;
 import com.shmilyou.entity.User;
+import com.shmilyou.service.AreaService;
 import com.shmilyou.service.CourseCommentService;
 import com.shmilyou.service.CourseOrderService;
 import com.shmilyou.service.UserService;
+import com.shmilyou.service.bo.AreaCode;
 import com.shmilyou.utils.Constant;
 import com.shmilyou.utils.Utils;
 import com.shmilyou.utils.WebUtils;
@@ -25,7 +27,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-/** Created with 岂止是一丝涟漪     530060499@qq.com    2018/10/31 */
+/* Created with 岂止是一丝涟漪     530060499@qq.com    2018/10/31 */
+
 @Controller
 @RequestMapping("/phisoa/manager/user")
 public class UserHomeController extends BaseController {
@@ -36,6 +39,8 @@ public class UserHomeController extends BaseController {
     private CourseCommentService courseCommentService;
     @Autowired
     private CourseOrderService courseOrderService;
+    @Autowired
+    private AreaService areaService;
 
     /** 主页 */
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -45,6 +50,7 @@ public class UserHomeController extends BaseController {
         }
         //获取用户
         User user = userService.queryById(loginUser.getId());
+        user.setHeadImg(Constant.PIC_USER_HEAD_PATH + user.getId() + "/" + user.getHeadImg());
         //获取用户最新的课程评论
         List<CourseComment> newestCourseComment = courseCommentService.loadNewestCommentsByUserId(user.getId(), 0, 1);
         //解析相册
@@ -55,15 +61,6 @@ public class UserHomeController extends BaseController {
         modelMap.addAttribute("u", user);
         modelMap.addAttribute("newestCourseComment", newestCourseComment);
 
-
-        //
-        //modelMap.addAttribute("cPath", Constant.PIC_COURSE_PATH);
-        //modelMap.addAttribute("oPhotoPath", Constant.PIC_ORGANIZATION_PHOTO_PATH);
-        //modelMap.addAttribute("oLogoPath", Constant.PIC_ORGANIZATION_PHOTO_PATH);
-        //modelMap.addAttribute("oCommentsPath", Constant.PIC_ORGANIZATION_COMMENTS_PATH);
-        //modelMap.addAttribute("lPath", Constant.PIC_LECTURER_PATH);
-        modelMap.addAttribute("uPath", Constant.PIC_USER_HEAD_PATH);
-        //modelMap.addAttribute("ccPath", Constant.PIC_COURSE_COMMENT_PATH);
 
         return "home_user";
     }
@@ -78,27 +75,34 @@ public class UserHomeController extends BaseController {
         User user = userService.queryById(loginUser.getId());
 
         //
-        modelMap.addAttribute("o", user);
+        modelMap.addAttribute("u", user);
         return "edit_user";
     }
 
     /** 更新基础信息 */
     @RequestMapping(value = "/edit", method = RequestMethod.POST)
-    public String updateUserInfo(LoginUser loginUser, UserVO userVO, ModelMap modelMap, HttpSession session) {
+    public String updateUserInfo(LoginUser loginUser, UserVO userVO, AreaCode areaCode, ModelMap modelMap, HttpSession session) {
         if (loginUser == null) {
             return "error";
         }
-        //获取用户
+        //1.获取
         User user = userService.queryById(loginUser.getId());
-        //指定图片路径
-        String path = session.getServletContext().getRealPath("/") + Constant.PIC_USER_HEAD_PATH + user.getId() + "/";
-        //保存图片
-        String fileName = WebUtils.uploadPicture(userVO.getHeadImg(), path, Utils.generateDateNum());
-        user.setHeadImg(fileName);
+        //2.更新img
+        if (userVO.getHeadImg() != null) {
+            String path = session.getServletContext().getRealPath("/") + Constant.PIC_USER_HEAD_PATH + user.getId() + "/";
+            String fileName = WebUtils.uploadPicture(userVO.getHeadImg(), path, Utils.generateDateNum());
+            user.setHeadImg(fileName);
+        }
+        //3.更新地区
+        String code = areaService.loadSelectAreaCode(areaCode);
+        user.setAreaCode(code.length() > 0 ? code : user.getAreaCode());
+        //4.更新其它文本数据
+        user.setName(userVO.getName());
+        user.setPhone(userVO.getPhone());
+        //5.同步至数据库
+        userService.update(user);
 
-        //
-        modelMap.addAttribute("o", user);
-        return "home_user";
+        return "redirect:/phisoa/manager/user/";
     }
 
     /** 订单管理 */

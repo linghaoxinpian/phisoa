@@ -64,6 +64,6 @@ public class User extends BaseEntity {
 
     //----------------- 附加属性 -----------------
 
-    /** 解析后的海报名称 */
+    /** 解析后的图片名称 */
     private List<String> parsedPhotoAlbums;
 }

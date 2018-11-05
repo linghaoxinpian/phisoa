@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-sm-4">
             <div class="row"><a href="/phisoa/manager/user/show/orders">订单管理</a></div>
-            <div class="row">2</div>
+            <div class="row"><a href="#">收藏管理</a></div>
             <div class="row">3</div>
             <div class="row">4</div>
             <div class="row">5</div>
@@ -28,17 +28,17 @@
         </div>
         <div class="col-sm-8">
             <div class="col-sm-3">
-                <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1616165056,46158778&fm=26&gp=0.jpg"
-                     alt="logo">
+                <img th:src="${u.headImg}" class="img-responsive"
+                     src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1616165056,46158778&fm=26&gp=0.jpg" alt="logo">
             </div>
             <div class="col-sm-9">
                 <div class="row">
-                    <label th:text="|用户名: ${u.name}|"> 机构名 </label>
+                    <label th:text="|用户名: ${u.name}|"> 名 </label>
                     <label>机构认证徽章</label>
                     <a href="/phisoa/manager/user/edit">编辑资料</a>
                 </div>
                 <div class="row">
-                    <label th:text="${tag}" th:each="tag:${u.categoryList}">
+                    <label th:text="${tag.name}" th:each="tag:${u.categoryList}">
                         标签名
                     </label>
                     <a href="sdsfsaf.fds">修改标签</a>

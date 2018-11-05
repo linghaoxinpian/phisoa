@@ -73,7 +73,7 @@ public class LoginController extends BaseController {
                         logger.error(e.getLocalizedMessage(), e);
                     }
                 }
-                return "redirect:/phisoa";
+                return "index";
             }
         }
         modelMap.addAttribute("error", "用户名或密码错误");

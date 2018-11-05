@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>更新信息</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
+    <!-- 省市联动插件 -->
+    <script src="/static/area/js/distpicker.data.js"></script>
+    <script src="/static/area/js/distpicker.js"></script>
+    <script src="/static/area/js/main.js"></script>
+    <script src="/static/js/selectArea.js"></script>
 </head>
 <body>
-无页面
+<div class="container">
+    <div class="row">
+        <form action="/phisoa/manager/user/edit" method="post" enctype="application/x-www-form-urlencoded"
+              class="form-horizontal" onsubmit="return handleAreaOnSubmit();">
+            <div class="form-group">
+                <label class="label label-info">名称</label>
+                <input type="text" class="form-control" name="name" placeholder="上海文耀科技有限公司" th:value="${u.name}">
+            </div>
+            <div class="form-group">
+                <label>手机号</label>
+                <input name="phone" type="text" class="form-control" th:value="${u.phone}">
+            </div>
+            <!-- 选择地区 -->
+            <div class="form-group">
+                <div data-toggle="distpicker">
+                    <select data-province="上海市" id="province"></select>
+                    <select data-city="上海市市辖区" id="city"></select>
+                    <select data-district="浦东新区" id="district"></select>
+                    <input type="hidden" id="p" name="province">
+                    <input type="hidden" id="c" name="city">
+                    <input type="hidden" id="d" name="district">
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-success" value="保存"/>
+            </div>
+        </form>
+    </div>
+</div>
 </body>
 </html>
