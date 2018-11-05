@@ -8,6 +8,9 @@
 
     <resultMap id="courseOrderRM" type="com.shmilyou.entity.CourseOrder" autoMapping="true">
         <id property="id" column="id"/>
+        <result property="courseId" column="course_id"/>
+        <result property="organizationId" column="organization_id"/>
+        <result property="userId" column="user_id"/>
         <association property="course" column="course_id" javaType="com.shmilyou.entity.Course" select="getCourse"/>
         <association property="user" column="user_id" javaType="com.shmilyou.entity.User" select="getUser"/>
     </resultMap>
