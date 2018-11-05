@@ -150,9 +150,14 @@ public class OrganizationHomeController extends BaseController {
         if (loginOrganization == null) {
             return "error";
         }
-        //1.
+        //1.标签
+        if (courseVO.getCategoryId().indexOf(",") > 0) {
+            String tags = courseVO.getCategoryId();
+            courseVO.setCategoryId(tags.substring(tags.lastIndexOf(",") + 1));
+        }
         Course course = new Course();
         BeanUtils.copyProperties(courseVO, course);
+        course.setId(UUID.randomUUID().toString());
         //2.处理封面图片(新上传覆盖旧的)
         if (courseVO.getPicUrl() != null) {
             String path = session.getServletContext().getRealPath("/") + Constant.PIC_COURSE_PATH + course.getId() + "/";
@@ -176,7 +181,7 @@ public class OrganizationHomeController extends BaseController {
 
         //
         courseService.insert(course);
-        return "home_organization";
+        return "redirect:/phisoa/manager/organization/";
     }
 
     /** 课程管理 */
