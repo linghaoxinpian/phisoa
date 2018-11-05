@@ -19,6 +19,7 @@
 /out/
 **/target/
 /document/
+/src/main/resource/jdbc.properties
 
 ### NetBeans ###
 /nbproject/private/
