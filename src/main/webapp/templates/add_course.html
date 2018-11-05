@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <script src="/static/js/selectTags.js"></script>
     <title>添加课程</title>
 </head>
 <body>
@@ -18,6 +19,19 @@
                 <div class="form-group">
                     <label>课程类型</label>
                     <input type="text" class="form-control" name="tag" value="课程类型"/>
+                </div>
+                <div class="row">
+                    <select name="categoryId" id="selectTag1" onchange="getTag()" th:each="item:${tagLevel_1}">
+                        <option th:value="${item.id}" th:text="${item.name}" value="7078ac33-befe-11e8-94b3-a353b48ca080">
+                            国学文化
+                        </option>
+                    </select>
+                    <select name="categoryId" id="selectTag2" onchange="getTag2()">
+                        <!--<option value="">请选择</option>-->
+                    </select>
+                    <select name="categoryId" id="selectTag3">
+                        <!--<option>请选择</option>-->
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>每次上课时长</label>

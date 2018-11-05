@@ -21,9 +21,17 @@
                 </p>
             </div>
             <div>
-                <a href="/phisoa/manager/organization/edit/course/" th:href="|${c.id}|">修改课程</a>
-                <a href="#" th:href="|${c.id}|">删除课程</a>
+                <a href="#" th:href="|/phisoa/manager/organization/edit/course/${c.id}|">修改课程</a>
+                <form action="/phisoa/manager/organization/rm/course" method="post">
+                    <input type="hidden" name="courseId" value="${c.id}">
+                    <button type="submit">删除课程</button>
+                </form>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4 col-offset-sm-4">
+            <a href="/phisoa/manager/organization/add/course">新增课程</a>
         </div>
     </div>
 </div>

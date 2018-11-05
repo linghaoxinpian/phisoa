@@ -53,7 +53,7 @@ public class OrganizationServiceImpl extends BaseServiceImpl<Organization> imple
             type = "email";
         } else {
             //手机号登录
-            type = "phone";
+            type = "loginPhone";
         }
 
         //帐号查询

@@ -24,6 +24,9 @@ public class Organization extends BaseEntity {
 
     private String password;
 
+    /** 登录手机号 */
+    private String loginPhone;
+
     /**
      * 机构名
      */
@@ -49,9 +52,7 @@ public class Organization extends BaseEntity {
      */
     private String studentGuide;
 
-    /**
-     * 咨询电话
-     */
+    /** 前台资讯电话，可多个 */
     private String phone;
 
     /**
@@ -66,6 +67,7 @@ public class Organization extends BaseEntity {
 
     /** 海报 */
     private String posters;
+
     /**
      * 机构官方主页
      */

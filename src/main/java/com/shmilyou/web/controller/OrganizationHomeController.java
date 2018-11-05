@@ -128,28 +128,54 @@ public class OrganizationHomeController extends BaseController {
     @RequestMapping(value = "/add/course", method = RequestMethod.GET)
     public String addCourse(ModelMap modelMap, LoginOrganization loginOrganization) {
         if (loginOrganization == null) {
-            return "非机构禁止访问";
+            //return "非机构禁止访问";
+            return "error";
         }
 
-        //获取讲师
+        //
         List<Lecturer> lecturers = lecturerService.queryByOrganizationId(loginOrganization.getId());
+        List<Category> tagLevel_1 = categoryService.queryByLevel(Category.Level1);
 
         //
         modelMap.addAttribute("o", loginOrganization);
         modelMap.addAttribute("lecturers", lecturers);
+        modelMap.addAttribute("tagLevel_1", tagLevel_1);
         return "add_course";
     }
 
     /** 新增课程POST */
     @RequestMapping(value = "/add/course", method = RequestMethod.POST)
-    public ResponseEntity addCourse(LoginOrganization loginOrganization, ModelMap modelMap, CourseVO courseVO) {
+    public String addCourse(LoginOrganization loginOrganization, ModelMap modelMap, CourseVO courseVO, HttpSession session) {
         if (loginOrganization == null) {
-            return WebUtils.error("非机构禁止访问");
+            return "error";
+        }
+        //1.
+        Course course = new Course();
+        BeanUtils.copyProperties(courseVO, course);
+        //2.处理封面图片(新上传覆盖旧的)
+        if (courseVO.getPicUrl() != null) {
+            String path = session.getServletContext().getRealPath("/") + Constant.PIC_COURSE_PATH + course.getId() + "/";
+            String fileName = WebUtils.uploadPicture(courseVO.getPicUrl(), path, Utils.generateDateNum());
+            course.setPicUrl(fileName.length() > 0 ? fileName : course.getPicUrl());
+        }
+        //3.处理多张宣传图片(新上传覆盖旧的)
+        if (courseVO.getPictures() != null) {
+            List pictures = new ArrayList();
+            String path = session.getServletContext().getRealPath("/") + Constant.PIC_COURSE_PATH + course.getId() + "/";
+            for (MultipartFile pic : courseVO.getPictures()) {
+                String fileName = WebUtils.uploadPicture(pic, path, UUID.randomUUID().toString());
+                if (!StringUtils.isEmpty(fileName)) {
+                    pictures.add(fileName);
+                }
+            }
+            if (pictures.size() > 0) {
+                course.setPictures(Utils.generateJson(pictures));
+            }
         }
 
-
         //
-        return WebUtils.ok();
+        courseService.insert(course);
+        return "home_organization";
     }
 
     /** 课程管理 */
@@ -210,13 +236,13 @@ public class OrganizationHomeController extends BaseController {
             //该课程非当前登录机构的课程
             return "error";
         }
-        //2.处理封面图片
+        //2.处理封面图片(新上传覆盖旧的)
         if (courseVO.getPicUrl() != null) {
             String path = session.getServletContext().getRealPath("/") + Constant.PIC_COURSE_PATH + course.getId() + "/";
             String fileName = WebUtils.uploadPicture(courseVO.getPicUrl(), path, Utils.generateDateNum());
             course.setPicUrl(fileName.length() > 0 ? fileName : course.getPicUrl());
         }
-        //3.处理多张宣传图片
+        //3.处理多张宣传图片(新上传覆盖旧的)
         if (courseVO.getPictures() != null) {
             List pictures = new ArrayList();
             String path = session.getServletContext().getRealPath("/") + Constant.PIC_COURSE_PATH + course.getId() + "/";

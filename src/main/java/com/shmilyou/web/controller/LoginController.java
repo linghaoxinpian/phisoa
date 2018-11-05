@@ -13,6 +13,7 @@ import com.shmilyou.service.UserService;
 import com.shmilyou.service.bo.AppIdAndOpenIdAndAccessToken;
 import com.shmilyou.utils.Constant;
 import com.shmilyou.utils.WebUtils;
+import com.shmilyou.web.resolver.LoginOrganization;
 import com.shmilyou.web.resolver.LoginUser;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,10 @@ public class LoginController extends BaseController {
     @Autowired
     private OpenCourseService openCourseService;
 
+    @RequestMapping(value = "")
+    public String login() {
+        return "login";
+    }
 
     @RequestMapping(value = "/user", method = RequestMethod.POST)
     public String loginInUser(String account, String password, HttpServletRequest request, ModelMap modelMap) {
@@ -72,7 +77,9 @@ public class LoginController extends BaseController {
         if (!StringUtils.isEmpty(account) && !StringUtils.isEmpty(password)) {
             Organization organization = organizationService.loginIn(account, password);
             if (organization != null) {
-                request.getSession().setAttribute(Constant.LOGIN_ORGANIZATION, organization);
+                LoginOrganization loginOrganization = new LoginOrganization();
+                BeanUtils.copyProperties(organization, loginOrganization);
+                request.getSession().setAttribute(Constant.LOGIN_ORGANIZATION, loginOrganization);
                 return WebUtils.ok();
             }
         }
