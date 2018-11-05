@@ -29,8 +29,10 @@ public class LoginInterceptor implements HandlerInterceptor {
         }
 
         // 是否登录判断
-        if (request.getSession().getAttribute(Constant.LOGIN_USER) == null &&
-                request.getSession().getAttribute(Constant.LOGIN_ORGANIZATION) == null) {
+        if (request.getSession().getAttribute(Constant.LOGIN_USER) == null && request.getSession().getAttribute(Constant.LOGIN_ORGANIZATION) == null) {
+            //记录下当前url，用于登录后跳转
+            String requestURI = request.getRequestURL().append("?").append(request.getQueryString()).toString();
+            request.getSession().setAttribute("requestURI", requestURI);
             response.sendRedirect(request.getContextPath() + "/phisoa/login");
             return false;
         } else {

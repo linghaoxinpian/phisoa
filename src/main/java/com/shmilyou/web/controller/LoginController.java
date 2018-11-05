@@ -26,7 +26,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 /**
  * Created with 岂止是一丝涟漪     530060499@qq.com    2018/10/26
@@ -72,7 +74,7 @@ public class LoginController extends BaseController {
 
     @RequestMapping(value = "/organization", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity loginInOrganization(String account, String password, HttpServletRequest request) {
+    public ResponseEntity loginInOrganization(String account, String password, HttpServletRequest request, HttpServletResponse response) {
         //机构登录校验
         if (!StringUtils.isEmpty(account) && !StringUtils.isEmpty(password)) {
             Organization organization = organizationService.loginIn(account, password);
@@ -80,6 +82,15 @@ public class LoginController extends BaseController {
                 LoginOrganization loginOrganization = new LoginOrganization();
                 BeanUtils.copyProperties(organization, loginOrganization);
                 request.getSession().setAttribute(Constant.LOGIN_ORGANIZATION, loginOrganization);
+                //跳转之前访问的页面
+                String requestURI = (String) request.getSession().getAttribute("requestURI");
+                if (requestURI != null) {
+                    try {
+                        response.sendRedirect(requestURI);
+                    } catch (IOException e) {
+                        logger.error(e.getLocalizedMessage(), e);
+                    }
+                }
                 return WebUtils.ok();
             }
         }
