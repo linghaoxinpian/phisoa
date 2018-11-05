@@ -25,7 +25,7 @@
             <div class="row text-center">
                 <a href="#" th:href="|/phisoa/manager/organization/edit/course/${c.id}|">修改课程</a>
                 <form action="/phisoa/manager/organization/rm/course" method="post">
-                    <input type="hidden" name="courseId" value="${c.id}">
+                    <input type="hidden" name="courseId" th:value="${c.id}">
                     <button type="submit">删除课程</button>
                 </form>
             </div>
