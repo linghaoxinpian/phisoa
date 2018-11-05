@@ -22,4 +22,7 @@ public interface UserRepository extends BaseRepository<User> {
 
     /** 新增第三方登录 */
     int insertOpenUser(OpenUser openUser);
+
+    /** 查询【第三方登录表】 */
+    OpenUser queryByOpenId(String openid);
 }

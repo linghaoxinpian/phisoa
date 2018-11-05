@@ -15,7 +15,11 @@
     var token = urlStr.substring(split1 + tokenStr.length, split2);
 
     //将token传给服务器
-    location.href = "http://www.shmilyou.com/phisoa/phisoa/qqcallback?access_token=" + token;
+    location.href = "http://www.shmilyou.com/phisoa/phisoa/login/QQ?access_token=" + token;
+
+    // window.opener=null;
+    // window.open('','_self');
+    // window.close();
 </script>
 </body>
 </html>

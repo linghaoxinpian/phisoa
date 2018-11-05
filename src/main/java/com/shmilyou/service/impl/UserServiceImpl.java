@@ -1,13 +1,17 @@
 package com.shmilyou.service.impl;
 
+import com.alibaba.fastjson.JSON;
 import com.shmilyou.entity.OpenUser;
 import com.shmilyou.entity.User;
 import com.shmilyou.entity.UserTag;
 import com.shmilyou.repository.UserRepository;
 import com.shmilyou.service.UserService;
+import com.shmilyou.service.bo.AppIdAndOpenIdAndAccessToken;
 import com.shmilyou.utils.Constant;
 import com.shmilyou.utils.Encrypt;
 import com.shmilyou.utils.Utils;
+import com.shmilyou.utils.WebUtils;
+import com.shmilyou.web.controller.vo.QQUserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -97,5 +101,47 @@ public class UserServiceImpl extends BaseServiceImpl<User> implements UserServic
     @Override
     public int registerOpenUser(OpenUser openUser) {
         return userRepository.insertOpenUser(openUser);
+    }
+
+    @Override
+    public OpenUser queryByOpenId(String openid) {
+        if (!StringUtils.isEmpty(openid)) {
+            return userRepository.queryByOpenId(openid);
+        }
+        return null;
+    }
+
+    @Override
+    public User QQLogin(AppIdAndOpenIdAndAccessToken qqLoginHelper) {
+        //1检查是否第一次登录网站
+        OpenUser exit = queryByOpenId(qqLoginHelper.getOpenid());
+        if (exit != null) {
+            logger.info("QQ登录,非第一次登录：" + exit.toString());
+            return queryById(exit.getUserId());
+        } else {
+            logger.info("QQ登录,第一次登录：" + qqLoginHelper);
+            //2.获取个人信息
+            String userInfo = WebUtils.getJsonFromUrl("https://graph.qq.com/user/get_user_info?access_token=" + qqLoginHelper.getAccess_token() + "&oauth_consumer_key=" + qqLoginHelper.getClient_id() + "&openid=" + qqLoginHelper.getOpenid());
+            QQUserInfo qqUserInfo = JSON.parseObject(userInfo, QQUserInfo.class);
+            logger.info("QQ返回的数据：" + qqUserInfo.toString());
+            if (StringUtils.isEmpty(qqUserInfo.getNickname())) {
+                return null;
+            }
+            //3.先插入【User表】
+            User user = new User();
+            user.setNickname(qqUserInfo.getNickname());
+            user.setGender("男".equals(qqUserInfo.getGender()) ? 0 : 1);
+            insert(user);
+            //4.插入第三方登录表
+            OpenUser openUser = new OpenUser();
+            openUser.setUserId(user.getId());
+            openUser.setOpenType("QQ");
+            openUser.setOpenId(qqLoginHelper.getOpenid());
+            openUser.setAccessToken(qqLoginHelper.getAccess_token());
+            openUser.setNickname(qqUserInfo.getNickname());
+            openUser.setAvatar(qqUserInfo.getFigureurl_qq_1());
+            registerOpenUser(openUser);
+            return user;
+        }
     }
 }

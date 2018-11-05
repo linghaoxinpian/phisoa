@@ -27,4 +27,7 @@ public class OpenUser extends BaseEntity {
 
     private String userId;
 
+    //----------------- 非DB字段 -----------------
+
+    private User user;
 }

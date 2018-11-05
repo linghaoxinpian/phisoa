@@ -1,5 +1,6 @@
 package com.shmilyou.web.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.shmilyou.entity.Amateur;
 import com.shmilyou.entity.Organization;
 import com.shmilyou.entity.User;
@@ -9,6 +10,7 @@ import com.shmilyou.service.CourseService;
 import com.shmilyou.service.OpenCourseService;
 import com.shmilyou.service.OrganizationService;
 import com.shmilyou.service.UserService;
+import com.shmilyou.service.bo.AppIdAndOpenIdAndAccessToken;
 import com.shmilyou.utils.Constant;
 import com.shmilyou.utils.WebUtils;
 import com.shmilyou.web.resolver.LoginUser;
@@ -23,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  * Created with 岂止是一丝涟漪     530060499@qq.com    2018/10/26
@@ -114,9 +117,33 @@ public class LoginController extends BaseController {
 
     /** 求学者QQ登录 */
     @RequestMapping(value = "/QQ")
-    public String QQLogin(String code) {
-        logger.info("code:" + code);
-        return "index";
+    public String QQLogin(String access_token, HttpSession session) {
+        logger.info("测试：access_token=" + access_token);
+        //1.未获取到token
+        if (StringUtils.isEmpty(access_token)) {
+            return "qq_auth";
+        }
+        //2.已获取到token
+        String json = WebUtils.getJsonFromUrl("https://graph.qq.com/oauth2.0/me?access_token=" + access_token);
+        logger.info("测试:原始json=" + json);
+        json = json.substring(json.indexOf("{"), json.indexOf("}") + 1);
+        logger.info("测试:截取后的json=" + json);
+        AppIdAndOpenIdAndAccessToken qqLoginHelper = JSON.parseObject(json, AppIdAndOpenIdAndAccessToken.class);
+        qqLoginHelper.setAccess_token(access_token);
+        User user = userService.QQLogin(qqLoginHelper);
+
+        if (user == null) {
+            //网络错误之类的情况导致未能获取QQ基本信息
+            return "error";
+        }
+        //3.登录信息存入session
+        LoginUser loginUser = new LoginUser();
+        loginUser.setId(user.getId());
+        loginUser.setNickname(user.getNickname());
+        session.setAttribute(Constant.LOGIN_USER, loginUser);
+
+
+        return "redirect:/phisoa";
     }
 
 }

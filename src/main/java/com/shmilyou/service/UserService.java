@@ -3,6 +3,7 @@ package com.shmilyou.service;
 import com.shmilyou.entity.OpenUser;
 import com.shmilyou.entity.User;
 import com.shmilyou.entity.UserTag;
+import com.shmilyou.service.bo.AppIdAndOpenIdAndAccessToken;
 
 import java.util.List;
 
@@ -54,4 +55,10 @@ public interface UserService extends BaseService<User> {
 
     /** 注册第三方登录 */
     int registerOpenUser(OpenUser openUser);
+
+    /** 查询【第三方登录表】 */
+    OpenUser queryByOpenId(String openid);
+
+    /** QQ登录 */
+    User QQLogin(AppIdAndOpenIdAndAccessToken qqLoginHelper);
 }

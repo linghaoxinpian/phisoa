@@ -31,7 +31,7 @@ public class LoginInterceptor implements HandlerInterceptor {
         // 是否登录判断
         if (request.getSession().getAttribute(Constant.LOGIN_USER) == null &&
                 request.getSession().getAttribute(Constant.LOGIN_ORGANIZATION) == null) {
-            response.sendRedirect(request.getContextPath() + "/login");
+            response.sendRedirect(request.getContextPath() + "/phisoa/login");
             return false;
         } else {
             return true;

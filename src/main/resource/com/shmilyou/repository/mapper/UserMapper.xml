@@ -19,6 +19,15 @@
         AND c.del=0 AND ut.del=0
     </select>
 
+    <resultMap id="openUserRM" type="com.shmilyou.entity.OpenUser" autoMapping="true">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <association property="user" column="user_id" javaType="com.shmilyou.entity.User" select="getUser"/>
+    </resultMap>
+    <select id="getUser" resultType="com.shmilyou.entity.User">
+        SELECT * FROM user WHERE id=#{id}
+    </select>
+
 
     <insert id="insertUserTag" parameterType="java.util.List">
         <!--<selectKey resultType="java.lang.String" keyProperty="id" order="BEFORE">-->
@@ -41,6 +50,10 @@
         INSERT INTO open_user (id, open_type, open_id, access_token, expired_time, nickname, avatar, user_id) VALUES
         (#{id}, #{openType}, #{openId}, #{accessToken}, #{expiredTime}, #{nickname}, #{avatar}, #{userId})
     </insert>
+
+    <select id="queryByOpenId" resultMap="openUserRM">
+        SELECT * FROM open_user WHERE open_id=#{openId} AND del=0
+    </select>
 
     <!--        基础方法区           -->
     <!-- insert -->
