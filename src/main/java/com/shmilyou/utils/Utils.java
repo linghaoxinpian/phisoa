@@ -42,8 +42,7 @@ public class Utils {
         if (line == null || "".equals(line)) {
             return "";
         }
-        line = String.valueOf(line.charAt(0)).toUpperCase()
-                .concat(line.substring(1));
+        line = String.valueOf(line.charAt(0)).toUpperCase().concat(line.substring(1));
         StringBuilder sb = new StringBuilder();
         Pattern pattern = Pattern.compile("[A-Z]([a-z\\d]+)?");
         Matcher matcher = pattern.matcher(line);
@@ -96,13 +95,16 @@ public class Utils {
      * @param json json数组, <b>NOTE:</b> ["1","2","3"]
      */
     public static List<String> parseJsonArr(String json) {
-        ObjectMapper objectMapper = new ObjectMapper();
-        try {
-            return objectMapper.readValue(json, List.class);
-        } catch (IOException e) {
-            logger.error(e.getLocalizedMessage(), e);
+        if (!StringUtils.isEmpty(json)) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            try {
+                return objectMapper.readValue(json, List.class);
+            } catch (IOException e) {
+                logger.error(e.getLocalizedMessage(), e);
+            }
+            return Collections.emptyList();
         }
-        return Collections.emptyList();
+        return Collections.EMPTY_LIST;
     }
 
     /**

@@ -10,17 +10,19 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-sm-3" th:each="c:${courses}">
-            <img src="" class="img-responsive" th:src="${c.picUrl}" alt="">
-            <div>
-                <p class="text-center" th:text="${c.name}"></p>
-                <p class="text-center" th:text="${c.level}"></p>
-                <p class="text-center">
-                    <label th:text="${c.price}">900</label>
-                    <s th:text="${c.originalPrice}">999</s>
-                </p>
+        <div class="col-sm-3" style="border: 2px solid #dfde2b" th:each="c:${courses}">
+            <div class="row">
+                <img src="" style="border: 1px dashed #55acee;" th:src="${c.picUrl}" alt="">
+                <div>
+                    <p class="text-center" th:text="${c.name}"></p>
+                    <p class="text-center" th:text="${c.level}"></p>
+                    <p class="text-center">
+                        <label th:text="${c.price}">900</label>
+                        <s th:text="${c.originalPrice}">999</s>
+                    </p>
+                </div>
             </div>
-            <div>
+            <div class="row text-center">
                 <a href="#" th:href="|/phisoa/manager/organization/edit/course/${c.id}|">修改课程</a>
                 <form action="/phisoa/manager/organization/rm/course" method="post">
                     <input type="hidden" name="courseId" value="${c.id}">
@@ -31,7 +33,7 @@
     </div>
     <div class="row">
         <div class="col-sm-4 col-offset-sm-4">
-            <a href="/phisoa/manager/organization/add/course">新增课程</a>
+            <a class="btn btn-primary" href="/phisoa/manager/organization/add/course">新增课程</a>
         </div>
     </div>
 </div>

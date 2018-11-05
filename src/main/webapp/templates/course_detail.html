@@ -154,7 +154,7 @@
                         课程价格：叫其他同类课程便宜
                     </li>
                     <li class="list-group-item" th:text="|课程等级: ${course.level}|">课程等级：初级</li>
-                    <li class="list-group-item" th:text="|上课形式: ${course.trainingModel}|"></li>
+                    <li class="list-group-item" th:text="|上课形式: ${course.getTrainingMode}|"></li>
                     <li class="list-group-item" th:text="|适合基础: ${course.suitable}|"></li>
                     <li class="list-group-item" th:text="|课程目标: 兴趣培养|">课程目标: 兴趣培养</li>
                     <li class="list-group-item" th:text="|教师经验: ${lecturer.experience}|">教师经验：专业书法家、从业十余年</li>

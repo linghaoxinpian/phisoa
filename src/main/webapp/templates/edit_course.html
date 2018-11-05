@@ -2,15 +2,17 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
     <title>编辑课程</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js"></script>
     <script src="/static/js/selectTags.js" type="javascript"></script>
 </head>
 <body>
 <div class="container">
     <div class="raw">
         <div class="col-sm-4 col-sm-offset-4">
-            <form class="form-horizontal" action="/phisoa/manager/organization/add/course" method="post"
+            <form class="form-horizontal" action="/phisoa/manager/organization/edit/course" method="post"
                   enctype="multipart/form-data">
                 <input type="hidden" th:value="${c.id}" name="id">
                 <div class="form-group">
@@ -19,13 +21,12 @@
                 </div>
                 <div class="form-group">
                     <div class="row">
-                        <label>课程类型</label>
-                        <input type="text" class="form-control" name="tag" th:value="${c.category.name}" value="课程类型"/>
+                        <label th:text="|课程类型: ${c.category?.name}|">课程类型</label>
                     </div>
                     <div class="row">
                         <select name="categoryId" id="selectTag1" onchange="getTag()" th:each="item:${tagLevel_1}">
-                            <option th:value="${item.id}" th:text="${item.name}" value="7078ac33-befe-11e8-94b3-a353b48ca080">
-                                国学文化
+                            <option th:value="${item.id}" th:text="${item.name}" value="">
+                                请选择
                             </option>
                         </select>
                         <select name="categoryId" id="selectTag2" onchange="getTag2()">
@@ -55,7 +56,7 @@
 
                 <div class="form-group">
                     <label>教学环境</label>
-                    <input type="text" name="environment" th:text="${c.environment}" value="999">
+                    <input type="text" name="environment" th:value="${c.environment}" value="999">
                 </div>
 
                 <div class="form-group">
@@ -74,13 +75,14 @@
                 </div>
 
                 <div class="form-group">
-                    <label>上课形势</label>
-                    <input type="text" name="trainingModel" placeholder="如：班级上课" th:value="${c.trainingModel}" value="班级上课">
+                    <label>上课形式</label>
+                    <input type="text" name="trainingMode" placeholder="如：班级上课" th:value="${c.trainingMode}"
+                           value="班级上课">
                 </div>
 
                 <div class="form-group">
                     <label>开课时间</label>
-                    <input type="date" name="trainingModel" th:value="${c.startTime}">
+                    <input type="date" name="startTime" th:value="${#dates.format(c.startTime,'yyyy-MM-dd')}">
                 </div>
 
                 <div class="form-group">

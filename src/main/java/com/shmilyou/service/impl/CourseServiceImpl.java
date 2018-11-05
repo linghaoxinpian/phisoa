@@ -113,8 +113,8 @@ public class CourseServiceImpl extends BaseServiceImpl<Course> implements Course
     @Override
     public Course loadByOrganizationIdAndCourseId(String organizationId, String courseId) {
         Map<String, String> map = new HashMap<>();
-        map.put("organizationId", organizationId);
-        map.put("courseId", courseId);
+        map.put("ownerId", organizationId);
+        map.put("id", courseId);
         List<Course> courses = queryByColumns(map);
         return courses.size() > 0 ? courses.get(0) : null;
     }

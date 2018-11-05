@@ -37,7 +37,7 @@ public class Course extends BaseEntity {
     private String suitable;
 
     /** 教学形式：班级上课 */
-    private String trainingModel;
+    private String trainingMode;
 
     /** 每次上课时长 */
     private String duration;

@@ -155,6 +155,7 @@ public class OrganizationHomeController extends BaseController {
             String tags = courseVO.getCategoryId();
             courseVO.setCategoryId(tags.substring(tags.lastIndexOf(",") + 1));
         }
+        //1.1 copy
         Course course = new Course();
         BeanUtils.copyProperties(courseVO, course);
         course.setId(UUID.randomUUID().toString());
@@ -242,6 +243,11 @@ public class OrganizationHomeController extends BaseController {
             //该课程非当前登录机构的课程
             return "error";
         }
+        //1.1标签
+        if (courseVO.getCategoryId().indexOf(",") > 0) {
+            String tags = courseVO.getCategoryId();
+            courseVO.setCategoryId(tags.substring(tags.lastIndexOf(",") + 1));
+        }
         //2.处理封面图片(新上传覆盖旧的)
         if (courseVO.getPicUrl() != null) {
             String path = session.getServletContext().getRealPath("/") + Constant.PIC_COURSE_PATH + course.getId() + "/";
@@ -269,7 +275,7 @@ public class OrganizationHomeController extends BaseController {
         course.setOriginalPrice(courseVO.getOriginalPrice());
         course.setLevel(courseVO.getLevel());
         course.setSuitable(courseVO.getSuitable());
-        course.setTrainingModel(courseVO.getTrainingModel());
+        course.setTrainingMode(courseVO.getTrainingMode());
         course.setDuration(courseVO.getDuration());
         course.setEnvironment(courseVO.getEnvironment());
         course.setFeature(courseVO.getFeature());
@@ -287,7 +293,7 @@ public class OrganizationHomeController extends BaseController {
     /** 删除课程 */
     @RequestMapping(value = "/rm/course", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<Map<String, Object>> removeCourse(LoginOrganization loginOrganization, @RequestBody String courseId) {
+    public ResponseEntity<Map<String, Object>> removeCourse(LoginOrganization loginOrganization, String courseId) {
         int row = courseService.delete(courseId);
         if (row > 0) {
             return WebUtils.ok();

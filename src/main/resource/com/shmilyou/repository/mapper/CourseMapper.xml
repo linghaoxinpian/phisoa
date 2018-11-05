@@ -70,7 +70,7 @@
 
     <!--update -->
     <update id="update">
-    UPDATE Course SET name=#{name},
+    UPDATE course SET name=#{name},
     description=#{description},
     pic_url=#{picUrl},
     price=#{price},
