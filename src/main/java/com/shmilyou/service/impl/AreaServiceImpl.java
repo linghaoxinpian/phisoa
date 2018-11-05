@@ -39,19 +39,19 @@ public class AreaServiceImpl extends BaseServiceImpl<Area> implements AreaServic
     @Override
     public String loadSelectAreaCode(AreaCode areaCode) {
         if (areaCode != null) {
-            if (StringUtils.isEmpty(areaCode.getDistrict())) {
+            if (!StringUtils.isEmpty(areaCode.getDistrict())) {
                 List<Area> districts = queryByColumn("areaCode", areaCode.getDistrict());
                 if (districts.size() > 0) {
                     return areaCode.getDistrict();
                 }
             }
-            if (StringUtils.isEmpty(areaCode.getCity())) {
+            if (!StringUtils.isEmpty(areaCode.getCity())) {
                 List<Area> city = queryByColumn("areaCode", areaCode.getCity());
                 if (city.size() > 0) {
                     return areaCode.getCity();
                 }
             }
-            if (StringUtils.isEmpty(areaCode.getCity())) {
+            if (!StringUtils.isEmpty(areaCode.getCity())) {
                 List<Area> provinces = queryByColumn("areaCode", areaCode.getProvince());
                 if (provinces.size() > 0) {
                     return areaCode.getProvince();

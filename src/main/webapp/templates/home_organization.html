@@ -28,17 +28,17 @@
         </div>
         <div class="col-sm-8">
             <div class="col-sm-3">
-                <img src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1616165056,46158778&fm=26&gp=0.jpg"
-                     alt="logo">
+                <img class="img-responsive" th:src="${o.getLogo()}"
+                     src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1616165056,46158778&fm=26&gp=0.jpg" alt="logo">
             </div>
             <div class="col-sm-9">
                 <div class="row">
                     <label th:text="|机构名: ${o.name}|"> 机构名 </label>
                     <label>机构认证徽章</label>
-                    <a href="wwww.sdsd">编辑资料</a>
+                    <a href="/phisoa/manager/organization/edit">编辑资料</a>
                 </div>
                 <div class="row">
-                    <label th:text="${tag}" th:each="tag:${o.categoryList}">
+                    <label th:text="${item.name}+' | '" th:each="item:${o.categoryList}">
                         标签名
                     </label>
                     <a href="sdsfsaf.fds">修改标签</a>

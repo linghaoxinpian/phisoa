@@ -9,16 +9,6 @@
     <script>
         var code;
 
-        //处理地区函数
-        function handleArea() {
-            var province = $("#province").find("option:selected").data("code");
-            var city = $("#city").find("option:selected").data("code");
-            var district = $("#district").find("option:selected").data("code");
-            $("#p").val(province);
-            $("#c").val(city);
-            $("#d").val(district);
-        }
-
         function checkCode() {
             var verify = $("#code").val() == code;
             verify = true;
@@ -85,15 +75,6 @@
                     <input type="password" id="password" name="password" class="form-control" value="123">
                 </div>
 
-                <!-- 选择地区 -->
-                <!--<div data-toggle="distpicker">-->
-                <!--<select data-province="上海市" id="province"></select>-->
-                <!--<select data-city="上海市市辖区" id="city"></select>-->
-                <!--<select data-district="浦东新区" id="district"></select>-->
-                <!--<input type="hidden" id="p" name="province">-->
-                <!--<input type="hidden" id="c" name="city">-->
-                <!--<input type="hidden" id="d" name="district">-->
-                <!--</div>-->
                 <div class="form-group">
                     <div class="checkbox">
                         <label th:each="item:${tags}" class="checkbox-inline">

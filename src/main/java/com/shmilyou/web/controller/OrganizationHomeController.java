@@ -65,6 +65,7 @@ public class OrganizationHomeController extends BaseController {
         }
         //获取机构
         Organization organization = organizationService.queryById(loginOrganization.getId());
+        organization.setLogo(Constant.PIC_ORGANIZATION_LOGO_PATH + organization.getId() + "/" + organization.getLogo());
         //获取机构评分
         OrganizationOverview overview = organization.getOverview();
         //获取交易额
