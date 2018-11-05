@@ -119,4 +119,13 @@ public class CourseServiceImpl extends BaseServiceImpl<Course> implements Course
         return courses.size() > 0 ? courses.get(0) : null;
     }
 
+    @Override
+    public int deleteByOrganizationIdAndCourseId(String organizationId, String courseId) {
+        Course course = queryById(courseId);
+        if (course.getOwnerId().equals(organizationId)) {
+            return delete(courseId);
+        }
+        return 0;
+    }
+
 }

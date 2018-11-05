@@ -19,4 +19,7 @@ public interface LecturerService extends BaseService<Lecturer> {
 
     /** 查询的同时可以进行校验 */
     Lecturer loadByOrganizationIdAndLecturerId(String organizationId, String lecturerId);
+
+    /** 删除某机构的某名讲师 */
+    int deleteByOrganizationIdAndLecturerId(String organizationId, String lecturerId);
 }

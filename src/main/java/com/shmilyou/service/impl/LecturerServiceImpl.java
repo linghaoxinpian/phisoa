@@ -36,4 +36,13 @@ public class LecturerServiceImpl extends BaseServiceImpl<Lecturer> implements Le
     public Lecturer loadByOrganizationIdAndLecturerId(String organizationId, String lecturerId) {
         return lecturerRepository.queryByOrganizationIdAndLecturerId(organizationId, lecturerId);
     }
+
+    @Override
+    public int deleteByOrganizationIdAndLecturerId(String organizationId, String lecturerId) {
+        Lecturer lecturer = queryById(lecturerId);
+        if (organizationId.equals(lecturer.getOrganizationId())) {
+            return delete(lecturerId);
+        }
+        return -1;
+    }
 }

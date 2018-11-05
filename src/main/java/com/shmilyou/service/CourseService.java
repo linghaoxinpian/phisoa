@@ -60,4 +60,7 @@ public interface CourseService extends BaseService<Course> {
 
     /** 根据机构id与课程id加载，具有验证功能 */
     Course loadByOrganizationIdAndCourseId(String organizationId, String courseId);
+
+    /** 删除某机构的某门口 */
+    int deleteByOrganizationIdAndCourseId(String organizationId, String courseId);
 }

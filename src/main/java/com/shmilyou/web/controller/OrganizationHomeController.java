@@ -293,9 +293,11 @@ public class OrganizationHomeController extends BaseController {
     @RequestMapping(value = "/rm/course", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Map<String, Object>> removeCourse(LoginOrganization loginOrganization, String courseId) {
-        int row = courseService.delete(courseId);
-        if (row > 0) {
-            return WebUtils.ok();
+        if (loginOrganization != null && !StringUtils.isEmpty(courseId)) {
+            int row = courseService.deleteByOrganizationIdAndCourseId(loginOrganization.getId(), courseId);
+            if (row > 0) {
+                return WebUtils.ok();
+            }
         }
         return WebUtils.error("删除失败");
     }
@@ -445,9 +447,11 @@ public class OrganizationHomeController extends BaseController {
     @RequestMapping(value = "/rm/lecturer", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Map<String, Object>> removeLecturer(LoginOrganization loginOrganization, String lecturerId) {
-        int row = lecturerService.delete(lecturerId);
-        if (row > 0) {
-            return WebUtils.ok();
+        if (!StringUtils.isEmpty(lecturerId)) {
+            int row = lecturerService.deleteByOrganizationIdAndLecturerId(loginOrganization.getId(), lecturerId);
+            if (row > 0) {
+                return WebUtils.ok();
+            }
         }
         return WebUtils.error("删除失败");
     }
