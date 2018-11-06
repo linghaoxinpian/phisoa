@@ -88,7 +88,7 @@
             <mvc:exclude-mapping path="/phisoa/index"/>
             <mvc:exclude-mapping path="/phisoa/login/**"/>
             <mvc:exclude-mapping path="/phisoa/login_out"/>
-            <mvc:exclude-mapping path="/phisoa/register"/>
+            <mvc:exclude-mapping path="/phisoa/register/**"/>
 
             <mvc:exclude-mapping path="/phisoa/"/>
             <mvc:exclude-mapping path="/phisoa/index/"/>

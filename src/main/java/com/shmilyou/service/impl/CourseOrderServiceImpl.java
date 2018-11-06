@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -40,6 +42,11 @@ public class CourseOrderServiceImpl extends BaseServiceImpl<CourseOrder> impleme
     }
 
     @Override
+    public List<CourseOrder> loadNewestByUserId(String userId) {
+        return queryByColumn("userId", userId).stream().sorted(Comparator.comparing(CourseOrder::getAddTime).reversed()).collect(Collectors.toList());
+    }
+
+    @Override
     public CourseOrder loadByCourseIdAndUserId(String courseId, String userId) {
         List<CourseOrder> courseOrders = courseOrderRepository.queryByCourseIdAndUserId(courseId, userId);
         if (courseOrders.size() > 0) {
@@ -60,5 +67,55 @@ public class CourseOrderServiceImpl extends BaseServiceImpl<CourseOrder> impleme
             return delete(orderId);
         }
         return -1;
+    }
+
+    @Override
+    public List<CourseOrder> loadByOrganizationId(String organizationId) {
+        return queryByColumn("organizationId", organizationId).stream()
+                .sorted(Comparator.comparing(CourseOrder::getAddTime).reversed())
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<CourseOrder> loadByOrganizationIdAndStatus(String organizationId, int status) {
+        Map<String, String> map = new HashMap<>();
+        map.put("organizationId", organizationId);
+        map.put("status", String.valueOf(status));
+        List<CourseOrder> orders = queryByColumns(map);
+        return orders.stream()
+                .sorted(Comparator.comparing(CourseOrder::getAddTime).reversed())
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<CourseOrder> loadByUserIdAndStatus(String userId, int status) {
+        Map<String, String> map = new HashMap<>();
+        map.put("userId", userId);
+        map.put("status", String.valueOf(status));
+        List<CourseOrder> orders = queryByColumns(map);
+        return orders.stream()
+                .sorted(Comparator.comparing(CourseOrder::getAddTime).reversed())
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<CourseOrder> loadNotCommentsByUserId(String userId) {
+        Map<String, String> map = new HashMap<>();
+        map.put("userId", userId);
+        map.put("commentsNum", "0");
+        List<CourseOrder> orders = queryByColumns(map);
+        return orders.stream()
+                .sorted(Comparator.comparing(CourseOrder::getAddTime).reversed())
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<CourseOrder> loadWeekByOrganizationId(String organizationId) {
+        return null;
+    }
+
+    @Override
+    public List<CourseOrder> loadWeekByUserId(String organizationId) {
+        return null;
     }
 }
