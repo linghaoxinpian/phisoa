@@ -17,6 +17,8 @@ public class CourseCommentVO {
     /** 是否匿名 */
     private boolean anonymous;
 
+    private Integer star;
+
     private String courseId;
 
 }

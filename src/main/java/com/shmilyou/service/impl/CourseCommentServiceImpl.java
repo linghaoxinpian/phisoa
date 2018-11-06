@@ -26,7 +26,17 @@ public class CourseCommentServiceImpl extends BaseServiceImpl<CourseComment> imp
 
     @Override
     public List<CourseComment> loadNewestCommentsByCourseId(String courseId, int pageIndex, int pageSize) {
-        return courseCommentRepository.queryNewestCommentsByCourseId(courseId, pageIndex, pageSize);
+        List<CourseComment> comments = courseCommentRepository.queryNewestCommentsByCourseId(courseId, pageIndex, pageSize);
+        //CourseCommentBO commentBO = new CourseCommentBO();
+        //commentBO.setComments(comments);
+        //
+        //Map<Integer, Long> temp = comments.stream().collect(Collectors.groupingBy(CourseComment::getStar,
+        //        Collectors.counting()));
+        ////1-3星为star1,3为中，4-5为高
+        //commentBO.setStar1(Math.toIntExact(temp.get(1)));
+        //commentBO.setStar2(Math.toIntExact(temp.get(1)));
+        //commentBO.setStar3(Math.toIntExact(temp.get(1)));
+        return comments;
     }
 
     @Override

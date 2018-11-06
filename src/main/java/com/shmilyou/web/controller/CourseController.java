@@ -5,6 +5,7 @@ import com.shmilyou.entity.Course;
 import com.shmilyou.entity.CourseComment;
 import com.shmilyou.entity.CourseOrder;
 import com.shmilyou.entity.Organization;
+import com.shmilyou.entity.OrganizationComment;
 import com.shmilyou.entity.OrganizationOverview;
 import com.shmilyou.service.CategoryService;
 import com.shmilyou.service.CourseCommentService;
@@ -86,6 +87,7 @@ public class CourseController extends BaseController {
         comments.forEach(c -> c.setParsedPictures(Utils.parseJsonArr(c.getPictures())));
         //综合评价的星级数量
 
+
         modelMap.addAttribute("course", course);
         modelMap.addAttribute("o", course.getOrganization());
         modelMap.addAttribute("overview", overview);
@@ -134,10 +136,13 @@ public class CourseController extends BaseController {
     /** 评论课程 */
     @RequestMapping(value = "/comment/add", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<Map<String, Object>> commentCourse(LoginUser loginUser, CourseCommentVO commentVO, HttpSession session) {
+    public ResponseEntity<Map<String, Object>> commentCourse(LoginUser loginUser, CourseCommentVO commentVO,
+                                                             OrganizationComment organizationComment,
+                                                             HttpSession session) {
         //评论权限
         CourseOrder order = courseOrderService.loadByCourseIdAndUserId(commentVO.getCourseId(), loginUser.getId());
         if (order != null) {
+            //1.课程评论
             CourseComment comment = new CourseComment();
             BeanUtils.copyProperties(commentVO, comment);
             comment.setUserId(loginUser.getId());
@@ -156,6 +161,10 @@ public class CourseController extends BaseController {
             courseCommentService.insert(comment);
             //更新订单评论数
             courseOrderService.plusCommentsNum(order.getId());
+            //2.机构打分
+            if (organizationComment != null) {
+
+            }
             return WebUtils.ok();
         }
         return WebUtils.error("未购买不能评论");

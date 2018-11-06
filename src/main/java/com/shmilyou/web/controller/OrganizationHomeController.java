@@ -480,4 +480,10 @@ public class OrganizationHomeController extends BaseController {
         //modelMap.addAttribute("ccPath", Constant.PIC_COURSE_COMMENT_PATH);
         return "show_photos";
     }
+
+    /** 课程进度管理 */
+    @RequestMapping(value = "process/course")
+    public ResponseEntity processCourse(LoginOrganization loginOrganization) {
+        return WebUtils.ok();
+    }
 }

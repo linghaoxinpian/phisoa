@@ -48,4 +48,6 @@ public interface CourseOrderService extends BaseService<CourseOrder> {
     /** 【求学者】加载一周订单信息 */
     List<CourseOrder> loadWeekByUserId(String organizationId);
 
+    /** 课程进度管理 */
+    List loadProcessCourse(String organizationId);
 }

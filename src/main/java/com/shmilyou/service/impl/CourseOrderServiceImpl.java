@@ -118,4 +118,9 @@ public class CourseOrderServiceImpl extends BaseServiceImpl<CourseOrder> impleme
     public List<CourseOrder> loadWeekByUserId(String organizationId) {
         return null;
     }
+
+    @Override
+    public List loadProcessCourse(String organizationId) {
+        return null;
+    }
 }

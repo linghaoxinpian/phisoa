@@ -21,6 +21,9 @@ public class CourseComment extends BaseEntity {
     /** 评论时所带的图片 */
     private String pictures;
 
+    /** 用户对该课程的总体打星 */
+    private Integer star;
+
     private String courseId;
 
     private String userId;
