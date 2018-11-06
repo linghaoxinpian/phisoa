@@ -11,6 +11,7 @@ import com.shmilyou.service.CategoryService;
 import com.shmilyou.service.CourseCommentService;
 import com.shmilyou.service.CourseOrderService;
 import com.shmilyou.service.CourseService;
+import com.shmilyou.service.OrganizationCommentService;
 import com.shmilyou.service.OrganizationService;
 import com.shmilyou.utils.Constant;
 import com.shmilyou.utils.Utils;
@@ -59,6 +60,8 @@ public class CourseController extends BaseController {
     private CourseCommentService courseCommentService;
     @Autowired
     private CourseOrderService courseOrderService;
+    @Autowired
+    private OrganizationCommentService organizationCommentService;
 
     /** 课程详情页 */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -163,7 +166,7 @@ public class CourseController extends BaseController {
             courseOrderService.plusCommentsNum(order.getId());
             //2.机构打分
             if (organizationComment != null) {
-
+                organizationCommentService.insert(organizationComment);
             }
             return WebUtils.ok();
         }

@@ -24,7 +24,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /* Created with 岂止是一丝涟漪     530060499@qq.com    2018/10/31 */
 
@@ -43,9 +45,10 @@ public class UserHomeController extends BaseController {
 
     /** 主页 */
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public String index(LoginUser loginUser, ModelMap modelMap) {
+    @ResponseBody
+    public ResponseEntity index(LoginUser loginUser, ModelMap modelMap) {
         if (loginUser == null) {
-            return "error";
+            return WebUtils.error("未登录");
         }
         //获取用户
         User user = userService.queryById(loginUser.getId());
@@ -60,8 +63,11 @@ public class UserHomeController extends BaseController {
         modelMap.addAttribute("u", user);
         modelMap.addAttribute("newestCourseComment", newestCourseComment);
 
+        Map<String, Object> map = new HashMap<>();
+        map.put("u", user);
+        map.put("newestCourseComment", newestCourseComment);
 
-        return "home_user";
+        return WebUtils.ok(map);
     }
 
     /** 基础信息管理 */

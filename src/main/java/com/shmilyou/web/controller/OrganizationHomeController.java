@@ -457,7 +457,7 @@ public class OrganizationHomeController extends BaseController {
     }
 
     /** 相册管理 */
-    @RequestMapping(value = "show/photos", method = RequestMethod.GET)
+    @RequestMapping(value = "/show/photos", method = RequestMethod.GET)
     public String showPhotos(LoginOrganization loginOrganization, ModelMap modelMap) {
         if (loginOrganization == null) {
             return "error";
@@ -482,7 +482,7 @@ public class OrganizationHomeController extends BaseController {
     }
 
     /** 课程进度管理 */
-    @RequestMapping(value = "process/course")
+    @RequestMapping(value = "/process/course")
     public ResponseEntity processCourse(LoginOrganization loginOrganization) {
         return WebUtils.ok();
     }

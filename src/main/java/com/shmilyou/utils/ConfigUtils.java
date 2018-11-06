@@ -8,6 +8,6 @@ public final class ConfigUtils {
     /**
      * 当前环境是否是开发环境
      */
-    public static boolean IS_DEBUG = false;
+    public static boolean IS_DEBUG = true;
 
 }
