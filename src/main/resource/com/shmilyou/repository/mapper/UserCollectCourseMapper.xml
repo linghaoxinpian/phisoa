@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shmilyou.repository.UserCollectCourseCollectCourseRepository">
+    <!--useGeneratedKeys="true" keyProperty="id" parameterType resultType statementType="STATEMENT"-->
+    <!--select ${columns} from ${tableName}-->
+
+    <resultMap id="userCollectCourseRM" type="com.shmilyou.entity.UserCollectCourseCollectCourse" autoMapping="true">
+        <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <collection property="user" javaType="com.shmilyou.entity.User" column="user_id"
+                    ofType="com.shmilyou.entity.User"
+                    select="getUser"/>
+    </resultMap>
+    <select id="getUser" resultType="com.shmilyou.entity.User">
+        SELECT * FROM user WHERE id=#{id}
+    </select>
+
+
+    <!--        基础方法区           -->
+    <!-- insert -->
+    <insert id="insert" parameterType="com.shmilyou.entity.UserCollectCourse">
+        <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
+            select uuid()
+        </selectKey>
+        INSERT INTO user_collect_course (id, name, nickname, password, head_img, phone, email, photo_album, area_code,
+        gender)
+        VALUES(
+        #{id},
+        #{name},
+        #{nickname},
+        #{password},
+        #{headImg},
+        #{phone},
+        #{email},
+        #{photoAlbum},
+        #{areaCode},
+        #{gender})
+    </insert>
+
+    <!--update -->
+    <update id="update">
+    UPDATE user_collect_course SET
+        name=#{name},
+        nickname=#{nickname},
+        password=#{password},
+        head_img=#{headImg},
+        phone=#{phone},
+        email=#{email},
+        photo_album=#{photoAlbum},
+        area_code=#{areaCode},
+        gender=#{gender}
+    WHERE id=#{id} AND del=0
+    </update>
+
+    <!-- queryById -->
+    <select id="queryById" resultType="com.shmilyou.entity.UserCollectCourse">
+    SELECT * FROM ${tableName}
+    WHERE id=#{id} AND del=0
+    </select>
+
+    <!-- queryByColumn -->
+    <select id="queryByColumn" resultType="com.shmilyou.entity.UserCollectCourse">
+    SELECT * FROM ${tableName}
+    WHERE ${column}=#{value} AND del=0
+    </select>
+
+    <!-- queryByColumns -->
+    <select id="queryByColumns" resultType="com.shmilyou.entity.UserCollectCourse">
+    SELECT * FROM ${tableName}
+    WHERE ${columnsToValues} del=0
+    </select>
+
+    <!-- queryByColumnLimit -->
+    <select id="queryByColumnLimit" resultType="com.shmilyou.entity.UserCollectCourse">
+    SELECT * FROM ${tableName}
+    WHERE ${column}=#{value} AND del=0 LIMIT #{pageIndex} , #{pageSize}
+    </select>
+
+    <!-- queryByColumnsLimit -->
+    <select id="queryByColumnsLimit" resultType="com.shmilyou.entity.UserCollectCourse">
+    SELECT * FROM ${tableName}
+    WHERE ${columnsToValues} del=0 LIMIT #{pageIndex} , #{pageSize}
+    </select>
+
+</mapper>

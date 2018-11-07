@@ -40,8 +40,11 @@ public class OrganizationIndexController extends BaseController {
     private CourseService courseService;
 
     //机构个人主页
-    @RequestMapping(value = "", method = RequestMethod.GET)
+    @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
     public String index(String organizationId, ModelMap modelMap) {
+        if (StringUtils.isEmpty(organizationId)) {
+            return "redirect:/phisoa/login/organization";
+        }
         //获取机构
         Organization organization = organizationService.queryById(organizationId);
 

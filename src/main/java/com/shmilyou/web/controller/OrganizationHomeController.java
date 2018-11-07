@@ -80,6 +80,22 @@ public class OrganizationHomeController extends BaseController {
         return "home_organization";
     }
 
+    /** 机构个人专区 */
+    @RequestMapping(value = "/notify", method = RequestMethod.GET)
+    public String notifyIndex(LoginOrganization loginOrganization, ModelMap modelMap) {
+        if (loginOrganization == null) {
+            return "redirect:/phisoa/login/organization";
+        }
+        //获取机构
+        Organization organization = organizationService.queryById(loginOrganization.getId());
+        //处理机构海报
+        organization.setParsedPosters(Utils.parseJsonArr(organization.getPosters()));
+        //todo 文章
+        //todo 资讯
+        modelMap.addAttribute("o", organization);
+        return "index_notify";
+    }
+
     /** 基础信息管理 */
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public String showOrganizationInfo(LoginOrganization loginOrganization, ModelMap modelMap) {

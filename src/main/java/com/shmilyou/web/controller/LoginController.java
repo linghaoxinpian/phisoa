@@ -152,9 +152,9 @@ public class LoginController extends BaseController {
         }
         //2.已获取到token
         String json = WebUtils.getJsonFromUrl("https://graph.qq.com/oauth2.0/me?access_token=" + access_token);
-        logger.info("测试:原始json=" + json);
+        //logger.info("测试:原始json=" + json);
         json = json.substring(json.indexOf("{"), json.indexOf("}") + 1);
-        logger.info("测试:截取后的json=" + json);
+        //logger.info("测试:截取后的json=" + json);
         AppIdAndOpenIdAndAccessToken qqLoginHelper = JSON.parseObject(json, AppIdAndOpenIdAndAccessToken.class);
         qqLoginHelper.setAccess_token(access_token);
         User user = userService.QQLogin(qqLoginHelper);

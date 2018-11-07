@@ -4,9 +4,11 @@ import com.shmilyou.entity.Course;
 import com.shmilyou.entity.CourseComment;
 import com.shmilyou.entity.CourseOrder;
 import com.shmilyou.entity.User;
+import com.shmilyou.entity.UserCollectCourse;
 import com.shmilyou.service.AreaService;
 import com.shmilyou.service.CourseCommentService;
 import com.shmilyou.service.CourseOrderService;
+import com.shmilyou.service.UserCollectCourseService;
 import com.shmilyou.service.UserService;
 import com.shmilyou.service.bo.AreaCode;
 import com.shmilyou.utils.Constant;
@@ -42,6 +44,8 @@ public class UserHomeController extends BaseController {
     private CourseOrderService courseOrderService;
     @Autowired
     private AreaService areaService;
+    @Autowired
+    private UserCollectCourseService userCollectCourseService;
 
     /** 主页 */
     @RequestMapping(value = "", method = RequestMethod.GET)
@@ -149,7 +153,7 @@ public class UserHomeController extends BaseController {
     }
 
     /** 相册管理 */
-    @RequestMapping(value = "show/photos", method = RequestMethod.GET)
+    @RequestMapping(value = "/show/photos", method = RequestMethod.GET)
     public String showPhotos(LoginUser loginUser, ModelMap modelMap) {
         if (loginUser == null) {
             return "error";
@@ -165,5 +169,25 @@ public class UserHomeController extends BaseController {
         modelMap.addAttribute("u", user);
 
         return "show_user_photos";
+    }
+
+    /** 收藏管理 */
+    @RequestMapping(value = "/collect/courses", method = RequestMethod.GET)
+    public String collectCourses(LoginUser loginUser, ModelMap modelMap) {
+        List<UserCollectCourse> collects = userCollectCourseService.queryByUserId(loginUser.getId());
+
+        modelMap.addAttribute("collects", collects);
+
+        return "collect_courses";
+    }
+
+    /** 删除收藏 */
+    @RequestMapping(value = "/collect/rm", method = RequestMethod.GET)
+    public String rmCollectCourse(LoginUser loginUser, String collectId) {
+        UserCollectCourse collect = userCollectCourseService.removeCollectCourseById(loginUser.getId(), collectId);
+        if (collect != null) {
+            return "redirect:/phisoa/manager/user/collect/courses";
+        }
+        return "error";
     }
 }
