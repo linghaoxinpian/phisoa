@@ -85,17 +85,25 @@
         <mvc:interceptor>
             <mvc:mapping path="/phisoa/**"/>
             <mvc:exclude-mapping path="/phisoa"/>
-            <mvc:exclude-mapping path="/phisoa/index"/>
-            <mvc:exclude-mapping path="/phisoa/login/**"/>
-            <mvc:exclude-mapping path="/phisoa/login_out"/>
-            <mvc:exclude-mapping path="/phisoa/register/**"/>
-
             <mvc:exclude-mapping path="/phisoa/"/>
-            <mvc:exclude-mapping path="/phisoa/index/"/>
-            <mvc:exclude-mapping path="/phisoa/login_in/"/>
-            <mvc:exclude-mapping path="/phisoa/login_out/"/>
-            <mvc:exclude-mapping path="/phisoa/register/"/>
+            <mvc:exclude-mapping path="/phisoa/index"/>
+            <mvc:exclude-mapping path="/**/login/**"/>
+            <mvc:exclude-mapping path="/**/login_out/**"/>
+            <mvc:exclude-mapping path="/**/register/**"/>
+
             <bean class="com.shmilyou.web.interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+
+        <!-- 机构管理页面拦截 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/phisoa/manager/organization"/>
+            <bean class="com.shmilyou.web.interceptor.OrganizationManagerInterceptor"/>
+        </mvc:interceptor>
+
+        <!-- 求学者管理页面拦截 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/phisoa/manager/user"/>
+            <bean class="com.shmilyou.web.interceptor.UserManagerInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 
