@@ -1,4 +1,4 @@
-package com.shmilyou.web;
+package com.shmilyou.web.customer;
 /* Created with 岂止是一丝涟漪     530060499@qq.com    2018/11/8 */
 
 import com.fasterxml.jackson.annotation.JsonInclude;
