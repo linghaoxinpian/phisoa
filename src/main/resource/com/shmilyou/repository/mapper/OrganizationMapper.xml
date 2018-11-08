@@ -65,6 +65,43 @@
         </foreach>
     </insert>
 
+    <select id="queryOverviewById" resultType="com.shmilyou.entity.OrganizationOverview">
+        SELECT * FROM organization_overview WHERE id=#{id} AND del=0
+    </select>
+
+    <update id="updateOverView">
+        UPDATE organization_overview SET
+             credit_ultimate=#{creditUltimate}
+            ,environment_ultimate=#{environmentUltimate}
+            ,faculty_ultimate=#{facultyUltimate}
+            ,effect_ultimate=#{effectUltimate}
+            ,satisfaction_ultimate=#{satisfactionUltimate}
+            ,certification_level=#{certificationLevel}
+        WHERE id=#{id} AND del=0
+    </update>
+
+    <insert id="insertOverView" parameterType="com.shmilyou.entity.OrganizationOverview">
+        <selectKey keyProperty="id" resultType="java.lang.String" order="BEFORE">
+            select uuid()
+        </selectKey>
+        INSERT INTO organization_overview (id, star1, star2, star3, star4, star5, credit_ultimate,
+        environment_ultimate, faculty_ultimate, effect_ultimate, satisfaction_ultimate, certification_level,
+        organization_id)
+        VALUES(#{id}
+        ,#{star1}
+        ,#{star2}
+        ,#{star3}
+        ,#{star4}
+        ,#{star5}
+        ,#{creditUltimate}
+        ,#{environmentUltimate}
+        ,#{facultyUltimate}
+        ,#{effectUltimate}
+        ,#{satisfactionUltimate}
+        ,#{certificationLevel}
+        ,#{organizationId})
+    </insert>
+
     <!--        基础方法区           -->
     <!-- insert -->
     <insert id="insert" parameterType="com.shmilyou.entity.Organization">

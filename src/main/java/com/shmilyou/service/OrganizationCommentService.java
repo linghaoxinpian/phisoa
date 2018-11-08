@@ -23,4 +23,7 @@ public interface OrganizationCommentService extends BaseService<OrganizationComm
      * @return 影响行数
      */
     int add(OrganizationComment comment);
+
+    /** 加载所有分数的总和 */
+    List<OrganizationComment> loadScores();
 }

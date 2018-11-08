@@ -7,11 +7,30 @@
     <!--select ${columns} from ${tableName}-->
     <resultMap id="organizationCommentRM" type="com.shmilyou.entity.OrganizationComment" autoMapping="true">
         <id property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="organizationId" column="organization_id"/>
         <association property="commenter" column="user_id" javaType="com.shmilyou.entity.User"
                      select="getCommenter"/>
+        <association property="organization" column="organization_id" javaType="com.shmilyou.entity.Organization"
+                     select="getOrganization"/>
     </resultMap>
     <select id="getCommenter" resultType="com.shmilyou.entity.User">
         SELECT * FROM user WHERE id=#{id} AND del=0
+    </select>
+    <select id="getOrganization" resultType="com.shmilyou.entity.Organization">
+        SELECT * FROM phisoa.organization WHERE id=#{id} AND del=0
+    </select>
+
+    <select id="querySumScores" resultMap="organizationCommentRM">
+        SELECT organization_id
+        ,AVG(credit_score) credit_score
+        ,AVG(environment_score) environment_score
+        ,AVG(faculty_score) faculty_score
+        ,AVG(effect_score) effect_score
+        ,AVG(satisfaction_score) satisfaction_score
+        FROM organization_comment
+        WHERE  del=0
+        GROUP BY organization_id
     </select>
 
     <!--        基础方法区           -->

@@ -1,6 +1,7 @@
 package com.shmilyou.service;
 
 import com.shmilyou.entity.Organization;
+import com.shmilyou.entity.OrganizationOverview;
 import com.shmilyou.entity.OrganizationTag;
 
 import java.util.List;
@@ -74,4 +75,7 @@ public interface OrganizationService extends BaseService<Organization> {
      * @return 批量执行成功条数
      */
     int addOrganizationTag(List<OrganizationTag> organizationTags);
+
+    /** 批量更新或插入 */
+    void sync(List<OrganizationOverview> overviews);
 }

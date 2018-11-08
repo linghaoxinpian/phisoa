@@ -27,5 +27,5 @@ public class OrganizationOverview extends BaseEntity {
     private int satisfactionUltimate;
     private int certificationLevel; //认证等级，organization_level表中的level值
 
-    private String organization_id;
+    private String organizationId;
 }

@@ -50,6 +50,8 @@ public class OrganizationComment extends BaseEntity {
 
     private User commenter;
 
+    private Organization organization;
+
     //----------------- 附加属性 -----------------
 
     /** 存放解析后的(pictures属性)图片名称 */

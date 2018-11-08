@@ -1,6 +1,7 @@
 package com.shmilyou.service.impl;
 
 import com.shmilyou.entity.Organization;
+import com.shmilyou.entity.OrganizationOverview;
 import com.shmilyou.entity.OrganizationTag;
 import com.shmilyou.repository.OrganizationRepository;
 import com.shmilyou.service.OrganizationService;
@@ -91,6 +92,18 @@ public class OrganizationServiceImpl extends BaseServiceImpl<Organization> imple
     public int addOrganizationTag(List<OrganizationTag> organizationTags) {
         return organizationRepository.insertOrganizationTag(organizationTags);
 
+    }
+
+    @Override
+    public void sync(List<OrganizationOverview> overviews) {
+        for (OrganizationOverview o : overviews) {
+            OrganizationOverview overview = organizationRepository.queryOverviewById(o.getOrganizationId());
+            if (overview != null) {
+                organizationRepository.updateOverView(o);
+                return;
+            }
+            organizationRepository.insertOverView(o);
+        }
     }
 
 }

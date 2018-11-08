@@ -19,6 +19,9 @@ public class OrganizationCommentServiceImpl extends BaseServiceImpl<Organization
         super(baseRepository);
     }
 
+    @Autowired
+    private OrganizationCommentRepository organizationCommentRepository;
+
     //-------------------方法区-------------------
 
     @Override
@@ -31,6 +34,11 @@ public class OrganizationCommentServiceImpl extends BaseServiceImpl<Organization
     @Override
     public int add(OrganizationComment comment) {
         return insert(comment);
+    }
+
+    @Override
+    public List<OrganizationComment> loadScores() {
+        return organizationCommentRepository.querySumScores();
     }
 
 }

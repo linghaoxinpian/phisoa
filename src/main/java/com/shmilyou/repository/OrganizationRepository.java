@@ -1,6 +1,7 @@
 package com.shmilyou.repository;
 
 import com.shmilyou.entity.Organization;
+import com.shmilyou.entity.OrganizationOverview;
 import com.shmilyou.entity.OrganizationTag;
 import org.apache.ibatis.annotations.Param;
 
@@ -30,4 +31,13 @@ public interface OrganizationRepository extends BaseRepository<Organization> {
      * @return 批量执行成功条数
      */
     int insertOrganizationTag(List<OrganizationTag> organizationTags);
+
+    /** 批量查询 */
+    List<Organization> queryByIds(List<String> ids);
+
+    OrganizationOverview queryOverviewById(String organizationId);
+
+    void updateOverView(OrganizationOverview o);
+
+    void insertOverView(OrganizationOverview o);
 }
