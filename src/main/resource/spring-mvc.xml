@@ -28,7 +28,13 @@
     <!--</bean>-->
     <mvc:annotation-driven>
         <mvc:message-converters>
-            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"></bean>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <!--解决mybatis懒加载序列化问题： 配置 objectMapper 为我们自定义扩展后的 CustomMapper -->
+                <property name="objectMapper">
+                    <bean class="com.shmilyou.web.CustomerObjectMapper">
+                    </bean>
+                </property>
+            </bean>
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                 <property name="supportedMediaTypes">
                     <list>
