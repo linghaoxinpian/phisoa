@@ -23,7 +23,7 @@ public class RegisterController extends BaseController {
     @Autowired
     private CategoryService categoryService;
 
-    @RequestMapping(value = "tag", method = RequestMethod.POST)
+    @RequestMapping(value = "/tag", method = RequestMethod.POST)
     @ResponseBody
     public String registerTag(Category category) {
         if (StringUtils.isEmpty(category.getName())) {
@@ -44,7 +44,7 @@ public class RegisterController extends BaseController {
     }
 
     //--------------------- GET ---------------------
-    @RequestMapping(value = "tag", method = RequestMethod.GET)
+    @RequestMapping(value = "/tag", method = RequestMethod.GET)
     public String registerTag(ModelMap modelMap) {
         //加载一级分类
         List<Category> level1 = categoryService.queryByLevel(Category.Level1);
