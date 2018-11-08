@@ -69,7 +69,11 @@
         SELECT * FROM organization_overview WHERE id=#{id} AND del=0
     </select>
 
-    <update id="updateOverView">
+    <select id="queryOverviewByOrganizationId" resultType="com.shmilyou.entity.OrganizationOverview">
+        SELECT * FROM organization_overview WHERE organization_id=#{organizationId} AND del=0
+    </select>
+
+    <update id="updateOverViewByOrganizationId">
         UPDATE organization_overview SET
              credit_ultimate=#{creditUltimate}
             ,environment_ultimate=#{environmentUltimate}
@@ -77,7 +81,7 @@
             ,effect_ultimate=#{effectUltimate}
             ,satisfaction_ultimate=#{satisfactionUltimate}
             ,certification_level=#{certificationLevel}
-        WHERE id=#{id} AND del=0
+        WHERE organization_id=#{organizationId} AND del=0
     </update>
 
     <insert id="insertOverView" parameterType="com.shmilyou.entity.OrganizationOverview">

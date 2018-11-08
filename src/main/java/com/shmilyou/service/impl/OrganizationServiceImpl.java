@@ -97,9 +97,9 @@ public class OrganizationServiceImpl extends BaseServiceImpl<Organization> imple
     @Override
     public void sync(List<OrganizationOverview> overviews) {
         for (OrganizationOverview o : overviews) {
-            OrganizationOverview overview = organizationRepository.queryOverviewById(o.getOrganizationId());
+            OrganizationOverview overview = organizationRepository.queryOverviewByOrganizationId(o.getOrganizationId());
             if (overview != null) {
-                organizationRepository.updateOverView(o);
+                organizationRepository.updateOverViewByOrganizationId(o);
                 return;
             }
             organizationRepository.insertOverView(o);

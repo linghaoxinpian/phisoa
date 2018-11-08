@@ -10,6 +10,7 @@ import com.shmilyou.service.OrganizationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class OrganizationOverViewJob {
     @Autowired
     private OrganizationLevelService organizationLevelService;
 
+    @Scheduled(cron = "0 0 0 1/1 * ?")
     public void updateAllScore() {
         List<OrganizationComment> list = organizationCommentService.loadScores();
         if (list.size() > 0) {
@@ -57,11 +59,14 @@ public class OrganizationOverViewJob {
                 overview.setFacultyUltimate(i.getFacultyScore());
                 overview.setSatisfactionUltimate(i.getSatisfactionScore());
                 //匹配认证等级
-                String temp = i.getOrganization() != null ? i.getOrganization().getLevelId() : "";
-                OrganizationLevel level = levels.stream().filter(l -> l.getId().equals(temp)).findAny().orElse(null);
-                overview.setCertificationLevel(level != null ? 50 : 0);
+                if (i.getOrganization() != null) {
+                    OrganizationLevel level = levels.stream()
+                            .filter(l -> l.getId().equals(i.getOrganization().getLevelId()))
+                            .findAny().orElse(null);
 
-                list1.add(overview);
+                    overview.setCertificationLevel(level != null ? 50 : 0);
+                    list1.add(overview);
+                }
             });
 
             //更新

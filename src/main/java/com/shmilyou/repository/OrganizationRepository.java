@@ -35,9 +35,11 @@ public interface OrganizationRepository extends BaseRepository<Organization> {
     /** 批量查询 */
     List<Organization> queryByIds(List<String> ids);
 
-    OrganizationOverview queryOverviewById(String organizationId);
+    OrganizationOverview queryOverviewById(String id);
 
-    void updateOverView(OrganizationOverview o);
+    OrganizationOverview queryOverviewByOrganizationId(String organizationId);
+
+    void updateOverViewByOrganizationId(OrganizationOverview o);
 
     void insertOverView(OrganizationOverview o);
 }
