@@ -101,7 +101,7 @@ public class IndexController extends BaseController {
      * @param content     举报内容
      */
     @RequestMapping(value = "to_denounce", method = RequestMethod.POST)
-    public String toDenounce(String profile, String email, String phone, String isAnonymity, String content) {
+    public String toDenounce(String profile, Optional<String> email, String phone, String isAnonymity, String content) {
         return "to_denounce";
     }
 }
