@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created with 岂止是一丝涟漪
@@ -29,7 +30,7 @@ import java.util.List;
 @RequestMapping("/phisoa")
 public class IndexController extends BaseController {
     @Autowired
-    private UserService userService;
+    private Optional<UserService> userService;
     @Autowired
     private AmateurService amateurService;
     @Autowired
